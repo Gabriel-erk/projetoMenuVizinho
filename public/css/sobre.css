@@ -1,0 +1,47 @@
+@import url(main.css);
+
+.titulos{
+    display: flex;
+    justify-content: center;
+}
+
+.titulo{
+    background-color: #fff;
+    color: #000;
+}
+
+.titulo-pergunta{
+    background-color: #fff;
+    color: #E31919;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; 
+}
+
+
+.pergunta-resposta{
+    margin-top: 10px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500; 
+}
+
+.texto{
+    padding-top:15px ;
+}
+
+.banner{
+    margin-top: 10px;
+}
+
+.banner img{
+    height: 400px;
+    width: 100%;
+}
+
+
+.rede-social a img:hover{
+    transform: scale(1.05);
+    transition: all linear 160ms;
+}

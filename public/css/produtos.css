@@ -1,0 +1,146 @@
+@import url(main2.css);
+
+body {
+    background-color: #F8F7F7;
+}
+
+/* #container {
+    max-width: 1140px;
+    margin: 0 auto;
+} */
+
+.imgTelaProduto {
+    background-color: #FBE7CA;
+    text-align: center;
+}
+
+.imgTelaProduto img {
+    width: 600px;
+    height: 500px;
+}
+
+.centraliza {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+#valorNomeTelaProduto {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#valorNomeTelaProduto h1 {
+    font-family: 'Titan One', sans-serif;
+    font-weight: 400;
+    color: #8C6342;
+}
+
+#valorNomeTelaProduto h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-left: 50px;
+}
+
+.descricaoTelaProduto {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 500;
+    color: #979797;
+}
+
+.informacoesNutricionais {
+    background-color: #fff;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.informacoesNutricionais p {
+    color: #8C6342;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.complemento {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.adicionais {
+    background-color: #D9D9D9;
+    padding-top: 2px;
+    padding-bottom: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adicionais h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #4A4A4A;
+}
+
+.adicionais p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #4A4A4A;
+    font-size: 15px;
+}
+
+.itemAdicional {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    height: 130px;
+    /* padding-bottom: 30px; */
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itemAdicional h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding-top: 4px;
+}
+
+.itemAdicional p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #464646;
+}
+
+#botaoTelaProduto {
+    text-align: center;
+}
+
+.botaoAddCartTelaProduto {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: #fff;
+    background-color: #C82727;
+    
+    border: none;
+    border-radius: 10px;
+    padding: 10px 60px;
+
+    transition: transform 0.5s ease;
+}
+
+.botaoAddCartTelaProduto:hover {
+    transform: scale(1.05);
+    transition: all linear 200ms;
+}
+
+.fa-solid:hover {
+    cursor: pointer;
+}

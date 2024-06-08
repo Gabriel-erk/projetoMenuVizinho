@@ -1,0 +1,52 @@
+@import url(main.css);
+
+.combos {
+    border: solid 1px #F2E5D4; 
+    background-color: #F2E5D4;
+    border-radius: 15px;
+    text-align: center;
+    /* align-items: center; */
+    width: calc((100% / 3 ) - 20px);
+    transition: transform 0.5s ease;
+}
+
+.combos:hover{
+    transform: scale(1.05);
+    /* para nao ter uma transição 100% seca */
+    transition: all linear 300ms;
+}
+
+.combos span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.combos p {
+    color: #E31919;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.texto-combo {
+    background-color: #fff;
+    border-radius:5px ;
+    display: flex;
+    padding: 30px;
+    /* Coloca o span e o p nos cantos opostos */
+    justify-content: space-between;
+    flex-grow: 1;
+    box-sizing: border-box;
+    height: 100px;
+}
+
+.promocoes{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.rede-social a img:hover{
+    transform: scale(1.05);
+    transition: all linear 160ms;
+}

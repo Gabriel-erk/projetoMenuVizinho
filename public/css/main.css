@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    text-decoration: none;
+}
+
+/* formatação do cabeçalho */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* text-align: center;   */
+}
+
+#cabecalho {
+    background-color: #C82727;
+}
+
+#barra-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.icones i {
+    margin-right: 5px;
+}
+
+/* definindo que, esta classe nao apareça na tela (pois seu valor ainda é zero, e nao quero que apareça o numero 0, quero q, apareça o valor somente quando tiver um valor maior que 0, para fazer isto usarei js) */
+.esconder {
+    display: none;
+}
+
+/* formatação do contador do carrinho */
+#contador-carrinho {
+    /* position: absolute, controla o posicionamento de um elemento com relaçao a caixa pai ou a janela do navegador (tem relaçao com a caixa pai caso ele tiver um position diferente de static, ou seja diferente do posicionamento padrão), para descobrir com maior facilidade, teste alterando top, bottom, e veja como se comporta */
+    position: absolute;
+    top: 10px;
+    /* Ajuste a posição vertical conforme necessário, quanto maior, mais pra baixo  */
+    right: 91px;
+
+    /* cores e tamanhos */
+    color: #000;
+    background-color: yellow;
+    width: 20px;
+    height: 20px;
+    font-size: 90%;
+    
+    /* Define um raio de 50%, transformando o elemento em uma bolinha */
+    border-radius: 50%;
+    text-align: center;
+}
+
+.banner img {
+    width: 100%;
+    height: 800px;
+    border-radius: 15px;
+}
+
+#menu ul {
+    display: flex;
+    list-style: none;
+}
+
+#menu ul li {
+    margin: 20px 20px;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#menu a:hover {
+    color: yellow;
+    font-weight: 800;
+}
+
+/* formatação do body */
+
+/* formatação dos titulos */
+
+main h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    background-color: #C82727;
+    display: inline-block;
+    padding: 5px 70px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.titulos {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+/* formatação do cardapio */
+.cardapio {
+    display: flex;
+    justify-content: center;
+    /* margin: 20px 30px; */
+    text-align: center;
+    margin-top: 25px;
+}
+
+.items-cardapio {
+    padding: 10px 10px;
+    /* border: solid 1px #ccc; */
+    border-radius: 15px;
+    background-color: #ededed;
+    margin: 20px;
+    width: calc((100% / 1) - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* para quando remover o mouse do elemento, ainda ter uma pequena animação */
+    transition: transform 0.5s ease;
+}
+
+.items-cardapio p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+/* tirando formatação padrão azul do link */
+.items-cardapio a {
+    color: inherit;
+    /* definindo que a cor do elemento tera cor do elemento pai */
+}
+
+.items-cardapio:hover {
+     transform: scale(1.05); 
+    /* para nao ter uma transição 100% seca */
+     transition: all linear 200ms; 
+    box-shadow: 0 1px 6px #bebcbc;
+}
+
+/* formatação da aba mais pedidos */
+.lista-lanches {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.lanches {
+    width: calc((100% / 3) - 30px);
+    border: solid 1px #ccc;
+    border-radius: 15px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lanches:hover {
+    transform: all linear 50ms;
+    border: solid 1px #ededed;
+}
+
+.lanches img {
+    margin-top: 20px;
+}
+
+.lanches a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    background-color: #C82727;
+    border-radius: 30px;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.lanches a:hover {
+    color: yellow;
+}
+
+.texto-lanche {
+    padding-bottom: 40px;
+}
+
+.preco {
+    font-size: 14px;
+}
+
+/* formatção promoções */
+
+.promocoes {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    gap: 30px;
+}
+
+/* formatação rodape */
+
+#rodape {
+    background-color: #C82727;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-top: 80px;
+    color: #fff;
+}
+
+.fonte-2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.coluna-rodape {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#rodape ul {
+    list-style: none;
+}
+
+.linha-rodape a {
+    color: #fff;
+}
+
+.linha-rodape a:hover {
+    font-weight: 500;
+}
+
+.rede-social {
+    text-align: center;
+}
+
+.rede-social a img:hover {
+    transform: scale(1.05);
+    transition: all linear 160ms;
+}
+
+.copy {
+    margin-top: 40px;
+    padding-bottom: 15px;
+    text-align: center;
+}

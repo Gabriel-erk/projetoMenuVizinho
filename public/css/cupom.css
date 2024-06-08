@@ -1,0 +1,49 @@
+@import url(main.css);
+
+.cupom {
+    display: flex;
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+}
+
+.imagem-cupom{
+    flex: 0 0 auto; /* Define a largura automática para a imagem */
+}
+
+.conteudo-cupom{
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ocupa todo o espaço restante disponível */
+}
+
+.cupom h2 {
+    color: #E23030;
+}
+
+.texto-cupom{
+    padding: 10px;
+}
+
+.regra-expiracao{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.regra-expiracao a{
+    color: #E23030;
+    cursor: pointer;
+}
+
+.regra-expiracao a:hover{
+    font-weight: 500;
+}
+
+.rede-social a img:hover{
+    transform: scale(1.05);
+    transition: all linear 160ms;
+}
+
