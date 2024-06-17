@@ -1,5 +1,7 @@
 @extends('layouts.site')
 
+<link rel="stylesheet" href="{{ asset('css/main2.css') }}">
+
 @section('banner')
     <div class="img-banner">
         <img src="{{ asset('img/banner-certo.png') }}" alt="">
@@ -21,7 +23,7 @@
             <div class="titulos">
 
                 <p class="subtitulo">Menu</p>
-                <p class="titulo">Lorem ipsum dolor sit amet</p>
+                <p class="titulo"> Nosso Cardápio</p>
 
             </div>
 
@@ -30,9 +32,8 @@
                 <div class="itemCardapio">
 
                     <div class="infoCardapio">
-
-                        <a href="cardapio#listaLanches">
-                            <img src="{{ asset('img/mr-duplo.png') }}" alt="">
+                        <a href="cardapio.html#listaLanches">
+                            <img src="img/hamburguer.webp" alt="">
 
                             <p>Lanches</p>
                         </a>
@@ -45,8 +46,8 @@
 
                     <div class="infoCardapio">
 
-                        <a href="cardapio#listaAcompanhamentos">
-                            <img src="{{ asset('img/batata-frita.webp') }}" alt="">
+                        <a href="cardapio.html#listaAcompanhamentos">
+                            <img src="img/batata-frita.webp" alt="">
                             <p>Acompanhamentos</p>
                         </a>
 
@@ -58,8 +59,8 @@
 
                     <div class="infoCardapio">
 
-                        <a href="cardapio#listaBebidas">
-                            <img src="{{ asset('img/batata-frita.webp') }}" alt="">
+                        <a href="cardapio.html#listaBebidas">
+                            <img src="img/suco.webp" alt="">
                             <p>Bebidas</p>
                         </a>
 
@@ -72,9 +73,8 @@
 
                     <div class="infoCardapio">
 
-                        <a href="cardapio#listaSobremesas">
-                            <img src="{{ asset('img/sorveteChocolate.png') }}" alt="">
-                        </a>
+                        <a href="cardapio.html#listaSobremesas"><img src="img/sorveteChocolate.png" alt=""></a>
+
 
                         <p>Sobremesas</p>
                     </div>
@@ -99,9 +99,11 @@
         <div class="listaProdutos">
 
             <div class="produto">
-                <div class="imgProduto">
-                    <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                </div>
+                <a href="produto">
+                    <div class="imgProduto">
+                        <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                    </div>
+                </a>
 
                 <div class="nomeValorProduto">
                     <h2 class="nomeProduto">X-salada</h2>
@@ -120,9 +122,11 @@
             </div>
 
             <div class="produto">
-                <div class="imgProduto">
-                    <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                </div>
+                <a href="produto.html">
+                    <div class="imgProduto">
+                        <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                    </div>
+                </a>
 
                 <div class="nomeValorProduto">
                     <h2 class="nomeProduto">X-salada</h2>
@@ -141,9 +145,11 @@
             </div>
 
             <div class="produto">
-                <div class="imgProduto">
-                    <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                </div>
+                <a href="produto.html">
+                    <div class="imgProduto">
+                        <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                    </div>
+                </a>
 
                 <div class="nomeValorProduto">
                     <h2 class="nomeProduto">X-salada</h2>
@@ -345,7 +351,7 @@
                 <div class="cliente">
 
                     <div class="imgCliente">
-                        <img src="{{ asset("img/cliente01.png") }}" alt="" srcset="">
+                        <img src="{{ asset('img/cliente01.png') }}" alt="" srcset="">
                     </div>
 
                     <div class="infoCliente">
@@ -357,15 +363,15 @@
                             error!</p>
 
                         <div class="notaCliente">
-                            <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="" >
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="" >
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="" >
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="" >
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="" >
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
                         </div>
                     </div>
 
@@ -374,7 +380,7 @@
                 <div class="cliente">
 
                     <div class="imgCliente">
-                        <img src="{{ asset("img/cliente01.png") }}" alt="" srcset="">
+                        <img src="{{ asset('img/cliente01.png') }}" alt="" srcset="">
                     </div>
 
                     <div class="infoCliente">
@@ -386,15 +392,15 @@
                             error!</p>
 
                         <div class="notaCliente">
-                            <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="">
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="">
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="">
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="">
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
 
-                           <img src="{{ asset("img/icon-star.png") }}" alt="" srcset="">
+                            <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
                         </div>
                     </div>
 

@@ -89,10 +89,6 @@
                             <a href="#">Minha Conta</a>
                         </li>
 
-                        <li> <i class="fa-solid fa-user" style="color: #000000;"></i>
-                            <a href="#">Meus Dados</a>
-                        </li>
-
                         <li>
                             <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
                             <a href="#">Meus Pedidos</a>
@@ -128,7 +124,7 @@
     <section id="lista-cardapio">
         @yield('listaCardapio')
     </section>
-    
+
     <main class="container">
         @yield('conteudo')
     </main>

@@ -26,3 +26,8 @@ Route::get('/cadastro', function () {
     return view('cadastro');
 });
 
+Route::get('/produto', function () {
+    return view('produto');
+});
+
+

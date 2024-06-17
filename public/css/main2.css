@@ -318,17 +318,28 @@ body {
     border-radius: 15px;
     font-family: 'Cabin', sans-serif;
     background-color: #fff;
+    /* cursor: pointer; */
+
     padding: 20px;
-    height: 490px;
+    height: 465px;
     /* width: calc((100% / 1) - 30px); */
+    /* transição para border-color de 0.3s com efeito ease-out 
+    * transição para background-color de 0.3s com efeito ease-out 
+    * transição para transform de 0.3s com efeito ease-out 
+    * transition também 0.3s é o tempo em que ira "acontecer" o hover e voltar ao normal 
+    */
+    transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .produto:hover {
     border-color: #e9e2e2;
+    background-color: #f9f9f9; /* Mudança de cor de fundo para efeito suave */
+    transform: scale(1.02);
 }
 
 .imgProduto {
-    background-color: #E7E7E7;
+    background-color: #f1f1f1;
+    /* background-color: #E7E7E7; */
     text-align: center;
     border-radius: 5px;
     padding-top: 15px;
@@ -367,17 +378,21 @@ body {
     border: none;
     border-radius: 5px;
     padding: 3px 20px;
+
+    /* adicionando uma transição suave */
+    transition: filter 0.3s ease;
+    cursor: pointer;
 }
 
 .addCart button:hover {
-    background-color: #725239;
+    /* deixando com 90% do brilho total */
+    filter: brightness(0.9); /* Escurece o botão e o texto */
 }
 
 /* formatando seção de avaliação de clientes */
 
 #clientes {
     display: flex;
-
 }
 
 .cliente {

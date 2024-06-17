@@ -1,0 +1,136 @@
+@import url(main2.css);
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.categoriasRestaurante {
+
+    display: flex;
+
+    justify-content: space-between;
+    
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
+
+.tituloDesc {
+    margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.tituloDesc p {
+    color: #716B6B;
+}
+
+.fundoImgCategoria {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #CCCCCC;
+    height: 190px;
+
+    width: 250px;
+
+    border-radius: 8px;
+
+    transition: all 0.3s ease;
+
+}
+
+.fundoImgCategoria:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+}
+
+.botaoImg {
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #fff;
+    transition: all 0.3s ease;
+
+}
+
+.botaoImg:hover {
+    cursor: pointer;
+
+    background-color: #e9ecef;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+i {
+    font-size: 15px;
+}
+
+.input {
+    background-color: #CCCCCC;
+
+    border: none;
+    border-radius: 5px;
+
+    padding-top: 15px;
+    padding-bottom: 17px;
+    padding-left: 8px;
+
+    width: 250px;
+
+    margin-top: 10px;
+
+    font-family: 'Poppins', sans-serif;
+
+    transition: all 0.3s ease;
+}
+
+.input:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+    background-color: #f0f0f0;
+    border-color: #8C6342;
+}
+
+.input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #8C6342;
+    box-shadow: 0 0 8px rgba(140, 99, 66, 0.8);
+}
+
+.agrupaBotoes {
+    display: flex;
+    justify-content: center;
+}
+
+.botoes {
+
+    margin-top: 45px;
+    margin-left: 10px;
+    padding: 8px 14px;
+
+    background-color: #8C6342;
+
+    border-radius: 4px;
+
+    transition: filter 0.3s ease;
+}
+
+.botoes a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+
+}
+
+.botoes:hover {
+    /* color: #e6e1e1; */
+    filter: brightness(0.9);
+}

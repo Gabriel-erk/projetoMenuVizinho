@@ -1,0 +1,61 @@
+@import url(cadastroCardapio.css);
+
+
+.tituloDesc {
+    margin-bottom: 0;
+}
+
+.cadastroInfo {
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-bottom:50px;
+    border-bottom: 1px solid #000000;
+
+    display: flex;
+}
+
+.cadastroSobre {
+    display: block;
+}
+
+.tituloInfo {
+    margin-bottom: 10px;
+}
+
+.tituloInfo h3 {
+    color: #727272;
+}
+
+.imgRegistro p {
+    /* text-align: center; */
+    font-size: 0.9em;
+    padding-left: 25px;
+}
+
+.cadastroSobre p {
+    padding-left: 0;
+}
+
+.campoRegistro {
+    width: 400px;
+}
+
+.campoSobre {
+    width: 500px;
+    height: 120px;
+}
+
+.fundoImgRegistro {
+    width: 150px;
+    height: 150px;
+}
+
+.fundoImgSobreNos {
+    width: 1078px;
+    height: 550px;
+}
+
+.agrupaCampos {
+    margin-right: 30px;
+}
+

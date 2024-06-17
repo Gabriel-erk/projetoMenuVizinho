@@ -1,0 +1,33 @@
+@import url(cadastroCardapio.css);
+
+/* .conteudo {
+    margin-left: 40px;
+} */
+
+.tituloCupom {
+    font-weight: bold;
+    font-size: 25px;
+    color: #727272;
+
+    margin-top: 25px;
+    /* margin-bottom: 20px; */
+}
+
+.tituloDesc {
+    margin-bottom: 0;
+}
+
+/* 
+.conteudo {
+    padding-left: 35px
+} */
+
+.cupom {
+    padding-left: 35px;
+    padding-bottom:50px;
+    border-bottom: 1px solid #000000;
+}
+
+.campoDividido {
+    width: 400px;
+}
