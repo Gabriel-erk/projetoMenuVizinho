@@ -31,6 +31,8 @@
 </head>
 
 <body>
+
+
     <header id="cabecalho">
 
         <div id="barra-topo" class="container">
@@ -59,7 +61,7 @@
                     </div>
 
                     <div class="agrupaCarrinho alinharBotoes">
-                        <a href="carrinho.html"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
+                        <a href="carrinho"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
                     </div>
 
                     <div class="iconeMenuLateral alinharBotoes">
@@ -72,12 +74,7 @@
 
         </div>
 
-
-        <div class="banner owl-carousel owl-theme">
-
-            @yield('banner')
-
-        </div>
+        @yield('banner')
 
         <div id="agrupaMenuLateral">
             <div id="menuLateral">
@@ -101,7 +98,7 @@
 
                         <li>
                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                            <a href="sejaUmParceiro.html">Seja um dos nossos
+                            <a href="sejaParceiro">Seja um dos nossos
                                 parceiros</a>
                         </li>
 
@@ -121,16 +118,7 @@
 
     </header>
 
-    <section id="lista-cardapio">
-        @yield('listaCardapio')
-    </section>
-
-    <main class="container">
-        @yield('conteudo')
-    </main>
-
-    @yield('conteudoAlternativo')
-
+    @yield('conteudo')
 
     <footer id="rodape">
         <div class="container agrupaRodape">
@@ -141,7 +129,7 @@
 
                     <div class="rodape-logo">
 
-                        <a href="index.html"><img src="{{ asset('img/bua3.png') }}" href="index.html"></a>
+                        <a href="index"><img src="{{ asset('img/bua3.png') }}" href="index"></a>
 
                     </div>
 
