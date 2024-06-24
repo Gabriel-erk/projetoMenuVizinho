@@ -78,4 +78,8 @@ Route::get('/cadastroCupons', function () {
     return view('cadastroParceiro.cadastroCupons');
 });
 
+Route::get('/minhaConta', function () {
+    return view('infoUser.minhaConta');
+});
+
 

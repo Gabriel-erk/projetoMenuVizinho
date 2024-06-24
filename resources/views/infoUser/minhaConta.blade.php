@@ -1,0 +1,52 @@
+@extends('layouts.site')
+<link rel="stylesheet" href="{{ asset('css/cadastroRestaurante.css') }}">
+
+
+@section('conteudo')
+
+    <style>
+        body {
+            background-color: #ffffff
+        }
+
+        .conteudo {
+            padding-bottom: 220px;
+        }
+    </style>
+
+    <main class="contrabando">
+
+        <div class="conteudo">
+
+            <div id="titulo">
+                <h2>Àrea do usuário</h2>
+            </div>
+
+            <div class="opcoesCadastro">
+                <a href="cadastroInformacoes.html">
+                    <h3>Minhas Informações</h3>
+                </a>
+                <p class="descricaoOpcao">Visualize ou altere suas informações de cadastro</p>
+
+            </div>
+
+            <div class="opcoesCadastro">
+                <a href="cadastroCategorias.html">
+                    <h3>Formas de pagamento</h3>
+                </a>
+                <p class="descricaoOpcao">Visualize ou altere suas formas de pagamento</p>
+
+            </div>
+
+            <div class="opcoesCadastro">
+                <a href="cadastroSubCategorias.html">
+                    <h3>Endereço de entrega</h3>
+                </a>
+                <p class="descricaoOpcao">Visualize ou altere seus endereços de entrega</p>
+
+            </div>
+
+
+        </div>
+    </main>
+@endsection

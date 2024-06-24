@@ -83,7 +83,7 @@
                 <nav>
                     <ul>
                         <li><i class="fa-solid fa-house" style="color: #000000;"></i>
-                            <a href="#">Minha Conta</a>
+                            <a href="minhaConta">Minha Conta</a>
                         </li>
 
                         <li>
