@@ -1,6 +1,19 @@
 @extends('layouts.site')
+<link rel="stylesheet" href="{{ asset('css/produtos.css') }}">
+
+<!-- adicionando fonte 2 (Titan One) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
 
 @section('conteudo')
+    <style>
+        body {
+            background-color: #F8F7F7;
+        }
+
+    </style>
     <main>
 
         <div class="imgTelaProduto">

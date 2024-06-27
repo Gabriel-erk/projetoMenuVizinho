@@ -4,15 +4,15 @@
     <div class="banner owl-carousel owl-theme">
 
         <div class="img-banner">
-            <img src="{{ asset("img/banner-certo.png") }}" alt="">
+            <img src="{{ asset('img/banner-certo.png') }}" alt="">
         </div>
 
         <div class="img-banner">
-            <img src="{{ asset("img/peca-o-seu3.png")}}" alt="">
+            <img src="{{ asset('img/peca-o-seu3.png') }}" alt="">
         </div>
 
         <div class="img-banner">
-            <img src="{{ asset("img/banner 3.png")}}" alt="">
+            <img src="{{ asset('img/banner 3.png') }}" alt="">
         </div>
 
     </div>
@@ -105,9 +105,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -128,9 +128,9 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -151,9 +151,9 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -187,9 +187,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -210,9 +210,9 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -233,9 +233,9 @@
 
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -286,9 +286,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -308,9 +308,9 @@
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -330,9 +330,9 @@
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 

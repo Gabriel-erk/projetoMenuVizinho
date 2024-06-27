@@ -32,9 +32,9 @@
 
                 <div class="produto">
 
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/mr.bacon.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/mr.bacon.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -56,9 +56,9 @@
 
                 <div class="produto">
 
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/mr-king.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/mr-king.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -80,82 +80,9 @@
 
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="listaProdutos">
-
-                <div class="produto">
-
-                    <a href="produto.html">
-                        <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="produto.html">
-                        <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
-                    </div>
-
-                </div>
-                <div class="produto">
-                    <a href="produto.html">
-                        <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -180,9 +107,9 @@
 
                 <div class="produto">
 
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -203,9 +130,82 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
+                        </div>
+                    </a>
+
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
+
+                        <p class="precoProduto">$15.90</p>
+                    </div>
+
+                    <div class="descricaoProduto">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
+                            ullamcorper vel eget libero.</p>
+                    </div>
+
+                    <div class="addCart">
+                        <button class="botaoAddCart">Add to Cart</button>
+                    </div>
+
+                </div>
+                <div class="produto">
+                    <a href="produto">
+                        <div class="imgProduto">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
+                        </div>
+                    </a>
+
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
+
+                        <p class="precoProduto">$15.90</p>
+                    </div>
+
+                    <div class="descricaoProduto">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
+                            ullamcorper vel eget libero.</p>
+                    </div>
+
+                    <div class="addCart">
+                        <button class="botaoAddCart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listaProdutos">
+
+                <div class="produto">
+
+                    <a href="produto">
+                        <div class="imgProduto">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
+                        </div>
+                    </a>
+
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
+
+                        <p class="precoProduto">$15.90</p>
+                    </div>
+
+                    <div class="descricaoProduto">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
+                            ullamcorper vel eget libero.</p>
+                    </div>
+
+                    <div class="addCart">
+                        <button class="botaoAddCart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="produto">
+                    <a href="produto">
+                        <div class="imgProduto">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -227,9 +227,9 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="produto">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
