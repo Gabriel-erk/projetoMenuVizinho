@@ -11,7 +11,6 @@
 
         <div class="categoriasRestaurante">
 
-
             <div class="categoria">
 
                 <div class="fundoImgCategoria">

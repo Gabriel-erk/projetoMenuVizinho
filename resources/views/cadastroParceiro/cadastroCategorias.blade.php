@@ -75,6 +75,42 @@
 
         </div>
 
+        <div class="tituloDesc tituloDescSub">
+            <h1>Sub-Categorias do Restaurante</h1>
+            <p>estas categorias serão representadas na tela inicial (não são obrigatórias)</p>
+        </div>
+
+        <div class="subCategoriasRestaurante">
+
+            <div class="categoria">
+
+                <div class="tituloCategoria">
+                    <input class="input" type="text" id="tituloCategoria" name="tituloCategoria"
+                        placeholder="Titulo...">
+                </div>
+
+            </div>
+
+            <div class="categoria">
+
+                <div class="tituloCategoria">
+                    <input class="input" type="text" id="tituloCategoria" name="tituloCategoria"
+                        placeholder="Titulo...">
+                </div>
+
+            </div>
+
+            <div class="categoria">
+
+                <div class="tituloCategoria">
+                    <input class="input" type="text" id="tituloCategoria" name="tituloCategoria"
+                        placeholder="Titulo...">
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="agrupaBotoes">
 
             <div class="botoes">
