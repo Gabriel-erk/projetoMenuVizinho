@@ -46,6 +46,8 @@ Route::get('/carrinho', function () {
     return view('carrinho');
 });
 
+// views parceiros e cadastro restaurante
+
 Route::get('/sejaParceiro', function () {
     return view('sejaParceiro');
 });
@@ -80,6 +82,10 @@ Route::get('/cadastroCupons', function () {
 
 Route::get('/minhaConta', function () {
     return view('infoUser.minhaConta');
+});
+
+Route::get('/cupons', function () {
+    return view('cupons');
 });
 
 
