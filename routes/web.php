@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,29 +18,17 @@ Route::get('/cardapio', [SiteController::class, "cardapio"])->name('site.cardapi
 Route::get('/produto', [SiteController::class, "produto"])->name('site.produto');
 Route::get('/ofertas', [SiteController::class, "ofertas"])->name('site.ofertas');
 Route::get('/carrinho', [SiteController::class, "carrinho"])->name('site.carrinho');
+Route::get('/cupons', [SiteController::class, "cupons"])->name('site.cupons');
+Route::get('/sobre', [SiteController::class, "sobre"])->name('site.sobre');
+Route::get('/politica', [SiteController::class, "politica"])->name('site.politica');
 
+// UsuarioController
 
+Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cadastro');
 
-Route::get('/cadastro', function () {
-    return view('cadastro');
-});
-
+// usuario
 Route::get('/login', function () {
     return view('login');
-});
-
-Route::get('/sobre', function () {
-    return view('sobre');
-});
-
-Route::get('/politica', function () {
-    return view('politica');
-});
-
-
-
-Route::get('/cupons', function () {
-    return view('cupons');
 });
 
 // views parceiros e cadastro restaurante

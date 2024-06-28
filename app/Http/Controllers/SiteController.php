@@ -47,15 +47,15 @@ class SiteController extends Controller
         return view('sobre');
     }
 
-    public function cadastro()
-    {
-        return view('cadastro');
-    }
+    // public function cadastro()
+    // {
+    //     return view('cadastro');
+    // }
 
-    public function login()
-    {
-        return view('login');
-    }
+    // public function login()
+    // {
+    //     return view('login');
+    // }
 
     // paginas de cadastro de restaurante
 

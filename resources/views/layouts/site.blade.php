@@ -49,7 +49,7 @@
                     <li><a href="{{ route('site.index') }}">HOME</a></li>
                     <li><a href="{{ route('site.ofertas') }}">OFERTAS</a></li>
                     <li><a href="{{ route('site.cardapio') }}">CARDÁPIO</a></li>
-                    <li><a href="cupons">CUPONS</a></li>
+                    <li><a href="{{ route('site.cupons') }}">CUPONS</a></li>
                 </ul>
             </nav>
 
@@ -109,7 +109,7 @@
                 <div class="botaoLoginCadastro">
 
                     <button><a href="login">Login</a></button>
-                    <button><a href="cadastro">Cadastrar</a></button>
+                    <button><a href="{{ route('usuario.cadastro') }}">Cadastrar</a></button>
 
                 </div>
             </div>
@@ -129,7 +129,7 @@
 
                     <div class="rodape-logo">
 
-                        <a href="index"><img src="{{ asset('img/bua3.png') }}" href="index"></a>
+                        <a href="{{ route('site.index') }}"><img src="{{ asset('img/bua3.png') }}"></a>
 
                     </div>
 
@@ -155,8 +155,8 @@
                 <div class="linhaRodape">
                     <h2>Links Rápidos</h2>
                     <ul>
-                        <li><a href="index">Home</a></li>
-                        <li><a href="cardapio">Menu</a></li>
+                        <li><a href="{{ route('site.index') }}">Home</a></li>
+                        <li><a href="{{ route('site.cardapio') }}">Menu</a></li>
                         <li><a href="#">Àrea do usuário</a></li>
                     </ul>
                 </div>
@@ -165,8 +165,8 @@
                     <h2>Sobre Nós</h2>
                     <ul>
                         <li><a href="#">Localização</a></li>
-                        <li><a href="politica">Políticas</a></li>
-                        <li><a href="sobre">Sobre Nós</a></li>
+                        <li><a href="{{ route('site.politica') }}">Políticas</a></li>
+                        <li><a href="{{ route('site.sobre') }}">Sobre Nós</a></li>
                     </ul>
                 </div>
 
