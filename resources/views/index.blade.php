@@ -105,7 +105,7 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -151,7 +151,7 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -187,7 +187,7 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -210,7 +210,7 @@
                 </div>
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -233,7 +233,7 @@
 
                 </div>
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -286,7 +286,7 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -308,7 +308,7 @@
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
@@ -330,7 +330,7 @@
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>

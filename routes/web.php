@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,41 +11,31 @@ Route::get('/site', function () {
     return view('site');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
+// SiteController
+Route::get('/index', [SiteController::class, "index"])->name('site.index');
+Route::get('/cardapio', [SiteController::class, "cardapio"])->name('site.cardapio');
+Route::get('/produto', [SiteController::class, "produto"])->name('site.produto');
+Route::get('/ofertas', [SiteController::class, "ofertas"])->name('site.ofertas');
+Route::get('/carrinho', [SiteController::class, "carrinho"])->name('site.carrinho');
 
-Route::get('/cardapio', function () {
-    return view('cardapio');
-});
 
-Route::get('/politica', function () {
-    return view('politica');
-});
 
 Route::get('/cadastro', function () {
     return view('cadastro');
-});
-
-Route::get('/produto', function () {
-    return view('produto');
 });
 
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/ofertas', function () {
-    return view('ofertas');
-});
-
 Route::get('/sobre', function () {
     return view('sobre');
 });
 
-Route::get('/carrinho', function () {
-    return view('carrinho');
+Route::get('/politica', function () {
+    return view('politica');
 });
+
 
 
 Route::get('/cupons', function () {

@@ -38,7 +38,7 @@
         <div id="barra-topo" class="container">
 
             <div class="logotipo">
-                <a href="index">
+                <a href="{{ route('site.index') }}">
                     <img src="{{ asset('img/bua3.png') }}" alt="" srcset="">
                 </a>
 
@@ -46,9 +46,9 @@
 
             <nav id="menu">
                 <ul>
-                    <li><a href="index">HOME</a></li>
-                    <li><a href="ofertas">OFERTAS</a></li>
-                    <li><a href="cardapio">CARDÁPIO</a></li>
+                    <li><a href="{{ route('site.index') }}">HOME</a></li>
+                    <li><a href="{{ route('site.ofertas') }}">OFERTAS</a></li>
+                    <li><a href="{{ route('site.cardapio') }}">CARDÁPIO</a></li>
                     <li><a href="cupons">CUPONS</a></li>
                 </ul>
             </nav>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="agrupaCarrinho alinharBotoes">
-                        <a href="carrinho"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
+                        <a href="{{ route('site.carrinho') }}"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
                     </div>
 
                     <div class="iconeMenuLateral alinharBotoes">
