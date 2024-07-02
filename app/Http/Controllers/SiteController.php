@@ -22,6 +22,11 @@ class SiteController extends Controller
         return view('produto');
     }
 
+    // public function produto(string $id)
+    // {
+    //     return view('produto');
+    // }
+
     public function ofertas()
     {
         return view('ofertas');
