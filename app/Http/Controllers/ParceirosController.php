@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class UsuarioController extends Controller
+class ParceirosController extends Controller
 {
-   
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         //
     }
 
-   
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('admin.usuarios.cadastro');
+        return view('admin.parceiros.sejaParceiro');
     }
 
     /**
@@ -41,8 +44,7 @@ class UsuarioController extends Controller
      */
     public function edit(string $id)
     {
-        $usuario = User::findOrFail($id);
-        return view('admin.usuarios.minhaConta');
+
     }
 
     /**

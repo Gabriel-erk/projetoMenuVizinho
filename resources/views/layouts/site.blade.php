@@ -98,7 +98,7 @@
 
                         <li>
                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                            <a href="sejaParceiro">Seja um dos nossos
+                            <a href="{{ route('parceiros.sejaParceiro') }}">Seja um dos nossos
                                 parceiros</a>
                         </li>
 
@@ -108,7 +108,7 @@
 
                 <div class="botaoLoginCadastro">
 
-                    <button><a href="login">Login</a></button>
+                    <button><a href="{{ route('site.login') }}">Login</a></button>
                     <button><a href="{{ route('usuario.cadastro') }}">Cadastrar</a></button>
 
                 </div>

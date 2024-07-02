@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ParceirosController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -21,21 +22,17 @@ Route::get('/carrinho', [SiteController::class, "carrinho"])->name('site.carrinh
 Route::get('/cupons', [SiteController::class, "cupons"])->name('site.cupons');
 Route::get('/sobre', [SiteController::class, "sobre"])->name('site.sobre');
 Route::get('/politica', [SiteController::class, "politica"])->name('site.politica');
+Route::get('/login', [SiteController::class, "login"])->name('site.login');
 
 // UsuarioController
 
 Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cadastro');
+Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
 
-// usuario
-Route::get('/login', function () {
-    return view('login');
-});
+// ParceirosController
+Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');
 
 // views parceiros e cadastro restaurante
-
-Route::get('/sejaParceiro', function () {
-    return view('sejaParceiro');
-});
 
 Route::get('/cadastroRestaurante', function () {
     return view('cadastroParceiro.cadastroRestaurante');

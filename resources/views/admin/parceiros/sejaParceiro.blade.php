@@ -177,7 +177,7 @@
 
                 <div class="d-flex align-items-center" id="botoes">
 
-                    <a href="index">Voltar</a>
+                    <a href="{{ route('parceiros.sejaParceiro') }}">Voltar</a>
 
                     <div>
                         <button type="submit" class="btn btn-primary  btn-lg">Cadastrar</button>
