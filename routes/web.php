@@ -16,6 +16,8 @@ Route::get('/site', function () {
 // SiteController
 Route::get('/index', [SiteController::class, "index"])->name('site.index');
 Route::get('/cardapio', [SiteController::class, "cardapio"])->name('site.cardapio');
+
+// /produto/{id}
 Route::get('/produto', [SiteController::class, "produto"])->name('site.produto');
 Route::get('/ofertas', [SiteController::class, "ofertas"])->name('site.ofertas');
 Route::get('/carrinho', [SiteController::class, "carrinho"])->name('site.carrinho');
