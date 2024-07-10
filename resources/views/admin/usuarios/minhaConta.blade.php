@@ -31,7 +31,7 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="cadastroCategorias.html">
+                <a href="{{ route('usuario.gerenciarPagamentos') }}">
                     <h3>Formas de pagamento</h3>
                 </a>
                 <p class="descricaoOpcao">Visualize ou altere suas formas de pagamento</p>

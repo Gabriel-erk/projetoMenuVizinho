@@ -29,7 +29,15 @@ Route::get('/login', [SiteController::class, "login"])->name('site.login');
 // UsuarioController
 
 Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cadastro');
-Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
+
+// meio correto de se fazer é este, porém, ainda não estou passando id
+// Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
+Route::get('/minhaConta', [UsuarioController::class, "show"])->name('usuario.minhaConta');
+Route::get('/gerenciarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.gerenciarPagamentos');
+
+Route::get('/templateTeste', function() {
+    return view('admin.usuarios.templateUsuario');
+});
 
 // ParceirosController
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');
@@ -63,10 +71,3 @@ Route::get('/cadastroBanner', function () {
 Route::get('/cadastroCupons', function () {
     return view('cadastroParceiro.cadastroCupons');
 });
-
-Route::get('/minhaConta', function () {
-    return view('infoUser.minhaConta');
-});
-
-
-

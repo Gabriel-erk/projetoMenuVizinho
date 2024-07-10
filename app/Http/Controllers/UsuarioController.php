@@ -31,31 +31,27 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $usuario = User::findOrFail($id);
+    public function show()
+    {   
+        // comando para encontrar o id do usuário e se não encontrar retornar um erro - string $id comando que tirei de parametro desse metodo
+        // $usuario = User::findOrFail($id);
         return view('admin.usuarios.minhaConta');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function editPagamentos() {
+        return view('admin.usuarios.gerenciarPagamentos');
+    }
+
+    public function edit(string $id)
+    {
+      
+    }
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
