@@ -49,7 +49,13 @@
 
             background-color: #F8F8F8;
             border: 1px solid #C5C5C5;
-            border-radius: 6px 
+            border-radius: 6px ;
+
+            transition: all 0.3s ease;
+        }
+
+        .novoPagamento:hover {
+            background-color: #f2f4f7;
         }
 
         .novoPagamento i {
@@ -57,29 +63,40 @@
             padding: 4px;
             border: solid 1px #efefee;
             border-radius: 4px;
+
+            transition: all 0.3s ease;
         }
 
         .novoPagamento i:hover {
             cursor: pointer;
+
+            background-color: #e9ecef;
         }
 
         /* formatando pagamentos salvos */
         .payment {
+            
             display: flex;
+
             margin-top: 20px;
+
         }
 
         .logoNome {
             display: flex;
             /* align-items: center; */
-            width: 700px;
-            height: 70px;
+            width: 800px;
 
             background-color: #F8F8F8;
             border: 1px solid #CCCCCC;
             border-radius: 10px;
 
             padding: 15px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .logoNome:hover {
+            background-color: #eaebee;
         }
 
         .logoNome p {
@@ -103,6 +120,11 @@
 
             border-radius: 5px;
             background-color: #2767C8;  
+            transition: all 0.3s ease;
+        }
+
+        .editPayment:hover {
+            background-color: #1e59b3;  
         }
 
         .editPayment img {
@@ -123,7 +145,7 @@
 
             <div class="novoPagamento">
 
-                <a href="#">
+                <a href="{{ route('usuario.novaFormaPagamento') }}">
 
                     <i class="fa-solid fa-plus" style="color: #000"></i>
 

@@ -42,6 +42,11 @@ class UsuarioController extends Controller
         return view('admin.usuarios.gerenciarPagamentos');
     }
 
+    // vai editar as informações da forma de pagamento escolhida, ela será passada quando o metodo for chamado, ou seja, quando clicar no lapis, ao lado de um pagamento salvo, sera passado o 'id', daquela forma de pagamento, então, ao realizar conexão com db, precisarei passar o id dql pagamento atraves da rota(em webp) e pegar aaqui newPagamentos(string $id), e devolver para a view return view ('admin.usuarios.adicionarPagamento', compact($id));
+    public function newPagamentos() {
+        return view('admin.usuarios.adicionarPagamento');
+    }
+
     public function edit(string $id)
     {
       
