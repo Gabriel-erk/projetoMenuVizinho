@@ -36,6 +36,7 @@
 
             <form action="">
 
+                <input type="text" name="titulo" id="titulos" placeholder="Titulo" class="campoInfo">
                 
 
             </form>
