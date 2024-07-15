@@ -6,6 +6,8 @@
 @section('conteudo')
     {{-- jQuerry --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  
     <!-- Inputmask JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.16/jquery.inputmask.min.js"></script>
 
@@ -115,16 +117,79 @@
     </div>
 
     <script>
-        import CreditCardInputMask from "credit-card-input-mask";
+        /* 
+         * máscara para o campo "número do cartão" 
+         * permite apenas numeros
+         * coloca um ponto a cada 4 caracteres
+         * remove ponto se estiver sobrando
+         * limita o tamanho em 19 caracteres
+         */
+        function mcc(v) {
+            v = v.replace(/\D/g, ""); // Permite apenas dígitos
+            v = v.replace(/(\d{4})/g, "$1."); // Coloca um ponto a cada 4 caracteres
+            v = v.replace(/\.$/, ""); // Remove o ponto se estiver sobrando
+            v = v.substring(0, 19) // Limita o tamanho
 
-        const formattedCreditCardInput = new CreditCardInputMask({
-            element: document.querySelector("#numeroCartao"),
-            pattern: "{{ 9999 }} {{ 9999 }} {{ 9999 }} {{ 9999 }}",
+            return v;
+        }
+
+        /*
+         * certifica-se que o DOM esteja totalmente carregado antes de chamar o evento input 
+         * .ready - é para quando estiver 'pronto', ou seja, quando estiver carregado a página, será chamada a função anônima
+         * $ é como se estivesse usando o prefixo "jQuerry" (dizendo que é um comando do jQuerry)
+         * */
+        $(document).ready(function() {
+            /*
+             * evento input ao camo numeroCartão, onde, cada vez que o usuário digitar algo, a função mcc será chamada para formatar o valor(this.value = mcc(this.value)) 
+             * $('#numeroCartao') - quer dizer q jQuerry.(#numeroCartao) - estou pegando o elemento com o id 'NumeroCartao' através do jQuerry 
+             */
+            $('#numeroCartao').on('input', function() {
+                this.value = mcc(this.value);
+            });
+
+            $('#cvv').on('input', function() {
+                this.value = cvv(this.value);
+            });
+
+            $('#nomeTitular').on('input', function() {
+                this.value = name(this.value);
+            });
+
+            // let campoCpf = $('#cpf');
+            // campoCpf.mask('000.000.000-00', {reverse: true});
+            // $("#cpf").inputmask("999.999.999-99")
+            $('#cpf').on('input', function() {
+                this.value = formatCpf(this.value);
+            })
         });
 
-        // $(document).ready(function() {
-        //     $("#numeroCartao").inputmask("9999 9999 9999 9999"); // Formato de número de cartão de crédito
-        // });
+        // função que permite apenas numeros no campo CVV e limita os caracteres em 3
+        function cvv(v) {
+            v = v.replace(/\D/g, "");
+            v = v.substring(0, 3);
+
+            return v;
+        }
+
+        // função que limita o número máximo de caracteres em 70 e não permite caracteres especiais e números (campo: nomeTitular)
+        function name(v) {
+
+            v = v.replace(/[^a-zA-Z\s]/g, ""); // Remove números e caracteres especiais
+            v = v.substring(0, 70);
+
+            return v
+
+        }
+
+        function formatCpf(v) {
+            v = v.replace(/\D/g, ""); // Remove tudo que não é dígito
+            v = v.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca ponto entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca ponto entre o sexto e o sétimo dígitos
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca hífen entre o nono e o décimo dígitos
+            v = v.substring(0, 14); // Limita a 14 caracteres
+
+            return v;
+        }
     </script>
 @endsection
 
