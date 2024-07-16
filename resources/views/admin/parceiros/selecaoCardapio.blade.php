@@ -7,27 +7,16 @@
             background-color: #fff;
         }
 
-        .conteudo{
-            display: flex;
-            /* justify-content: space-evenly */
-            /* justify-content: space-between; */
-        }
-
         .secaoCategorias {
-            width: 50%;
-        }
-
-        .secaoSubCategorias {
-            width: 50%
-            /* margin-right: 50px; */
-        }
-
-        .opcoesCadastro {
-            border-bottom: none
+            margin-bottom: 15px;
         }
 
         .opcaoFinal {
             border-bottom: none;
+        }
+
+        .soBorda{
+            border: solid 1px #000;
         }
 
     </style>
@@ -73,7 +62,9 @@
 
                 </div>
 
-            </div>
+            </div> 
+
+            <div class="soBorda"></div>
 
             <div class="secaoSubCategorias">
                 <div id="titulo">
