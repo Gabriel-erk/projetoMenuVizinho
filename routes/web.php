@@ -42,11 +42,17 @@ Route::get('/templateTeste', function() {
 
 // ParceirosController
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');
+Route::get('/selecaoCardapio', [ParceirosController::class, "selecaoCardapio"])->name('parceiros.selecaoCardapio');
+Route::get('/cadastroCardapio', [ParceirosController::class, "cadastroCardapio"])->name('parceiros.cadastroCardapio');
 
 // views parceiros e cadastro restaurante
 
 Route::get('/cadastroRestaurante', function () {
     return view('cadastroParceiro.cadastroRestaurante');
+});
+
+Route::get('/selecao', function () {
+    return view('admin.parceiros.selecaoCardapio2');
 });
 
 Route::get('/cadastroSubCategorias', function () {
@@ -61,9 +67,9 @@ Route::get('/cadastroInformacoes', function () {
     return view('cadastroParceiro.cadastroInformacoes');
 });
 
-Route::get('/cadastroCardapio', function () {
-    return view('cadastroParceiro.cadastroCardapio');
-});
+// Route::get('/cadastroCardapio', function () {
+//     return view('cadastroParceiro.cadastroCardapio');
+// });
 
 Route::get('/cadastroBanner', function () {
     return view('cadastroParceiro.cadastroBanner');

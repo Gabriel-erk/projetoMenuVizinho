@@ -23,6 +23,17 @@ class ParceirosController extends Controller
         return view('admin.parceiros.sejaParceiro');
     }
 
+    // só pode entrar nessa página se as categorias/subcategorias já foram criadas
+    public function selecaoCardapio()
+    {
+        return view('admin.parceiros.selecaoCardapio');
+    }
+    
+    public function cadastroCardapio()
+    {
+        return view('admin.parceiros.cadastroCardapio');
+    }
+
     /**
      * Store a newly created resource in storage.
      */

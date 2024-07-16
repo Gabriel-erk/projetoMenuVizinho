@@ -40,7 +40,7 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="cadastroCardapio">
+                <a href="{{ route('parceiros.selecaoCardapio') }}">
                     <h3>Cardápio</h3>
                 </a>
                 <p class="descricaoOpcao">Cadastro de produtos</p>
