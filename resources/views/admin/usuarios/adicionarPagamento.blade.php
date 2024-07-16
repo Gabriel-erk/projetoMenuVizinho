@@ -7,7 +7,7 @@
     {{-- jQuerry --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  
+
     <!-- Inputmask JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.16/jquery.inputmask.min.js"></script>
 
@@ -39,11 +39,17 @@
             background-color: #F8F8F8;
             padding-top: 1.25rem;
             padding-left: 0.75rem;
+            /* transition: all 0.3s ease; */
         }
+
+        /* .agrupaCampoCartao input:hover {
+            background-color: #f0f0f0;
+        } */
 
         .limitaLabel {
             position: relative;
         }
+
 
         .agrupaCampoCartao label {
             position: absolute;
@@ -54,6 +60,36 @@
             pointer-events: none;
 
             padding: 0 0.25rem;
+        }
+
+        /* formatando botão submit */
+
+        .posicionaBotaoSubmit {
+            display: flex;
+            justify-content: center;
+        }
+
+        .botaoAdicionar {
+
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+
+            padding: 8px 55px;
+            margin-top: 50px;
+
+            background-color: #2767C8;
+            color: #fff;
+
+            border: none;
+            border-radius: 5px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .botaoAdicionar:hover {
+            background-color: #1e59b3;
         }
     </style>
 
@@ -105,10 +141,16 @@
                     <div class="row">
 
                         <div class="col limitaLabel"> <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" name="cpf" id="cpf" class="form-control">
+                            {{-- limitando tamanho em 14 caracteres --}}
+                            <input type="text" name="cpf" id="cpf" class="form-control" maxlength="14">
                         </div>
 
                     </div>
+
+                </div>
+
+                <div class="posicionaBotaoSubmit">
+                    <button type="submit" class="botaoAdicionar">Adicionar</button>
 
                 </div>
             </form>
@@ -186,7 +228,7 @@
             v = v.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca ponto entre o terceiro e o quarto dígitos
             v = v.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca ponto entre o sexto e o sétimo dígitos
             v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca hífen entre o nono e o décimo dígitos
-            v = v.substring(0, 14); // Limita a 14 caracteres
+            v = v.substring(0, 14); // Limita a 14 caracteres, também tem q limitar no campo input
 
             return v;
         }
