@@ -23,7 +23,7 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="cadastroInformacoes.html">
+                <a href="{{ route('usuario.minhasInformacoes') }}">
                     <h3>Minhas Informações</h3>
                 </a>
                 <p class="descricaoOpcao">Visualize ou altere suas informações de cadastro</p>

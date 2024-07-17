@@ -35,6 +35,7 @@ Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cad
 Route::get('/minhaConta', [UsuarioController::class, "show"])->name('usuario.minhaConta');
 Route::get('/gerenciarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.gerenciarPagamentos');
 Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
+Route::get('/minhasInformacoes', [UsuarioController::class, "infoConta"])->name('usuario.minhasInformacoes');
 
 Route::get('/templateTeste', function() {
     return view('admin.usuarios.templateUsuario');
