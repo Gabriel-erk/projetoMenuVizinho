@@ -4,16 +4,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.categoriasRestaurante {
-
-    display: flex;
-
-    justify-content: space-between;
-    
-    margin-left: 40px;
-    margin-right: 40px;
-
-}
+/* formatação do titulo */
 
 .tituloDesc {
     margin-left: 30px;
@@ -21,9 +12,32 @@ body {
     margin-bottom: 30px;
 }
 
+/* .tituloDescSub {
+    margin-top: 150px;
+} */
+
 .tituloDesc p {
     color: #716B6B;
 }
+
+/* formatação da posição e espaçamento dos elementos */
+
+.categoriasRestaurante {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
+
+.subCategoriasRestaurante {
+    margin-left: 40px;
+}
+
+/* formatação da área onde de submissão da img */
 
 .fundoImgCategoria {
 
@@ -48,6 +62,8 @@ body {
 
 }
 
+/* formatação da área do icone */
+
 .botaoImg {
 
     padding: 12px;
@@ -70,6 +86,8 @@ body {
 i {
     font-size: 15px;
 }
+
+/* formatação do input */
 
 .input {
     background-color: #CCCCCC;
@@ -104,6 +122,8 @@ i {
     border-color: #8C6342;
     box-shadow: 0 0 8px rgba(140, 99, 66, 0.8);
 }
+
+/* formatação dos botões */
 
 .agrupaBotoes {
     display: flex;

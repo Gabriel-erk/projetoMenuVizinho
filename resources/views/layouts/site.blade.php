@@ -31,12 +31,14 @@
 </head>
 
 <body>
+
+
     <header id="cabecalho">
 
         <div id="barra-topo" class="container">
 
             <div class="logotipo">
-                <a href="index">
+                <a href="{{ route('site.index') }}">
                     <img src="{{ asset('img/bua3.png') }}" alt="" srcset="">
                 </a>
 
@@ -44,10 +46,10 @@
 
             <nav id="menu">
                 <ul>
-                    <li><a href="index">HOME</a></li>
-                    <li><a href="ofertas">OFERTAS</a></li>
-                    <li><a href="cardapio">CARDÁPIO</a></li>
-                    <li><a href="cupons">CUPONS</a></li>
+                    <li><a href="{{ route('site.index') }}">HOME</a></li>
+                    <li><a href="{{ route('site.ofertas') }}">OFERTAS</a></li>
+                    <li><a href="{{ route('site.cardapio') }}">CARDÁPIO</a></li>
+                    <li><a href="{{ route('site.cupons') }}">CUPONS</a></li>
                 </ul>
             </nav>
 
@@ -59,7 +61,7 @@
                     </div>
 
                     <div class="agrupaCarrinho alinharBotoes">
-                        <a href="carrinho.html"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
+                        <a href="{{ route('site.carrinho') }}"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
                     </div>
 
                     <div class="iconeMenuLateral alinharBotoes">
@@ -72,12 +74,7 @@
 
         </div>
 
-
-        <div class="banner owl-carousel owl-theme">
-
-            @yield('banner')
-
-        </div>
+        @yield('banner')
 
         <div id="agrupaMenuLateral">
             <div id="menuLateral">
@@ -86,7 +83,7 @@
                 <nav>
                     <ul>
                         <li><i class="fa-solid fa-house" style="color: #000000;"></i>
-                            <a href="#">Minha Conta</a>
+                            <a href="{{ route('usuario.minhaConta') }}">Minha Conta</a>
                         </li>
 
                         <li>
@@ -101,7 +98,7 @@
 
                         <li>
                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                            <a href="sejaUmParceiro.html">Seja um dos nossos
+                            <a href="{{ route('parceiros.sejaParceiro') }}">Seja um dos nossos
                                 parceiros</a>
                         </li>
 
@@ -111,8 +108,8 @@
 
                 <div class="botaoLoginCadastro">
 
-                    <button><a href="login">Login</a></button>
-                    <button><a href="cadastro">Cadastrar</a></button>
+                    <button><a href="{{ route('site.login') }}">Login</a></button>
+                    <button><a href="{{ route('usuario.cadastro') }}">Cadastrar</a></button>
 
                 </div>
             </div>
@@ -121,16 +118,7 @@
 
     </header>
 
-    <section id="lista-cardapio">
-        @yield('listaCardapio')
-    </section>
-
-    <main class="container">
-        @yield('conteudo')
-    </main>
-
-    @yield('conteudoAlternativo')
-
+    @yield('conteudo')
 
     <footer id="rodape">
         <div class="container agrupaRodape">
@@ -141,7 +129,7 @@
 
                     <div class="rodape-logo">
 
-                        <a href="index.html"><img src="{{ asset('img/bua3.png') }}" href="index.html"></a>
+                        <a href="{{ route('site.index') }}"><img src="{{ asset('img/bua3.png') }}"></a>
 
                     </div>
 
@@ -167,8 +155,8 @@
                 <div class="linhaRodape">
                     <h2>Links Rápidos</h2>
                     <ul>
-                        <li><a href="index">Home</a></li>
-                        <li><a href="cardapio">Menu</a></li>
+                        <li><a href="{{ route('site.index') }}">Home</a></li>
+                        <li><a href="{{ route('site.cardapio') }}">Menu</a></li>
                         <li><a href="#">Àrea do usuário</a></li>
                     </ul>
                 </div>
@@ -177,8 +165,8 @@
                     <h2>Sobre Nós</h2>
                     <ul>
                         <li><a href="#">Localização</a></li>
-                        <li><a href="politica">Políticas</a></li>
-                        <li><a href="sobre">Sobre Nós</a></li>
+                        <li><a href="{{ route('site.politica') }}">Políticas</a></li>
+                        <li><a href="{{ route('site.sobre') }}">Sobre Nós</a></li>
                     </ul>
                 </div>
 
