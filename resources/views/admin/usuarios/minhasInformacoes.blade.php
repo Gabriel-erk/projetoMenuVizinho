@@ -24,7 +24,7 @@
         }
 
         .conteudo {
-            padding-left: 30px
+            /* padding-left: 30px */
         }
 
         /* titulo da seção */
@@ -57,6 +57,14 @@
             pointer-events: none;
 
             padding: 0 0.25rem;
+        }
+
+        .hakuna {
+            margin-right: 50px
+        }
+
+        .margem {
+            padding-left: 30px;
         }
 
         /* formatação do lapis */
@@ -114,10 +122,17 @@
             background-color: #1e59b3;
         }
 
-        .hakuna {
-            margin-right: 50px
+        /* divisor de detalhes pessoais - alteração senha  */
+
+        .divisor {
+            border-bottom: 1px solid #ccc;
         }
 
+        /* formatação da parte de trocar senha */
+
+        .agrupaAlteracaoSenha label{
+            left: 1rem;
+        }
     </style>
 
     <div class="tituloEditUser">
@@ -132,15 +147,14 @@
 
                 <div class="mt-5 agrupaCampoCartao">
 
-                    <h4 id="tituloDetalhes">Detalhes da conta</h4>
+                    <h4 id="tituloDetalhes" class="margem">Detalhes da conta</h4>
 
-                    <div class="d-flex">
+                    <div class="d-flex margem">
 
                         <div class="d-flex hakuna">
 
-                            <div class="limitaLabel  "> <label for="numeroCartao" class="form-label">Número do
-                                    cartão</label>
-                                <input type="text" name="numeroCartao" id="numeroCartao" class="form-control">
+                            <div class="limitaLabel  "> <label for="email" class="form-label">Endereço de e-mail</label>
+                                <input type="text" name="email" id="email" class="form-control">
                             </div>
 
                             <div class="editPayment">
@@ -155,9 +169,8 @@
 
                         <div class="d-flex hakuna ">
 
-                            <div class="limitaLabel "> <label for="numeroCartao" class="form-label">Número do
-                                    cartão</label>
-                                <input type="text" name="numeroCartao" id="numeroCartao" class="form-control">
+                            <div class="limitaLabel "> <label for="telefone" class="form-label">Telefone</label>
+                                <input type="text" name="telefone" id="telefone" class="form-control">
                             </div>
 
                             <div class="editPayment">
@@ -174,10 +187,86 @@
 
                 </div>
 
-                
+                <div class="mt-5 pb-4 agrupaCampoCartao divisor">
+
+                    <h4 id="tituloDetalhes" class="margem">Detalhes pessoais</h4>
+
+                    <div class="d-flex margem">
+
+                        <div class="d-flex hakuna">
+
+                            <div class="limitaLabel  "> <label for="nome" class="form-label">Nome</label>
+                                <input type="text" name="nome" id="nome" class="form-control">
+                            </div>
+
+                            <div class="editPayment">
+                                <a href="#">
+
+                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
+
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex hakuna ">
+
+                            <div class="limitaLabel "> <label for="sobrenome" class="form-label">Sobrenome</label>
+                                <input type="text" name="sobrenome" id="sobrenome" class="form-control">
+                            </div>
+
+                            <div class="editPayment">
+                                <a href="#">
+
+                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
+
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="changePassword margem mt-4 mb-4">
+                    <h3>Alteração de senha</h3>
+                </div>
+
+                <div class="agrupaAlteracaoSenha agrupaCampoCartao">
+
+                    <div class="row margem">
+
+                        <h4 style="font-weight: bold" class="mb-2">Senha atual</h4>
+
+                        <div class="limitaLabel"> <label for="password" class="form-label">Senha atual</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="row margem mt-4">
+
+                        <h4 style="font-weight: bold" class="mb-2">Nova Senha</h4>
+
+                        <div class="limitaLabel"> <label for="new_password" class="form-label">Nova Senha</label>
+                            <input type="password" name="new_password" id="new_password" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="row margem mt-3">
+
+                        <div class="limitaLabel"> <label for="confirm_password" class="form-label">Confirmar senha nova</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <div class="posicionaBotaoSubmit">
-                    <button type="submit" class="botaoAdicionar">Adicionar</button>
+                    <button type="submit" class="botaoAdicionar">Salvar alterações</button>
 
                 </div>
             </form>
