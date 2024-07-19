@@ -95,6 +95,7 @@
         /* formatando botão submit */
 
         .posicionaBotaoSubmit {
+            /* padding-left: 30px  */
             display: flex;
             justify-content: center;
         }
@@ -106,6 +107,7 @@
             font-size: 1.1rem;
 
             padding: 8px 55px;
+            /* padding: 8px 30px; */
             margin-top: 50px;
 
             background-color: #2767C8;
@@ -130,9 +132,11 @@
 
         /* formatação da parte de trocar senha */
 
-        .agrupaAlteracaoSenha label{
+        .agrupaAlteracaoSenha label {
             left: 1rem;
         }
+
+
     </style>
 
     <div class="tituloEditUser">
@@ -154,7 +158,7 @@
                         <div class="d-flex hakuna">
 
                             <div class="limitaLabel  "> <label for="email" class="form-label">Endereço de e-mail</label>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="text" maxlength="100" name="email" id="email" class="form-control">
                             </div>
 
                             <div class="editPayment">
@@ -168,9 +172,9 @@
                         </div>
 
                         <div class="d-flex hakuna ">
-
+                            {{-- Note que o input tem o type="tel", esse type é indicado para telefones e o mais legal é que no mobile esse campo abre o teclado numérico --}}
                             <div class="limitaLabel "> <label for="telefone" class="form-label">Telefone</label>
-                                <input type="text" name="telefone" id="telefone" class="form-control">
+                                <input type="tel" maxlength="15" name="telefone" id="telefone" class="form-control" onkeyup="phone(event)">
                             </div>
 
                             <div class="editPayment">
@@ -196,7 +200,7 @@
                         <div class="d-flex hakuna">
 
                             <div class="limitaLabel  "> <label for="nome" class="form-label">Nome</label>
-                                <input type="text" name="nome" id="nome" class="form-control">
+                                <input type="text" maxlength="25" name="nome" id="nome" class="form-control">
                             </div>
 
                             <div class="editPayment">
@@ -212,7 +216,7 @@
                         <div class="d-flex hakuna ">
 
                             <div class="limitaLabel "> <label for="sobrenome" class="form-label">Sobrenome</label>
-                                <input type="text" name="sobrenome" id="sobrenome" class="form-control">
+                                <input type="text" maxlength="80" name="sobrenome" id="sobrenome" class="form-control">
                             </div>
 
                             <div class="editPayment">
@@ -257,7 +261,8 @@
 
                     <div class="row margem mt-3">
 
-                        <div class="limitaLabel"> <label for="confirm_password" class="form-label">Confirmar senha nova</label>
+                        <div class="limitaLabel"> <label for="confirm_password" class="form-label">Confirmar senha
+                                nova</label>
                             <input type="password" name="confirm_password" id="confirm_password" class="form-control">
                         </div>
 
@@ -274,6 +279,24 @@
         </div>
 
     </div>
+
+    <script>
+        /* formatação da máscara do campo telefone com regex */
+
+        const phone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+            // se o valor de 'value' for falso, retorne uma string vazia
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
+    </script>
 @endsection
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
