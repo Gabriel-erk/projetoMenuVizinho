@@ -159,7 +159,7 @@
 
                             <label for="telefone" class="form-label">Telefone</label>
                             <input type="text" name="telefone" id="telefone" placeholder="(00) 0000-000"
-                                class="form-control">
+                                class="form-control" maxlength="15" onkeyup="phone(event)">
 
                         </div>
 
@@ -168,7 +168,7 @@
 
                             <label for="celular" class="form-label">Celular</label>
                             <input type="text" name="celular" id="celular" placeholder="(00) 0000-000"
-                                class="form-control">
+                                class="form-control" maxlength="15" onkeyup="phone(event)">
 
                         </div>
 
@@ -196,6 +196,24 @@
         </div>
 
     </div>
+
+    <script>
+        /* formatação da máscara do campo telefone com regex */
+
+        const phone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+            // se o valor de 'value' for falso, retorne uma string vazia
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
+    </script>
 @endsection
 
 <!-- bootstrap -->
