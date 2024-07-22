@@ -37,8 +37,8 @@ Route::get('/gerenciarPagamentos', [UsuarioController::class, "editPagamentos"])
 Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
 Route::get('/minhasInformacoes', [UsuarioController::class, "infoConta"])->name('usuario.minhasInformacoes');
 
-Route::get('/templateTeste', function() {
-    return view('admin.usuarios.templateUsuario');
+Route::get('/info', function() {
+    return view('admin.usuarios.minhaInfo');
 });
 
 // ParceirosController
