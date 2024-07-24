@@ -1,7 +1,6 @@
 @extends('layouts.site')
 <link rel="stylesheet" href="{{ asset('css/cadastroRestaurante.css') }}">
 
-
 @section('conteudo')
 
     <style>
@@ -45,7 +44,6 @@
                 <p class="descricaoOpcao">Visualize ou altere seus endereços de entrega</p>
 
             </div>
-
 
         </div>
     </main>
