@@ -36,10 +36,7 @@ Route::get('/minhaConta', [UsuarioController::class, "show"])->name('usuario.min
 Route::get('/gerenciarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.gerenciarPagamentos');
 Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
 Route::get('/minhasInformacoes', [UsuarioController::class, "infoConta"])->name('usuario.minhasInformacoes');
-
-Route::get('/loga', function() {
-    return view('login2');
-});
+Route::get('/enderecosDeEntrega',[UsuarioController::class, "viewEnderecos"])->name('usuario.enderecoEntrega');
 
 // ParceirosController
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');

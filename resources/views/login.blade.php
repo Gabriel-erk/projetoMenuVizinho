@@ -1,18 +1,19 @@
 @extends('layouts.site')
 
 @section('conteudo')
-<!-- bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-
         body {
             background-color: #fff;
+            font-family: 'Poppins', sans-serif
         }
 
         #centraliza {
             width: 100%;
             margin-top: 40px;
+
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px
         }
 
         #conteudo {
@@ -20,65 +21,156 @@
             border-radius: 30px;
             box-shadow: 5px 5px 10px #ccc;
 
-            /* max-width: 800px; */
+            padding: 20px 20px;
+
+            width: 450px;
+            height: 350px;
+        }
+
+        /* formatação titulo 'login' */
+        .login {
+            margin-top: 10px;
+            margin-bottom: 15px;
+
+            text-align: center
+        }
+
+        .login h2 {
+            font-weight: 500;
+            font-size: 31px;
+        }
+
+        /* formatação da div que agrupa os campos a serem preenchidos */
+
+        .campos {
+            margin-bottom: 15px;
+        }
+
+        .campos label {
+            font-size: 14px;
+            /* padding:  */
+        }
+
+        .campos input {
+            display: block;
+
+            margin-top: 5px;
+            padding-left: 5px;
+
+            height: 40px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+
+            font-family: 'Poppins', sans-serif
+        }
+
+        .campos input:hover {
+            border-color: #A5A5A5;
+        }
+
+        .campos input:focus {
+            background-color: #FFF;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        #botoes {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center
         }
 
         #botoes button {
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            /* Cor primária */
+            background-color: #007bff;
+            /* Cor da borda */
+            border: 1px solid #007bff;
+            /* Espaçamento interno */
+            padding: 0.5rem 1rem;
+            /* Tamanho da fonte */
+            font-size: 1.25rem;
+            line-height: 1.5;
+            border-radius: 0.3rem;
+            /* Borda arredondada */
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
             margin-left: 110px;
         }
 
+        #botoes button:hover {
+            cursor: pointer;
+            color: #fff;
+            background-color: #0056b3;
+            /* Cor de fundo ao passar o mouse */
+            border-color: #0056b3;
+            /* Cor da borda ao passar o mouse */
+        }
 
-        a {
+        /* altera as cores do botão ao ser clicado */
+        #botoes button:active {
+            color: #fff;
+            background-color: #004085;
+            /* Cor de fundo ao clicar */
+            border-color: #003768;
+            /* Cor da borda ao clicar */
+        }
+        
 
+        #botoes a {
             text-decoration: none;
             padding-top: 8px;
             font-size: 15px;
-
+            color: #007bff;
         }
     </style>
 
-    <div class="mb-4" id="centraliza">
+    <div id="centraliza">
 
-        <div class="row">
-            <!--  mt-3 mb-3-->
-            <div id="conteudo" class="container p-4 col-md-4">
+        <div class="teste">
 
-                <div class="d-flex justify-content-center mt-2 mb-3">
+            <div id="conteudo">
+
+                <div class="login">
                     <h2>Login</h2>
                 </div>
 
-                <div class="mb-3 campos">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com"
-                        class="form-control">
+                <div class="campoInfo">
+                    <div class="campos">
+                        <label for="email">E-mail</label>
+                        <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com">
 
-                    <!-- <a href="#">Esqueceu seu e-mail?</a> -->
-                </div>
-
-                <div class="mb-3 campos">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Senha" class="form-control">
-
-                    <!-- <a href="#">Esqueceu sua senha?</a> -->
-                </div>
-
-                <div class="d-flex align-items-center" id="botoes">
-
-                    <a href="index">Voltar</a>
-
-                    <div>
-                        <button type="submit" class="btn btn-primary  btn-lg">Entrar</button>
+                        <!-- <a href="#">Esqueceu seu e-mail?</a> -->
                     </div>
 
+                    <div class="campos">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" name="senha" id="senha" placeholder="Senha">
+
+                        <!-- <a href="#">Esqueceu sua senha?</a> -->
+                    </div>
+
+                    <div id="botoes">
+
+                        <a href="index">Voltar</a>
+
+                        <div>
+                            <button type="submit">Entrar</button>
+                        </div>
+
+                    </div>
                 </div>
+
 
             </div>
         </div>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
 @endsection
-
-<!-- bootstrap -->

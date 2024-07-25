@@ -52,6 +52,10 @@ class UsuarioController extends Controller
         return view('admin.usuarios.minhasInformacoes');
     }
 
+    public function viewEnderecos(){
+        return view('admin.usuarios.enderecoDeEntrega');
+    }
+
     public function edit(string $id)
     {
       

@@ -11,7 +11,6 @@
 
             padding: 30px;
             border-bottom: 1px solid #CCCCCC;
-            font-family: 'Poppins', sans-serif;
 
         }
 

@@ -1,0 +1,79 @@
+@import url(main2.css);
+
+.tituloEditUser {
+
+    padding: 30px;
+    border-bottom: 1px solid #CCCCCC;
+
+}
+
+.tituloEditUser h2 {
+    font-weight: 500;
+}
+
+/* formatando div onde ficará os endereços */
+
+.enderecos {
+    padding-top: 25px;
+    padding-left: 30px;
+}
+
+.endereco {
+    margin-top: 20px;
+    /* display: flex; */
+}
+
+/* formatando parte da 'imagem' do endereço */
+
+.imgEndereco {
+    display: flex;
+    align-items: center;
+}
+
+.imgEndereco img {
+    width: 60px;
+}
+
+.imgInfoEndereco {
+    display: flex;
+    width: 500px;
+    padding: 10px;
+
+    background-color: #F8F8F8;
+
+    border-radius: 5px;
+    border: 1px solid #C5C5C5;
+}
+
+.infoEndereco h4 {
+    font-weight: 600;
+}
+
+.bairroCepCidade p {
+    color: #716B6B;
+    font-size: 13px;
+}
+/* formatando icone do lápis ao lado do endereço */
+
+.editPayment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+    width: 50px;
+
+    border-radius: 5px;
+    background-color: #2767C8;
+    transition: all 0.3s ease;
+
+    margin-left: 5px;
+}
+
+.editPayment:hover {
+    background-color: #1e59b3;
+}
+
+.editPayment img {
+    width: 35px
+}
