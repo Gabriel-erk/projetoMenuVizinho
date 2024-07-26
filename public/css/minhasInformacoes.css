@@ -155,7 +155,7 @@ body {
 
 /* formatação da parte de trocar senha */
 
-.agrupaAlteracaoSenha {
+.agrupaAlteracaoSenha{
     padding-left: 30px
 }
 
@@ -222,3 +222,5 @@ body {
 .listaAvisoSenha li {
     font-size: 15px
 }
+
+/* formatando seção de endereço */

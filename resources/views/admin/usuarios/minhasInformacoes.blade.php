@@ -2,12 +2,77 @@
 <link rel="stylesheet" href="{{ asset('css/minhasInformacoes.css') }}">
 
 @section('conteudo')
+    <style>
+        body {
+            background-color: #fff
+        }
 
-<style>
-    body {
-        background-color: #fff 
-    }
-</style>
+        /* formatando parte de endereços */
+
+        .tituloEndereco {
+            padding-left: 30px;
+
+            margin-top: 15px;
+            /* margin-bottom: 15px; */
+        }
+
+        .tituloEndereco p {
+            width: 65%;
+            padding-top: 5px;
+            font-size: 0.9rem;
+            color: #918f8f;
+        }
+
+        .agrupaEndereco label {
+            position: absolute;
+            top: 1px;
+            left: 0.2rem;
+            font-size: 0.875rem;
+            color: #8B8B8B;
+            pointer-events: none;
+
+            padding: 0 0.25rem;
+            margin-right: 10px
+        }
+
+        .agrupaEndereco input {
+            background-color: #F8F8F8;
+            width: 400px;
+            height: 50px;
+
+            border: 1px solid #C5C5C5;
+            border-radius: 4px;
+
+            padding-top: 1.25rem;
+            /* espaço de onde o usuário vai começar a digitar 0.25*/
+            padding-left: 0.50rem;
+            transition: all 0.3s ease;
+
+            font-size: 1rem;
+        }
+
+        .agrupaEndereco input:hover {
+            border-color: #A5A5A5;
+        }
+
+        .agrupaEndereco input:focus {
+            background-color: #FFF;
+            border-color: #80bdff;
+            /* Remove o outline padrão */
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .agrupaSecaoEndereco {
+            display: flex;
+            padding-left: 30px;
+            margin-top: 15px
+        }
+
+        .agrupaEndereco .limitaLabel {
+            margin-right: 30px
+        }
+    </style>
 
     <div class="tituloEditUser">
         <h2>Configurações da conta</h2>
@@ -62,7 +127,7 @@
 
                 </div>
 
-                <div class="agrupaCampoCartao divisor">
+                <div class="agrupaCampoCartao">
 
                     <h4 id="tituloDetalhes" class="margem">Detalhes pessoais</h4>
 
@@ -106,7 +171,8 @@
 
                 <div class="changePassword">
                     <h2 style="font-weight: 500;">Alteração de senha</h2>
-                    <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para nenhuma outra conta on-line.
+                    <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
+                        nenhuma outra conta on-line.
                     </p>
                 </div>
 
@@ -146,6 +212,49 @@
 
                         <div class="limitaLabel"> <label for="confirm_password">Digite a nova senha novamente</label>
                             <input type="password" name="confirm_password" id="confirm_password">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="tituloEndereco">
+                    <h2 style="font-weight: 500;">Endereço</h2>
+                    <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
+                        nenhuma outra conta on-line.
+                    </p>
+                </div>
+
+                <div class="agrupaEndereco">
+
+                    <div class="agrupaSecaoEndereco">
+
+                        <div class="limitaLabel"> <label for="linhaEndereco">Linha de endereço</label>
+                            <input type="text" name="linhaEndereco" id="linhaEndereco" maxlength="40">
+                        </div>
+
+                        <div class="limitaLabel"> <label for="numero">Número</label>
+                            <input type="text" name="numero" id="numero" maxlength="3">
+                        </div>
+
+                    </div>
+
+                    <div class="agrupaSecaoEndereco">
+
+                        <div class="limitaLabel"> <label for="cidade">Cidade</label>
+                            <input type="text" name="cidade" id="cidade" maxlength="20">
+                        </div>
+
+                        <div class="limitaLabel"> <label for="cep">CEP</label>
+                            <input type="text" name="cep" id="cep" maxlength="15">
+                        </div>
+
+                    </div>
+
+                    <div class="agrupaSecaoEndereco">
+
+                        <div class="limitaLabel"> <label for="complemento">Complemento</label>
+                            <input type="text" name="complemento" id="complemento" maxlength="15">
                         </div>
 
                     </div>
