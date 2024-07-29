@@ -20,18 +20,18 @@ class ParceirosController extends Controller
      */
     public function create()
     {
-        return view('admin.parceiros.sejaParceiro');
+        return view('admin.cadastroParceiros.sejaParceiro');
     }
 
     // só pode entrar nessa página se as categorias/subcategorias já foram criadas
     public function selecaoCardapio()
     {
-        return view('admin.parceiros.selecaoCardapio');
+        return view('admin.cadastroParceiros.selecaoCardapio');
     }
     
     public function cadastroCardapio()
     {
-        return view('admin.parceiros.cadastroCardapio');
+        return view('admin.cadastroParceiros.cadastroCardapio');
     }
 
     /**
