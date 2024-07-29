@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-<link rel="stylesheet" href="{{ asset('css/politica.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/politica.css') }}">
 
 
 @section('conteudo')

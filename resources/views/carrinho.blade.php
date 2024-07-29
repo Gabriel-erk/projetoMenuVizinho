@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
-<link rel="stylesheet" href="./css/carrinho2.css">
-<link rel="stylesheet" href="{{ asset('css/carrinho2.css') }}">
+{{-- <link rel="stylesheet" href="./css/carrinho2.css"> --}}
+<link rel="stylesheet" href="{{ asset('css/siteCss/carrinho2.css') }}">
 
 
 <!-- adicionando fonte 3 (Signika Negative) -->

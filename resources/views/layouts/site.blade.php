@@ -7,8 +7,8 @@
     <title>Mr.Burger - Sua Lanchonete Local!</title>
 
     <!-- css carrosel -->
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/siteCss/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/siteCss/owl.theme.default.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/main2.css') }}">
 
@@ -31,7 +31,6 @@
 </head>
 
 <body>
-
 
     <header id="cabecalho">
 
