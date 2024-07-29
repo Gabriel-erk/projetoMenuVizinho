@@ -37,14 +37,6 @@
 
             </div>
 
-            {{-- <div class="opcoesCadastro">
-                <a href="{{ route('usuario.enderecoEntrega') }}">
-                    <h3>Endereço de entrega</h3>
-                </a>
-                <p class="descricaoOpcao">Visualize ou altere seus endereços de entrega</p>
-
-            </div> --}}
-
         </div>
     </main>
 @endsection

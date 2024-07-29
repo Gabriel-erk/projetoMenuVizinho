@@ -33,10 +33,12 @@ Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cad
 // meio correto de se fazer é este, porém, ainda não estou passando id
 // Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
 Route::get('/minhaConta', [UsuarioController::class, "show"])->name('usuario.minhaConta');
-Route::get('/gerenciarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.gerenciarPagamentos');
-Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
 Route::get('/minhasInformacoes', [UsuarioController::class, "infoConta"])->name('usuario.minhasInformacoes');
-Route::get('/enderecosDeEntrega',[UsuarioController::class, "viewEnderecos"])->name('usuario.enderecoEntrega');
+
+Route::get('/gerenciarPagamentos', [UsuarioController::class, "viewPagamentos"])->name('usuario.gerenciarPagamentos');
+Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
+Route::get('/editarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.editarPagamentos');
+// Route::get('/enderecosDeEntrega',[UsuarioController::class, "viewEnderecos"])->name('usuario.enderecoEntrega');
 
 // ParceirosController
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');

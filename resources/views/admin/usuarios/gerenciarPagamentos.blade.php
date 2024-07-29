@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="editPayment">
-                    <a href="#">
+                    <a href="{{ route('usuario.editarPagamentos') }}">
 
                         <img src="{{ asset('img/lapisEdit.png') }}" alt="">
                         
