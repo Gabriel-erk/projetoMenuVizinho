@@ -50,32 +50,30 @@ Route::get('/cadastroCardapio', [ParceirosController::class, "cadastroCardapio"]
 Route::get('/cadastroRestaurante', function () {
     return view('admin.cadastroParceiros.cadastroRestaurante');
 });
-
 Route::get('/cadastroInformacoes', function () {
     return view('admin.cadastroParceiros.cadastroInformacoes');
+});
+Route::get('/cadastroBanner', function () {
+    return view('admin.cadastroParceiros.cadastroBanner');
+});
+Route::get('/cadastroCategorias', function () {
+    return view('admin.cadastroParceiros.cadastroCategorias');
+});
+Route::get('/cadastroSubCategorias', function () {
+    return view('admin.cadastroParceiros.cadastroSubCategorias');
+});
+Route::get('/cadastroCupons', function () {
+    return view('admin.cadastroParceiros.cadastroCupons');
 });
 
 Route::get('/selecao', function () {
     return view('admin.parceiros.selecaoCardapio2');
 });
 
-Route::get('/cadastroSubCategorias', function () {
-    return view('cadastroParceiro.cadastroSubCategorias');
-});
-
-Route::get('/cadastroCategorias', function () {
-    return view('cadastroParceiro.cadastroCategorias');
-});
-
-
 // Route::get('/cadastroCardapio', function () {
 //     return view('cadastroParceiro.cadastroCardapio');
 // });
 
-Route::get('/cadastroBanner', function () {
-    return view('cadastroParceiro.cadastroBanner');
-});
 
-Route::get('/cadastroCupons', function () {
-    return view('cadastroParceiro.cadastroCupons');
-});
+
+
