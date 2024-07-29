@@ -6,6 +6,37 @@
         body {
             background-color: #fff;
         }
+
+        /* formatação dos botões */
+
+        .agrupaBotoes {
+            display: flex;
+            justify-content: center;
+        }
+
+        .botoes {
+
+            margin-top: 45px;
+            margin-left: 10px;
+            padding: 8px 14px;
+
+            background-color: #8C6342;
+
+            border-radius: 4px;
+
+            transition: filter 0.3s ease;
+        }
+
+        .botoes a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .botoes:hover {
+            /* color: #e6e1e1; */
+            filter: brightness(0.9);
+        }
     </style>
     <main class="contrabando">
 
@@ -63,6 +94,21 @@
 
             </div>
 
+        </div>
+
+        <div class="agrupaBotoes">
+
+            <div class="botoes">
+
+                <a href="{{ route('site.index') }}">Voltar</a>
+
+            </div>
+
+            <div class="botoes">
+
+                <a type="submit" href="#">Salvar</a>
+
+            </div>
 
         </div>
     </main>
