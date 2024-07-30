@@ -156,7 +156,7 @@
                     <ul>
                         <li><a href="{{ route('site.index') }}">Home</a></li>
                         <li><a href="{{ route('site.cardapio') }}">Menu</a></li>
-                        <li><a href="#">Àrea do usuário</a></li>
+                        <li><a href="{{ route('usuario.minhaConta') }}">Àrea do usuário</a></li>
                     </ul>
                 </div>
 

@@ -40,7 +40,7 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="./img/pix-img.png">
+                            <img src="{{ asset('img/pix-img.png') }}">
                             <p>PIX</p>
                         </div>
 
@@ -49,11 +49,11 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="./img/credit-card.png">
+                            <img src="{{ asset('img/credit-card.png') }}">
                             <p>Cartão de crédito</p>
                         </div>
 
-                        <p><a href="#">Adicionar</a></p>
+                        <p><a href="{{ route('usuario.novaFormaPagamento') }}">Adicionar</a></p>
                     </div>
 
                     <div class="formaPagamento">
@@ -63,7 +63,7 @@
                             <p>Cartão de débito</p>
                         </div>
 
-                        <p><a href="#">Adicionar</a></p>
+                        <p><a href="{{ route('usuario.novaFormaPagamento') }}">Adicionar</a></p>
                     </div>
 
                 </div>
@@ -74,21 +74,25 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="./img/bandeiraCartao.png">
+                            <img src="{{ asset('img/bandeiraCartao.png') }}">
                             <p class="nomeCartao">Mastercard ****5090</p>
                         </div>
 
-                        <p><a href="#">Apagar</a></p>
+                        {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
+                        {{-- <p><a href="#">Apagar</a></p> --}}
+
                     </div>
 
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="./img/bandeiraCartao.png">
+                            <img src="{{ asset('img/bandeiraCartao.png') }}">
                             <p class="nomeCartao">Mastercard ****5090</p>
                         </div>
 
-                        <p><a href="#">Apagar</a></p>
+                        {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
+                        {{-- <p><a href="#">Apagar</a></p> --}}
+
                     </div>
                 </div>
 
@@ -110,7 +114,7 @@
 
                         <div class="infoCupom">
                             <div>
-                                <img src="./img/cupom-carrinho.png">
+                                <img src="{{ asset('img/cupom-carrinho.png') }}">
                             </div>
 
                             <div class="desc-cupom">
@@ -120,12 +124,15 @@
 
                         </div>
 
-                        <div class="imgCupom2">
+                        {{-- removendo pois acho que é meio sem sentido, já existe uma frase dizendo que tem cupons disponiveis, e ao clicar irá mostrar apenas os disponiveis para aquela compra --}}
+                        {{-- <div class="imgCupom2">
                             <img src="./img/disponivel.webp">
-                        </div>
+                            <img src="./img/disponivel.webp">
+                        </div> --}}
+
                     </div>
 
-                    <p class="lanchesDisponiveis">VER LANCHES DISPONIVEIS
+                    <p class="lanchesDisponiveis">ADICIONAR CUPOM
                     </p>
 
                 </div>
@@ -136,7 +143,7 @@
 
                         <div class="infoCupom">
                             <div>
-                                <img src="./img/cupom-carrinho.png">
+                                <img src="{{ asset('img/cupom-carrinho.png') }}">
                             </div>
 
                             <div class="desc-cupom">
@@ -146,13 +153,13 @@
 
                         </div>
 
-                        <div class="imgCupom2">
+                        {{-- <div class="imgCupom2">
                             <img src="./img/disponivel.webp">
-                        </div>
+                        </div> --}}
 
                     </div>
 
-                    <p class="lanchesDisponiveis">VER LANCHES DISPONIVEIS
+                    <p class="lanchesDisponiveis">ADICIONAR CUPOM
                     </p>
 
                 </div>
