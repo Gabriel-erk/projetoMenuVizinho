@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/siteCss/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/siteCss/owl.theme.default.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/main2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}">
 
     <!-- adicionando fonte 1 (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
