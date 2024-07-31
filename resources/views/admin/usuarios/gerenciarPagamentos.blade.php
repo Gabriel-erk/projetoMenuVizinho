@@ -34,7 +34,6 @@
             justify-content: center;
 
             padding-bottom: 40px
-
         }
 
         .novoPagamento {
@@ -48,7 +47,7 @@
 
             background-color: #F8F8F8;
             border: 1px solid #C5C5C5;
-            border-radius: 6px ;
+            border-radius: 6px;
 
             transition: all 0.3s ease;
         }
@@ -74,62 +73,86 @@
 
         /* formatando pagamentos salvos */
         .payment {
-            
             display: flex;
+            justify-content: space-between;
 
             margin-top: 20px;
+            width: 400px;
 
+            background-color: #F8F8F8;
+            border: 1px solid #CCCCCC;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+
+            padding-top: 18px; 
+            padding-bottom: 18px; 
+
+            padding-left: 10px; 
+            padding-right: 15px; 
+        }
+
+        .payment:hover {
+            background-color: #eaebee;
+        }
+
+        .payment a {
+            color: #2056E2;
+            padding-top: 5px
         }
 
         .logoNome {
             display: flex;
             /* align-items: center; */
-            width: 800px;
-
-            background-color: #F8F8F8;
-            border: 1px solid #CCCCCC;
-            border-radius: 10px;
-
-            padding: 15px 10px;
-            transition: all 0.3s ease;
-        }
-
-        .logoNome:hover {
-            background-color: #eaebee;
         }
 
         .logoNome p {
             color: #716B6B;
             font-weight: 500;
             padding-top: 5px;
-            padding-left: 10px 
+            /* padding-left: 10px */
+        }
+
+        .numeroDataCartao {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .numeroDataCartao p {
+            margin-left: 5px; 
+        }
+
+        .imgPayment {
+            display: flex;
+            align-items: center;
+            background-color: #202020;
+            padding: 5px 10px;
+            border-radius: 80px 
         }
 
         .imgPayment img {
-            width: 65px
+            width: 50px
         }
 
         .editPayment {
             display: flex;
             align-items: center;
-            
+
             height: 70px;
             margin-left: 20px;
             padding: 5px 14px;
 
             border-radius: 5px;
-            background-color: #2767C8;  
+            background-color: #2767C8;
             transition: all 0.3s ease;
         }
 
         .editPayment:hover {
-            background-color: #1e59b3;  
+            background-color: #1e59b3;
         }
 
         .editPayment img {
             width: 40px
         }
-
     </style>
 
     <div class="tituloEditUser">
@@ -165,57 +188,16 @@
                     <div class="imgPayment">
                         <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
                     </div>
-                    
-                    <p>Mastercard Internacional</p>
-                </div>
 
-                <div class="editPayment">
-                    <a href="{{ route('usuario.editarPagamentos') }}">
-
-                        <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-                        
-                    </a>
-                </div>
-            </div>
-
-            <div class="payment">
-
-                <div class="logoNome">
-
-                    <div class="imgPayment">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                    <div class="numeroDataCartao">
+                        <p style="color:#000">••5123</p>
+                        <p>09/32</p>
                     </div>
-                    
-                    <p>Mastercard Internacional</p>
+
                 </div>
 
-                <div class="editPayment">
-                    <a href="{{ route('usuario.editarPagamentos') }}">
+                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
 
-                        <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-                        
-                    </a>
-                </div>
-            </div>
-
-            <div class="payment">
-
-                <div class="logoNome">
-
-                    <div class="imgPayment">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                    </div>
-                    
-                    <p>Mastercard Internacional</p>
-                </div>
-
-                <div class="editPayment">
-                    <a href="{{ route('usuario.editarPagamentos') }}">
-
-                        <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-                        
-                    </a>
-                </div>
             </div>
 
         </div>
