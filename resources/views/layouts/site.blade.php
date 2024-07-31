@@ -85,6 +85,11 @@
                             <a href="{{ route('usuario.minhaConta') }}">Minha Conta</a>
                         </li>
 
+                        {{-- aparecerá apenas para restaurantes registrados --}}
+                        <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
+                            <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
+                        </li>
+
                         <li>
                             <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
                             <a href="#">Meus Pedidos</a>

@@ -40,9 +40,14 @@ Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->
 Route::get('/editarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.editarPagamentos');
 
 // ParceirosController
+
+/* pasta cadastroParceiros */
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');
 Route::get('/selecaoCardapio', [ParceirosController::class, "selecaoCardapio"])->name('parceiros.selecaoCardapio');
 Route::get('/cadastroCardapio', [ParceirosController::class, "cadastroCardapio"])->name('parceiros.cadastroCardapio');
+
+/* pasta parceiros */
+Route::get('/meuRestaurante', [ParceirosController::class, "meuRestaurante"])->name('parceiros.meuRestaurante');
 
 // views parceiros e cadastro restaurante
 

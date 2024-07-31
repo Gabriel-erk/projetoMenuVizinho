@@ -7,17 +7,23 @@ use Illuminate\Support\Facades\Hash;
 
 class ParceirosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+    /*
+     * views da pasta parceiros
      */
+
+    public function meuRestaurante(){
+        return view('admin.parceiros.meuRestaurante');
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /*
+     * views da pasta cadastroParceiros
      */
+
     public function create()
     {
         return view('admin.cadastroParceiros.sejaParceiro');
