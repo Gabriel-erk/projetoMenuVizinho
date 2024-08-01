@@ -18,6 +18,12 @@
             font-weight: 500;
         }
 
+        .tituloEditUser p {
+            padding-top: 5px;
+            font-size: 0.9rem;
+            color: #918f8f;
+        }
+
         .blocoPagamentos {
 
             padding-left: 30px
@@ -25,6 +31,7 @@
 
         .tituloPagamentos {
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         /* formatando adição de pagamento */
@@ -75,24 +82,25 @@
         .payment {
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
-            margin-top: 20px;
-            width: 400px;
+            margin-bottom: 8px;
+            width: 500px;
 
             background-color: #F8F8F8;
             border: 1px solid #CCCCCC;
             border-radius: 10px;
             transition: all 0.3s ease;
 
-            padding-top: 18px; 
-            padding-bottom: 18px; 
+            padding-top: 18px;
+            padding-bottom: 18px;
 
-            padding-left: 10px; 
-            padding-right: 15px; 
+            padding-left: 10px;
+            padding-right: 15px;
         }
 
         .payment:hover {
-            background-color: #eaebee;
+            background-color: #f3f3f3;
         }
 
         .payment a {
@@ -102,7 +110,7 @@
 
         .logoNome {
             display: flex;
-            /* align-items: center; */
+            align-items: center;
         }
 
         .logoNome p {
@@ -118,45 +126,46 @@
         }
 
         .numeroDataCartao p {
-            margin-left: 5px; 
+            margin-left: 5px;
         }
 
         .imgPayment {
             display: flex;
-            align-items: center;
+            /* align-items: center; */
             background-color: #202020;
-            padding: 5px 10px;
-            border-radius: 80px 
+            padding: 1rem 0.6rem;
+            border-radius: 50%
         }
 
         .imgPayment img {
-            width: 50px
-        }
-
-        .editPayment {
-            display: flex;
-            align-items: center;
-
-            height: 70px;
-            margin-left: 20px;
-            padding: 5px 14px;
-
-            border-radius: 5px;
-            background-color: #2767C8;
-            transition: all 0.3s ease;
-        }
-
-        .editPayment:hover {
-            background-color: #1e59b3;
-        }
-
-        .editPayment img {
             width: 40px
         }
+
+        /* .editPayment {
+                display: flex;
+                align-items: center;
+
+                height: 70px;
+                margin-left: 20px;
+                padding: 5px 14px;
+
+                border-radius: 5px;
+                background-color: #2767C8;
+                transition: all 0.3s ease;
+            }
+
+            .editPayment:hover {
+                background-color: #1e59b3;
+            }
+
+            .editPayment img {
+                width: 40px
+            } */
     </style>
 
     <div class="tituloEditUser">
         <h2>Gerenciar pagamentos</h2>
+        <p>Veja ou adicione métodos de pagamento na sua conta.</p>
     </div>
 
     <div class="blocoPagamentos">
@@ -199,6 +208,45 @@
                 <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
 
             </div>
+
+            <div class="payment">
+
+                <div class="logoNome">
+
+                    <div class="imgPayment">
+                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                    </div>
+
+                    <div class="numeroDataCartao">
+                        <p style="color:#000">••5123</p>
+                        <p>09/32</p>
+                    </div>
+
+                </div>
+
+                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
+
+            </div>
+
+            <div class="payment">
+
+                <div class="logoNome">
+
+                    <div class="imgPayment">
+                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                    </div>
+
+                    <div class="numeroDataCartao">
+                        <p style="color:#000">••5123</p>
+                        <p>09/32</p>
+                    </div>
+
+                </div>
+
+                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
+
+            </div>
+
 
         </div>
 

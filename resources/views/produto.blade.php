@@ -1,5 +1,5 @@
 @extends('layouts.site')
-<link rel="stylesheet" href="{{ asset('css/produtos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/produtos.css') }}">
 
 <!-- adicionando fonte 2 (Titan One) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <main>
 
         <div class="imgTelaProduto">
-            <img src="/img/duplo-cheddar.png">
+            <img src="{{ asset('img/duplo-cheddar.png') }}">
         </div>
 
 
