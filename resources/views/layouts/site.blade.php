@@ -60,7 +60,8 @@
                     </div>
 
                     <div class="agrupaCarrinho alinharBotoes">
-                        <a href="{{ route('site.carrinho') }}"> <i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
+                        <a href="{{ route('site.carrinho') }}"> <i class="fa-solid fa-bag-shopping"
+                                style="color: #ffffff;"></i></a>
                     </div>
 
                     <div class="iconeMenuLateral alinharBotoes">

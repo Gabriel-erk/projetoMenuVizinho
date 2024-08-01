@@ -307,6 +307,8 @@ body {
     padding-top: 20px;
 }
 
+/* formatando seção de produtos */
+
 .listaProdutos {
     display: flex;
     justify-content: space-between;
