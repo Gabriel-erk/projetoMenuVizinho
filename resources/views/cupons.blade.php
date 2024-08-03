@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="regrasDuracaoCupon">
-                    <a href="regras">Regras</a>
+                    <a href="{{ route('site.regraCupon') }}">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="regrasDuracaoCupon">
-                    <a href="regras">Regras</a>
+                    <a href="{{ route('site.regraCupon') }}">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="regrasDuracaoCupon">
-                    <a href="regras">Regras</a>
+                    <a href="{{ route('site.regraCupon') }}">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="regrasDuracaoCupon">
-                    <a href="regras">Regras</a>
+                    <a href="{{ route('site.regraCupon') }}">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -173,11 +173,12 @@
                 </div>
 
                 <div class="regrasDuracaoCupon">
-                    <a href="regras">Regras</a>
+                    <a href="{{ route('site.regraCupon') }}">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
             </div>
+            
 
         </div>
     </main>

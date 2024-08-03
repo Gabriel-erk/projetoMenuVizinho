@@ -4,6 +4,16 @@
 
 
 @section('conteudo')
+    <style>
+        body {
+            background-color: #fff
+        }
+
+        .ultimaAtt {
+            color: #848384;
+
+        }
+    </style>
     <main class="container">
         <p class="politica-privacidade">
         <div class="topicos">
@@ -77,6 +87,7 @@
             de privacidade, entre em contato conosco.
         </div>
 
-        Última atualização: 27/11/23.</p>
+        <p class="ultimaAtt">Última atualização: 27/11/23</p>
+        </p>
     </main>
 @endsection

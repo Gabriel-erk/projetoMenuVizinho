@@ -36,6 +36,17 @@
             width: 530px;
         }
 
+        .agrupaTituloCadeado{
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .agrupaTituloCadeado img {
+            width: 30px;
+            height: 30px
+        }
+
         .tituloPagamentos {
             margin-top: 20px;
             margin-bottom: 20px;
@@ -198,7 +209,7 @@
 
     <div class="tituloEditUser">
         <h2>Gerenciar pagamentos</h2>
-        <p>Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja nossa <a href="">Política
+        <p>Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja nossa <a href="{{ route('site.politica') }}">Política
                 de privacidade</a></p>
         {{-- <p>Veja ou adicione métodos de pagamento na sua conta.</p> --}}
     </div>
@@ -206,7 +217,11 @@
     <div class="agrupaPagamentos">
 
         <div class="blocoPagamentos">
-            <p class="tituloPagamentos">Meus cartões</p>
+            <div class="agrupaTituloCadeado">
+
+                <p class="tituloPagamentos">Meus cartões</p>
+                <img src="{{ asset('img/lock.png') }}" alt="" srcset="">
+            </div>
 
             <div class="meusPagamentos">
 

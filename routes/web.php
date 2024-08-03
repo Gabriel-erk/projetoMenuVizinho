@@ -21,6 +21,7 @@ Route::get('/cupons', [SiteController::class, "cupons"])->name('site.cupons');
 Route::get('/sobre', [SiteController::class, "sobre"])->name('site.sobre');
 Route::get('/politica', [SiteController::class, "politica"])->name('site.politica');
 Route::get('/login', [SiteController::class, "login"])->name('site.login');
+Route::get('/regraCupon', [SiteController::class, "regraCupon"])->name('site.regraCupon');
 
 // UsuarioController
 

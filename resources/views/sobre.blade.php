@@ -86,7 +86,7 @@
             <div class="textoRestaurante linkRestaurante">
 
                 <span>Para aproveitar melhor os nossos serviços, visite o site: <a
-                        href="index">www.lanchonetelocal.com</a></span> .
+                        href="{{ route('site.index') }}">www.lanchonetelocal.com</a></span> .
 
             </div>
 

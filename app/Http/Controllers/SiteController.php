@@ -62,7 +62,10 @@ class SiteController extends Controller
         return view('login');
     }
 
-    // paginas de cadastro de restaurante
+    // vai mostrar as regras de uso dos cupons no geral
+    public function regraCupon(){
+        return view('regras');
+    }
 
 
 }

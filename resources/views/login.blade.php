@@ -159,7 +159,7 @@
 
                     <div id="botoes">
 
-                        <a href="index">Voltar</a>
+                        <a href="{{ route('site.index') }}">Voltar</a>
 
                         <div>
                             <button type="submit">Entrar</button>

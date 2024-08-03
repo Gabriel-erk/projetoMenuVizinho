@@ -3,7 +3,6 @@
 {{-- <link rel="stylesheet" href="./css/carrinho2.css"> --}}
 <link rel="stylesheet" href="{{ asset('css/siteCss/carrinho2.css') }}">
 
-
 <!-- adicionando fonte 3 (Signika Negative) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +58,8 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="./img/credit-card.png">
+
+                            <img src="{{ asset('img/credit-card.png') }}">
                             <p>Cartão de débito</p>
                         </div>
 
