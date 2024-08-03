@@ -21,17 +21,26 @@
         .tituloEditUser p {
             padding-top: 5px;
             font-size: 0.9rem;
-            color: #918f8f;
+            color: #716B6B;
+            /* font-weight: 500; */
+
+            width: 35%
+        }
+
+        .tituloEditUser a {
+            color: #2056E2
         }
 
         .blocoPagamentos {
-
-            padding-left: 30px
+            padding-left: 30px;
+            width: 530px;
         }
 
         .tituloPagamentos {
             margin-top: 20px;
             margin-bottom: 20px;
+            font-size: 25px;
+            font-weight: 500
         }
 
         /* formatando adição de pagamento */
@@ -85,7 +94,7 @@
             align-items: center;
 
             margin-bottom: 8px;
-            width: 500px;
+            /* width: 500px; */
 
             background-color: #F8F8F8;
             border: 1px solid #CCCCCC;
@@ -141,114 +150,129 @@
             width: 40px
         }
 
+        .divDoBotao {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 35px
+        }
+
+        .botaoAdicionar {
+            font-family: 'Poppins', sans-serif;
+            /* background-color: #4E7DF8; */
+            background-color: #337deb;
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .botaoAdicionar:hover {
+            background-color: #1e59b3;
+        }
+
+        .botaoAdicionar a {
+            color: #fff;
+        }
+
         /* .editPayment {
-                display: flex;
-                align-items: center;
+                        display: flex;
+                        align-items: center;
 
-                height: 70px;
-                margin-left: 20px;
-                padding: 5px 14px;
+                        height: 70px;
+                        margin-left: 20px;
+                        padding: 5px 14px;
 
-                border-radius: 5px;
-                background-color: #2767C8;
-                transition: all 0.3s ease;
-            }
+                        border-radius: 5px;
+                        background-color: #2767C8;
+                        transition: all 0.3s ease;
+                    }
 
-            .editPayment:hover {
-                background-color: #1e59b3;
-            }
+                    .editPayment:hover {
+                        background-color: #1e59b3;
+                    }
 
-            .editPayment img {
-                width: 40px
-            } */
+                    .editPayment img {
+                        width: 40px
+                    } */
     </style>
 
     <div class="tituloEditUser">
         <h2>Gerenciar pagamentos</h2>
-        <p>Veja ou adicione métodos de pagamento na sua conta.</p>
+        <p>Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja nossa <a href="">Política
+                de privacidade</a></p>
+        {{-- <p>Veja ou adicione métodos de pagamento na sua conta.</p> --}}
     </div>
 
-    <div class="blocoPagamentos">
+    <div class="agrupaPagamentos">
 
-        <h2 class="tituloPagamentos">Adicionar um novo cartão</h2>
+        <div class="blocoPagamentos">
+            <p class="tituloPagamentos">Meus cartões</p>
 
-        <div class="adicionarPagamento">
+            <div class="meusPagamentos">
 
-            <div class="novoPagamento">
+                <div class="payment">
 
-                <a href="{{ route('usuario.novaFormaPagamento') }}">
+                    <div class="logoNome">
 
-                    <i class="fa-solid fa-plus" style="color: #000"></i>
+                        <div class="imgPayment">
+                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                        </div>
 
-                </a>
+                        <div class="numeroDataCartao">
+                            <p style="color:#000">••5123</p>
+                            <p>09/32</p>
+                        </div>
+
+                    </div>
+
+                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
+
+                </div>
+
+                <div class="payment">
+
+                    <div class="logoNome">
+
+                        <div class="imgPayment">
+                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                        </div>
+
+                        <div class="numeroDataCartao">
+                            <p style="color:#000">••5123</p>
+                            <p>09/32</p>
+                        </div>
+
+                    </div>
+
+                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
+
+                </div>
+
+                <div class="payment">
+
+                    <div class="logoNome">
+
+                        <div class="imgPayment">
+                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                        </div>
+
+                        <div class="numeroDataCartao">
+                            <p style="color:#000">••5123</p>
+                            <p>09/32</p>
+                        </div>
+
+                    </div>
+
+                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
+
+                </div>
 
             </div>
 
+            <div class="divDoBotao">
+                <button class="botaoAdicionar"><a href="{{ route('usuario.novaFormaPagamento') }}">Adicionar método de
+                        pagamento</a></button>
+            </div>
         </div>
-
-        <h2 class="tituloPagamentos">Meus métodos de pagamento</h2>
-
-        <div class="meusPagamentos">
-
-            <div class="payment">
-
-                <div class="logoNome">
-
-                    <div class="imgPayment">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                    </div>
-
-                    <div class="numeroDataCartao">
-                        <p style="color:#000">••5123</p>
-                        <p>09/32</p>
-                    </div>
-
-                </div>
-
-                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-            </div>
-
-            <div class="payment">
-
-                <div class="logoNome">
-
-                    <div class="imgPayment">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                    </div>
-
-                    <div class="numeroDataCartao">
-                        <p style="color:#000">••5123</p>
-                        <p>09/32</p>
-                    </div>
-
-                </div>
-
-                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-            </div>
-
-            <div class="payment">
-
-                <div class="logoNome">
-
-                    <div class="imgPayment">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                    </div>
-
-                    <div class="numeroDataCartao">
-                        <p style="color:#000">••5123</p>
-                        <p>09/32</p>
-                    </div>
-
-                </div>
-
-                <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-            </div>
-
-
-        </div>
-
     </div>
 @endsection

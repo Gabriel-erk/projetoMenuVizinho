@@ -5,16 +5,12 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/site', function () {
     return view('site');
 });
 
 // SiteController
-Route::get('/index', [SiteController::class, "index"])->name('site.index');
+Route::get('/', [SiteController::class, "index"])->name('site.index');
 Route::get('/cardapio', [SiteController::class, "cardapio"])->name('site.cardapio');
 
 // /produto/{id}
