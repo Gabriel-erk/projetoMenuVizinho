@@ -1,15 +1,8 @@
 @extends('layouts.site')
-<!-- bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 @section('conteudo')
     {{-- jQuerry --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-    <!-- Inputmask JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.7-beta.16/jquery.inputmask.min.js"></script>
 
     <style>
         body {
@@ -35,31 +28,52 @@
 
         /* formatação bloco1InfoCartão */
 
-        .agrupaCampoCartao input {
+        .campo input {
             background-color: #F8F8F8;
             padding-top: 1.25rem;
-            padding-left: 0.75rem;
+            padding-left: 0.65rem;
             /* transition: all 0.3s ease; */
+            border: 1px solid #ccc;
+            border-radius: 7px;
+
+            width: 100%;
+            height: 55px;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        /* .agrupaCampoCartao input:hover {
-            background-color: #f0f0f0;
-        } */
-
-        .limitaLabel {
-            position: relative;
+        .campo input:hover {
+            border-color: #A5A5A5;
         }
 
+        .campo input:focus {
+            background-color: #FFF;
+            border-color: #80bdff;
+            /* Remove o outline padrão */
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
 
-        .agrupaCampoCartao label {
+        .campo label {
             position: absolute;
-            top: 1px;
-            left: 1rem;
+            top: 3px;
+            left: 0.35rem;
             font-size: 0.875rem;
             color: #8B8B8B;
             pointer-events: none;
 
             padding: 0 0.25rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .campoDuplo {
+            display: flex;
+        }
+
+        .limitaLabel {
+            position: relative;
         }
 
         /* formatando botão submit */
@@ -103,46 +117,47 @@
 
             <form action="" method="">
 
-                <div class="mt-5 agrupaCampoCartao">
+                <div class="agrupaCampoCartao" style="margin-top: 30px">
 
-                    <div class="row ">
+                    <div class="campo campoDuplo" style="margin-bottom: 15px">
 
-                        <div class="col limitaLabel"> <label for="numeroCartao" class="form-label">Número do cartão</label>
-                            <input type="text" name="numeroCartao" id="numeroCartao" class="form-control">
+                        <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
+                                cartão</label>
+                            <input type="text" name="numeroCartao" id="numeroCartao">
                         </div>
 
-                        <div class="col limitaLabel"><label for="cvv" class="form-label">CVV</label>
-                            <input type="text" name="cvv" id="cvv" class="form-control">
+                        <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
+                            <input type="text" name="cvv" id="cvv">
                         </div>
 
                     </div>
 
-                    <div class="row">
+                    <div class="campo">
 
-                        <div class="col-md-6 mt-3 limitaLabel"> <label for="dataVencimento" class="form-label">Data de
+                        <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
                                 vencimento</label>
-                            <input type="date" name="dataVencimento" id="dataVencimento" class="form-control">
+                            <input type="date" name="dataVencimento" id="dataVencimento">
                         </div>
 
                     </div>
 
                 </div>
 
-                <div class="agrupaCampoCartao mt-5">
+                <div class="agrupaCampoCartao" style="margin-top: 40px">
 
-                    <div class="row mb-3">
+                    <div class="campo" style="margin-bottom: 15px">
 
-                        <div class="col limitaLabel"> <label for="nomeTitular" class="form-label">Nome do titular</label>
-                            <input type="text" name="nomeTitular" id="nomeTitular" class="form-control">
+                        <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
+                            <input type="text" name="nomeTitular" id="nomeTitular">
                         </div>
 
                     </div>
 
-                    <div class="row">
+                    <div class="campo">
 
-                        <div class="col limitaLabel"> <label for="cpf" class="form-label">CPF</label>
+                        <div class="limitaLabel"> <label for="cpf">CPF</label>
                             {{-- limitando tamanho em 14 caracteres --}}
-                            <input type="text" name="cpf" id="cpf" class="form-control" maxlength="14">
+                            <input type="text" name="cpf" id="cpf" maxlength="14">
                         </div>
 
                     </div>
@@ -220,7 +235,6 @@
             v = v.substring(0, 70);
 
             return v
-
         }
 
         function formatCpf(v) {
@@ -234,7 +248,3 @@
         }
     </script>
 @endsection
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
