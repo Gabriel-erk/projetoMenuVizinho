@@ -1,10 +1,15 @@
 @extends('layouts.site')
-<link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
 
 @section('conteudo')
+<link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}">
     <style>
         body {
             background-color: #fff
+        }
+
+        .hakuna {
+            margin-right: 20px
         }
 
         /* formatando parte de endereços */
@@ -72,6 +77,44 @@
         .agrupaEndereco .limitaLabel {
             margin-right: 30px
         }
+
+        /* alterando propriedades do botão de salvar */
+
+        .botaoAdicionar {
+
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+
+            padding: 6px 40px;
+            margin-top: 50px;
+
+            background-color: #8C6342;
+            color: #fff;
+
+            border: none;
+            border-radius: 5px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .botaoAdicionar:hover {
+            background-color: #755439;
+            cursor: pointer;
+        }
+
+        #botaoCancelar {
+            background-color: #fff;
+            color: #8C6342;
+            border: 1px solid #8C6342
+        }
+
+        #botaoCancelar:hover {
+            background-color: #755439;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 
     <div class="tituloEditUser">
@@ -97,13 +140,13 @@
                                 <input type="text" maxlength="100" name="email" id="email">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -113,13 +156,13 @@
                                 <input type="tel" maxlength="15" name="telefone" id="telefone" onkeyup="phone(event)">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -133,35 +176,35 @@
 
                     <div class="margem">
 
-                        <div class="d-flex hakuna">
+                        <div class="hakuna">
 
                             <div class="limitaLabel  "> <label for="nome">Nome</label>
                                 <input type="text" maxlength="25" name="nome" id="nome">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
-                        <div class="d-flex hakuna ">
+                        <div class="hakuna ">
 
                             <div class="limitaLabel "> <label for="sobrenome">Sobrenome</label>
                                 <input type="text" maxlength="80" name="sobrenome" id="sobrenome">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -169,7 +212,7 @@
 
                 </div>
 
-                <div class="changePassword">
+                <div class="changePassword" style="margin-top: 25px ">
                     <h2 style="font-weight: 500;">Alteração de senha</h2>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
@@ -218,7 +261,7 @@
 
                 </div>
 
-                <div class="tituloEndereco">
+                <div class="tituloEndereco" style="margin-top: 25px">
                     <h2 style="font-weight: 500;">Endereço</h2>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
@@ -262,6 +305,8 @@
                 </div>
 
                 <div class="posicionaBotaoSubmit">
+
+                    <a href="{{ route('usuario.gerenciarPagamentos') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
                     <button type="submit" class="botaoAdicionar">Salvar alterações</button>
 
                 </div>

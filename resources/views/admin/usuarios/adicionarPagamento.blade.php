@@ -89,10 +89,10 @@
             font-weight: 500;
             font-size: 1.1rem;
 
-            padding: 8px 55px;
+            padding: 6px 40px;
             margin-top: 50px;
 
-            background-color: #2767C8;
+            background-color: #8C6342;
             color: #fff;
 
             border: none;
@@ -103,7 +103,20 @@
         }
 
         .botaoAdicionar:hover {
-            background-color: #1e59b3;
+            background-color: #755439;
+            cursor: pointer;
+        }
+
+        #botaoCancelar {
+            background-color: #fff;
+            color: #8C6342;
+            border: 1px solid #8C6342
+        }
+
+        #botaoCancelar:hover {
+            background-color: #755439;
+            color: #fff;
+            cursor: pointer;
         }
     </style>
 
@@ -165,7 +178,8 @@
                 </div>
 
                 <div class="posicionaBotaoSubmit">
-                    <button type="submit" class="botaoAdicionar">Adicionar</button>
+                    <a href="{{ route('usuario.gerenciarPagamentos') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
+                    <button type="submit" class="botaoAdicionar" style="margin-left: 15px">Salvar</button>
 
                 </div>
             </form>
