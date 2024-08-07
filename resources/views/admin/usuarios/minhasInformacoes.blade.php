@@ -1,8 +1,7 @@
 @extends('layouts.site')
 
 @section('conteudo')
-<link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
-<link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
     <style>
         body {
             background-color: #fff
@@ -107,7 +106,8 @@
         #botaoCancelar {
             background-color: #fff;
             color: #8C6342;
-            border: 1px solid #8C6342
+            border: 1px solid #8C6342;
+            margin-right: 10px
         }
 
         #botaoCancelar:hover {
@@ -140,13 +140,13 @@
                                 <input type="text" maxlength="100" name="email" id="email">
                             </div>
 
-                            {{-- <div class="editPayment">
+                            <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div> --}}
+                            </div>
 
                         </div>
 
@@ -156,13 +156,13 @@
                                 <input type="tel" maxlength="15" name="telefone" id="telefone" onkeyup="phone(event)">
                             </div>
 
-                            {{-- <div class="editPayment">
+                            <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div> --}}
+                            </div>
 
                         </div>
 
@@ -182,13 +182,13 @@
                                 <input type="text" maxlength="25" name="nome" id="nome">
                             </div>
 
-                            {{-- <div class="editPayment">
+                            <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div> --}}
+                            </div>
 
                         </div>
 
@@ -198,13 +198,13 @@
                                 <input type="text" maxlength="80" name="sobrenome" id="sobrenome">
                             </div>
 
-                            {{-- <div class="editPayment">
+                            <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div> --}}
+                            </div>
 
                         </div>
 
@@ -306,8 +306,10 @@
 
                 <div class="posicionaBotaoSubmit">
 
-                    <a href="{{ route('usuario.gerenciarPagamentos') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
-                    <button type="submit" class="botaoAdicionar">Salvar alterações</button>
+                    <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar"
+                        id="botaoCancelar">Voltar</a>
+
+                    <button type="submit" class="botaoAdicionar">Salvar</button>
 
                 </div>
             </form>

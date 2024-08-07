@@ -25,6 +25,29 @@
             background-color: #F3F3F3;
             /* position: relative; */
         }
+
+        #pagamentoSalvo .formaPagamento:hover {
+            cursor: pointer;
+        }
+
+        .nomeCartao,
+        .dataCartao {
+            font-size: 15px
+        }
+
+        .dataCartao {
+            color: #716B6B;
+        }
+
+        .imgFormaPagamento {
+            background-color: #202020;
+            padding: 1rem 0.5rem;
+            border-radius: 50%
+        }
+
+        .imgFormaPagamento img {
+            width: 35px
+        }
     </style>
     <main>
 
@@ -74,8 +97,12 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="{{ asset('img/bandeiraCartao.png') }}">
-                            <p class="nomeCartao">Mastercard ****5090</p>
+                            <div class="imgFormaPagamento">
+
+                                <img src="{{ asset('img/bandeiraCartao.png') }}">
+                            </div>
+                            <p class="nomeCartao">••5123</p>
+                            <p class="dataCartao">09/32</p>
                         </div>
 
                         {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
@@ -86,8 +113,12 @@
                     <div class="formaPagamento">
 
                         <div class="imgTituloFormaPagamento">
-                            <img src="{{ asset('img/bandeiraCartao.png') }}">
-                            <p class="nomeCartao">Mastercard ****5090</p>
+                            <div class="imgFormaPagamento">
+
+                                <img src="{{ asset('img/bandeiraCartao.png') }}">
+                            </div>
+                            <p class="nomeCartao">••5123</p>
+                            <p class="dataCartao">09/32</p>
                         </div>
 
                         {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
