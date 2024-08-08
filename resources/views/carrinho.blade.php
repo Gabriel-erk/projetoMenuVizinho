@@ -30,6 +30,10 @@
             cursor: pointer;
         }
 
+        #pagamentoSalvo h3 {
+            color: #5C5B5B;
+        }
+
         .nomeCartao,
         .dataCartao {
             font-size: 15px
@@ -37,6 +41,10 @@
 
         .dataCartao {
             color: #716B6B;
+        }
+
+        #metodo-pagamento p {
+            font-weight: 500;
         }
 
         .imgFormaPagamento {
@@ -47,6 +55,15 @@
 
         .imgFormaPagamento img {
             width: 35px
+        }
+
+        .lanchesDisponiveis {
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .lanchesDisponiveis:hover {
+            transition: ALL linear 200ms;
         }
     </style>
     <main>
@@ -150,7 +167,7 @@
 
                             <div class="desc-cupom">
                                 <h2>15R$ para lanches que possuem Bacon</h2>
-                                <p>OBS: Valido para pedidos acima de 25R$</p>
+                                <p>Disponivel para a compra atual</p>
                             </div>
 
                         </div>
