@@ -40,41 +40,20 @@ Route::get('/editarPagamentos', [UsuarioController::class, "editPagamentos"])->n
 
 /* pasta cadastroParceiros */
 Route::get('/sejaParceiro', [ParceirosController::class, "create"])->name('parceiros.sejaParceiro');
+
+Route::get('/cadastroRestaurante', [ParceirosController::class, "createRestarurante"])->name('parceiros.cadastroRestaurante');
+Route::get('/cadastroInformacoes', [ParceirosController::class, "cadastroInformacoes"])->name('parceiros.minhasInformacoes');
+Route::get('/cadastroCategorias', [ParceirosController::class, "cadastroCategorias"])->name('parceiros.categorias');
+
 Route::get('/selecaoCardapio', [ParceirosController::class, "selecaoCardapio"])->name('parceiros.selecaoCardapio');
 Route::get('/cadastroCardapio', [ParceirosController::class, "cadastroCardapio"])->name('parceiros.cadastroCardapio');
+Route::get('/cadastroBanner', [ParceirosController::class, "cadastroBanner"])->name('parceiros.banner');
+Route::get('/cadastroCupons', [ParceirosController::class, "cadastroBanner"])->name('parceiros.cupons');
 
-/* pasta parceiros */
-Route::get('/meuRestaurante', [ParceirosController::class, "meuRestaurante"])->name('parceiros.meuRestaurante');
-
-// views parceiros e cadastro restaurante
-
-Route::get('/cadastroRestaurante', function () {
-    return view('admin.cadastroParceiros.cadastroRestaurante');
-});
-Route::get('/cadastroInformacoes', function () {
-    return view('admin.cadastroParceiros.cadastroInformacoes');
-});
-Route::get('/cadastroBanner', function () {
-    return view('admin.cadastroParceiros.cadastroBanner');
-});
-Route::get('/cadastroCategorias', function () {
-    return view('admin.cadastroParceiros.cadastroCategorias');
-});
-Route::get('/cadastroSubCategorias', function () {
-    return view('admin.cadastroParceiros.cadastroSubCategorias');
-});
 Route::get('/cadastroCupons', function () {
     return view('admin.cadastroParceiros.cadastroCupons');
 });
 
-Route::get('/selecao', function () {
-    return view('admin.parceiros.selecaoCardapio2');
-});
+/* pasta parceiros */
 
-// Route::get('/cadastroCardapio', function () {
-//     return view('cadastroParceiro.cadastroCardapio');
-// });
-
-
-
-
+Route::get('/meuRestaurante', [ParceirosController::class, "meuRestaurante"])->name('parceiros.meuRestaurante');

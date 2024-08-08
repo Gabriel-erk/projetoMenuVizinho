@@ -11,7 +11,8 @@ class ParceirosController extends Controller
      * views da pasta parceiros
      */
 
-    public function meuRestaurante(){
+    public function meuRestaurante()
+    {
         return view('admin.parceiros.meuRestaurante');
     }
 
@@ -29,15 +30,40 @@ class ParceirosController extends Controller
         return view('admin.cadastroParceiros.sejaParceiro');
     }
 
+    public function createRestarurante()
+    {
+        return view('admin.cadastroParceiros.cadastroRestaurante');
+    }
+
+    public function cadastroInformacoes()
+    {
+        return view('admin.cadastroParceiros.cadastroInformacoes');
+    }
+
+    public function cadastroCategorias()
+    {
+        return view('admin.cadastroParceiros.cadastroCategorias');
+    }
+
     // só pode entrar nessa página se as categorias/subcategorias já foram criadas
     public function selecaoCardapio()
     {
         return view('admin.cadastroParceiros.selecaoCardapio');
     }
-    
+
     public function cadastroCardapio()
     {
-        return view('admin.cadastroParceiros.cadastroCardapio');
+        return view('admin.cadastroParceiros.cadastroCardapio');    
+    }
+
+    public function cadastroBanner()
+    {
+        return view('admin.cadastroParceiros.cadastroBanner');
+    }
+
+    public function cadastroCupons()
+    {
+        return view('admin.cadastroParceiros.cadastroCupons');
     }
 
     /**
@@ -61,7 +87,6 @@ class ParceirosController extends Controller
      */
     public function edit(string $id)
     {
-
     }
 
     /**
