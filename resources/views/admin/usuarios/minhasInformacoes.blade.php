@@ -226,7 +226,7 @@
                         <h4 style="font-weight: bold; margin-bottom: 5px;" class="mb-2">Senha atual</h4>
 
                         <div class="limitaLabel"> <label for="password">Senha atual</label>
-                            <input type="password" name="password" id="password">
+                            <input type="password" name="password" id="password" maxlength="45">
                         </div>
 
                     </div>
@@ -236,7 +236,7 @@
                         <h4 style="font-weight: bold; margin-bottom: 5px;">Nova Senha</h4>
 
                         <div class="limitaLabel"> <label for="new_password">Nova Senha</label>
-                            <input type="password" name="new_password" id="new_password">
+                            <input type="password" name="new_password" id="new_password" maxlength="45">
                         </div>
 
                     </div>
@@ -254,7 +254,7 @@
                     <div style="margin-top: 10px;">
 
                         <div class="limitaLabel"> <label for="confirm_password">Digite a nova senha novamente</label>
-                            <input type="password" name="confirm_password" id="confirm_password">
+                            <input type="password" name="confirm_password" id="confirm_password" maxlength="45">
                         </div>
 
                     </div>
@@ -277,7 +277,7 @@
                         </div>
 
                         <div class="limitaLabel"> <label for="numero">Número</label>
-                            <input type="text" name="numero" id="numero" maxlength="3">
+                            <input type="text" name="numero" id="numero" maxlength="10">
                         </div>
 
                     </div>
@@ -297,7 +297,7 @@
                     <div class="agrupaSecaoEndereco">
 
                         <div class="limitaLabel"> <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" id="complemento" maxlength="15">
+                            <input type="text" name="complemento" id="complemento" maxlength="30">
                         </div>
 
                     </div>
