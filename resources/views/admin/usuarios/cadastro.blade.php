@@ -96,7 +96,7 @@
 
         #botoesCadastro {
             display: flex;
-            width: 58%;
+            width: 58.5%;
             align-items: center;
             justify-content: space-between;
             margin-top: 20px;
@@ -121,7 +121,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 17px;
+            font-size: 19px;
 
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
         }
