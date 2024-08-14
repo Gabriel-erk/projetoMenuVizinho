@@ -25,6 +25,13 @@
             /* background-color: #ffff; */
         }
 
+        .cardapio {
+            background-color: #fff
+            /* background-color: #f5f5f5 */
+            /* background-color: #F9EED9; */
+
+        }
+
         .listaProdutos {
             display: flex;
             justify-content: space-between;
@@ -36,13 +43,16 @@
         }
 
         .titulo {
-            padding-bottom: 0
+            padding-top: 0;
+            padding-bottom: 0;
+            /* font-weight: 600 */
         }
 
         .subtitulo {
             /* color: #CCCCCC; */
 
-            color: #848384
+            color: #848384;
+            /* font-weight: 600; */
         }
 
         .descCategoria {
@@ -193,7 +203,6 @@
                                 <img src="{{ asset('img/sorveteChocolate.png') }}" alt="">
                             </a>
 
-
                             <p>Sobremesas</p>
                         </div>
 
@@ -214,7 +223,7 @@
 
                 <p class="subtitulo">Cardápio</p>
                 <p class="titulo">Lanches mais pedidos</p>
-                <p class="descCategoria">Each Box Comes With Hummus, Pita Chips & Fattoush Salad.</p>
+                <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
 

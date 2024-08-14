@@ -1,10 +1,14 @@
 @extends('layouts.site')
-<link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
 
 @section('conteudo')
+    <link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
     <style>
         body {
             background-color: #fff
+        }
+
+        .hakuna {
+            margin-right: 20px
         }
 
         /* formatando parte de endereços */
@@ -72,6 +76,45 @@
         .agrupaEndereco .limitaLabel {
             margin-right: 30px
         }
+
+        /* alterando propriedades do botão de salvar */
+
+        .botaoAdicionar {
+
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+
+            padding: 6px 40px;
+            margin-top: 50px;
+
+            background-color: #8C6342;
+            color: #fff;
+
+            border: none;
+            border-radius: 5px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .botaoAdicionar:hover {
+            background-color: #755439;
+            cursor: pointer;
+        }
+
+        #botaoCancelar {
+            background-color: #fff;
+            color: #8C6342;
+            border: 1px solid #8C6342;
+            margin-right: 10px
+        }
+
+        #botaoCancelar:hover {
+            background-color: #755439;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 
     <div class="tituloEditUser">
@@ -133,7 +176,7 @@
 
                     <div class="margem">
 
-                        <div class="d-flex hakuna">
+                        <div class="hakuna">
 
                             <div class="limitaLabel  "> <label for="nome">Nome</label>
                                 <input type="text" maxlength="25" name="nome" id="nome">
@@ -149,7 +192,7 @@
 
                         </div>
 
-                        <div class="d-flex hakuna ">
+                        <div class="hakuna ">
 
                             <div class="limitaLabel "> <label for="sobrenome">Sobrenome</label>
                                 <input type="text" maxlength="80" name="sobrenome" id="sobrenome">
@@ -169,7 +212,7 @@
 
                 </div>
 
-                <div class="changePassword">
+                <div class="changePassword" style="margin-top: 25px ">
                     <h2 style="font-weight: 500;">Alteração de senha</h2>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
@@ -183,7 +226,7 @@
                         <h4 style="font-weight: bold; margin-bottom: 5px;" class="mb-2">Senha atual</h4>
 
                         <div class="limitaLabel"> <label for="password">Senha atual</label>
-                            <input type="password" name="password" id="password">
+                            <input type="password" name="password" id="password" maxlength="45">
                         </div>
 
                     </div>
@@ -193,7 +236,7 @@
                         <h4 style="font-weight: bold; margin-bottom: 5px;">Nova Senha</h4>
 
                         <div class="limitaLabel"> <label for="new_password">Nova Senha</label>
-                            <input type="password" name="new_password" id="new_password">
+                            <input type="password" name="new_password" id="new_password" maxlength="45">
                         </div>
 
                     </div>
@@ -211,14 +254,14 @@
                     <div style="margin-top: 10px;">
 
                         <div class="limitaLabel"> <label for="confirm_password">Digite a nova senha novamente</label>
-                            <input type="password" name="confirm_password" id="confirm_password">
+                            <input type="password" name="confirm_password" id="confirm_password" maxlength="45">
                         </div>
 
                     </div>
 
                 </div>
 
-                <div class="tituloEndereco">
+                <div class="tituloEndereco" style="margin-top: 25px">
                     <h2 style="font-weight: 500;">Endereço</h2>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
@@ -234,7 +277,7 @@
                         </div>
 
                         <div class="limitaLabel"> <label for="numero">Número</label>
-                            <input type="text" name="numero" id="numero" maxlength="3">
+                            <input type="text" name="numero" id="numero" maxlength="10">
                         </div>
 
                     </div>
@@ -254,7 +297,7 @@
                     <div class="agrupaSecaoEndereco">
 
                         <div class="limitaLabel"> <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" id="complemento" maxlength="15">
+                            <input type="text" name="complemento" id="complemento" maxlength="30">
                         </div>
 
                     </div>
@@ -262,7 +305,11 @@
                 </div>
 
                 <div class="posicionaBotaoSubmit">
-                    <button type="submit" class="botaoAdicionar">Salvar alterações</button>
+
+                    <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar"
+                        id="botaoCancelar">Voltar</a>
+
+                    <button type="submit" class="botaoAdicionar">Salvar</button>
 
                 </div>
             </form>

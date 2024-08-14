@@ -63,14 +63,6 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="cadastroSubCategorias">
-                    <h3>Sub-Categorias</h3>
-                </a>
-                <p class="descricaoOpcao">Sub-categorias dos produtos</p>
-
-            </div>
-
-            <div class="opcoesCadastro">
                 <a href="{{ route('parceiros.selecaoCardapio') }}">
                     <h3>Cardápio</h3>
                 </a>

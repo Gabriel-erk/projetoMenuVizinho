@@ -98,8 +98,8 @@
             /* Tamanho da fonte */
             font-size: 1.25rem;
             line-height: 1.5;
-            border-radius: 0.3rem;
             /* Borda arredondada */
+            border-radius: 0.3rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
             margin-left: 110px;
@@ -129,6 +129,11 @@
             padding-top: 8px;
             font-size: 15px;
             color: #007bff;
+            transition: color 0.15s ease-in-out;
+        }
+
+        #botoes a:hover {
+            color: #0056b3
         }
     </style>
 
