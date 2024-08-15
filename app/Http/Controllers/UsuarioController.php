@@ -57,7 +57,7 @@ class UsuarioController extends Controller
             'foto'=>$request->foto,
         ]);
 
-        return redirect()->route('site.index')->with('success','Usuário cadastrado com sucesso!');
+        return redirect()->route('site.index')->with('sucesso','Usuário cadastrado com sucesso!');
     }
 
     /**

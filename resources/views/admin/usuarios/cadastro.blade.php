@@ -146,19 +146,19 @@
                 </div>
             @endif
 
-            <form action="{{ route('usuario.store') }}" method="POST">
+            <form action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div>
                     <div class="row">
                         <div class="col">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" name="nome" id="nome" placeholder="Nome" class="form-control"
-                                maxlength="25">
+                                maxlength="25" value="{{ old('nome') }}">
                         </div>
                         <div class="col">
                             <label for="sobrenome" class="form-label">Sobrenome</label>
                             <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome"
-                                class="form-control" maxlength="80">
+                                class="form-control" maxlength="60" value="{{ old('sobrenome') }}">
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                 <div>
                     <label for="email" class="form-label">E-mail</label>
                     <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com"
-                        class="form-control" maxlength="100">
+                        class="form-control" maxlength="255" value="{{ old('email') }}">
                 </div>
 
                 <div>
@@ -179,32 +179,32 @@
                     <div class="col">
                         <label for="rua" class="form-label">Rua</label>
                         <input type="text" name="rua" id="rua" placeholder="Rua" class="form-control"
-                            maxlength="40">
+                            maxlength="90" value="{{ old('rua') }}">
                     </div>
 
                     <div class="col">
                         <label for="bairro" class="form-label">Bairro</label>
-                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control">
+                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control" maxlength="80" value="{{ old('bairro') }}">
                     </div>
 
                     <div class="col">
                         <label for="numero" class="form-label">Número</label>
                         <input type="text" name="numero" id="numero" placeholder="225/abc" class="form-control"
-                            maxlength="10">
+                            maxlength="10" value="{{ old('numero') }}">
                     </div>
                 </div>
 
                 <div>
                     <label for="complemento" class="form-label">Complemento</label>
                     <input type="text" name="complemento" id="complemento" placeholder="Complemento" class="form-control"
-                        maxlength="30">
+                        maxlength="30" value="{{ old('complemento') }}">
                 </div>
 
                 <div class="row">
                     <div class="col">
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" name="cidade" id="cidade" placeholder="Cidade" class="form-control"
-                            maxlength="20">
+                            maxlength="20" value="{{ old('cidade') }}">
                     </div>
                     {{-- 
                     <div class="col">
@@ -244,7 +244,7 @@
                     <div class="col">
                         <label for="cep" class="form-label">CEP</label>
                         <input type="text" name="cep" id="cep" placeholder="CEP" class="form-control"
-                            maxlength="15">
+                            maxlength="9" value="{{ old('cep') }}">
                     </div>
                 </div>
 
@@ -252,18 +252,18 @@
                     <div class="col">
                         <label for="telefone" class="form-label">Telefone</label>
                         <input type="text" name="telefone" id="telefone" placeholder="(00) 0000-000"
-                            class="form-control" maxlength="15" onkeyup="phone(event)">
+                            class="form-control" maxlength="15" onkeyup="phone(event)" value="{{ old('telefone') }}">
                     </div>
                     <div class="col">
                         <label for="celular" class="form-label">Celular</label>
                         <input type="text" name="celular" id="celular" placeholder="(00) 0000-000"
-                            class="form-control" maxlength="15" onkeyup="phone(event)">
+                            class="form-control" maxlength="15" onkeyup="phone(event)" value="{{ old('celular') }}">
                     </div>
                 </div>
 
                 <div>
                     <label for="foto" class="form-label">Foto</label>
-                    <input type="submit" name="foto" id="foto" placeholder="foto"
+                    <input type="file" name="foto" id="foto" placeholder="foto"
                         class="form-control campoFoto">
                 </div>
 
