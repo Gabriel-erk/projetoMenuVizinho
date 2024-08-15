@@ -15,11 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 25);
             $table->string('sobrenome', 60);
-            $table->string('email', 90)->unique();
+            $table->string('email', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('rua', 90);
+            $table->string('numero', 10);
+            $table->string('bairro', 80)->nullable();
+            $table->string('cidade', 35);
+            $table->string('estado', 2)->nullable();
+            $table->string('cep', 9);
+            $table->string('celular', 15);
+            $table->string('telefone', 15)->nullable();
+            $table->string('foto', 255)->nullable();
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
