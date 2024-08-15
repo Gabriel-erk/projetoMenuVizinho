@@ -27,8 +27,8 @@
 
         .cardapio {
             background-color: #fff
-            /* background-color: #f5f5f5 */
-            /* background-color: #F9EED9; */
+                /* background-color: #f5f5f5 */
+                /* background-color: #F9EED9; */
 
         }
 
@@ -140,6 +140,19 @@
             top: 3px
         }
     </style>
+
+    @if (session('sucesso'))
+        <div class="alert alert-success">
+            {{ session('sucesso') }}
+        </div>
+    @endif
+
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <section id="lista-cardapio">
 

@@ -25,7 +25,39 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome'=> 'required|string',
+            'sobrenome'=> 'required|string',
+            'email'=>'required|string|email|unique:usuarios',
+            'password'=>'required',
+            'rua'=>'required|string',
+            'numero'=>'required',
+            'bairro'=>'required|string',
+            'cidade'=>'required|string',            
+            'estado'=>'nullable|string',
+            'cep'=>'required',            
+            'celular'=>'required',            
+            'telefone'=>'nullable',            
+            'foto'=>'nullable'             
+        ]);
+
+        User::create([
+            'nome'=> $request->nome,
+            'sobrenome'=> $request->sobrenome,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'rua'=>$request->rua,
+            'numero'=>$request->numero,
+            'bairro'=>$request->bairro,
+            'cidade'=>$request->cidade,
+            'estado'=>$request->estado,
+            'cep'=>$request->cep,
+            'celular'=>$request->celular,
+            'telefone'=>$request->telefone,
+            'foto'=>$request->foto,
+        ]);
+
+        return redirect()->route('usuario.index')->with('success','Usuário cadastrado com sucesso!');
     }
 
     /**

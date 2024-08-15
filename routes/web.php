@@ -25,7 +25,6 @@ Route::get('/regraCupon', [SiteController::class, "regraCupon"])->name('site.reg
 
 // UsuarioController
 
-Route::get('/cadastro', [UsuarioController::class, "create"])->name('usuario.cadastro');
 
 // meio correto de se fazer é este, porém, ainda não estou passando id
 // Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
@@ -35,6 +34,8 @@ Route::get('/minhasInformacoes', [UsuarioController::class, "infoConta"])->name(
 Route::get('/gerenciarPagamentos', [UsuarioController::class, "viewPagamentos"])->name('usuario.gerenciarPagamentos');
 Route::get('/novaFormaPagamento', [UsuarioController::class, "newPagamentos"])->name('usuario.novaFormaPagamento');
 Route::get('/editarPagamentos', [UsuarioController::class, "editPagamentos"])->name('usuario.editarPagamentos');
+Route::get('/admin/usuarios/cadastro', [UsuarioController::class, "create"])->name('usuario.cadastro');
+Route::post('/admin/usuarios/salvar', [UsuarioController::class, "store"])->name('usuario.store');
 
 // ParceirosController
 
