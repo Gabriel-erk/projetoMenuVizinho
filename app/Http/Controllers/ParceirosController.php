@@ -30,7 +30,7 @@ class ParceirosController extends Controller
         return view('admin.cadastroParceiros.sejaParceiro');
     }
 
-    public function createRestarurante()
+    public function createRestaurante()
     {
         return view('admin.cadastroParceiros.cadastroRestaurante');
     }
