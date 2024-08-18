@@ -80,7 +80,11 @@
 
         .posicionaBotaoSubmit {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+        }
+
+        .posicionaBotaoSubmit a{
+            padding: 7px 40px
         }
 
         .botaoAdicionar {
@@ -99,8 +103,8 @@
             border-radius: 5px;
 
             transition: all 0.3s ease;
-
         }
+
 
         .botaoAdicionar:hover {
             background-color: #755439;
@@ -178,8 +182,13 @@
                 </div>
 
                 <div class="posicionaBotaoSubmit">
-                    <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir</button>
-                    <button type="submit" class="botaoAdicionar" style="margin-left: 15px">Salvar</button>
+
+                    <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button>
+
+                    <div class="agrupaVoltarSalvar">
+                        <a href="{{ route('usuario.gerenciarPagamentos') }}" class="botaoAdicionar">Voltar</a>
+                        <button type="submit" class="botaoAdicionar" style="margin-left: 0.1em">Salvar</button>
+                    </div>
 
                 </div>
             </form>
