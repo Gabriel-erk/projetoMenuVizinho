@@ -123,7 +123,6 @@
             /* Cor da borda ao clicar */
         }
 
-
         #botoes a {
             text-decoration: none;
             padding-top: 8px;
@@ -159,7 +158,7 @@
                 </div>
 
                 <form action="{{ route('login') }}" method="post">
-
+                    @csrf
                     <div class="campoInfo">
                         <div class="campos">
                             <label for="email">E-mail</label>

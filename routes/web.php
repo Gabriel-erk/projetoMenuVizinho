@@ -32,7 +32,7 @@ Route::controller(SiteController::class)->group(function () {
 */
 Route::middleware(["auth"])->group(function () {
     Route::controller(UsuarioController::class)->group(function () {
-        Route::get('/admin/usuarios/cadastro', 'create')->name('usuario.cadastro');
+        // Route::get('/admin/usuarios/cadastro', 'create')->name('usuario.cadastro');
         // Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/minhaConta', 'show')->name('usuario.minhaConta');
@@ -40,7 +40,7 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
         Route::get('/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
         Route::get('/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
-        Route::get('/admin/usuarios/salvar', 'store')->name('usuario.store');
+        Route::post('/admin/usuarios/salvar', 'store')->name('usuario.store');
     });
 });
 
@@ -63,3 +63,5 @@ Route::controller(AutenticacaoController::class)->group(function () {
     Route::get('/login', 'formLogin')->name('login.form')->middleware('guest');
     Route::post('/login', 'login')->name('login');
 });
+// Route::get('/admin/usuarios/cadastro', 'create')->name('usuario.cadastro');
+Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro');
