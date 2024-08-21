@@ -52,16 +52,6 @@ class SiteController extends Controller
         return view('sobre');
     }
 
-    // public function cadastro()
-    // {
-    //     return view('cadastro');
-    // }
-
-    public function login()
-    {
-        return view('login');
-    }
-
     // vai mostrar as regras de uso dos cupons no geral
     public function regraCupon(){
         return view('regras');

@@ -122,7 +122,7 @@
             border-color: #003768;
             /* Cor da borda ao clicar */
         }
-        
+
 
         #botoes a {
             text-decoration: none;
@@ -143,36 +143,49 @@
 
             <div id="conteudo">
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled">
+                            {{-- percorre tudo do array errors, (com all()), joga na váriavel erro, e imprime em um elemento "li" com o erro --}}
+                            @foreach ($errors->all() as $erro)
+                                <li>{{ $erro }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="login">
                     <h2>Login</h2>
                 </div>
 
-                <div class="campoInfo">
-                    <div class="campos">
-                        <label for="email">E-mail</label>
-                        <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com">
+                <form action="{{ route('login') }}" method="post">
 
-                        <!-- <a href="#">Esqueceu seu e-mail?</a> -->
-                    </div>
+                    <div class="campoInfo">
+                        <div class="campos">
+                            <label for="email">E-mail</label>
+                            <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com">
 
-                    <div class="campos">
-                        <label for="senha" class="form-label">Senha</label>
-                        <input type="password" name="senha" id="senha" placeholder="Senha">
-
-                        <!-- <a href="#">Esqueceu sua senha?</a> -->
-                    </div>
-
-                    <div id="botoes">
-
-                        <a href="{{ route('site.index') }}">Voltar</a>
-
-                        <div>
-                            <button type="submit">Entrar</button>
+                            <!-- <a href="#">Esqueceu seu e-mail?</a> -->
                         </div>
 
-                    </div>
-                </div>
+                        <div class="campos">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" name="senha" id="senha" placeholder="Senha">
 
+                            <!-- <a href="#">Esqueceu sua senha?</a> -->
+                        </div>
+
+                        <div id="botoes">
+
+                            <a href="{{ route('site.index') }}">Voltar</a>
+
+                            <div>
+                                <button type="submit">Entrar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </div>
