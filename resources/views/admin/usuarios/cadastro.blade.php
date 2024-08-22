@@ -137,14 +137,15 @@
             <h2>Cadastro Usuário</h2>
 
             @if ($errors->any())
-                <div class="boxError alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $erro)
-                            <li>{{ $erro }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    {{-- percorre tudo do array errors, (com all()), joga na váriavel erro, e imprime em um elemento "li" com o erro --}}
+                    @foreach ($errors->all() as $erro)
+                        <li>{{ $erro }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
             <form action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

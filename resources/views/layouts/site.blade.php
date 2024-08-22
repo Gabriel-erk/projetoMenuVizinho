@@ -84,30 +84,42 @@
                         <li><i class="fa-solid fa-house" style="color: #000000;"></i>
                             <a href="{{ route('usuario.minhaConta') }}">Minha Conta</a>
                         </li>
+                        @auth
 
-                        {{-- aparecerá apenas para restaurantes registrados --}}
-                        <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
-                            <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
-                        </li>
+                            @if (auth()->user()->tipo == 1)
+                                <li>
+                                    <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
+                                    <a href="#">Meus Pedidos</a>
+                                </li>
 
-                        <li>
-                            <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
-                            <a href="#">Meus Pedidos</a>
-                        </li>
+                                <li>
+                                    <i class="fa-solid fa-heart" style="color: #000000;"></i>
+                                    <a href="#">Favoritos</a>
+                                </li>
+                            @endif
 
-                        <li>
-                            <i class="fa-solid fa-heart" style="color: #000000;"></i>
-                            <a href="#">Favoritos</a>
-                        </li>
 
-                        <li>
-                            <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                            <a href="{{ route('parceiros.sejaParceiro') }}">Seja um dos nossos
-                                parceiros</a>
-                        </li>
+                            {{-- aparecerá apenas para restaurantes registrados --}}
+                            <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
+                                <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
+                            </li>
 
+
+                            <li>
+                                <i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i>
+                                <a href="{{ route('logout') }}">Sair</a>
+                            </li>
+
+                        @endauth
+
+                        @guest
+                            <li>
+                                <i class="fa-solid fa-handshake" style="color: #000000;"></i>
+                                <a href="{{ route('parceiros.sejaParceiro') }}">Seja um dos nossos
+                                    parceiros</a>
+                            </li>
+                        @endguest
                     </ul>
-
                 </nav>
 
                 @guest

@@ -32,7 +32,6 @@ Route::controller(SiteController::class)->group(function () {
 */
 Route::middleware(["auth"])->group(function () {
     Route::controller(UsuarioController::class)->group(function () {
-        // Route::get('/admin/usuarios/cadastro', 'create')->name('usuario.cadastro');
         // Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/minhaConta', 'show')->name('usuario.minhaConta');
@@ -40,16 +39,18 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
         Route::get('/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
         Route::get('/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
-        Route::post('/admin/usuarios/salvar', 'store')->name('usuario.store');
     });
 });
+// se ficar no bloco acima, só podem ser feitas se o usuário estiver logado, e quero poder cadastrar/salvar informações apenas como vistante
+Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro')->middleware('guest');
+Route::post('/admin/usuarios/salvar', [UsuarioController::class, 'store'])->name('usuario.store');
 
 /* pasta cadastroParceiros */
 
 Route::controller(ParceirosController::class)->group(function () {
     Route::get('/sejaParceiro', 'create')->name('parceiros.sejaParceiro')->middleware('guest');
     Route::get('/cadastroRestaurante', 'createRestaurante')->name('parceiros.cadastroRestaurante');
-    Route::get('/cadastroInformacoes', 'cadastroInformacoes')->name('parceiros.minhasInformacoes');
+    Route::get('/cadastroInformacoes/{id}', 'cadastroInformacoes')->name('parceiros.minhasInformacoes');
     Route::get('/cadastroCategorias', 'cadastroCategorias')->name('parceiros.categorias');
     Route::get('/selecaoCardapio', 'selecaoCardapio')->name('parceiros.selecaoCardapio');
     Route::get('/cadastroCardapio', 'cadastroCardapio')->name('parceiros.cadastroCardapio');
@@ -59,9 +60,8 @@ Route::controller(ParceirosController::class)->group(function () {
     Route::get('/meuRestaurante', 'meuRestaurante')->name('parceiros.meuRestaurante');
 });
 
-Route::controller(AutenticacaoController::class)->group(function () {
-    Route::get('/login', 'formLogin')->name('login.form')->middleware('guest');
-    Route::post('/login', 'login')->name('login');
-});
-// Route::get('/admin/usuarios/cadastro', 'create')->name('usuario.cadastro');
-Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro');
+route::get("/login", [AutenticacaoController::class, "formLogin"])->name("login.form")->middleware("guest");
+route::post("/login", [AutenticacaoController::class, "login"])->name("login");
+route::get("/logout", [AutenticacaoController::class, "logout"])->name("logout");
+
+

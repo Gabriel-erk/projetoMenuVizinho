@@ -142,9 +142,12 @@
     </style>
 
     @if (session('sucesso'))
-        <div class="alert alert-success">
-            {{ session('sucesso') }}
-        </div>
+        <script>
+            // mostra a mensagem depois de carregar o site primeiro
+            window.onload = function() {
+                alert('{{ session('sucesso') }}');
+            };
+        </script>
     @endif
 
 

@@ -162,14 +162,14 @@
                     <div class="campoInfo">
                         <div class="campos">
                             <label for="email">E-mail</label>
-                            <input type="text" name="email" id="email" placeholder="seuemail@hotmail.com">
+                            <input type="email" name="email" id="email" placeholder="seuemail@hotmail.com">
 
                             <!-- <a href="#">Esqueceu seu e-mail?</a> -->
                         </div>
 
                         <div class="campos">
-                            <label for="senha" class="form-label">Senha</label>
-                            <input type="password" name="senha" id="senha" placeholder="Senha">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" name="password" id="password" placeholder="Senha">
 
                             <!-- <a href="#">Esqueceu sua senha?</a> -->
                         </div>

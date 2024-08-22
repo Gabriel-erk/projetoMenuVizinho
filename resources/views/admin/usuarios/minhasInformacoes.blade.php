@@ -126,7 +126,7 @@
 
         <div class="detalhesDaConta">
 
-            <form action="" method="">
+            <form action="" method="post">
 
                 <div class="agrupaCampoCartao">
 
@@ -209,7 +209,6 @@
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="changePassword" style="margin-top: 25px ">
@@ -222,13 +221,11 @@
                 <div class="agrupaAlteracaoSenha">
 
                     <div>
-
                         <h4 style="font-weight: bold; margin-bottom: 5px;" class="mb-2">Senha atual</h4>
 
                         <div class="limitaLabel"> <label for="password">Senha atual</label>
                             <input type="password" name="password" id="password" maxlength="45">
                         </div>
-
                     </div>
 
                     <div style="margin-top: 15px;">
@@ -313,9 +310,7 @@
 
                 </div>
             </form>
-
         </div>
-
     </div>
 
     <script>

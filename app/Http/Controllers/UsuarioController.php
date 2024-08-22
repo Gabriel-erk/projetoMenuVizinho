@@ -71,9 +71,10 @@ class UsuarioController extends Controller
     }
 
     // quando este método for passado, ele listará as informações do usuário nos camnpos: email, telefone, nome, sobrenome (eles vao ter um placeholder mostrando as informações atuais daquele usuário, ou seja, para chamar este método, precisará passar o id do usuário atual para a view, com compact também)
-    public function infoConta()
-    {
-        return view('admin.usuarios.minhasInformacoes');
+    public function infoConta(string $id)
+    {   
+        $usuario = User::findOrFail($id);
+        return view('admin.usuarios.minhasInformacoes',compact($usuario));
     }
 
     /*

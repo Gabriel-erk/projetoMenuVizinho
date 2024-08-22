@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('telefone', 15)->nullable();
             $table->string('celular', 15);
             $table->string('foto', 255)->nullable();
-
+            // campo para diferenciar a tabela usuários de parceiros
+            $table->integer('tipo')->default(1); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
