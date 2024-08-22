@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutenticacaoController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ParceirosController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
@@ -32,15 +33,23 @@ Route::controller(SiteController::class)->group(function () {
 */
 Route::middleware(["auth"])->group(function () {
     Route::controller(UsuarioController::class)->group(function () {
-        // Route::get('/minhaConta/{id}', [UsuarioController::class, "edit"])->name('usuario.minhaConta');
         // meio correto de se fazer é este, porém, ainda não estou passando id
-        Route::get('/minhaConta', 'show')->name('usuario.minhaConta');
-        Route::get('/minhasInformacoes', 'infoConta')->name('usuario.minhasInformacoes');
-        Route::get('/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
-        Route::get('/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
-        Route::get('/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
+        Route::get('/admin/usuarios/minhaConta', 'minhaConta')->name('usuario.minhaConta');
+        Route::get('/admin/usuarios/minhasInformacoes', 'infoConta')->name('usuario.minhasInformacoes');
+        Route::get('/admin/usuarios/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
+        Route::get('/admin/usuarios/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
+        Route::get('/admin/usuarios/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
     });
 });
+
+Route::get('/admin/adm/admUsuarios/index', [UsuarioController::class, 'index'])->name('usuarioAdm.index');
+Route::get('/admin/adm/admUsuarios/visualizar/{id}', [UsuarioController::class, 'show'])->name('usuarioAdm.show');
+Route::get('/admin/adm/admUsuarios/editar/{id}', [UsuarioController::class, 'edit'])->name('usuarioAdm.edit');
+Route::put('/admin/adm/admUsuarios/atualizar/{id}', [UsuarioController::class, 'update'])->name('usuarioAdm.update');
+Route::delete('/admin/adm/admUsuarios/deletar/{id}', [UsuarioController::class, 'destroy'])->name('usuarioAdm.destroy');
+
+Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
 // se ficar no bloco acima, só podem ser feitas se o usuário estiver logado, e quero poder cadastrar/salvar informações apenas como vistante
 Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro')->middleware('guest');
 Route::post('/admin/usuarios/salvar', [UsuarioController::class, 'store'])->name('usuario.store');
