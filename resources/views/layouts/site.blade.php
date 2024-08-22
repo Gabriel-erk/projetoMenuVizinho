@@ -97,11 +97,13 @@
                                     <a href="#">Favoritos</a>
                                 </li>
                             @endif
-
-                            {{-- aparecerá apenas para restaurantes registrados --}}
-                            <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
-                                <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
-                            </li>
+                            {{-- se for diferente de 1, é pq é 2, ent, é restaurante --}}
+                            @if (auth()->user()->tipo != 1)
+                                {{-- aparecerá apenas para restaurantes registrados --}}
+                                <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
+                                    <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
+                                </li>
+                            @endif
 
                             <li>
                                 <i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i>
