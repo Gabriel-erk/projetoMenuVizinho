@@ -98,12 +98,10 @@
                                 </li>
                             @endif
 
-
                             {{-- aparecerá apenas para restaurantes registrados --}}
                             <li><i class="fa-solid fa-utensils" style="color: #000000;"></i>
                                 <a href="{{ route('parceiros.meuRestaurante') }}">Meu Restautante</a>
                             </li>
-
 
                             <li>
                                 <i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i>

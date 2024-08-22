@@ -21,7 +21,7 @@ class AutenticacaoController extends Controller
 
         if (Auth::attempt($dadosUsuarios)) {
             $request->session()->regenerate();
-
+            
             return redirect()->intended("/admin/usuarios/minhaConta");
         }
         return redirect()->back()->withErrors(["email" => "Usuário ou senha inválida"]);

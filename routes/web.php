@@ -50,7 +50,7 @@ Route::post('/admin/usuarios/salvar', [UsuarioController::class, 'store'])->name
 Route::controller(ParceirosController::class)->group(function () {
     Route::get('/sejaParceiro', 'create')->name('parceiros.sejaParceiro')->middleware('guest');
     Route::get('/cadastroRestaurante', 'createRestaurante')->name('parceiros.cadastroRestaurante');
-    Route::get('/cadastroInformacoes/{id}', 'cadastroInformacoes')->name('parceiros.minhasInformacoes');
+    Route::get('/cadastroInformacoes', 'cadastroInformacoes')->name('parceiros.minhasInformacoes');
     Route::get('/cadastroCategorias', 'cadastroCategorias')->name('parceiros.categorias');
     Route::get('/selecaoCardapio', 'selecaoCardapio')->name('parceiros.selecaoCardapio');
     Route::get('/cadastroCardapio', 'cadastroCardapio')->name('parceiros.cadastroCardapio');
