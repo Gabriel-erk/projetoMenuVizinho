@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
-        <h2>Editar Usuários</h2>
+        <h2>Cadastrar Usuários</h2>
     </div>
     <hr>
     @if ($errors->any())
@@ -13,30 +13,26 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="POST">
+    <form action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" name="nome" class="form-control" id="nome" placeholder="Seu nome"
-                value="{{ old('nome', $usuario->nome) }}" maxlength="50">
+                value="{{ old('nome') }}" maxlength="50">
         </div>
         <div class="mb-3">
             <label for="sobrenome" class="form-label">Sobrenome</label>
             <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Seu Sobrenome"
-                value="{{ old('sobrenome', $usuario->sobrenome) }}" maxlength="50">
+                value="{{ old('sobrenome') }}" maxlength="50">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" placeholder="Seu email"
-                value="{{ old('email', $usuario->email) }}" maxlength="100">
+                value="{{ old('email') }}" maxlength="100">
         </div>
-        <p class="alert alert-info">Mantenha o campo vazio, caso deseje manter a senha atual</p>
-
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Sua senha"
-                maxlength="255">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Sua senha" maxlength="255">
         </div>
 
         <div class="mb-3">
@@ -48,60 +44,58 @@
         <div class="mb-3">
             <label for="rua" class="form-label">Rua</label>
             <input type="text" name="rua" class="form-control" id="rua" placeholder="Sua rua"
-                value="{{ old('rua', $usuario->rua) }}" maxlength="100">
+                value="{{ old('rua') }}" maxlength="100">
         </div>
 
         <div class="mb-3">
             <label for="bairro" class="form-label">Bairro</label>
             <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Seu bairro"
-                value="{{ old('bairro', $usuario->bairro) }}" maxlength="50">
+                value="{{ old('bairro') }}" maxlength="50">
         </div>
 
         <div class="mb-3">
             <label for="numero" class="form-label">Número</label>
             <input type="text" name="numero" class="form-control" id="numero" placeholder="Número da sua residência"
-                value="{{ old('numero', $usuario->numero) }}" maxlength="10">
+                value="{{ old('numero') }}" maxlength="10">
         </div>
 
         <div class="mb-3">
             <label for="cidade" class="form-label">Cidade</label>
             <input type="text" name="cidade" class="form-control" id="cidade" placeholder="Sua cidade"
-                value="{{ old('cidade', $usuario->cidade) }}" maxlength="50">
+                value="{{ old('cidade') }}" maxlength="50">
         </div>
 
         <div class="mb-3">
             <label for="estado" class="form-label">Estado</label>
             <input type="text" name="estado" class="form-control" id="estado" placeholder="Seu estado"
-                value="{{ old('estado', $usuario->estado) }}" maxlength="2">
+                value="{{ old('estado') }}" maxlength="2">
         </div>
 
         <div class="mb-3">
             <label for="cep" class="form-label">CEP</label>
             <input type="text" name="cep" class="form-control" id="cep" placeholder="Seu CEP"
-                value="{{ old('cep', $usuario->cep) }}" maxlength="9">
+                value="{{ old('cep') }}" maxlength="9">
         </div>
 
         <div class="mb-3">
             <label for="telefone" class="form-label">Telefone</label>
-            <input type="text" name="telefone" class="form-control" id="telefone" placeholder="Seu telefone"
-                onkeyup="phone(event)" value="{{ old('telefone', $usuario->telefone) }}" maxlength="15">
+            <input type="text" name="telefone" class="form-control" id="telefone" placeholder="Seu telefone" onkeyup="phone(event)"
+                value="{{ old('telefone') }}" maxlength="15">
         </div>
 
         <div class="mb-3">
             <label for="celular" class="form-label">Celular</label>
-            <input type="text" name="celular" class="form-control" id="celular" placeholder="Seu celular"
-                onkeyup="phone(event)" value="{{ old('celular', $usuario->celular) }}" maxlength="15">
+            <input type="text" name="celular" class="form-control" id="celular" placeholder="Seu celular" onkeyup="phone(event)"
+                value="{{ old('celular') }}" maxlength="15">
         </div>
 
         <div class="mb-3">
             <label for="foto" class="form-label">Foto</label>
-            <input type="file" name="foto" class="form-control" id="foto"
-                value="{{ old('foto', $usuario->foto) }}">
+            <input type="file" name="foto" class="form-control" id="foto">
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="{{ route('usuarioAdm.index') }}" class="btn btn-secondary">Cancelar</a>
-
     </form>
 
     <script>

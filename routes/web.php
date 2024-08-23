@@ -44,6 +44,7 @@ Route::middleware(["auth"])->group(function () {
 
 Route::get('/admin/adm/admUsuarios/index', [UsuarioController::class, 'index'])->name('usuarioAdm.index');
 Route::get('/admin/adm/admUsuarios/visualizar/{id}', [UsuarioController::class, 'show'])->name('usuarioAdm.show');
+Route::get('/admin/adm/admUsuarios/cadastro', [UsuarioController::class, 'createUserAdmView'])->name('usuarioAdm.create');
 Route::get('/admin/adm/admUsuarios/editar/{id}', [UsuarioController::class, 'edit'])->name('usuarioAdm.edit');
 Route::put('/admin/adm/admUsuarios/atualizar/{id}', [UsuarioController::class, 'update'])->name('usuarioAdm.update');
 Route::delete('/admin/adm/admUsuarios/deletar/{id}', [UsuarioController::class, 'destroy'])->name('usuarioAdm.destroy');

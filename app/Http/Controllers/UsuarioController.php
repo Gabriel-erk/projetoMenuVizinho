@@ -56,7 +56,7 @@ class UsuarioController extends Controller
             'password' => $request->password ? Hash::make($request->password) : $usuario->password,
             'rua' => $request->rua,
             'bairro' => $request->bairro,
-            'número' => $request->número,
+            'numero' => $request->numero,
             'cidade' => $request->cidade,
             'estado' => $request->estado,
             'cep' => $request->cep,
@@ -65,12 +65,16 @@ class UsuarioController extends Controller
             'foto' => $request->foto,
         ]);
 
-        return redirect()->route('usuario.index')->with('sucesso', 'Usuário atualizado com sucesso!!!');
+        return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário atualizado com sucesso!!!');
     }
 
     public function create()
     {
         return view('admin.usuarios.cadastro');
+    }
+
+    public function createUserAdmView(){
+        return view('admin.adm.admUsuarios.cadastro');
     }
 
     /**

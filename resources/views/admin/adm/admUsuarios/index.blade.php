@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
         <h2>Lista de Usuarios</h2>
-        <a href="{{ route('usuario.cadastro') }}" class="btn btn-primary">Cadastrar</a>
+        <a href="{{ route('usuarioAdm.create') }}" class="btn btn-primary">Cadastrar</a>
     </div>
     <hr>
 
