@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('rua', 90);
             $table->string('bairro', 80)->nullable();
             $table->string('numero', 10);
-            // $table->string('complemento', 30)->nullable();
+            $table->string('complemento', 30)->nullable();
             $table->string('cidade', 35);
             $table->string('estado', 2)->nullable();
-            $table->string('cep', 9);
+            $table->string('cep', 9)->nullable();
             $table->string('telefone', 15)->nullable();
             $table->string('celular', 15);
             $table->string('foto', 255)->nullable();

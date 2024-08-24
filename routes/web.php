@@ -51,8 +51,6 @@ Route::get('/admin/adm/admUsuarios/editar/{id}', [UsuarioController::class, 'edi
 Route::put('/admin/adm/admUsuarios/atualizar/{id}', [UsuarioController::class, 'update'])->name('usuarioAdm.update');
 Route::delete('/admin/adm/admUsuarios/deletar/{id}', [UsuarioController::class, 'destroy'])->name('usuarioAdm.destroy');
 
-// Route::get('/layoutSite', [UsuarioController::class, 'layoutSite'])->name('layoutSite');
-
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 // se ficar no bloco acima, só podem ser feitas se o usuário estiver logado, e quero poder cadastrar/salvar informações apenas como vistante
@@ -75,7 +73,7 @@ Route::controller(ParceirosController::class)->group(function () {
 });
 
 route::get("/login", [AutenticacaoController::class, "formLogin"])->name("login.form")->middleware("guest");
-route::post("/login", [AutenticacaoController::class, "login"])->name("login");
+route::post("/login", [AutenticacaoController::class, "login"])->name("login")->middleware('guest');
 route::get("/logout", [AutenticacaoController::class, "logout"])->name("logout");
 
 

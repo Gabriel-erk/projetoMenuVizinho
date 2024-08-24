@@ -83,6 +83,13 @@
 
         /* alterando propriedades do botão de salvar */
 
+        .agrupaBotaoSubmit {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
         .botaoAdicionar {
 
             font-family: 'Poppins', sans-serif;
@@ -107,31 +114,60 @@
             cursor: pointer;
         }
 
-        #botaoCancelar {
-            background-color: #fff;
-            color: #8C6342;
-            border: 1px solid #8C6342;
-            margin-right: 10px
-        }
-
-        #botaoCancelar:hover {
-            background-color: #755439;
-            color: #fff;
-            cursor: pointer;
+        #botaoVoltar {
+            padding-top: 7px;
+            padding-bottom: 7px
         }
 
         /* campo fotos */
 
-        #botaoCancelar {
-            background-color: #fff;
-            color: #8C6342;
-            border: 1px solid #8C6342
+        .form-group {
+            margin-bottom: 1rem;
         }
 
-        #botaoCancelar:hover {
-            background-color: #755439;
-            color: #fff;
+        .custom-file-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 23.2%;
+            height: calc(1.5em + 0.75rem + 2px);
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.375rem 0.75rem;
+            background-color: #fff;
+            font-size: 1rem;
+            color: #495057;
+            overflow: hidden;
+        }
+
+        .custom-file-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
             cursor: pointer;
+        }
+
+        .custom-file-label {
+            flex: 1;
+            padding-left: 0.75rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .custom-file-input:focus~.custom-file-label {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .custom-file-input:valid~.custom-file-label {
+            color: #495057;
+            background-color: #e9ecef;
+            border-color: #ced4da;
         }
     </style>
 
@@ -144,28 +180,31 @@
 
         <div class="detalhesDaConta">
 
+            @if ($errors->any())
+                <div class="boxError alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $erro)
+                            <li>{{ $erro }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
             <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="post">
+                @csrf
+                @method('PUT')
 
                 <div class="agrupaCampoCartao">
 
-                    <h4 id="tituloDetalhes" class="margem">Detalhes da conta</h4>
+                    <h4 class="margem" style="margin-bottom:8px; font-weight: 600">Detalhes da conta</h4>
 
                     <div class="margem">
-
                         <div class="hakuna">
 
                             <div class="limitaLabel "> <label for="email">Endereço de e-mail</label>
                                 <input type="text" maxlength="100" name="email" id="email"
                                     value="{{ old('email', $usuario->email) }}">
                             </div>
-
-                            {{-- <div class="editPayment">
-                                <a href="#">
-
-                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-
-                                </a>
-                            </div> --}}
 
                         </div>
 
@@ -176,14 +215,6 @@
                                     value="{{ old('telefone', $usuario->telefone) }}">
                             </div>
 
-                            {{-- <div class="editPayment">
-                                <a href="#">
-
-                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-
-                                </a>
-                            </div> --}}
-
                         </div>
 
                         <div class="hakuna ">
@@ -193,23 +224,14 @@
                                     value="{{ old('celular', $usuario->celular) }}">
                             </div>
 
-                            {{-- <div class="editPayment">
-                                <a href="#">
-
-                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-
-                                </a>
-                            </div> --}}
-
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="agrupaCampoCartao">
 
-                    <h4 id="tituloDetalhes" class="margem">Detalhes pessoais</h4>
+                    <h4 class="margem" style="margin-bottom:8px; font-weight: 600">Detalhes pessoais</h4>
 
                     <div class="margem">
 
@@ -220,14 +242,6 @@
                                     value="{{ old('nome', $usuario->nome) }}">
                             </div>
 
-                            {{-- <div class="editPayment">
-                                <a href="#">
-
-                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-
-                                </a>
-                            </div> --}}
-
                         </div>
 
                         <div class="hakuna ">
@@ -237,26 +251,20 @@
                                     value="{{ old('sobrenome', $usuario->sobrenome) }}">
                             </div>
 
-                            {{-- <div class="editPayment">
-                                <a href="#">
-
-                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
-
-                                </a>
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="foto" class="form-label">Foto</label>
-                    <input type="file" name="foto" class="form-control" id="foto"
-                        value="{{ old('foto', $usuario->foto) }}">
+                <div class="form-group" style="padding-left:30px; padding-right:30px;margin-top:7px">
+                    <label for="foto">Foto</label>
+                    <div class="custom-file-container">
+                        <input type="file" id="foto" name="foto" class="custom-file-input">
+                        <label for="foto" class="custom-file-label">Escolha o arquivo...</label>
+                    </div>
                 </div>
 
                 <div class="changePassword" style="margin-top: 25px ">
-                    <h2 style="font-weight: 500;">Alteração de senha</h2>
+                    <h3 style="font-weight: 500;">Alteração de senha</h3>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
                     </p>
@@ -264,17 +272,7 @@
 
                 <div class="agrupaAlteracaoSenha">
 
-                    {{-- <div>
-                        <h4 style="font-weight: bold; margin-bottom: 5px;" class="mb-2">Senha atual</h4>
-
-                        <div class="limitaLabel"> <label for="password">Senha atual</label>
-                            <input type="password" name="password" id="password" maxlength="45">
-                        </div>
-                    </div> --}}
-
                     <div style="margin-top: 15px;">
-
-                        <h4 style="font-weight: bold; margin-bottom: 5px;">Nova Senha</h4>
 
                         <div class="limitaLabel"> <label for="password">Nova Senha</label>
                             <input type="password" name="password" id="password" maxlength="45">
@@ -300,11 +298,10 @@
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="tituloEndereco" style="margin-top: 25px">
-                    <h2 style="font-weight: 500;">Endereço</h2>
+                    <h3 style="font-weight: 500;">Endereço</h3>
                     <p>Para sua segurança, recomendamos enfaticamente que escolha uma senha única, que não seja usada para
                         nenhuma outra conta on-line.
                     </p>
@@ -333,10 +330,15 @@
                                 value="{{ old('bairro', $usuario->bairro) }}">
                         </div>
 
-                        <div class="limitaLabel"> <label for="cep">CEP</label>
+                        <div class="limitaLabel"> <label for="complemento">Complemento</label>
+                            <input type="text" name="complemento" id="complemento" maxlength="30"
+                                value="{{ old('complemento', $usuario->complemento) }}">
+                        </div>
+
+                        {{-- <div class="limitaLabel"> <label for="cep">CEP</label>
                             <input type="text" name="cep" id="cep" maxlength="15"
                                 value="{{ old('cep', $usuario->cep) }}">
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -347,28 +349,21 @@
                                 value="{{ old('cidade', $usuario->cidade) }}">
                         </div>
 
-                        <div class="limitaLabel"> <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" id="complemento" maxlength="30"
-                                value="{{ old('complemento', $usuario->complemento) }}">
-                        </div>
-
                     </div>
 
                 </div>
 
-                <div class="posicionaBotaoSubmit">
-
-                    <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button>
+                <div class="agrupaBotaoSubmit">
 
                     <div class="agrupaVoltarSalvar">
-                        <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
+                        <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar" id="botaoVoltar">Voltar</a>
 
                         <button type="submit" class="botaoAdicionar">Salvar</button>
                     </div>
 
-
                 </div>
             </form>
+
         </div>
     </div>
 

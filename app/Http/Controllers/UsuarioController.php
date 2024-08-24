@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
 
-
-    // public function layoutSite(){
-    //     $usuarios = User::all();
-    //     return view('layouts.site', compact('usuarios'));
-    // }
-
     // método da pasta admUsuario, que redireciona o adm a página principal, listando todos os usuários cadastrados (em breve deixar na tabela usuários o campo que mostra em qual restaurante ele tá registrado, etc, ou se mudar a lógica do site, colocar pra ele ver vários restaurantes, pique ifood, e n ter essa n, ele tem acesso a todos - q é uma ideia baiana)
     public function index()
     {
@@ -44,10 +38,11 @@ class UsuarioController extends Controller
             'password' => 'nullable|min:8|confirmed',
             'rua' => 'required|string',
             'bairro' => 'required|string',
-            'número' => 'required|string',
+            'numero' => 'required|string',
+            'complemento' => 'nullable|string',
             'cidade' => 'required|string',
             'estado' => 'nullable|string',
-            'cep' => 'required|string',
+            'cep' => 'nullable|string',
             'telefone' => 'nullable|string',
             'celular' => 'required|string',
             'foto' => 'nullable|string',
@@ -71,7 +66,7 @@ class UsuarioController extends Controller
             'foto' => $request->foto,
         ]);
 
-        return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário atualizado com sucesso!!!');
+        return redirect()->route('usuario.minhaConta')->with('sucesso', 'Usuário atualizado com sucesso!!!');
     }
 
     public function create()
@@ -95,10 +90,11 @@ class UsuarioController extends Controller
             'password' => 'required',
             'rua' => 'required|string',
             'numero' => 'required',
+            'complemento' => 'nullable|string',
             'bairro' => 'required|string',
             'cidade' => 'required|string',
             'estado' => 'nullable|string',
-            'cep' => 'required',
+            'cep' => 'nullable|string',
             'celular' => 'required',
             'telefone' => 'nullable',
             'foto' => 'nullable'
@@ -128,7 +124,7 @@ class UsuarioController extends Controller
         try {
             $usuario = User::findOrFail($id);
             $usuario->delete();
-            return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário deletado com sucesso!!!');
+            return redirect()->route('site.index')->with('sucesso', 'Conta deletada com sucesso!!!');
         } catch (\Exception $e) {
 
             return redirect()->route('usuarioAdm.index')->with('error', 'Erro ao deletar o usuário');
@@ -144,7 +140,7 @@ class UsuarioController extends Controller
         // comando para encontrar o id do usuário e se não encontrar retornar um erro - string $id comando que tirei de parametro desse metodo
         // $usuario = User::findOrFail($id);
         return view('admin.usuarios.minhaConta');
-    }
+    }   
 
     // quando este método for passado, ele listará as informações do usuário nos camnpos: email, telefone, nome, sobrenome (eles vao ter um placeholder mostrando as informações atuais daquele usuário, ou seja, para chamar este método, precisará passar o id do usuário atual para a view, com compact também)
     public function infoConta(string $id)
