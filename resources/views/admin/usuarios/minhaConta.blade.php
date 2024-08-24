@@ -22,7 +22,7 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="{{ route('usuario.minhasInformacoes') }}">
+                <a href="{{ route('usuario.minhasInformacoes', ['id' => Auth::user()->id]) }}">
                     <h3>Minhas Informações</h3>
                 </a>
                 <p class="descricaoOpcao">Visualize ou altere suas informações de cadastro</p>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="opcoesCadastro">
-                <a href="{{ route('usuario.gerenciarPagamentos') }}">
+                <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}">
                     <h3>Formas de pagamento</h3>
                 </a>
                 <p class="descricaoOpcao">Visualize ou altere suas formas de pagamento</p>

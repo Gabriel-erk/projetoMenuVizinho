@@ -69,11 +69,11 @@
                 value="{{ old('cidade', $usuario->cidade) }}" maxlength="50">
         </div>
 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="estado" class="form-label">Estado</label>
             <input type="text" name="estado" class="form-control" id="estado" placeholder="Seu estado"
                 value="{{ old('estado', $usuario->estado) }}" maxlength="2">
-        </div>
+        </div> --}}
 
         <div class="mb-3">
             <label for="cep" class="form-label">CEP</label>

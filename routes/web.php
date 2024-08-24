@@ -35,7 +35,7 @@ Route::middleware(["auth"])->group(function () {
     Route::controller(UsuarioController::class)->group(function () {
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/admin/usuarios/minhaConta', 'minhaConta')->name('usuario.minhaConta');
-        Route::get('/admin/usuarios/minhasInformacoes', 'infoConta')->name('usuario.minhasInformacoes');
+        Route::get('/admin/usuarios/minhasInformacoes/{id}', 'infoConta')->name('usuario.minhasInformacoes');
         Route::get('/admin/usuarios/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
         Route::get('/admin/usuarios/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
         Route::get('/admin/usuarios/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
@@ -45,9 +45,13 @@ Route::middleware(["auth"])->group(function () {
 Route::get('/admin/adm/admUsuarios/index', [UsuarioController::class, 'index'])->name('usuarioAdm.index');
 Route::get('/admin/adm/admUsuarios/visualizar/{id}', [UsuarioController::class, 'show'])->name('usuarioAdm.show');
 Route::get('/admin/adm/admUsuarios/cadastro', [UsuarioController::class, 'createUserAdmView'])->name('usuarioAdm.create');
+
 Route::get('/admin/adm/admUsuarios/editar/{id}', [UsuarioController::class, 'edit'])->name('usuarioAdm.edit');
+
 Route::put('/admin/adm/admUsuarios/atualizar/{id}', [UsuarioController::class, 'update'])->name('usuarioAdm.update');
 Route::delete('/admin/adm/admUsuarios/deletar/{id}', [UsuarioController::class, 'destroy'])->name('usuarioAdm.destroy');
+
+// Route::get('/layoutSite', [UsuarioController::class, 'layoutSite'])->name('layoutSite');
 
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 

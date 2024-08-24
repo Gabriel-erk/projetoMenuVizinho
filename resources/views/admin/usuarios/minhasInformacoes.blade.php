@@ -7,6 +7,10 @@
             background-color: #fff
         }
 
+        input {
+            font-family: 'Poppins', sans-serif;
+        }
+
         .hakuna {
             margin-right: 20px
         }
@@ -115,6 +119,20 @@
             color: #fff;
             cursor: pointer;
         }
+
+        /* campo fotos */
+
+        #botaoCancelar {
+            background-color: #fff;
+            color: #8C6342;
+            border: 1px solid #8C6342
+        }
+
+        #botaoCancelar:hover {
+            background-color: #755439;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 
     <div class="tituloEditUser">
@@ -126,7 +144,7 @@
 
         <div class="detalhesDaConta">
 
-            <form action="" method="post">
+            <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="post">
 
                 <div class="agrupaCampoCartao">
 
@@ -137,32 +155,51 @@
                         <div class="hakuna">
 
                             <div class="limitaLabel "> <label for="email">Endereço de e-mail</label>
-                                <input type="text" maxlength="100" name="email" id="email">
+                                <input type="text" maxlength="100" name="email" id="email"
+                                    value="{{ old('email', $usuario->email) }}">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
                         <div class="hakuna ">
                             {{-- Note que o input tem o type="tel", esse type é indicado para telefones e o mais legal é que no mobile esse campo abre o teclado numérico --}}
                             <div class="limitaLabel "> <label for="telefone">Telefone</label>
-                                <input type="tel" maxlength="15" name="telefone" id="telefone" onkeyup="phone(event)">
+                                <input type="tel" maxlength="15" name="telefone" id="telefone" onkeyup="phone(event)"
+                                    value="{{ old('telefone', $usuario->telefone) }}">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
+                            </div> --}}
+
+                        </div>
+
+                        <div class="hakuna ">
+                            {{-- Note que o input tem o type="tel", esse type é indicado para telefones e o mais legal é que no mobile esse campo abre o teclado numérico --}}
+                            <div class="limitaLabel "> <label for="celular">Celular</label>
+                                <input type="tel" maxlength="15" name="celular" id="celular" onkeyup="phone(event)"
+                                    value="{{ old('celular', $usuario->celular) }}">
                             </div>
+
+                            {{-- <div class="editPayment">
+                                <a href="#">
+
+                                    <img src="{{ asset('img/lapisEdit.png') }}" alt="">
+
+                                </a>
+                            </div> --}}
 
                         </div>
 
@@ -179,36 +216,43 @@
                         <div class="hakuna">
 
                             <div class="limitaLabel  "> <label for="nome">Nome</label>
-                                <input type="text" maxlength="25" name="nome" id="nome">
+                                <input type="text" maxlength="25" name="nome" id="nome"
+                                    value="{{ old('nome', $usuario->nome) }}">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
 
                         <div class="hakuna ">
 
                             <div class="limitaLabel "> <label for="sobrenome">Sobrenome</label>
-                                <input type="text" maxlength="80" name="sobrenome" id="sobrenome">
+                                <input type="text" maxlength="80" name="sobrenome" id="sobrenome"
+                                    value="{{ old('sobrenome', $usuario->sobrenome) }}">
                             </div>
 
-                            <div class="editPayment">
+                            {{-- <div class="editPayment">
                                 <a href="#">
 
                                     <img src="{{ asset('img/lapisEdit.png') }}" alt="">
 
                                 </a>
-                            </div>
+                            </div> --}}
 
                         </div>
-
                     </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto</label>
+                    <input type="file" name="foto" class="form-control" id="foto"
+                        value="{{ old('foto', $usuario->foto) }}">
                 </div>
 
                 <div class="changePassword" style="margin-top: 25px ">
@@ -220,26 +264,27 @@
 
                 <div class="agrupaAlteracaoSenha">
 
-                    <div>
+                    {{-- <div>
                         <h4 style="font-weight: bold; margin-bottom: 5px;" class="mb-2">Senha atual</h4>
 
                         <div class="limitaLabel"> <label for="password">Senha atual</label>
                             <input type="password" name="password" id="password" maxlength="45">
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div style="margin-top: 15px;">
 
                         <h4 style="font-weight: bold; margin-bottom: 5px;">Nova Senha</h4>
 
-                        <div class="limitaLabel"> <label for="new_password">Nova Senha</label>
-                            <input type="password" name="new_password" id="new_password" maxlength="45">
+                        <div class="limitaLabel"> <label for="password">Nova Senha</label>
+                            <input type="password" name="password" id="password" maxlength="45">
                         </div>
 
                     </div>
 
                     <div class="listaAvisoSenha">
                         <ul>
+                            <li>Deixe o campo em branco caso não queria alterar</li>
                             <li>Não use nenhuma de suas senhas anteriores</li>
                             <li>Use 7 caracteres ou mais</li>
                             <li>use pelo menos 1 letra</li>
@@ -250,8 +295,8 @@
 
                     <div style="margin-top: 10px;">
 
-                        <div class="limitaLabel"> <label for="confirm_password">Digite a nova senha novamente</label>
-                            <input type="password" name="confirm_password" id="confirm_password" maxlength="45">
+                        <div class="limitaLabel"> <label for="password_confirmation">Digite a nova senha novamente</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" maxlength="45">
                         </div>
 
                     </div>
@@ -269,12 +314,28 @@
 
                     <div class="agrupaSecaoEndereco">
 
-                        <div class="limitaLabel"> <label for="linhaEndereco">Linha de endereço</label>
-                            <input type="text" name="linhaEndereco" id="linhaEndereco" maxlength="40">
+                        <div class="limitaLabel"> <label for="rua">Rua</label>
+                            <input type="text" name="rua" id="rua" maxlength="40"
+                                value="{{ old('rua', $usuario->rua) }}">
                         </div>
 
                         <div class="limitaLabel"> <label for="numero">Número</label>
-                            <input type="text" name="numero" id="numero" maxlength="10">
+                            <input type="text" name="numero" id="numero" maxlength="10"
+                                value="{{ old('numero', $usuario->numero) }}">
+                        </div>
+
+                    </div>
+
+                    <div class="agrupaSecaoEndereco">
+
+                        <div class="limitaLabel"> <label for="bairro">Bairro</label>
+                            <input type="text" name="bairro" id="bairro" maxlength="30"
+                                value="{{ old('bairro', $usuario->bairro) }}">
+                        </div>
+
+                        <div class="limitaLabel"> <label for="cep">CEP</label>
+                            <input type="text" name="cep" id="cep" maxlength="15"
+                                value="{{ old('cep', $usuario->cep) }}">
                         </div>
 
                     </div>
@@ -282,19 +343,13 @@
                     <div class="agrupaSecaoEndereco">
 
                         <div class="limitaLabel"> <label for="cidade">Cidade</label>
-                            <input type="text" name="cidade" id="cidade" maxlength="20">
+                            <input type="text" name="cidade" id="cidade" maxlength="20"
+                                value="{{ old('cidade', $usuario->cidade) }}">
                         </div>
-
-                        <div class="limitaLabel"> <label for="cep">CEP</label>
-                            <input type="text" name="cep" id="cep" maxlength="15">
-                        </div>
-
-                    </div>
-
-                    <div class="agrupaSecaoEndereco">
 
                         <div class="limitaLabel"> <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" id="complemento" maxlength="30">
+                            <input type="text" name="complemento" id="complemento" maxlength="30"
+                                value="{{ old('complemento', $usuario->complemento) }}">
                         </div>
 
                     </div>
@@ -303,10 +358,14 @@
 
                 <div class="posicionaBotaoSubmit">
 
-                    <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar"
-                        id="botaoCancelar">Voltar</a>
+                    <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button>
 
-                    <button type="submit" class="botaoAdicionar">Salvar</button>
+                    <div class="agrupaVoltarSalvar">
+                        <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
+
+                        <button type="submit" class="botaoAdicionar">Salvar</button>
+                    </div>
+
 
                 </div>
             </form>

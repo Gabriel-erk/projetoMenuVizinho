@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -21,11 +20,6 @@ class SiteController extends Controller
     {
         return view('produto');
     }
-
-    // public function produto(string $id)
-    // {
-    //     return view('produto');
-    // }
 
     public function ofertas()
     {

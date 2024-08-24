@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
 
+
+    // public function layoutSite(){
+    //     $usuarios = User::all();
+    //     return view('layouts.site', compact('usuarios'));
+    // }
+
     // método da pasta admUsuario, que redireciona o adm a página principal, listando todos os usuários cadastrados (em breve deixar na tabela usuários o campo que mostra em qual restaurante ele tá registrado, etc, ou se mudar a lógica do site, colocar pra ele ver vários restaurantes, pique ifood, e n ter essa n, ele tem acesso a todos - q é uma ideia baiana)
     public function index()
     {
@@ -58,7 +64,7 @@ class UsuarioController extends Controller
             'bairro' => $request->bairro,
             'numero' => $request->numero,
             'cidade' => $request->cidade,
-            'estado' => $request->estado,
+            // 'estado' => $request->estado,
             'cep' => $request->cep,
             'telefone' => $request->telefone,
             'celular' => $request->celular,
@@ -134,16 +140,17 @@ class UsuarioController extends Controller
      */
     public function minhaConta()
     {
+        // $usuarios = User::all();
         // comando para encontrar o id do usuário e se não encontrar retornar um erro - string $id comando que tirei de parametro desse metodo
         // $usuario = User::findOrFail($id);
         return view('admin.usuarios.minhaConta');
     }
 
     // quando este método for passado, ele listará as informações do usuário nos camnpos: email, telefone, nome, sobrenome (eles vao ter um placeholder mostrando as informações atuais daquele usuário, ou seja, para chamar este método, precisará passar o id do usuário atual para a view, com compact também)
-    public function infoConta()
+    public function infoConta(string $id)
     {
-        // $usuario = User::findOrFail($id);
-        return view('admin.usuarios.minhasInformacoes');
+        $usuario = User::findOrFail($id);
+        return view('admin.usuarios.minhasInformacoes', compact('usuario'));
     }
 
     /*
