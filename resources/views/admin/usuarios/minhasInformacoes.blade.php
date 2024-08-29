@@ -121,10 +121,6 @@
 
         /* campo fotos */
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
         .custom-file-container {
             position: relative;
             display: flex;
@@ -137,38 +133,9 @@
             background-color: #fff;
             font-size: 1rem;
             color: #495057;
-            overflow: hidden;
-        }
-
-        .custom-file-input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
             cursor: pointer;
         }
 
-        .custom-file-label {
-            flex: 1;
-            padding-left: 0.75rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .custom-file-input:focus~.custom-file-label {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        .custom-file-input:valid~.custom-file-label {
-            color: #495057;
-            background-color: #e9ecef;
-            border-color: #ced4da;
-        }
     </style>
 
     <div class="tituloEditUser">
@@ -189,7 +156,7 @@
                     </ul>
                 </div>
             @endif
-            
+
             <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="post">
                 @csrf
                 @method('PUT')
@@ -255,11 +222,11 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="padding-left:30px; padding-right:30px;margin-top:7px">
+                <div style="padding-left:30px; padding-right:30px;margin-top:7px">
                     <label for="foto">Foto</label>
                     <div class="custom-file-container">
-                        <input type="file" id="foto" name="foto" class="custom-file-input">
-                        <label for="foto" class="custom-file-label">Escolha o arquivo...</label>
+                        <input type="file" id="foto" name="foto" value="{{ old('foto', $usuario->foto) }}">
+                        <label for="foto"></label>
                     </div>
                 </div>
 
@@ -383,5 +350,18 @@
             value = value.replace(/(\d)(\d{4})$/, "$1-$2")
             return value
         }
+
+        function updateFileName() {
+            var fileInput = document.getElementById('foto');
+            var fileLabel = document.getElementById('fileLabel');
+
+            if (fileInput.files.length > 0) {
+                fileLabel.textContent = fileInput.files[0].name;
+            } else {
+                fileLabel.textContent = 'Escolha o arquivo...';
+            }
+        }
     </script>
+
+
 @endsection
