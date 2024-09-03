@@ -245,7 +245,6 @@
 
             <div class="listaProdutos">
 
-
                 <div class="zao">
                     <a href="{{ route('site.produto') }}">
                         <div class="imgZao">
@@ -358,8 +357,9 @@
 
             <div class="titulos">
 
-                <p class="subtitulo">Cardápio</p>
+                {{-- <p class="subtitulo">Cardápio</p> --}}
                 <p class="titulo">Ofertas Da Semana</p>
+                <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
 
@@ -457,8 +457,9 @@
 
             <div class="titulos">
 
-                <p class="subtitulo">Cardápio</p>
+                {{-- <p class="subtitulo">Cardápio</p> --}}
                 <p class="titulo">Lançamentos</p>
+                <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
 

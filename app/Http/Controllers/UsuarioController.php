@@ -136,9 +136,6 @@ class UsuarioController extends Controller
      */
     public function minhaConta()
     {
-        // $usuarios = User::all();
-        // comando para encontrar o id do usuário e se não encontrar retornar um erro - string $id comando que tirei de parametro desse metodo
-        // $usuario = User::findOrFail($id);
         return view('admin.usuarios.minhaConta');
     }   
 
