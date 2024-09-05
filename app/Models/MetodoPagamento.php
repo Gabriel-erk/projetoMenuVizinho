@@ -9,10 +9,12 @@ class MetodoPagamento extends Model
 {
     use HasFactory;
 
-    protected $table = "metodopagamento";
+    protected $table = "cartao_cliente";
 
     protected $fillable = [
+        'user_id',
         'numero_cartao',
+        'cvv',
         'data_vencimento',
         'nome_titular',
         'cpf'

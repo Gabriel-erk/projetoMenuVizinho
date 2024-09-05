@@ -36,7 +36,7 @@
             width: 530px;
         }
 
-        .agrupaTituloCadeado{
+        .agrupaTituloCadeado {
             display: flex;
             align-items: center;
             justify-content: space-between
@@ -186,30 +186,49 @@
         }
 
         /* .editPayment {
-                        display: flex;
-                        align-items: center;
+                                                display: flex;
+                                                align-items: center;
 
-                        height: 70px;
-                        margin-left: 20px;
-                        padding: 5px 14px;
+                                                height: 70px;
+                                                margin-left: 20px;
+                                                padding: 5px 14px;
 
-                        border-radius: 5px;
-                        background-color: #2767C8;
-                        transition: all 0.3s ease;
-                    }
+                                                border-radius: 5px;
+                                                background-color: #2767C8;
+                                                transition: all 0.3s ease;
+                                            }
 
-                    .editPayment:hover {
-                        background-color: #1e59b3;
-                    }
+                                            .editPayment:hover {
+                                                background-color: #1e59b3;
+                                            }
 
-                    .editPayment img {
-                        width: 40px
-                    } */
+                                            .editPayment img {
+                                                width: 40px
+                                            } */
     </style>
+
+    @if (session('sucesso'))
+        <script>
+            // mostra a mensagem depois de carregar o site primeiro
+            window.onload = function() {
+                alert('{{ session('sucesso') }}');
+            };
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            // mostra a mensagem depois de carregar o site primeiro
+            window.onload = function() {
+                alert('{{ session('error') }}');
+            };
+        </script>
+    @endif
 
     <div class="tituloEditUser">
         <h2>Gerenciar pagamentos</h2>
-        <p>Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja nossa <a href="{{ route('site.politica') }}">Política
+        <p>Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja nossa <a
+                href="{{ route('site.politica') }}">Política
                 de privacidade</a></p>
         {{-- <p>Veja ou adicione métodos de pagamento na sua conta.</p> --}}
     </div>
@@ -225,62 +244,28 @@
 
             <div class="meusPagamentos">
 
-                <div class="payment">
+                @foreach ($metodosPagamentos as $metodoPagamento)
+                    <div class="payment">
 
-                    <div class="logoNome">
+                        <div class="logoNome">
 
-                        <div class="imgPayment">
-                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                            <div class="imgPayment">
+                                <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
+                            </div>
+
+                            <div class="numeroDataCartao">
+                                {{-- pega os ultimos 4 digitos do cartão --}}
+                                <p style="color:#000">••{{ substr($metodoPagamento->numero_cartao, -4) }}</p>
+                                {{-- método que formata a data para mostrar apenas o mes e o ano --}}
+                                <p>{{ \Carbon\Carbon::parse($metodoPagamento->data_vencimento)->format('m/Y') }}</p>
+                            </div>
+
                         </div>
 
-                        <div class="numeroDataCartao">
-                            <p style="color:#000">••5123</p>
-                            <p>09/32</p>
-                        </div>
+                        <a href="{{ route('usuario.editarPagamentos', ['id' => Auth::user()->id]) }}">Alterar</a>
 
                     </div>
-
-                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-                </div>
-
-                <div class="payment">
-
-                    <div class="logoNome">
-
-                        <div class="imgPayment">
-                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                        </div>
-
-                        <div class="numeroDataCartao">
-                            <p style="color:#000">••5123</p>
-                            <p>09/32</p>
-                        </div>
-
-                    </div>
-
-                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-                </div>
-
-                <div class="payment">
-
-                    <div class="logoNome">
-
-                        <div class="imgPayment">
-                            <img src="{{ asset('img/bandeiraCartao.png') }}" alt="">
-                        </div>
-
-                        <div class="numeroDataCartao">
-                            <p style="color:#000">••5123</p>
-                            <p>09/32</p>
-                        </div>
-
-                    </div>
-
-                    <a href="{{ route('usuario.editarPagamentos') }}">Alterar</a>
-
-                </div>
+                @endforeach
 
             </div>
 

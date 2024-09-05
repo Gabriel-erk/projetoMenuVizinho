@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\ParceirosController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
@@ -36,9 +37,18 @@ Route::middleware(["auth"])->group(function () {
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/admin/usuarios/minhaConta', 'minhaConta')->name('usuario.minhaConta');
         Route::get('/admin/usuarios/minhasInformacoes/{id}', 'infoConta')->name('usuario.minhasInformacoes');
-        Route::get('/admin/usuarios/gerenciarPagamentos', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
-        Route::get('/admin/usuarios/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
-        Route::get('/admin/usuarios/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
+        // Route::get('/admin/usuarios/gerenciarPagamentos/{id}', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
+        // Route::get('/admin/usuarios/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
+        // Route::get('/admin/usuarios/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
+    });
+
+    Route::controller(MetodoPagamentoController::class)->group(function () {
+        Route::get('/admin/usuarios/gerenciarPagamentos/{id}', 'index')->name('usuario.gerenciarPagamentos');
+        Route::get('/admin/usuarios/novaFormaPagamento', 'create')->name('usuario.novaFormaPagamento');
+        Route::get('/admin/usuarios/editarPagamentos/{id}', 'edit')->name('usuario.editarPagamentos');
+
+
+        Route::post('/admin/usuarios/salvarPagamento', 'store')->name('pagamentos.store');
     });
 });
 
@@ -75,5 +85,3 @@ Route::controller(ParceirosController::class)->group(function () {
 route::get("/login", [AutenticacaoController::class, "formLogin"])->name("login.form")->middleware("guest");
 route::post("/login", [AutenticacaoController::class, "login"])->name("login")->middleware('guest');
 route::get("/logout", [AutenticacaoController::class, "logout"])->name("logout");
-
-

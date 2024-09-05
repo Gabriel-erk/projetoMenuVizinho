@@ -137,15 +137,15 @@
             <h2>Cadastro Usuário</h2>
 
             @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="list-unstyled">
-                    {{-- percorre tudo do array errors, (com all()), joga na váriavel erro, e imprime em um elemento "li" com o erro --}}
-                    @foreach ($errors->all() as $erro)
-                        <li>{{ $erro }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled">
+                        {{-- percorre tudo do array errors, (com all()), joga na váriavel erro, e imprime em um elemento "li" com o erro --}}
+                        @foreach ($errors->all() as $erro)
+                            <li>{{ $erro }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <form action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -185,7 +185,8 @@
 
                     <div class="col">
                         <label for="bairro" class="form-label">Bairro</label>
-                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control" maxlength="80" value="{{ old('bairro') }}">
+                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control"
+                            maxlength="80" value="{{ old('bairro') }}">
                     </div>
 
                     <div class="col">

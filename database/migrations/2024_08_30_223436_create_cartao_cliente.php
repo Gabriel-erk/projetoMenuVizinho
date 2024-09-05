@@ -22,9 +22,10 @@ return new class extends Migration
             * foreign('user_id')->references('id')->on('users') define user_id como uma chave estrangeira que referencia o campo id na tabela usuários
             * onDelete('cascade'): Especifica que, ao deletar um usuário, todos os registros relacionados na tabela cartao_cliente serão automaticamente deletados (opcional, mas útil para manter a integridade referencial).
             */
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('usuarios')->onDelete('cascade');
 
             $table->string('numero_cartao', 25);
+            $table->integer('cvv');
             $table->date('data_vencimento');
             $table->string('nome_titular', 45);
             $table->string('cpf', 14);
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('metodo_pagamento');
+        Schema::dropIfExists('cartao_cliente');
     }
 };

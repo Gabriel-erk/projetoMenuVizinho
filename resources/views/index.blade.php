@@ -152,9 +152,12 @@
 
 
     @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
+        <script>
+            // mostra a mensagem depois de carregar o site primeiro
+            window.onload = function() {
+                alert('{{ session('error') }}');
+            };
+        </script>
     @endif
 
     <section id="lista-cardapio">

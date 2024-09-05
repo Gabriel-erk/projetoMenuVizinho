@@ -14,11 +14,32 @@
             padding: 30px;
             border-bottom: 1px solid #CCCCCC;
             font-family: 'Poppins', sans-serif;
-
+            display: flex;
+            justify-content: space-between
         }
 
         .tituloEditUser h2 {
             font-weight: 500;
+        }
+
+        .excluirCartao button {
+            background-color: #8C6342;
+            border: none;
+            cursor: pointer;
+
+            width: 55px;
+            height: 40px;
+
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .excluirCartao button:hover {
+            background-color: #755439;
+        }
+
+        .excluirCartao button img {
+            width: 26px
         }
 
         .blocoNovoCartao {
@@ -83,7 +104,7 @@
             justify-content: space-between;
         }
 
-        .posicionaBotaoSubmit a{
+        .posicionaBotaoSubmit a {
             padding: 7px 40px
         }
 
@@ -105,7 +126,6 @@
             transition: all 0.3s ease;
         }
 
-
         .botaoAdicionar:hover {
             background-color: #755439;
             cursor: pointer;
@@ -126,25 +146,41 @@
 
     <div class="tituloEditUser">
         <h2>Editar Cartão</h2>
+
+        <div class="excluirCartao">
+            <form action="">
+                <button type="submit" id="botaoExcloi"> <img src="{{ asset('img/lataDeLixo.webp') }}" alt=""></button>
+            </form>
+        </div>
     </div>
 
     <div class="blocoNovoCartao">
 
         <div class="bloco1InfoCartao">
 
-            <form action="" method="">
+            @if ($errors->any())
+                <div class="boxError alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $erro)
+                            <li>{{ $erro }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
+            <form action="" method="POST">
+                @csrf
                 <div class="agrupaCampoCartao" style="margin-top: 30px">
 
                     <div class="campo campoDuplo" style="margin-bottom: 15px">
 
                         <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
                                 cartão</label>
-                            <input type="text" name="numeroCartao" id="numeroCartao">
+                            <input type="text" name="numeroCartao" id="numeroCartao" value="{{ old('numeroCartao', $metodoPagamento->numero_cartao) }}">
                         </div>
 
                         <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
-                            <input type="text" name="cvv" id="cvv">
+                            <input type="text" name="cvv" id="cvv" value="{{ old('cvv', $metodoPagamento->cvv) }}">
                         </div>
 
                     </div>
@@ -153,7 +189,7 @@
 
                         <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
                                 vencimento</label>
-                            <input type="date" name="dataVencimento" id="dataVencimento">
+                            <input type="date" name="dataVencimento" id="dataVencimento" value="{{ old('dataVencimento', $metodoPagamento->data_vencimento) }}">
                         </div>
 
                     </div>
@@ -165,7 +201,7 @@
                     <div class="campo" style="margin-bottom: 15px">
 
                         <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
-                            <input type="text" name="nomeTitular" id="nomeTitular">
+                            <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular', $metodoPagamento->nome_titular) }}">
                         </div>
 
                     </div>
@@ -174,7 +210,7 @@
 
                         <div class="limitaLabel"> <label for="cpf">CPF</label>
                             {{-- limitando tamanho em 14 caracteres --}}
-                            <input type="text" name="cpf" id="cpf" maxlength="14">
+                            <input type="text" name="cpf" id="cpf" maxlength="14" value="{{ old('cpf', $metodoPagamento->cpf) }}">
                         </div>
 
                     </div>
@@ -183,10 +219,11 @@
 
                 <div class="posicionaBotaoSubmit">
 
-                    <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button>
+                    {{-- <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button> --}}
 
                     <div class="agrupaVoltarSalvar">
-                        <a href="{{ route('usuario.gerenciarPagamentos') }}" class="botaoAdicionar">Voltar</a>
+                        <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}"
+                            class="botaoAdicionar">Voltar</a>
                         <button type="submit" class="botaoAdicionar" style="margin-left: 0.1em">Salvar</button>
                     </div>
 
