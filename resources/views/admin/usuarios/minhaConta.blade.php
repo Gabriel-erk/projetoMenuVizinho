@@ -83,12 +83,9 @@
 
     <script>
         function confirmDelete(){
-            // impede o comportamento padrão imediato do formulário
-            // event.preventDefault();
 
             return confirm('Tem certeza que deseja deletar a sua conta? Esta ação não pode ser desfeita.');
         
         }
-
     </script>
 @endsection

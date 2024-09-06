@@ -146,25 +146,4 @@ class UsuarioController extends Controller
         $usuario = User::findOrFail($id);
         return view('admin.usuarios.minhasInformacoes', compact('usuario'));
     }
-
-    /*
-    * views da seçao de pagamentos 
-    */
-
-    // public function viewPagamentos(string $id)
-    // {
-    //     $pagamentos = MetodoPagamento::all();
-    //     return view('admin.usuarios.gerenciarPagamentos', compact('pagamentos'));
-    // }
-
-    // vai editar as informações da forma de pagamento escolhida, ela será passada quando o metodo for chamado, ou seja, quando clicar no lapis, ao lado de um pagamento salvo, sera passado o 'id', daquela forma de pagamento, então, ao realizar conexão com db, precisarei passar o id dql pagamento atraves da rota(em webp) e pegar aaqui newPagamentos(string $id), e devolver para a view return view ('admin.usuarios.adicionarPagamento', compact($id));
-    // public function newPagamentos()
-    // {
-    //     return view('admin.usuarios.adicionarPagamento');
-    // }
-
-    // public function editPagamentos()
-    // {
-    //     return view('admin.usuarios.editarPagamento');
-    // }
 }

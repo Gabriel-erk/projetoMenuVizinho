@@ -147,11 +147,17 @@
     <div class="tituloEditUser">
         <h2>Editar Cartão</h2>
 
-        <div class="excluirCartao">
-            <form action="">
-                <button type="submit" id="botaoExcloi"> <img src="{{ asset('img/lataDeLixo.webp') }}" alt=""></button>
-            </form>
-        </div>
+        <form action="{{ route('pagamentos.deletarPagamento', ['id' => $metodoPagamento->id]) }}" method="post">
+
+            @csrf
+            @method('DELETE')
+            <div class="excluirCartao">
+
+                <button type="submit" onclick="return confirmDelete()"> <img src="{{ asset('img/lataDeLixo.webp') }}" alt=""></button>
+
+            </div>
+
+        </form>
     </div>
 
     <div class="blocoNovoCartao">
@@ -177,11 +183,13 @@
 
                         <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
                                 cartão</label>
-                            <input type="text" name="numeroCartao" id="numeroCartao" value="{{ old('numeroCartao', $metodoPagamento->numero_cartao) }}">
+                            <input type="text" name="numeroCartao" id="numeroCartao"
+                                value="{{ old('numeroCartao', $metodoPagamento->numero_cartao) }}">
                         </div>
 
                         <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
-                            <input type="text" name="cvv" id="cvv" value="{{ old('cvv', $metodoPagamento->cvv) }}">
+                            <input type="text" name="cvv" id="cvv"
+                                value="{{ old('cvv', $metodoPagamento->cvv) }}">
                         </div>
 
                     </div>
@@ -190,7 +198,8 @@
 
                         <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
                                 vencimento</label>
-                            <input type="date" name="dataVencimento" id="dataVencimento" value="{{ old('dataVencimento', $metodoPagamento->data_vencimento) }}">
+                            <input type="date" name="dataVencimento" id="dataVencimento"
+                                value="{{ old('dataVencimento', $metodoPagamento->data_vencimento) }}">
                         </div>
 
                     </div>
@@ -202,7 +211,8 @@
                     <div class="campo" style="margin-bottom: 15px">
 
                         <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
-                            <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular', $metodoPagamento->nome_titular) }}">
+                            <input type="text" name="nomeTitular" id="nomeTitular"
+                                value="{{ old('nomeTitular', $metodoPagamento->nome_titular) }}">
                         </div>
 
                     </div>
@@ -211,7 +221,8 @@
 
                         <div class="limitaLabel"> <label for="cpf">CPF</label>
                             {{-- limitando tamanho em 14 caracteres --}}
-                            <input type="text" name="cpf" id="cpf" maxlength="14" value="{{ old('cpf', $metodoPagamento->cpf) }}">
+                            <input type="text" name="cpf" id="cpf" maxlength="14"
+                                value="{{ old('cpf', $metodoPagamento->cpf) }}">
                         </div>
 
                     </div>
@@ -235,6 +246,11 @@
     </div>
 
     <script>
+        function confirmDelete() {
+
+            return confirm('Tem certeza que deseja deletar o seu cartão? Esta ação não pode ser desfeita.');
+
+        }
         /* 
          * máscara para o campo "número do cartão" 
          * permite apenas numeros

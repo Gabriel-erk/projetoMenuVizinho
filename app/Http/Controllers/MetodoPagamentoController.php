@@ -14,13 +14,11 @@ class MetodoPagamentoController extends Controller
      */
     public function index(string $id)
     {
-        $metodosPagamentos = MetodoPagamento::all();
+        // trazendo apenas os métodos de pagamenteo associados ao usuário logado
+        $metodosPagamentos = MetodoPagamento::where('user_id', Auth::user()->id)->get();
         return view('admin.usuarios.gerenciarPagamentos', compact('metodosPagamentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.usuarios.adicionarPagamento');
@@ -99,6 +97,31 @@ class MetodoPagamentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        // if (!Auth::check()) {
+        //     return redirect()->route('login')->with('error', 'Você precisa estar logado para realizar esta ação.');
+        // }
+
+        dd(Auth::user());
+
+        try {
+            // Tente encontrar o método de pagamento
+            $metodoPagamento = MetodoPagamento::findOrFail($id);
+
+            // Verifiqca se o método de pagamento pertence ao usuário logado
+            if ($metodoPagamento->user_id != Auth::user()->id) {
+                return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])
+                    ->with('error', 'Você não tem permissão para deletar este cartão.');
+            }
+
+            // Se pertence, deletar o cartão
+            $metodoPagamento->delete();
+
+            return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])
+                ->with('sucesso', 'Cartão deletado com sucesso!!!');
+        } catch (\Exception $e) {
+
+            return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])->with('error', 'Erro ao deletar cartão');
+        }
     }
 }
