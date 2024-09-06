@@ -37,15 +37,14 @@ Route::middleware(["auth"])->group(function () {
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/admin/usuarios/minhaConta', 'minhaConta')->name('usuario.minhaConta');
         Route::get('/admin/usuarios/minhasInformacoes/{id}', 'infoConta')->name('usuario.minhasInformacoes');
-        // Route::get('/admin/usuarios/gerenciarPagamentos/{id}', 'viewPagamentos')->name('usuario.gerenciarPagamentos');
-        // Route::get('/admin/usuarios/novaFormaPagamento', 'newPagamentos')->name('usuario.novaFormaPagamento');
-        // Route::get('/admin/usuarios/editarPagamentos', 'editPagamentos')->name('usuario.editarPagamentos');
     });
 
     Route::controller(MetodoPagamentoController::class)->group(function () {
         Route::get('/admin/usuarios/gerenciarPagamentos/{id}', 'index')->name('usuario.gerenciarPagamentos');
         Route::get('/admin/usuarios/novaFormaPagamento', 'create')->name('usuario.novaFormaPagamento');
         Route::get('/admin/usuarios/editarPagamentos/{id}', 'edit')->name('usuario.editarPagamentos');
+
+        Route::put('/admin/usuarios/atualizarPagamento/{id}', 'update')->name('pagamentos.atualizarPagamento');
 
 
         Route::post('/admin/usuarios/salvarPagamento', 'store')->name('pagamentos.store');

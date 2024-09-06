@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\MetodoPagamento;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,24 +74,24 @@ class MetodoPagamentoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'numeroCartao' => 'required|string|unique:cartao_cliente,numero_cartao' . $id,
+            'numeroCartao' => 'required|string|unique:cartao_cliente,numero_cartao,' . $id,
             'cvv' => 'required|integer',
             'dataVencimento' => 'required|date',
             'nomeTitular' => 'required|string',
-            'cpf' => 'required|string|unique:cartao_cliente,cpf' . $id,
-            'email' => 'required|string|email|unique:usuarios,email,' . $id,
-            'password' => 'nullable|min:8|confirmed',
-            'rua' => 'required|string',
-            'bairro' => 'required|string',
-            'numero' => 'required|string',
-            'complemento' => 'nullable|string',
-            'cidade' => 'required|string',
-            'estado' => 'nullable|string',
-            'cep' => 'nullable|string',
-            'telefone' => 'nullable|string',
-            'celular' => 'required|string',
-            'foto' => 'nullable|string',
+            'cpf' => 'required|string|unique:cartao_cliente,cpf,' . $id,
         ]);
+
+        $metodoPagamento = MetodoPagamento::findOrFail($id);
+
+        $metodoPagamento->update([
+            'numero_cartao' => $request->numeroCartao,
+            'cvv' => $request->cvv,
+            'data_vencimento' => $request->dataVencimento,
+            'nome_titular' => $request->nomeTitular,
+            'cpf' => $request->cpf
+        ]);
+
+        return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])->with('sucesso', 'Cartão atualizado com sucesso!!!');
     }
 
     /**

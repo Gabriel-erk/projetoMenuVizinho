@@ -168,8 +168,9 @@
                 </div>
             @endif
 
-            <form action="" method="POST">
+            <form action="{{ route('pagamentos.atualizarPagamento', ['id' => $metodoPagamento->id]) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="agrupaCampoCartao" style="margin-top: 30px">
 
                     <div class="campo campoDuplo" style="margin-bottom: 15px">
