@@ -30,11 +30,11 @@ class MetodoPagamentoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numeroCartao' => 'required|string',
-            'cvv' => 'required|integer',
+            'numeroCartao' => 'required|string|unique:cartao_cliente,numero_cartao',
+            'cvv' => 'required|integer|unique:cartao_cliente,cvv',
             'dataVencimento' => 'required|date',
             'nomeTitular' => 'required|string',
-            'cpf' => 'required|string'
+            'cpf' => 'required|string|unique:cartao_cliente,cpf'
         ]);
 
         MetodoPagamento::create([
@@ -62,7 +62,7 @@ class MetodoPagamentoController extends Controller
      */
     public function edit(string $id)
     {
-        $metodoPagamento = MetodoPagamento::find($id);
+        $metodoPagamento = MetodoPagamento::findOrFail($id);
         return view('admin.usuarios.editarPagamento', compact('metodoPagamento'));
     }
 
@@ -73,7 +73,7 @@ class MetodoPagamentoController extends Controller
     {
         $request->validate([
             'numeroCartao' => 'required|string|unique:cartao_cliente,numero_cartao,' . $id,
-            'cvv' => 'required|integer',
+            'cvv' => 'required|integer|unique:cartao_cliente,cvv,' . $id,    
             'dataVencimento' => 'required|date',
             'nomeTitular' => 'required|string',
             'cpf' => 'required|string|unique:cartao_cliente,cpf,' . $id,
@@ -98,21 +98,9 @@ class MetodoPagamentoController extends Controller
     public function destroy(string $id)
     {
 
-        // if (!Auth::check()) {
-        //     return redirect()->route('login')->with('error', 'Você precisa estar logado para realizar esta ação.');
-        // }
-
-        dd(Auth::user());
-
         try {
             // Tente encontrar o método de pagamento
             $metodoPagamento = MetodoPagamento::findOrFail($id);
-
-            // Verifiqca se o método de pagamento pertence ao usuário logado
-            if ($metodoPagamento->user_id != Auth::user()->id) {
-                return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])
-                    ->with('error', 'Você não tem permissão para deletar este cartão.');
-            }
 
             // Se pertence, deletar o cartão
             $metodoPagamento->delete();

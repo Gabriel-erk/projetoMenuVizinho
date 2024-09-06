@@ -262,7 +262,8 @@
 
                         </div>
 
-                        <a href="{{ route('usuario.editarPagamentos', ['id' => Auth::user()->id]) }}">Alterar</a>
+                        {{-- passando o id do cartão já que quero editar/deletar ele --}}
+                        <a href="{{ route('usuario.editarPagamentos', ['id' => $metodoPagamento->id]) }}">Alterar</a>
 
                     </div>
                 @endforeach
