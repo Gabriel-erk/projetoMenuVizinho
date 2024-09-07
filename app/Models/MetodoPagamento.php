@@ -21,9 +21,4 @@ class MetodoPagamento extends Model
         'cpf'
     ];
 
-    // Relação com o modelo User
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }
