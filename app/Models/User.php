@@ -26,6 +26,7 @@ class User extends Authenticatable
         'rua',
         'numero',
         'bairro',
+        'complemento',
         'cidade',
         'estado',
         'cep',

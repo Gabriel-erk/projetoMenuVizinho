@@ -65,7 +65,6 @@ class MetodoPagamentoController extends Controller
         $metodoPagamento = MetodoPagamento::findOrFail($id);
         return view('admin.usuarios.editarPagamento', compact('metodoPagamento'));
     }
-
     /**
      * Update the specified resource in storage.
      */
