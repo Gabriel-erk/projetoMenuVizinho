@@ -8,12 +8,8 @@
         body {
             background-color: #fff
         }
-
-        .ultimaAtt {
-            color: #848384;
-
-        }
     </style>
+    
     <main class="container">
         <p class="politica-privacidade">
         <div class="topicos">

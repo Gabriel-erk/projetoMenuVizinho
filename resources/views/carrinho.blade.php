@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/siteCss/carrinho2.css') }}">
 
 <!-- adicionando fonte 3 (Signika Negative) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+{{-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet"> --}}
 
 <!-- adicionando fonte 4 (Titan One) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,51 +23,11 @@
     <style>
         body {
             background-color: #F3F3F3;
-            /* position: relative; */
+
         }
 
-        #pagamentoSalvo .formaPagamento:hover {
-            cursor: pointer;
-        }
-
-        #pagamentoSalvo h3 {
-            color: #5C5B5B;
-        }
-
-        .nomeCartao,
-        .dataCartao {
-            font-size: 15px
-        }
-
-        .dataCartao {
-            color: #716B6B;
-        }
-
-        #metodo-pagamento p {
-            font-weight: 500;
-        }
-
-        .imgFormaPagamento {
-            background-color: #202020;
-            padding: 1rem 0.5rem;
-            border-radius: 50%
-        }
-
-        .imgFormaPagamento img {
-            width: 35px
-        }
-
-        .lanchesDisponiveis {
-            transition: transform 0.5s ease;
-            cursor: pointer;
-        }
-
-        .lanchesDisponiveis:hover {
-            transition: ALL linear 200ms;
-        }
     </style>
     <main>
-
         <!-- mini-tela pagamento -->
 
         <div id="pagamento" class="telaPagamento">
@@ -150,7 +110,6 @@
 
         <!-- mini-tela cupom -->
         <div id="cupom-disponivel">
-
 
             <div class="fundoMiniTelaCupom">
 
@@ -409,8 +368,6 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
 
@@ -421,7 +378,7 @@
                 <div class="img-texto-pagamento">
 
                     <div class="imgPagamentoCupom">
-                        <img src="./img/credit-card.png" height="50px">
+                        <img src="./img/credit-card.png">
 
                     </div>
 
@@ -465,13 +422,13 @@
         <div class="pagamentoCarrinho">
             <h2>Resumo dos valores</h2>
             <div class="valoresCarrinho">
-                <p>Taxa de entrega: 50,90</p>
-                <p>Cupom Aplicado: -50,90</p>
-                <p>Total: 20,90</p>
+                <p>- Taxa de entrega: R$ 50,90</p>
+                <p>- Cupom Aplicado: R$ -50,90</p>
+                <h3 style="margin-top: 2%">Total: R$ 20,90</h3>
             </div>
 
             <div class="finaliza">
-                <h1>Finalizar Compra</h1>
+                <button>Finalizar Compra</button>
             </div>
 
         </div>

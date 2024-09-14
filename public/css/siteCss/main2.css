@@ -73,14 +73,14 @@ body {
 
 #contador-carrinho span {
     /* para garantir que o width funcione */
-    display: inline-block; 
+    display: inline-block;
     /* tamanho fixo, para não ficar variando dependendo do numero */
     width: 23px;
     /* alinhando horizontalmente e verticalmente */
     text-align: center;
     border-radius: 50%;
     padding: 2px 0px;
-    
+
     color: #2767C8;
     background-color: #fff;
     font-size: 14px;
@@ -113,7 +113,7 @@ body {
 
 .iconeMenuLateral {
     font-family: 'Cabin', sans-serif;
-    font-weight: 600;   
+    font-weight: 600;
     padding: 10px 20px;
     margin: 5px;
     color: #fff;
@@ -139,7 +139,7 @@ body {
     position: fixed;
     /* display: none; */
     top: 0;
-    right: -550px; 
+    right: -550px;
     width: 500px;
     height: 100%;
     z-index: 999;
@@ -186,6 +186,7 @@ body {
     padding-bottom: 10px;
     font-size: 25px;
 }
+
 .iconeFechaMenu:hover {
     cursor: pointer;
 }
@@ -214,6 +215,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
+
 /* formatando banners */
 
 .banner img {
@@ -226,18 +228,26 @@ body {
 .titulos {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-}
-
-.subtitulo {
-    color: #CCCCCC;
-    font-weight: 700;
-    font-size: 15px;
+    padding-bottom: 20px;
 }
 
 .titulo {
     color: #000;
     font-size: 25px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0px;
+}
+
+.descCategoria {
+    color: #848384;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.subtitulo {
+    color: #848384;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 /* formatando cardapio */
@@ -312,45 +322,39 @@ body {
 .listaProdutos {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
 }
 
 .produto {
-    border: solid 1px #ccc;
-    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    border-radius: 35px;
     font-family: 'Cabin', sans-serif;
     background-color: #fff;
-    /* cursor: pointer; */
 
     padding: 20px;
-    height: 465px;
-    /* width: calc((100% / 1) - 30px); */
-    /* transição para border-color de 0.3s com efeito ease-out 
-    * transição para background-color de 0.3s com efeito ease-out 
-    * transição para transform de 0.3s com efeito ease-out 
-    * transition também 0.3s é o tempo em que ira "acontecer" o hover e voltar ao normal 
-    */
+    height: 410px;
+
     transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .produto:hover {
     border-color: #e9e2e2;
-    background-color: #f9f9f9; /* Mudança de cor de fundo para efeito suave */
+    background-color: #f9f9f9;
     transform: scale(1.02);
 }
 
 .imgProduto {
-    background-color: #f1f1f1;
-    /* background-color: #E7E7E7; */
     text-align: center;
     border-radius: 5px;
+    /* padding-bottom: 15px; */
     padding-top: 15px;
-    padding-bottom: 15px;
 }
 
 .imgProduto img {
-    width: 250px;
-    height: 200px;
+    width: 230px;
+    height: 180px;
 }
 
 .nomeValorProduto {
@@ -359,10 +363,42 @@ body {
     margin-top: 15px;
 }
 
+.nomeProduto {
+    font-size: 22px
+}
+
+.precoProduto {
+    font-size: 16px
+}
+
 .descricaoProduto p {
     word-wrap: break-word;
-    font-size: 14px;
+    width: 80%;
+    font-size: 13px;
     margin-top: 5px;
+}
+
+.agrupaIconeProduto {
+    display: flex;
+    margin-top: 20px;
+}
+
+.iconeProduto {
+    background-color: #8C6342;
+    margin-right: 10px;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.iconeProduto img {
+    width: 35px;
+    height: 35px;
+}
+
+.imgFavoritar img {
+    position: relative;
+    top: 3px
 }
 
 .addCart {
@@ -388,7 +424,8 @@ body {
 
 .addCart button:hover {
     /* deixando com 90% do brilho total */
-    filter: brightness(0.9); /* Escurece o botão e o texto */
+    filter: brightness(0.9);
+    /* Escurece o botão e o texto */
 }
 
 /* formatando seção de avaliação de clientes */
@@ -433,7 +470,7 @@ body {
     color: #848384;
     padding-bottom: 70px;
     margin-top: 90px;
-   
+
 }
 
 .agrupaRodape {

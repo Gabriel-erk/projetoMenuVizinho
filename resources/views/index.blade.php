@@ -19,127 +19,6 @@
 @endsection
 
 @section('conteudo')
-    <style>
-        body {
-            background-color: #F9EED9;
-            /* background-color: #ffff; */
-        }
-
-        .cardapio {
-            background-color: #fff
-                /* background-color: #f5f5f5 */
-                /* background-color: #F9EED9; */
-
-        }
-
-        .listaProdutos {
-            display: flex;
-            justify-content: space-between;
-            gap: 25px;
-        }
-
-        .titulos {
-            padding-bottom: 20px;
-        }
-
-        .titulo {
-            padding-top: 0;
-            padding-bottom: 0;
-            /* font-weight: 600 */
-        }
-
-        .subtitulo {
-            /* color: #CCCCCC; */
-
-            color: #848384;
-            /* font-weight: 600; */
-        }
-
-        .descCategoria {
-            color: #848384;
-            /* color: #ADACAC; */
-            /* color: #cccccc; */
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .zao {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-            border-radius: 35px;
-            font-family: 'Cabin', sans-serif;
-            background-color: #fff;
-
-            padding: 20px;
-            height: 410px;
-
-            transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
-        }
-
-        .zao:hover {
-            border-color: #e9e2e2;
-            background-color: #f9f9f9;
-            transform: scale(1.02);
-        }
-
-        .imgZao {
-            /* background-color: #f1f1f1; */
-            text-align: center;
-            border-radius: 5px;
-            padding-top: 15px;
-            /* padding-bottom: 5px; */
-        }
-
-        .imgZao img {
-            width: 230px;
-            height: 180px;
-        }
-
-        .nomeValorZao {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-
-        .nomeZao {
-            font-size: 22px
-        }
-
-        .precoZao {
-            font-size: 16px
-        }
-
-        .descricaoZao p {
-            word-wrap: break-word;
-            width: 80%;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        .agrupaIconeProduto {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .iconeProduto {
-            background-color: #8C6342;
-            margin-right: 10px;
-            padding: 6px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .iconeProduto img {
-            width: 35px;
-            height: 35px;
-        }
-
-        .imgFavoritar img {
-            position: relative;
-            top: 3px
-        }
-    </style>
 
     @if (session('sucesso'))
         <script>
@@ -149,7 +28,6 @@
             };
         </script>
     @endif
-
 
     @if (session('error'))
         <script>
@@ -209,7 +87,6 @@
                                 <p>Bebidas</p>
                             </a>
 
-
                         </div>
 
                     </div>
@@ -248,20 +125,20 @@
 
             <div class="listaProdutos">
 
-                <div class="zao">
+                <div class="produto">
                     <a href="{{ route('site.produto') }}">
-                        <div class="imgZao">
+                        <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
-                    <div class="nomeValorZao">
-                        <h2 class="nomeZao">X-salada</h2>
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
 
-                        <p class="precoZao">$15.90</p>
+                        <p class="precoProduto">$15.90</p>
                     </div>
 
-                    <div class="descricaoZao">
+                    <div class="descricaoProduto">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
                             ullamcorper vel eget libero.</p>
                     </div>
@@ -279,24 +156,23 @@
                             {{-- <i class="fa-regular fa-heart"></i> --}}
 
                         </div>
-
                     </div>
                 </div>
 
-                <div class="zao">
+                <div class="produto">
                     <a href="{{ route('site.produto') }}">
-                        <div class="imgZao">
+                        <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
-                    <div class="nomeValorZao">
-                        <h2 class="nomeZao">X-salada</h2>
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
 
-                        <p class="precoZao">$15.90</p>
+                        <p class="precoProduto">$15.90</p>
                     </div>
 
-                    <div class="descricaoZao">
+                    <div class="descricaoProduto">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
                             ullamcorper vel eget libero.</p>
                     </div>
@@ -314,25 +190,23 @@
                             {{-- <i class="fa-regular fa-heart"></i> --}}
 
                         </div>
-
                     </div>
                 </div>
 
-
-                <div class="zao">
+                <div class="produto">
                     <a href="{{ route('site.produto') }}">
-                        <div class="imgZao">
+                        <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
-                    <div class="nomeValorZao">
-                        <h2 class="nomeZao">X-salada</h2>
+                    <div class="nomeValorProduto">
+                        <h2 class="nomeProduto">X-salada</h2>
 
-                        <p class="precoZao">$15.90</p>
+                        <p class="precoProduto">$15.90</p>
                     </div>
 
-                    <div class="descricaoZao">
+                    <div class="descricaoProduto">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
                             ullamcorper vel eget libero.</p>
                     </div>
@@ -350,9 +224,9 @@
                             {{-- <i class="fa-regular fa-heart"></i> --}}
 
                         </div>
-
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -386,8 +260,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
@@ -409,11 +294,22 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
-                    </div>
+                    <div class="agrupaIconeProduto">
 
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
+                    </div>
                 </div>
+
                 <div class="produto">
                     <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
@@ -432,8 +328,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -486,10 +393,22 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
+
                 <div class="produto">
                     <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
@@ -508,11 +427,23 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
-                <div class="produto">
+
+                 <div class="produto">
                     <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
@@ -530,8 +461,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,9 +14,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -31,15 +31,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button>Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -54,15 +65,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -77,8 +99,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,9 +129,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -113,15 +146,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -136,15 +180,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
-                    </div>
+                    <div class="agrupaIconeProduto">
 
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
+                    </div>
                 </div>
+
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -159,8 +214,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,9 +245,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -196,14 +262,25 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -218,14 +295,25 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -240,8 +328,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -259,9 +358,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -276,15 +375,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button>Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -299,15 +409,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -322,8 +443,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -340,9 +472,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -357,15 +489,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button>Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -380,15 +523,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -403,8 +557,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -421,9 +586,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -438,15 +603,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button>Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -461,15 +637,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -484,8 +671,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -502,9 +700,9 @@
             <div class="listaProdutos">
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -519,15 +717,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button>Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -542,15 +751,26 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="produto">
-                    <a href="produto.html">
+                    <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
-                            <img src="./img/img-corrigida/duplo-cheddar.png" alt="" srcset="">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
                         </div>
                     </a>
 
@@ -565,8 +785,19 @@
                             ullamcorper vel eget libero.</p>
                     </div>
 
-                    <div class="addCart">
-                        <button class="botaoAddCart">Add to Cart</button>
+                    <div class="agrupaIconeProduto">
+
+                        <div class="iconeProduto imgCesta">
+
+                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        </div>
+
+                        <div class="iconeProduto imgFavoritar">
+
+                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                            {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                        </div>
                     </div>
                 </div>
             </div>

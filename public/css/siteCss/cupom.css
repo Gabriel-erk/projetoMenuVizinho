@@ -1,49 +1,68 @@
-@import url(main.css);
 
-.cupom {
-    display: flex;
-    margin-top: 30px;
+body {
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    border-radius: 15px;
-    border: 1px solid #ccc;
 }
 
-.imagem-cupom{
-    flex: 0 0 auto; /* Define a largura automática para a imagem */
+/* formatação da caixa pai do cupon */
+
+.containerCupons {
+    padding: 30px
 }
 
-.conteudo-cupom{
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* Ocupa todo o espaço restante disponível */
+/* formatação do cupon  */
+
+.cupon {
+    background-color:#fff;
+    border-radius: 20px;
+    padding: 20px; 
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra ao elemento */
+    transition: background-color ease 0.3s;
+
+    margin-bottom: 20px
 }
 
-.cupom h2 {
-    color: #E23030;
-}
-
-.texto-cupom{
-    padding: 10px;
-}
-
-.regra-expiracao{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.regra-expiracao a{
-    color: #E23030;
+.cupon:hover {
+    background-color: #f7f7f1;
     cursor: pointer;
 }
 
-.regra-expiracao a:hover{
-    font-weight: 500;
+/* formatando texto e imagem do cupon */
+
+.imgTextoCupon {
+    display: flex;
 }
 
-.rede-social a img:hover{
-    transform: scale(1.05);
-    transition: all linear 160ms;
+.imgTextoCupon img {
+    max-width: 70px;
 }
 
+.imgCupon {
+    margin-right: 10px
+}
+
+.textoCupon {
+    padding-top: 4px;
+}
+
+.textoCupon h2 {
+   font-weight: 500;
+   color:#8C6342;     
+}
+
+/* formatação de regras e duração do cupon */
+
+.regrasDuracaoCupon {
+    display: flex;
+    justify-content: space-between;
+
+    /* margin-top: 15px  */
+}
+
+.regrasDuracaoCupon a {
+    color: #8C6342
+}
+
+#rodape {
+    margin-top: 0;
+}

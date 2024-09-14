@@ -21,3 +21,7 @@ body {
     transform: scale(1.05);
     transition: all linear 160ms;
 }
+
+.ultimaAtt {
+    color: #848384;
+}

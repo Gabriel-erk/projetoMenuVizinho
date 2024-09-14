@@ -1,135 +1,13 @@
 @extends('layouts.site')
 
 @section('conteudo')
+    <link rel="stylesheet" href="{{ asset('css/usuariosCss/cadastro.css') }}">
+
     <style>
         body {
             background-color: #fff;
-            font-family: 'Poppins', sans-serif;
         }
 
-        #centraliza {
-            width: 100%;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        #conteudo {
-            border: 1px solid #ededed;
-            border-radius: 30px;
-            box-shadow: 5px 5px 10px #ccc;
-            padding: 20px;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 27px;
-            font-weight: 500;
-            margin-bottom: 30px
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
-            /* font-weight: 500; */
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            /* font-family: 'Poppins', sans-serif; */
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .col {
-            flex: 1;
-            margin-right: 10px;
-        }
-
-        .form-control {
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif
-        }
-
-        .form-control:hover {
-            border-color: #A5A5A5;
-        }
-
-        .form-control:focus {
-            background-color: #FFF;
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        .campoFoto:hover {
-            cursor: pointer;
-            background-color: #e4e4e4;
-            /* background-color: #e0dede; */
-        }
-
-        .col:last-child {
-            margin-right: 0;
-        }
-
-        select.form-control {
-            height: 40px;
-        }
-
-        #botoesCadastro {
-            display: flex;
-            width: 58.5%;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        #botoesCadastro a {
-            text-decoration: none;
-            font-size: 15px;
-            color: #007bff;
-            transition: color 0.15s ease-in-out;
-        }
-
-        #botoesCadastro a:hover {
-            /* text-decoration: underline; */
-            color: #0056b3;
-        }
-
-        #botoesCadastro button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 19px;
-
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-        }
-
-        #botoesCadastro button:hover {
-            cursor: pointer;
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
     </style>
 
     <div id="centraliza">

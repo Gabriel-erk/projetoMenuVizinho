@@ -1,14 +1,5 @@
 @import url(main2.css);
 
-body {
-    background-color: #F3F3F3;
-    /* position: relative; */
-}
-
-/* main {
-    position: relative;
-} */
-
 #limpaCarrinho {
     font-family: 'Cabin', sans-serif;
     background-color: #8C6342;
@@ -34,14 +25,12 @@ body {
 }
 
 .listaCarrinho {
-    /* margin-bottom: 80px; */
     background-color: #F9EED9;
 }
 
 .agrupaItemCarrinho {
     display: flex;
     align-items: center;
-    /* padding-top: 30px; */
 }
 
 .agrupaItemCarrinho img {
@@ -97,7 +86,6 @@ body {
 }
 
 .aproveiteTambem {
-    /* border-radius: 1px solid #000; */
     border-top: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
 }
@@ -111,14 +99,12 @@ body {
 
 .listaAproveiteTambem {
     display: flex;
-
-    /* text-align: center; */
 }
 
 .produtoListaAproveiteTambem {
 
     background-color: #fff;
-    border: solid 1px #ccc;
+    border: solid 1px #e0e0e0;
     border-radius: 5px;
     font-family: 'Cabin', sans-serif;
     padding: 15px;
@@ -129,9 +115,6 @@ body {
     margin-bottom: 50px;
     margin-left: 20px;
     margin-right: 20px;
-
-    /* transition: border-color 3s ease; */
-
 }
 
 .produtoListaAproveiteTambem:hover {
@@ -143,30 +126,24 @@ body {
 .imgProdutoAproveiteTambem {
     position: relative;
 
-    background-color: #E7E7E7;
-    /* text-align: center; */
     border-radius: 5px;
 }
 
 .imgProdutoAproveiteTambem img {
-    /* width: 20px; */
-    /* height: 190px; */
     padding: 15px;
-    /* padding-right: 30px; */
+    height: 58%;
 }
 
 .iconeMaisAproveiteTambem {
     /* icone não estava aparecendo sob a img, corrigi deicando sua posição absoluta em relação ao elemento pai (elemento pai com position relative)
     * icone não estava aparecendo pois estava sendo posicionado em relação a janela do navegador, utilizando essa "combinação" de comandos, faço com que ele seja posicionao em relação ao conteiner mais proximo com a sua posição definida (posição definida = com seu position diferente do position padrão, neste caso: caixa pai com position: relative) */
     position: absolute;
-    bottom: 30px;
+    bottom: 8px;
     right: 20px;
 
-    /* z-index: 999; */
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 50%;
     background-color: #8C6342;
-    /* background-color: #979797; */
 }
 
 .tituloValorAproveiteTambem {
@@ -197,12 +174,10 @@ body {
 }
 
 .pagamento-e-cupom h3 {
-    /* margin-top: 20px; */
     margin-bottom: 20px;
 }
 
 .pagamento-e-cupom a {
-    color: #EC3030;
     font-weight: 700;
 }
 
@@ -222,28 +197,35 @@ body {
     font-weight: 600;
 }
 
+#botaoAlterar,
+#botaoAdicionar {
+    color: #8C6342;
+    transition: transform 0.5s ease;
+}
+
 #botaoAlterar:hover,
 #botaoAdicionar:hover {
-    color: #c22828;
+    color: #643c1c;
+    transition: all linear 200ms;
 }
 
 .imgPagamentoCupom {
 
-    width: 70px;
-    /* height: 60px; */
-    background-color: #D9D9D9;
+    background-color: #202020;
     border-radius: 50%;
     text-align: center;
 
-    margin-right: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    margin-right: 8px;
+    height: 10vh;
+    width: 5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .imgPagamentoCupom img {
-    height: 45px;
+    height: 7vh;
 }
 
 .cupom {
@@ -255,35 +237,43 @@ body {
 
 .pagamentoCarrinho {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     padding: 20px 30px;
 }
 
 .valoresCarrinho {
-    margin-bottom: 100px;
+    margin-bottom: 8%;
 }
 
 .valoresCarrinho p {
     color: #9B9999;
 }
 
-.finaliza {
-    text-align: center;
-    margin-bottom: 80px;
-
+.valoresCarrinho h3 {
+    color: #9B9999;
+    font-weight: 600;
 }
 
-.finaliza h1 {
+.finaliza {
+    text-align: center;
+}
+
+.finaliza button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+
     display: inline-block;
     color: #FFFFFF;
-    background-color: #EC3030;
+    background-color: #8C6342;
     border-radius: 10px;
-    padding: 10px 50px;
+    border: none;
+    padding: 1rem 3rem;
 
     transition: transform 0.5s ease;
 }
 
-.finaliza h1:hover {
+.finaliza button:hover {
     cursor: pointer;
     transform: scale(1.05);
     transition: all linear 200ms;
@@ -392,13 +382,36 @@ body {
     margin-left: 5px;
 }
 
-#pagamentoSalvo h3 {
-    margin-left: 15px;
-    color: #B5B1B1;
+#pagamentoSalvo .formaPagamento:hover {
+    cursor: pointer;
 }
 
-.nomeCartao {
-    font-size: 12px;
+#pagamentoSalvo h3 {
+    margin-left: 15px;
+    color: #5C5B5B;
+}
+
+.nomeCartao,
+.dataCartao {
+    font-size: 15px
+}
+
+.dataCartao {
+    color: #716B6B;
+}
+
+#metodo-pagamento p {
+    font-weight: 500;
+}
+
+.imgFormaPagamento {
+    background-color: #202020;
+    padding: 1rem 0.5rem;
+    border-radius: 50%
+}
+
+.imgFormaPagamento img {
+    width: 35px
 }
 
 /* formatando mini telas (tela de cupom) */
@@ -512,11 +525,14 @@ body {
 
     text-align: center;
 
+    transition: transform 0.5s ease;
+    cursor: pointer;
 }
 
 .lanchesDisponiveis:hover {
     color: #fff;
     background-color: #8C6342;
+    transition: ALL linear 200ms;
 }
 
 #rodape {
