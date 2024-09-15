@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
         <h2>Lista de Categorias</h2>
-        <a href="{{ route('usuarioAdm.create') }}" class="btn btn-primary">Cadastrar</a>
+        <a href="{{ route('categorias.create') }}" class="btn btn-primary">Cadastrar</a>
     </div>
     <hr>
 
@@ -24,23 +24,23 @@
             <tr>
                 <th>ID</th>
 
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Ação</th>
+                <th>Titulo</th>
+                <th>Imagem</th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($usuarios as $user)
+            @foreach ($categoriasProdutos as $categoriaProduto)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->nome }}</td>
-                    <td>{{ $user->email }}</td>
+                    <td>{{ $categoriaProduto->id }}</td>
+                    <td>{{ $categoriaProduto->titulo_categoria }}</td>
+                    <td>{{ $categoriaProduto->imagem }}</td>
                     <td>
-                        <a href="{{ route('usuarioAdm.show', ['id' => $user->id]) }}" class="btn btn-primary">Visualizar</a>
-                        <a href="{{ route('usuarioAdm.edit', ['id' => $user->id]) }}" class="btn btn-secondary">Editar</a>
+                        <a href="{{ route('categorias.show', ['id' => $categoriaProduto->id]) }}" class="btn btn-primary">Visualizar</a>
+                        
+                        <a href="{{ route('categorias.edit', ['id' => $categoriaProduto->id]) }}" class="btn btn-secondary">Editar</a>
 
-                        <form action="{{ route('usuarioAdm.destroy', ['id' => $user->id]) }}" method="post"
+                        <form action="{{ route('categorias.destroy', ['id' => $categoriaProduto->id]) }}" method="post"
                             style="display: inline-block">
 
                             @csrf

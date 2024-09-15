@@ -9,7 +9,7 @@ class CategoriaProduto extends Model
 {
     use HasFactory;
 
-    protected $table = "cartao_cliente";
+    protected $table = "categoria_produto";
 
     protected $fillable = [
         'imagem',
