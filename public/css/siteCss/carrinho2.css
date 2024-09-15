@@ -102,25 +102,24 @@
 }
 
 .produtoListaAproveiteTambem {
-
     background-color: #fff;
-    border: solid 1px #e0e0e0;
-    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 7px;
     font-family: 'Cabin', sans-serif;
-    padding: 15px;
-    height: 340px;
-    width: 300px;
+    padding: 5%;
+    height: 45vh;
+    width: 22vw;
 
     margin-top: 20px;
     margin-bottom: 50px;
     margin-left: 20px;
-    margin-right: 20px;
+    transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .produtoListaAproveiteTambem:hover {
-    border-color: #e9ecef;
-
-    cursor: pointer;
+    border-color: #e9e2e2;
+    background-color: #f9f9f9;
+    transform: scale(1.02);
 }
 
 .imgProdutoAproveiteTambem {
@@ -130,7 +129,7 @@
 }
 
 .imgProdutoAproveiteTambem img {
-    padding: 15px;
+    padding: 12px;
     height: 58%;
 }
 
@@ -161,9 +160,9 @@
 }
 
 .descricaoProdutoAproveiteTambem p {
-    width: 210px;
+    width: 74%;
     word-wrap: break-word;
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 5px;
 }
 

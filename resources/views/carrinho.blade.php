@@ -3,11 +3,6 @@
 {{-- <link rel="stylesheet" href="./css/carrinho2.css"> --}}
 <link rel="stylesheet" href="{{ asset('css/siteCss/carrinho2.css') }}">
 
-<!-- adicionando fonte 3 (Signika Negative) -->
-{{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet"> --}}
-
 <!-- adicionando fonte 4 (Titan One) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +18,7 @@
     <style>
         body {
             background-color: #F3F3F3;
-
         }
-
     </style>
     <main>
         <!-- mini-tela pagamento -->
@@ -225,7 +218,11 @@
 
                 <div class="produtoListaAproveiteTambem item">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
+
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                         </div>
@@ -245,7 +242,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
 
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
@@ -265,7 +264,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
 
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
@@ -285,7 +286,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
 
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
@@ -310,7 +313,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                         </div>
@@ -330,7 +335,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                         </div>
@@ -350,7 +357,9 @@
 
                 <div class="produtoListaAproveiteTambem">
                     <div class="imgProdutoAproveiteTambem">
-                        <img src="./img/img-corrigida/duplo-cheddar.png">
+                        <a href="{{ route('site.produto') }}">
+                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}">
+                        </a>
                         <div class="iconeMaisAproveiteTambem">
                             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                         </div>
