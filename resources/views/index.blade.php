@@ -19,6 +19,8 @@
 @endsection
 
 @section('conteudo')
+    <link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}">
+
 
     @if (session('sucesso'))
         <script>
@@ -443,7 +445,7 @@
                     </div>
                 </div>
 
-                 <div class="produto">
+                <div class="produto">
                     <a href="{{ route('site.produto') }}">
                         <div class="imgProduto">
                             <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
