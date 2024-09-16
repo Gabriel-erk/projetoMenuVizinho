@@ -13,6 +13,10 @@ Route::get('/site', function () {
     return view('site');
 });
 
+Route::get('/site2', function () {
+    return view('layouts.siteBootstrap');
+});
+
 // SiteController
 Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
