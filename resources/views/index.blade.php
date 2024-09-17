@@ -1,5 +1,33 @@
 @extends('layouts.site')
 
+{{-- <link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}"> --}}
+
+<style>
+    .banner img {
+        /* se bugar eu coloco dnv */
+        /* width: 100%; */
+        height: 100vh;
+        border-radius: 5px;
+    }
+
+    /* ver se dá p consertar */
+    .containerCardapio .titulos {
+        padding-top: 15px;
+    }
+
+    .titulos {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .titulo {
+        color: #000;
+    }
+
+    .subtitulo {
+        color: #848384;
+    }
+</style>
+
 @section('banner')
     <div class="banner owl-carousel owl-theme">
 
@@ -19,9 +47,6 @@
 @endsection
 
 @section('conteudo')
-    <link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}">
-
-
     @if (session('sucesso'))
         <script>
             // mostra a mensagem depois de carregar o site primeiro
@@ -44,11 +69,12 @@
 
         <div class="cardapio">
 
-            <div class="containerCardapio">
-                <div class="titulos">
+            <div class="containerCardapio container">
+                <div class="titulos fw-bold p-2">
 
-                    <p class="subtitulo">Menu</p>
-                    <p class="titulo"> Nosso Cardápio</p>
+                    <p class="subtitulo fs-6">Menu</p>
+                    {{-- font size 5 e padding top e bottom 0 --}}
+                    <p class="fs-5 py-0">Nosso Cardápio</p>
 
                 </div>
 
@@ -120,7 +146,7 @@
             <div class="titulos">
 
                 <p class="subtitulo">Cardápio</p>
-                <p class="titulo">Lanches mais pedidos</p>
+                <p class="fs-5 py-0">Lanches mais pedidos</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -237,7 +263,7 @@
             <div class="titulos">
 
                 {{-- <p class="subtitulo">Cardápio</p> --}}
-                <p class="titulo">Ofertas Da Semana</p>
+                <p class="fs-5 py-0">Ofertas Da Semana</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -370,7 +396,7 @@
             <div class="titulos">
 
                 {{-- <p class="subtitulo">Cardápio</p> --}}
-                <p class="titulo">Lançamentos</p>
+                <p class="fs-5 py-0">Lançamentos</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -486,7 +512,7 @@
             <div class="titulos">
 
                 <p class="subtitulo">Clientes</p>
-                <p class="titulo">Feedbacks</p>
+                <p class="fs-5 py-0">Feedbacks</p>
 
             </div>
 

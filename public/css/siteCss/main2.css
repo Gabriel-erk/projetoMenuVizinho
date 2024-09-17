@@ -1,35 +1,9 @@
-/* formatando banners */
-
-.banner img {
-    width: 100%;
-    height: 650px;
-    border-radius: 5px;
-}
-
-/* formatando as classes titulos, subtitulo e titulo */
-.titulos {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    padding-bottom: 20px;
-}
-
-.titulo {
-    color: #000;
-    font-size: 25px;
-    padding-top: 0;
-    padding-bottom: 0px;
-}
+/* formatando as classes titulos, subtitulo e titulo */ 
 
 .descCategoria {
     color: #848384;
     font-weight: 500;
     font-size: 14px;
-}
-
-.subtitulo {
-    color: #848384;
-    font-weight: 700;
-    font-size: 15px;
 }
 
 /* formatando cardapio */
@@ -39,11 +13,6 @@
     width: 100%;
     height: 400px;
     margin-top: 50px;
-}
-
-.containerCardapio {
-    max-width: 1140px;
-    margin: 0 auto;
 }
 
 .containerCardapio .titulos {
