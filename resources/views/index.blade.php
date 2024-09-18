@@ -25,6 +25,19 @@
 
     .subtitulo {
         color: #848384;
+        font-weight: 600
+    }
+
+    .descCategoria {
+        color: #848384;
+        font-size: 1em;
+    }
+
+    .cardapio {
+        /* background-color: #fff; */
+        /* width: 100%; */
+        /* height: 400px; */
+        /* margin-top: 50px; */
     }
 </style>
 
@@ -67,14 +80,15 @@
 
     <section id="lista-cardapio">
 
-        <div class="cardapio">
+        {{-- bg-light w-100 h-25 mt-5 --}}
+        <div class="cardapio bg-light w-100 mt-5" style="height: 55vh">
 
             <div class="containerCardapio container">
                 <div class="titulos fw-bold p-2">
 
                     <p class="subtitulo fs-6">Menu</p>
                     {{-- font size 5 e padding top e bottom 0 --}}
-                    <p class="fs-5 py-0">Nosso Cardápio</p>
+                    <p class="fs-5 py-0 fs-5 py-0 fw-semibold">Nosso Cardápio</p>
 
                 </div>
 
@@ -146,7 +160,7 @@
             <div class="titulos">
 
                 <p class="subtitulo">Cardápio</p>
-                <p class="fs-5 py-0">Lanches mais pedidos</p>
+                <p class="fs-5 py-0 fw-semibold">Lanches mais pedidos</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -263,7 +277,7 @@
             <div class="titulos">
 
                 {{-- <p class="subtitulo">Cardápio</p> --}}
-                <p class="fs-5 py-0">Ofertas Da Semana</p>
+                <p class="fs-5 py-0 fs-5 py-0 fw-semibold">Ofertas Da Semana</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -396,7 +410,7 @@
             <div class="titulos">
 
                 {{-- <p class="subtitulo">Cardápio</p> --}}
-                <p class="fs-5 py-0">Lançamentos</p>
+                <p class="fs-5 py-0 fs-5 py-0 fw-semibold">Lançamentos</p>
                 <p class="descCategoria">Aproveite o melhor dos nossos lanches.</p>
 
             </div>
@@ -512,7 +526,7 @@
             <div class="titulos">
 
                 <p class="subtitulo">Clientes</p>
-                <p class="fs-5 py-0">Feedbacks</p>
+                <p class="fs-5 py-0 fs-5 py-0 fw-semibold">Feedbacks</p>
 
             </div>
 
