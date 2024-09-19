@@ -10,7 +10,7 @@
 
     <!-- css carrosel -->
     <link rel="stylesheet" href="{{ asset('css/siteCss/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/siteCss/owl.theme.default.min.css') }}">   
+    <link rel="stylesheet" href="{{ asset('css/siteCss/owl.theme.default.min.css') }}">
 
     <!-- adicionando fonte 1 (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,11 +82,6 @@
             background-color: rgb(59, 57, 57, 0.164) !important;
         }
 
-        /* .botaoLoginCadastro a {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        } */
-
         /* rodapé */
 
         #rodape {
@@ -135,15 +130,27 @@
             margin-right: 0.625rem;
             /* Aproximadamente 15px */
             margin-top: 0.9375rem;
-            /* Aproximadamente 5px 10px */
-            padding: 0.3125rem 0.625rem;
+            width: 1.8vw;
+            height: 3.3vh;
+        }
+
+        /* permitindo que o a tenha todo o espaço e eu posicione o que está dentro dele no centro */
+        .icone a {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center
         }
 
         /* múltiplos elementos i, então pode deixar aqui, sem bootstrap */
         .icone i {
+            width: 1.4rem;
             /* Aproximadamente 17px */
-            width: 1.0625rem;
-            text-align: center;
+            /* width: 1.0625rem; */
+            /* text-align: center; */
         }
     </style>
 
@@ -172,8 +179,9 @@
             <nav class="navbar navbar-dark">
 
                 <a href="{{ route('site.carrinho') }}">
-                    <button type="button" class=" me-3 btn btn-primary position-relative"><i
-                            class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i> <span
+                    <button type="button" class="me-3 btn btn-primary position-relative"
+                        style="width: 3em; height: 2.5em"><i class="fa-solid fa-bag-shopping"
+                            style="color: #ffffff;"></i> <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
                             <span class="visually-hidden">unread messages</span></span>
                     </button>

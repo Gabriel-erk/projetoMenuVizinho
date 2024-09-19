@@ -76,7 +76,8 @@ class UsuarioController extends Controller
         return view('admin.usuarios.cadastro');
     }
 
-    public function createUserAdmView(){
+    public function createUserAdmView()
+    {
         return view('admin.adm.admUsuarios.cadastro');
     }
 
@@ -140,7 +141,7 @@ class UsuarioController extends Controller
     public function minhaConta()
     {
         return view('admin.usuarios.minhaConta');
-    }   
+    }
 
     // quando este método for passado, ele listará as informações do usuário nos camnpos: email, telefone, nome, sobrenome (eles vao ter um placeholder mostrando as informações atuais daquele usuário, ou seja, para chamar este método, precisará passar o id do usuário atual para a view, com compact também)
     public function infoConta(string $id)
@@ -150,23 +151,12 @@ class UsuarioController extends Controller
     }
 
     /*
-    * views da seçao de pagamentos 
-    */
+* meus pedidos 
+*/
 
-    // public function viewPagamentos(string $id)
-    // {
-    //     $pagamentos = MetodoPagamento::all();
-    //     return view('admin.usuarios.gerenciarPagamentos', compact('pagamentos'));
-    // }
-
-    // vai editar as informações da forma de pagamento escolhida, ela será passada quando o metodo for chamado, ou seja, quando clicar no lapis, ao lado de um pagamento salvo, sera passado o 'id', daquela forma de pagamento, então, ao realizar conexão com db, precisarei passar o id dql pagamento atraves da rota(em webp) e pegar aaqui newPagamentos(string $id), e devolver para a view return view ('admin.usuarios.adicionarPagamento', compact($id));
-    // public function newPagamentos()
-    // {
-    //     return view('admin.usuarios.adicionarPagamento');
-    // }
-
-    // public function editPagamentos()
-    // {
-    //     return view('admin.usuarios.editarPagamento');
-    // }
+    // vou pedir id do usuário dps - mostrar apenas os pedidos referentes a aquele usuário
+    public function meusPedidos()
+    {
+        return view('admin.usuarios.meusPedidos');
+    }
 }
