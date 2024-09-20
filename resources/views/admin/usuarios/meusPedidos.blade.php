@@ -13,12 +13,11 @@
 
             <div id="pedido">
                 <div id="imgInfoPedido" class="d-flex">
-                    <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="w-25" alt=""
-                        srcset="">
+                    <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="w-25" alt="" srcset="">
 
-                        <span class="bg-secondary p-2">1</span>
+                    <span class="bg-secondary d-flex justify-content-center align-items-center text-white rounded" style="width: 1.8vw; height: 4.0vh">1</span>
 
-                        <p style="color:#7a7979">MRS. King Extra Bacon</p>
+                    <p  class="" style="color:#7a7979">MRS. King Extra Bacon</p>
                 </div>
             </div>
         </section>
