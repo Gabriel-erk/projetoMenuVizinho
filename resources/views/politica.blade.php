@@ -1,18 +1,14 @@
 @extends('layouts.site')
 
-<link rel="stylesheet" href="{{ asset('css/siteCss/politica.css') }}">
-
-
 @section('conteudo')
     <style>
         body {
-            background-color: #fff
+            background-color: #fff;
         }
     </style>
-    
-    <main class="container">
-        <p class="politica-privacidade">
-        <div class="topicos">
+
+    <main class="container pt-5" style="font-family: 'Poppins', sans-serif">
+        <div class="pb-4">
             <h2>Política de Privacidade do Mr. Burger</h2>
 
             A Mr. Burger, doravante denominada "nós", preza pela transparência e pela proteção dos dados dos nossos
@@ -25,7 +21,7 @@
             endereço de e-mail, número de telefone e preferências de alimentação.
         </div>
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Uso das Informações</h3>
 
             Utilizamos as informações coletadas para personalizar sua experiência no site, processar pedidos, melhorar
@@ -34,7 +30,7 @@
 
         </div>
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Proteção de Dados</h3>
 
             Tomamos medidas adequadas para proteger suas informações contra acesso não autorizado, alteração, divulgação
@@ -45,7 +41,7 @@
         </div>
 
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Compartilhamento de Informações</h3>
 
             Não vendemos, comercializamos ou transferimos suas informações pessoais para terceiros sem o seu
@@ -54,7 +50,7 @@
         </div>
 
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Cookies e Tecnologias Semelhantes</h3>
 
             Nosso site utiliza cookies e tecnologias semelhantes para melhorar a sua experiência online, coletar
@@ -63,15 +59,16 @@
 
         </div>
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Links para Sites de Terceiros</h3>
 
             Nosso site pode conter links para sites de terceiros. Não nos responsabilizamos pelas práticas de
             privacidade
             desses sites. Recomendamos a leitura das políticas de privacidade de cada site visitado.
+            
         </div>
 
-        <div class="topicos">
+        <div class="pb-4">
             <h3>Alterações na Política de Privacidade</h3>
 
             Reservamo-nos o direito de atualizar ou modificar esta Política de Privacidade a qualquer momento. As
@@ -81,9 +78,10 @@
             Ao utilizar nosso site, você concorda com esta Política de Privacidade. Se tiver dúvidas sobre nossas
             práticas
             de privacidade, entre em contato conosco.
+            
         </div>
 
-        <p class="ultimaAtt">Última atualização: 27/11/23</p>
+        <p class="fw-normal" style="color:#848384">Última atualização: 27/11/23</p>
         </p>
     </main>
 @endsection

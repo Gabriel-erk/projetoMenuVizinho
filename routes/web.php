@@ -42,7 +42,7 @@ Route::middleware(["auth"])->group(function () {
         // meio correto de se fazer é este, porém, ainda não estou passando id
         Route::get('/admin/usuarios/minhaConta', 'minhaConta')->name('usuario.minhaConta');
         Route::get('/admin/usuarios/minhasInformacoes/{id}', 'infoConta')->name('usuario.minhasInformacoes');
-        Route::get('/admin/usuarios/meusPedidos', 'meusPedidos')->name('usuário.meusPedidos');
+        Route::get('/admin/usuarios/meusPedidos', 'meusPedidos')->name('usuario.meusPedidos');
     });
 
     Route::controller(MetodoPagamentoController::class)->group(function () {

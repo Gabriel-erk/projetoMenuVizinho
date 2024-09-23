@@ -217,7 +217,7 @@
                                         @if (auth()->user()->tipo == 1)
                                             <li class="list-group-item">
                                                 <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
-                                                <a href="#" class="text-decoration-none text-dark ps-2">Meus
+                                                <a href="{{ route('usuario.meusPedidos') }}" class="text-decoration-none text-dark ps-2">Meus
                                                     Pedidos</a>
                                             </li>
 

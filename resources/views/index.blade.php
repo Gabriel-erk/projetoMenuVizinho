@@ -1,8 +1,7 @@
 @extends('layouts.site')
 
-
-
-{{-- <link rel="stylesheet" href="{{ asset('css/siteCss/main2.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('css/siteCss/products.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/titleProducts.css') }}">
 
 @section('banner')
     <div class="banner owl-carousel owl-theme">
@@ -569,32 +568,6 @@
                 border-radius: 5px;
             }
 
-            /* ver se dá p consertar */
-            .containerCardapio .titulos {
-                padding-top: 15px;
-            }
-
-            /* formatando as classes titulos, subtitulo e titulo */
-            .titulos {
-                font-family: 'Poppins', sans-serif;
-                margin-top: 1.5em;
-                margin-bottom: 1em;
-            }
-
-            .titulo {
-                color: #000;
-            }
-
-            .subtitulo {
-                color: #848384;
-                font-weight: 600
-            }
-
-            .descCategoria {
-                color: #848384;
-                font-size: 1em;
-            }
-
             /* formatando cardapio */
             .containerCardapio .titulos {
                 padding-top: 1.5em;
@@ -634,89 +607,6 @@
                 padding: 10px 0;
                 background-color: #E7E7E7;
                 color: #000;
-            }
-
-            /* produtos */
-
-            .listaProdutos {
-                display: flex;
-                justify-content: space-between;
-                gap: 1.5em;
-            }
-
-            .produto {
-                border: none;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-                border-radius: 2.2rem;
-                font-family: 'Cabin', sans-serif;
-                background-color: #fff;
-
-                padding: 1.3em;
-                height: 18%;
-                /* height: 65vh; */
-
-                transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
-            }
-
-            .produto:hover {
-                border-color: #e9e2e2;
-                background-color: #f9f9f9;
-                transform: scale(1.02);
-            }
-
-            .imgProduto {
-                text-align: center;
-                padding-top: 0.4em;
-            }
-
-            .imgProduto img {
-                width: 75%;
-                height: 25vh;
-            }
-
-            .nomeValorProduto {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 1em;
-            }
-
-            .nomeProduto {
-                font-size: 1.44em
-            }
-
-            .precoProduto {
-                font-size: 1em;
-            }
-
-            .descricaoProduto p {
-                word-wrap: break-word;
-                width: 80%;
-                font-size: 0.85em;
-                margin-top: 5px;
-            }
-
-            .agrupaIconeProduto {
-                display: flex;
-                margin-top: 1rem;
-            }
-
-            .iconeProduto {
-                background-color: #8C6342;
-                margin-right: 0.5em;
-                padding: 0.39em;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .iconeProduto img {
-                width: 100%;
-                height: 5vh;
-            }
-
-            .imgFavoritar img {
-                position: relative;
-                top: 3px
             }
 
             /* formatando seção de avaliação de clientes */
