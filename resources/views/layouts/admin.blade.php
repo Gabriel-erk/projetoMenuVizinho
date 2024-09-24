@@ -43,8 +43,9 @@
                         <li class="list-group-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="list-group-item"><a href="{{ route('usuarioAdm.index') }}">Usuários</a></li>
                         <li class="list-group-item"><a href="{{ route('categorias.index') }}">Categorias</a></li>
-                        {{-- <li class="list-group-item"><a href="{{ route('servico.index') }}">Serviços</a></li>
-                        <li class="list-group-item"><a href="{{ route('usuario.index') }}">Usuários</a></li> --}}
+                        <li class="list-group-item"><a href="{{ route('subCategorias.index') }}">Sub categorias</a></li>
+                        <li class="list-group-item"><a href="{{ route('produtos.index') }}">Produtos</a></li>
+                       
                     </ul>
                 </nav>
 

@@ -4,6 +4,8 @@ use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\ParceirosController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
@@ -70,7 +72,6 @@ Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name(
 Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro')->middleware('guest');
 Route::post('/admin/usuarios/salvar', [UsuarioController::class, 'store'])->name('usuario.store');
 
-
 /* pasta de categoriaProdutos */
 
 Route::controller(CategoriasProdutoController::class)->group(function () {
@@ -82,7 +83,31 @@ Route::controller(CategoriasProdutoController::class)->group(function () {
 
     Route::get('/admin/adm/admCategorias/editar/{id}', 'edit')->name('categorias.edit');
     Route::put('/admin/adm/admCategorias/atualizar/{id}', 'update')->name('categorias.update');
-    Route::delete('/admin/adm/admCategorias/deletar/{id}', 'destroy')->name('categorias.destroy');    
+    Route::delete('/admin/adm/admCategorias/deletar/{id}', 'destroy')->name('categorias.destroy');
+});
+
+Route::controller(SubCategoriasController::class)->group(function () {
+    Route::get('/admin/adm/admSubCategorias/index', 'index')->name('subCategorias.index');
+    Route::get('/admin/adm/admSubCategorias/visualizar/{id}', 'show')->name('subCategorias.show');
+    Route::get('/admin/adm/admSubCategorias/cadastro', 'create')->name('subCategorias.create');
+
+    Route::post('/admin/adm/admSubCategorias/salvarCategoria', 'store')->name('subCategorias.store');
+
+    Route::get('/admin/adm/admSubCategorias/editar/{id}', 'edit')->name('subCategorias.edit');
+    Route::put('/admin/adm/admSubCategorias/atualizar/{id}', 'update')->name('subCategorias.update');
+    Route::delete('/admin/adm/admSubCategorias/deletar/{id}', 'destroy')->name('subCategorias.destroy');
+});
+
+Route::controller(ProdutoController::class)->group(function () {
+    Route::get('/admin/adm/admProdutos/index', 'index')->name('produtos.index');
+    Route::get('/admin/adm/admProdutos/visualizar/{id}', 'show')->name('produtos.show');
+    Route::get('/admin/adm/admProdutos/cadastro', 'create')->name('produtos.create');
+
+    Route::post('/admin/adm/admProdutos/salvarCategoria', 'store')->name('produtos.store');
+
+    Route::get('/admin/adm/admProdutos/editar/{id}', 'edit')->name('produtos.edit');
+    Route::put('/admin/adm/admProdutos/atualizar/{id}', 'update')->name('produtos.update');
+    Route::delete('/admin/adm/admProdutos/deletar/{id}', 'destroy')->name('produtos.destroy');
 });
 
 /* pasta cadastroParceiros */

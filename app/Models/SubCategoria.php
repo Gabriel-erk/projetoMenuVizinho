@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriaProduto extends Model
+class SubCategoria extends Model
 {
     use HasFactory;
 
-    protected $table = "categoria_produto";
+    protected $table = "sub_categoria";
 
     protected $fillable = [
-        'titulo_categoria',
+        'titulo_sub_categoria',
         'imagem'
     ];
 }

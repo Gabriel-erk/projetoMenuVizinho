@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoriaProduto;
+use App\Models\SubCategoria;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
-class CategoriasProdutoController extends Controller
+class SubCategoriasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categoriasProdutos = CategoriaProduto::all();
-        return view('admin.adm.admCategorias.index', compact('categoriasProdutos'));
+        $subCategorias = SubCategoria::all();
+        return view('admin.adm.admSubCategorias.index', compact('subCategorias'));
     }
 
     /**
@@ -23,7 +23,7 @@ class CategoriasProdutoController extends Controller
      */
     public function create()
     {
-        return view('admin.adm.admCategorias.cadastro');
+        return view('admin.adm.admSubCategorias.cadastro');
     }
 
     /**
@@ -32,13 +32,13 @@ class CategoriasProdutoController extends Controller
     public function store(Request $request)
     {
         // Limite de 4 registros
-        if (CategoriaProduto::count() >= 4) {
+        if (SubCategoria::count() >= 4) {
             return redirect()->back()->with('error', 'Não é possível adicionar mais de 4 registros.');
         }
 
         // Validação
         $request->validate([
-            'titulo_categoria' => 'required|string',
+            'titulo_sub_categoria' => 'required|string',
             // 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' garante que o arquivo enviado seja uma imagem nos formatos permitidos, com tamanho máximo de 2 MB.
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -49,12 +49,12 @@ class CategoriasProdutoController extends Controller
             $imagemPath = $request->file('imagem')->store('images', 'public');
 
             // Cria o registro com o caminho da imagem
-            CategoriaProduto::create([
-                'titulo_categoria' => $request->titulo_categoria,
+            SubCategoria::create([
+                'titulo_sub_categoria' => $request->titulo_sub_categoria,
                 'imagem' => $imagemPath, // Armazena o caminho da imagem
             ]);
 
-            return redirect()->route('categorias.index')->with('sucesso', 'Categoria cadastrada com sucesso!');
+            return redirect()->route('subCategorias.index')->with('sucesso', 'Sub-Categoria cadastrada com sucesso!');
         }
 
         return redirect()->back()->with('error', 'Erro ao carregar a imagem.');
@@ -66,8 +66,8 @@ class CategoriasProdutoController extends Controller
      */
     public function show(string $id)
     {
-        $categoriaProduto = CategoriaProduto::findOrFail($id);
-        return view('admin.adm.admCategorias.visualizar', compact('categoriaProduto'));
+        $subCategoria = SubCategoria::findOrFail($id);
+        return view('admin.adm.admSubCategorias.visualizar', compact('subCategoria'));
     }
 
     /**
@@ -75,8 +75,8 @@ class CategoriasProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        $categoriaProduto = CategoriaProduto::findOrFail($id);
-        return view('admin.adm.admCategorias.editar', compact('categoriaProduto'));
+        $subCategoria = SubCategoria::findOrFail($id);
+        return view('admin.adm.admSubCategorias.editar', compact('subCategoria'));
     }
 
     /**
@@ -85,18 +85,18 @@ class CategoriasProdutoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'titulo_categoria' => 'required',
+            'titulo_sub_categoria' => 'required',
             'imagem' => 'required'
         ]);
 
-        $categoriaProduto = CategoriaProduto::findOrFail($id);
+        $SubCategoria = SubCategoria::findOrFail($id);
 
-        $categoriaProduto->update([
-            'titulo_categoria' => $request->titulo_categoria,
+        $SubCategoria->update([
+            'titulo_sub_categoria' => $request->titulo_sub_categoria,
             'imagem' => $request->imagem
         ]);
 
-        return redirect()->route('categorias.index')->with('sucesso', 'Usuário atualizado com sucesso!!!');
+        return redirect()->route('subCategorias.index')->with('sucesso', 'Sub-Categoria atualizado com sucesso!!!');
     }
     /**
      * Remove the specified resource from storage.
@@ -104,12 +104,12 @@ class CategoriasProdutoController extends Controller
     public function destroy(string $id)
     {
         try {
-            $categoriaProduto = CategoriaProduto::findOrFail($id);
-            $categoriaProduto->delete();
-            return redirect()->route('categorias.index')->with('sucesso', 'Categoria deletada com sucesso!!!');
+            $SubCategoria = SubCategoria::findOrFail($id);
+            $SubCategoria->delete();
+            return redirect()->route('subCategorias.index')->with('sucesso', 'Sub-Categoria deletada com sucesso!!!');
         } catch (\Exception $e) {
 
-            return redirect()->route('admin.adm.admCategorias.index')->with('error', 'Erro ao deletar a categoria');
+            return redirect()->route('admin.adm.admSubCategorias.index')->with('error', 'Erro ao deletar a sub-categoria');
         }
     }
 }
