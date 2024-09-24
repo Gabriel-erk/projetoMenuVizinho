@@ -24,7 +24,8 @@
             <tr>
                 <th>ID</th>
 
-                <th>Titulo</th>
+                <th>Nome</th>
+                <th>Descrição</th>
                 <th>Imagem</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                 <tr>
                     <td>{{ $subCategoria->id }}</td>
                     <td>{{ $subCategoria->titulo_sub_categoria }}</td>
+                    <td>{{ $subCategoria->descricao }}</td>
                     <td>{{ $subCategoria->imagem }}</td>
                     <td>
                         <a href="{{ route('subCategorias.show', ['id' => $subCategoria->id]) }}" class="btn btn-primary">Visualizar</a>

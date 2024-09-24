@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\CategoriaProduto;
+
 
 class SiteController extends Controller
 {
     // paginas principais
     public function index()
-    {
-        return view('index');
+    {   
+        $categorias = CategoriaProduto::all();
+        return view('index', compact('categorias'));
     }
 
     public function cardapio()

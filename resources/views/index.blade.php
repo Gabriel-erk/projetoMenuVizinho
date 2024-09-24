@@ -41,79 +41,39 @@
     @endif
 
     <section id="lista-cardapio">
-
         {{-- bg-light w-100 h-25 mt-5 --}}
         <div class="cardapio bg-light mt-5" style="height: 58vh">
-
             <div class="containerCardapio container">
                 <div class="titulos fw-bold p-2">
 
-                    <span class="subtitulo fs-7 pb-0">Menu</span>
+                    <span class="subtitulo fs-7 pb-0 d-block">Menu</span>
                     {{-- font size 5 e padding top e bottom 0 --}}
-                    <p class="fs-5 py-0 fw-semibold">Nosso Cardápio</p>
+                    <span class="fs-5 py-0 fw-semibold d-block">Nosso Cardápio</span>
 
                 </div>
 
                 <div class="itensCardapio d-flex text-center justify-content-between"
                     style="font-family: 'Cabin', sans-serif">
 
-                    <div class="itemCardapio">
-
-                        <div class="infoCardapio">
-                            <a href="cardapio.html#listaLanches" class="text-decoration-none">
-                                <img src="{{ asset('img/hamburguer.webp') }}" alt="">
-
-                                <p>Lanches</p>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="itemCardapio">
-
-                        <div class="infoCardapio">
-
-                            <a href="cardapio.html#listaAcompanhamentos" class="text-decoration-none">
-                                <img src="{{ asset('img/batata-frita.webp') }}" alt="">
-                                <p>Acompanhamentos</p>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="itemCardapio">
-
-                        <div class="infoCardapio">
-
-                            <a href="cardapio.html#listaBebidas" class="text-decoration-none">
-                                <img src="{{ asset('img/suco.webp') }}" alt="">
-                                <p>Bebidas</p>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="itemCardapio">
-
-                        <div class="infoCardapio">
-
-                            <a href="cardapio.html#listaSobremesas" class="text-decoration-none">
-                                <img src="{{ asset('img/sorveteChocolate.png') }}" alt="">
-                            </a>
-
-                            <p>Sobremesas</p>
-                        </div>
-
-                    </div>
-
+                    @if ($categorias->isEmpty())
+                        <p>Nenhuma categoria cadastrada</p>
+                    @else
+                        <!-- Exibir dinamicamente as categorias cadastradas -->
+                        @foreach ($categorias as $categoria)
+                            <div class="itemCardapio">
+                                <div class="infoCardapio">
+                                    <a href="cardapio.html#lista{{ $categoria->titulo_categoria }}"
+                                        class="text-decoration-none">
+                                        <img src="{{ asset($categoria->imagem) }}" alt="{{ $categoria->titulo_categoria }}">
+                                        <p>{{ $categoria->titulo_categoria }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
-
         </div>
-
     </section>
 
     <main class="container">

@@ -17,8 +17,14 @@
         @csrf
         <div class="mb-3">
             <label for="titulo_sub_categoria" class="form-label">Titulo sub-categoria</label>
-            <input type="text" name="titulo_sub_categoria" class="form-control" id="titulo_sub_categoria" placeholder="Titulo da sub-categoria"
-                value="{{ old('titulo_sub_categoria') }}" maxlength="20">
+            <input type="text" name="titulo_sub_categoria" class="form-control" id="titulo_sub_categoria"
+                placeholder="Titulo da sub-categoria" value="{{ old('titulo_sub_categoria') }}" maxlength="20">
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição do Produto</label>
+            <textarea name="descricao" class="form-control" id="descricao" placeholder="Digite a descrição da sub-categoria"
+                rows="4">{{ old('descricao') }}</textarea>
         </div>
 
         <div class="mb-3">
