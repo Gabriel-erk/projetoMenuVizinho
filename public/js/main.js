@@ -42,23 +42,3 @@ $(".owl-carousel").owlCarousel({
     },
   },
 });
-
-
-
-// definindo funcionalidade da barra lateral (menu-lateral), deixando-o funcional
-document.addEventListener("DOMContentLoaded", function () {
-
-  const iconeMenu = document.getElementById("iconeMenu");
-  const fecharMenu = document.getElementById("fechar-menu");
-  const menuLateral = document.getElementById("menuLateral");
-
-  iconeMenu.addEventListener('click', function() {
-    menuLateral.style.right = '0px';
-    // menuLateral.style.display = 'block';
-  })
-
-  fecharMenu.addEventListener('click', function() {
-    menuLateral.style.right = '-550px';
-  })
-
-});
