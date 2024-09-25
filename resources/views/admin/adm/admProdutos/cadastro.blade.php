@@ -64,16 +64,19 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Sub-categoria do produto (opcional)</label>
+            <label for="" class="form-label">Categoria do produto</label>
             {{-- for each com as categorias --}}
             @foreach ($subCategorias as $subCategoria)
                 <div class="form-check mb-1">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    {{-- como vou passar o valor deste campo para o meu campo categoria_produto_id, este é o nome que vai no "name" - value $categoria->id pois é o valor que vou passar para o meu campo categoria_produto_id, já que ele precisa do id de alguma categoria - id="categoria_{{ $categoria->id }}": O id precisa ser único em cada botão de rádio, então use o id da categoria para garantir isso. --}}
+                    <input class="form-check-input" type="radio" name="sub_categoria_produto_id"
+                        id="sub_categoria_{{ $subCategoria->id }}" value="{{ $subCategoria->id }}">
+                    <label class="form-check-label" for="subCategoria_{{ $subCategoria->id }}">
                         {{ $subCategoria->titulo_sub_categoria }}
                     </label>
                 </div>
             @endforeach
+
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

@@ -25,4 +25,10 @@ class Produto extends Model
         // Define que um produto pertence a uma categoria - Informa que o produto pertence a uma categoria, utilizando a chave estrangeira
         return $this->belongsTo(CategoriaProduto::class, 'categoria_produto_id');
     }
+
+    public function subCategoria()
+    {
+        // Define que um produto pertence a uma categoria - Informa que o produto pertence a uma categoria, utilizando a chave estrangeira
+        return $this->belongsTo(SubCategoria::class, 'sub_categoria_produto_id');
+    }
 }

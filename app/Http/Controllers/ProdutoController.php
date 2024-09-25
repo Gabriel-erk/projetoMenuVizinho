@@ -123,6 +123,13 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $produto = Produto::findOrFail($id);
+            $produto->delete();
+            return redirect()->route('produtos.index')->with('sucesso', 'Produto deletada com sucesso!!!');
+        } catch (\Exception $e) {
+
+            return redirect()->route('admin.adm.admProdutos.index')->with('error', 'Erro ao deletar o produto');
+        }
     }
 }

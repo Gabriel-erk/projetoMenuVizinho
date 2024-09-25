@@ -18,7 +18,8 @@ class SiteController extends Controller
     public function cardapio()
     {   
         $categorias = CategoriaProduto::with('produtos')->get();
-        return view('cardapio', compact('categorias'));
+        $subCategorias = SubCategoria::with('produtos')->get();
+        return view('cardapio', compact('categorias', 'subCategorias'));
     }
 
     public function produto()

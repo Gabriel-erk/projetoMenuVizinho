@@ -59,5 +59,48 @@
             </div>
         @endforeach
 
+        @foreach ($subCategorias as $subCategoria)
+            <div class="titulos">
+                <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoria->titulo_sub_categoria }}</span>
+                <span class="descCategoria" style="display: block">{{ $subCategoria->descricao }} </span>
+            </div>
+
+            <div class="listaProdutos">
+                @foreach ($subCategoria->produtos as $produto)
+                    <div class="produto">
+                        <a href="{{ route('site.produto') }}">
+                            <div class="imgProduto">
+                                <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                            </div>
+                        </a>
+
+                        <div class="nomeValorProduto">
+                            <h2 class="nomeProduto">{{ $produto->nome }}</h2>
+                            <p class="precoProduto">${{ $produto->preco }}</p>
+                        </div>
+
+                        <div class="descricaoProduto">
+                            <p>{{ $produto->descricao }}</p>
+                        </div>
+
+                        <div class="agrupaIconeProduto">
+
+                            <div class="iconeProduto imgCesta">
+
+                                <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                            </div>
+
+                            <div class="iconeProduto imgFavoritar">
+
+                                <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                                {{-- <i class="fa-regular fa-heart"></i> --}}
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endforeach
+
     </main>
 @endsection
