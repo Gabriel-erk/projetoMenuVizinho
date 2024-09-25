@@ -13,7 +13,6 @@ class SubCategoria extends Model
 
     protected $fillable = [
         'titulo_sub_categoria',
-        'descricao',
-        'imagem'
+        'descricao'
     ];
 }

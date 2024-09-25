@@ -38,9 +38,10 @@ class CategoriasProdutoController extends Controller
 
         // Validação
         $request->validate([
-            'titulo_categoria' => 'required|string',
             // 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' garante que o arquivo enviado seja uma imagem nos formatos permitidos, com tamanho máximo de 2 MB.
             'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'titulo_categoria' => 'required|string',
+            'descricao' => 'required|string'
         ]);
 
         // Verifica se uma imagem foi carregada
@@ -50,8 +51,9 @@ class CategoriasProdutoController extends Controller
 
             // Cria o registro com o caminho da imagem
             CategoriaProduto::create([
-                'titulo_categoria' => $request->titulo_categoria,
                 'imagem' => $imagemPath, // Armazena o caminho da imagem
+                'titulo_categoria' => $request->titulo_categoria,
+                'descricao' => $request->descricao
             ]);
 
             return redirect()->route('categorias.index')->with('sucesso', 'Categoria cadastrada com sucesso!');
@@ -85,15 +87,17 @@ class CategoriasProdutoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'imagem' => 'required',
             'titulo_categoria' => 'required',
-            'imagem' => 'required'
+            'descricao' => 'required'
         ]);
 
         $categoriaProduto = CategoriaProduto::findOrFail($id);
 
         $categoriaProduto->update([
+            'imagem' => $request->imagem,
             'titulo_categoria' => $request->titulo_categoria,
-            'imagem' => $request->imagem
+            'descricao' => $request->descricao,
         ]);
 
         return redirect()->route('categorias.index')->with('sucesso', 'Usuário atualizado com sucesso!!!');

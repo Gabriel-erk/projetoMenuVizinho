@@ -14,6 +14,10 @@
             <td>{{ $categoriaProduto->titulo_categoria }}</td>
         </tr>
         <tr>
+            <th>Descrição</th>
+            <td>{{ $categoriaProduto->descricao }}</td>
+        </tr>
+        <tr>
             <th>Imagem</th>
             <td>{{ $categoriaProduto->imagem }}</td>
         </tr>

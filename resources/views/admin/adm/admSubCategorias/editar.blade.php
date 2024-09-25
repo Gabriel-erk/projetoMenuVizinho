@@ -27,13 +27,7 @@
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição do Produto</label>
             <textarea name="descricao" class="form-control" id="descricao" placeholder="Digite a descrição do produto"
-                rows="4">{{ old('descricao', $produto->descricao) }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="imagem" class="form-label">Imagem</label>
-            <input type="file" name="imagem" class="form-control" id="imagem"
-                value="{{ old('imagem', $subCategoria->imagem) }}">
+                rows="4">{{ old('descricao', $subCategoria->descricao) }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

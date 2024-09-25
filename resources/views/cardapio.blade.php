@@ -461,7 +461,7 @@
             </div>
         </section>
 
-        <section class="listaCombos">
+        <section class="subCatUm">
             <div class="titulos">
                 <span class="fs-5 fw-semibold">Combos</span>
 
@@ -573,7 +573,7 @@
             </div>
         </section>
 
-        <section class="listaOfertaSemana">
+        <section class="subCatDois">
             <div class="titulos">
                 <span class="fs-5 fw-semibold">Ofertas da semana</span>
 
@@ -685,7 +685,7 @@
             </div>
         </section>
 
-        <section class="listaLancamentos">
+        <section class="subCatTres">
             <div class="titulos">
                 <span class="fs-5 fw-semibold">Lançamentos</span>
 

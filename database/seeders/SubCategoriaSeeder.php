@@ -15,20 +15,20 @@ class SubCategoriaSeeder extends Seeder
     {
         DB::table('sub_categoria')->insert([
             [
-                'titulo_categoria' => 'Lanches mais pedidos',
+                'titulo_sub_categoria' => 'Lanches mais pedidos',
                 'descricao' => 'Aproveite o melhor dos nossos lanches.',
             ],
             [
-                'titulo_categoria' => 'Acompanhamentos',
-                'imagem' => 'img/batata-frita.webp'
+                'titulo_sub_categoria' => 'Ofertas da semana',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
             ],
             [
-                'titulo_categoria' => 'Bebidas',
-                'imagem' => 'img/suco.webp'
+                'titulo_sub_categoria' => 'Lançamentos',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
             ],
             [
-                'titulo_categoria' => 'Sobremesas',
-                'imagem' => 'img/sorveteChocolate.png'
+                'titulo_sub_categoria' => 'Combos',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
             ],
         ]);
     }

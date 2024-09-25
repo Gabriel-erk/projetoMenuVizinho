@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CategoriaProduto;
+use App\Models\SubCategoria;
 
 
 class SiteController extends Controller
@@ -15,8 +16,9 @@ class SiteController extends Controller
     }
 
     public function cardapio()
-    {
-        return view('cardapio');
+    {   
+        $subCategorias = SubCategoria::all();
+        return view('cardapio', compact('subCategorias'));
     }
 
     public function produto()

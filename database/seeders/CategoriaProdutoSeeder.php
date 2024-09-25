@@ -17,18 +17,22 @@ class CategoriaProdutoSeeder extends Seeder
         DB::table('categoria_produto')->insert([
             [
                 'titulo_categoria' => 'Lanches',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
                 'imagem' => 'img/hamburger.webp'
             ],
             [
                 'titulo_categoria' => 'Acompanhamentos',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
                 'imagem' => 'img/batata-frita.webp'
             ],
             [
                 'titulo_categoria' => 'Bebidas',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
                 'imagem' => 'img/suco.webp'
             ],
             [
                 'titulo_categoria' => 'Sobremesas',
+                'descricao' => 'Aproveite o melhor dos nossos lanches.',
                 'imagem' => 'img/sorveteChocolate.png'
             ],
         ]);

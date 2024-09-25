@@ -10,12 +10,12 @@
             <td>{{ $subCategoria->id }}</td>
         </tr>
         <tr>
-            <th>Titulo Categoria</th>
+            <th>Titulo Sub-Categoria</th>
             <td>{{ $subCategoria->titulo_sub_categoria }}</td>
         </tr>
         <tr>
-            <th>Imagem</th>
-            <td>{{ $subCategoria->imagem }}</td>
+            <th>Descrição</th>
+            <td>{{ $subCategoria->descricao }}</td>
         </tr>
         
     </table>

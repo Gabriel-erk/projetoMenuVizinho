@@ -27,8 +27,8 @@
                 <th>Imagem</th>
                 <th>Nome</th>
                 <th>Preço</th>
-                <th>Descrição</th>
-                <th>Info Nutricional</th>
+                {{-- <th>Descrição</th> --}}
+                {{-- <th>Info Nutricional</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -39,8 +39,8 @@
                     <td>{{ $produto->imagem }}</td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>
-                    <td>{{ $produto->descricao }}</td>
-                    <td>{{ $produto->info_nutricional }}</td>
+                    {{-- <td>{{ $produto->descricao }}</td> --}}
+                    {{-- <td>{{ $produto->info_nutricional }}</td> --}}
                     <td>
                         <a href="{{ route('produtos.show', ['id' => $produto->id]) }}" class="btn btn-primary">Visualizar</a>
                         

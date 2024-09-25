@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {   
         // colocando aqui para poder rodar com todas as outras seeders, com um comando menor
         $this->call(CategoriaProdutoSeeder::class);
+        $this->call(SubCategoriaSeeder::class);
 
         // User::factory(10)->create();
 

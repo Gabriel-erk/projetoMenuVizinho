@@ -27,11 +27,6 @@
                 rows="4">{{ old('descricao') }}</textarea>
         </div>
 
-        <div class="mb-3">
-            <label for="imagem" class="form-label">Imagem</label>
-            <input type="file" name="imagem" class="form-control" id="imagem">
-        </div>
-
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="{{ route('subCategorias.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>

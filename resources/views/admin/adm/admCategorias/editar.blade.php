@@ -20,8 +20,14 @@
         <div class="mb-3">
             <label for="titulo_categoria" class="form-label">Titulo categoria</label>
             <input type="text" name="titulo_categoria" class="form-control" id="titulo_categoria"
-                placeholder="Titulo da categoria"
-                value="{{ old('titulo_categoria', $categoriaProduto->titulo_categoria) }}" maxlength="20">
+                placeholder="Titulo da categoria" value="{{ old('titulo_categoria', $categoriaProduto->titulo_categoria) }}"
+                maxlength="20">
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição do Produto</label>
+            <textarea name="descricao" class="form-control" id="descricao" placeholder="Digite a descrição do produto"
+                rows="4">{{ old('descricao', $categoriaProduto->descricao) }}</textarea>
         </div>
 
         <div class="mb-3">

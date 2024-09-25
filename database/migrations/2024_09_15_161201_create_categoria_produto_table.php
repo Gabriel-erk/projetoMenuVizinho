@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('imagem');
             $table->string('titulo_categoria', 20);
+            $table->string('descricao', 40);
         });
     }
 
