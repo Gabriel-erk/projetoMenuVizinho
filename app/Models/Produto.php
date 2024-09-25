@@ -19,4 +19,10 @@ class Produto extends Model
         'sub_categoria_produto_id'
     ];
     use HasFactory;
+
+    public function categoria()
+    {
+        // Define que um produto pertence a uma categoria - Informa que o produto pertence a uma categoria, utilizando a chave estrangeira
+        return $this->belongsTo(CategoriaProduto::class, 'categoria_produto_id');
+    }
 }
