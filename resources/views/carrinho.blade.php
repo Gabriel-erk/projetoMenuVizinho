@@ -373,11 +373,10 @@
                         <h4>Cupom</h4>
                         <p style="color:#9b9999" class="fw-semibold">3 cupons disponiveis para compra</p>
                     </div>
-
                 </div>
 
-                <button id="botaoAdicionar" class="fw-bold" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Adicionar</button>
+                <button id="botaoAdicionar" class="fw-bold" style="border: none" data-bs-toggle="modal"
+                    data-bs-target="#modalCupom">Adicionar</button>
             </div>
         </div>
 
@@ -395,23 +394,62 @@
             </div>
         </div>
     </main>
-@endsection
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cupons</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+    <style>
+        .modal-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vh;
+            /* Garante que o modal fique centralizado verticalmente */
+        }
+    </style>
+    <!-- Modal -->
+    <div class="modal fade" id="modalCupom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-custom modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <!-- Adiciona 'modal-dialog-centered' -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cupons</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cuponsDisponiveis">
+                        <div class="agrupaCupom">
+                            <div class="infoCupom">
+                                <div>
+                                    <img src="{{ asset('img/cupom-carrinho.png') }}">
+                                </div>
+
+                                <div class="desc-cupom">
+                                    <h2>15R$ para lanches que possuem Bacon</h2>
+                                    <p>Disponivel para a compra atual</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="lanchesDisponiveis">ADICIONAR CUPOM</p>
+                    </div>
+
+                    <div class="cuponsDisponiveis">
+                        <div class="agrupaCupom">
+                            <div class="infoCupom">
+                                <div>
+                                    <img src="{{ asset('img/cupom-carrinho.png') }}">
+                                </div>
+                                <div class="desc-cupom">
+                                    <h2>15R$ para lanches que possuem Bacon</h2>
+                                    <p>OBS: Valido para pedidos acima de 25R$</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="lanchesDisponiveis">ADICIONAR CUPOM</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
