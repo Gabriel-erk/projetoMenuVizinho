@@ -85,152 +85,6 @@
         }
     </style>
     <main>
-        <!-- mini-tela pagamento -->
-
-        <div id="pagamento" class="telaPagamento">
-
-            <div class="fundoMiniTelaPagamento" id="fundoMiniTelaPagamento">
-                <i id="fechar-mini-tela" class="fa-solid fa-times"></i>
-
-                <div id="metodo-pagamento" class="formaPagar">
-                    <div class="formaPagamento">
-
-                        <div class="imgTituloFormaPagamento">
-                            <img src="{{ asset('img/pix-img.png') }}">
-                            <p>PIX</p>
-                        </div>
-
-                    </div>
-
-                    <div class="formaPagamento">
-
-                        <div class="imgTituloFormaPagamento">
-                            <img src="{{ asset('img/credit-card.png') }}">
-                            <p>Cartão de crédito</p>
-                        </div>
-
-                        <p><a href="{{ route('usuario.novaFormaPagamento') }}">Adicionar</a></p>
-                    </div>
-
-                    <div class="formaPagamento">
-
-                        <div class="imgTituloFormaPagamento">
-
-                            <img src="{{ asset('img/credit-card.png') }}">
-                            <p>Cartão de débito</p>
-                        </div>
-
-                        <p><a href="{{ route('usuario.novaFormaPagamento') }}">Adicionar</a></p>
-                    </div>
-
-                </div>
-
-                <div id="pagamentoSalvo" class="formaPagar">
-                    <h3>Cartões Salvos</h3>
-
-                    <div class="formaPagamento">
-
-                        <div class="imgTituloFormaPagamento">
-                            <div class="imgFormaPagamento">
-
-                                <img src="{{ asset('img/bandeiraCartao.png') }}">
-                            </div>
-                            <p class="nomeCartao">••5123</p>
-                            <p class="dataCartao">09/32</p>
-                        </div>
-
-                        {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
-                        {{-- <p><a href="#">Apagar</a></p> --}}
-
-                    </div>
-
-                    <div class="formaPagamento">
-
-                        <div class="imgTituloFormaPagamento">
-                            <div class="imgFormaPagamento">
-
-                                <img src="{{ asset('img/bandeiraCartao.png') }}">
-                            </div>
-                            <p class="nomeCartao">••5123</p>
-                            <p class="dataCartao">09/32</p>
-                        </div>
-
-                        {{-- removendo pois acredito que não seja a melhor escolha deixar para o usuário excluir um cartão por aqui, neste exato momento da aplicação --}}
-                        {{-- <p><a href="#">Apagar</a></p> --}}
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- mini-tela cupom -->
-        <div id="cupom-disponivel">
-
-            <div class="fundoMiniTelaCupom">
-
-                <i id="fechar-mini-tela2" class="fa-solid fa-times"></i>
-
-                <div class="cuponsDisponiveis">
-
-                    <div class="agrupaCupom">
-
-                        <div class="infoCupom">
-                            <div>
-                                <img src="{{ asset('img/cupom-carrinho.png') }}">
-                            </div>
-
-                            <div class="desc-cupom">
-                                <h2>15R$ para lanches que possuem Bacon</h2>
-                                <p>Disponivel para a compra atual</p>
-                            </div>
-
-                        </div>
-
-                        {{-- removendo pois acho que é meio sem sentido, já existe uma frase dizendo que tem cupons disponiveis, e ao clicar irá mostrar apenas os disponiveis para aquela compra --}}
-                        {{-- <div class="imgCupom2">
-                            <img src="./img/disponivel.webp">
-                            <img src="./img/disponivel.webp">
-                        </div> --}}
-
-                    </div>
-
-                    <p class="lanchesDisponiveis">ADICIONAR CUPOM
-                    </p>
-
-                </div>
-
-                <div class="cuponsDisponiveis">
-
-                    <div class="agrupaCupom">
-
-                        <div class="infoCupom">
-                            <div>
-                                <img src="{{ asset('img/cupom-carrinho.png') }}">
-                            </div>
-
-                            <div class="desc-cupom">
-                                <h2>15R$ para lanches que possuem Bacon</h2>
-                                <p>OBS: Valido para pedidos acima de 25R$</p>
-                            </div>
-
-                        </div>
-
-                        {{-- <div class="imgCupom2">
-                            <img src="./img/disponivel.webp">
-                        </div> --}}
-
-                    </div>
-
-                    <p class="lanchesDisponiveis">ADICIONAR CUPOM
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
         {{-- antes: .listaCarrinho --}}
         <div style="background-color: #f9eed9">
 
@@ -522,10 +376,8 @@
 
                 </div>
 
-                <div class="botaoAlterar">
-                    <a href="#" id="botaoAdicionar" class="fw-bold text-decoration-none">Adicionar</a>
-                </div>
-
+                <button id="botaoAdicionar" class="fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Adicionar</button>
             </div>
         </div>
 
@@ -541,67 +393,25 @@
                     style="font-family: 'Poppins', sans-serif; font-size: 1.1em; background-color:#8C6342; border: none; padding: 1rem 3rem">Finalizar
                     Compra</button>
             </div>
-
         </div>
-
     </main>
 @endsection
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        // Script da mini-tela de formas de pagamento
-
-        // botao que abre a tela 
-        const botaoAlterar = document.getElementById('botaoAlterar');
-        // tela pagamento
-        const divPagamento = document.getElementById('pagamento');
-        // botao que fecha a tela
-        const fecharMiniTela = document.getElementById('fechar-mini-tela');
-
-        botaoAlterar.onclick = function() {
-
-            event.preventDefault();
-            divPagamento.style.display = 'block';
-
-        }
-
-        fecharMiniTela.addEventListener('click', function() {
-
-            divPagamento.style.display = 'none';
-
-        })
-
-        window.onclick = function(event) {
-            if (event.target == divPagamento) {
-                divPagamento.style.display = 'none';
-            }
-        }
-
-        // Script da mini-tela de cupom
-
-        // botao que abre a mini tela
-        const botaoAdicionar = document.getElementById('botaoAdicionar');
-        // a mini tela
-        const miniTelaCupom = document.getElementById('cupom-disponivel');
-        // botao que fecha a mini tela
-        const fecharMiniTela2 = document.getElementById('fechar-mini-tela2');
-
-        botaoAdicionar.onclick = function() {
-            event.preventDefault();
-            miniTelaCupom.style.display = 'block'
-        }
-
-        fecharMiniTela2.addEventListener('click', function() {
-            miniTelaCupom.style.display = 'none'
-        })
-
-        window.onclick = function(event) {
-            if (event.target == miniTelaCupom) {
-
-                miniTelaCupom.style.display = 'none';
-            }
-        }
-
-    })
-</script>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cupons</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
