@@ -94,19 +94,19 @@
             // Pegando as primeiras 2 subCategorias (pré banner)
             $primeirasCategorias = $subCategorias->slice(0, 2);
             // Pegando as últimas 2 subCategorias (pós banner)
-            $ultimasCategorias = $categorias->slice(2);
+            $ultimasCategorias = $subCategorias->slice(2);
         @endphp
 
-        @foreach ($primeirasCategorias as $subCategoria)
+        @foreach ($primeirasCategorias as $subCategoriaUm)
             <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
-            @if ($subCategoria->produtos->isNotEmpty())
+            @if ($subCategoriaUm->produtos->isNotEmpty())
                 <div class="titulos">
-                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoria->titulo_sub_categoria }}</span>
-                    <span class="descCategoria" style="display: block">{{ $subCategoria->descricao }} </span>
+                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoriaUm->titulo_sub_categoria }}</span>
+                    <span class="descCategoria" style="display: block">{{ $subCategoriaUm->descricao }} </span>
                 </div>
 
                 <div class="listaProdutos">
-                    @foreach ($subCategoria->produtos as $produto)
+                    @foreach ($subCategoriaUm->produtos as $produto)
                         <div class="produto">
                             <a href="{{ route('site.produto') }}">
                                 <div class="imgProduto">
@@ -138,7 +138,7 @@
             @endif
         @endforeach
 
-        <div class="banner owl-carousel owl-theme mb-4">
+        <div class="banner owl-carousel owl-theme mb-4 mt-4">
 
             <div class="img-banner">
                 <img src="img/banner-certo.png" alt="">
