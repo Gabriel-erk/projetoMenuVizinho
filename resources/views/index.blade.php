@@ -459,7 +459,6 @@
                 <div class="d-flex container">
 
                     <div class="cliente">
-
                         <div class="imgCliente">
                             <img src="img/cliente01.png" alt="" srcset="" style="">
                         </div>
@@ -484,11 +483,9 @@
                                 <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
                             </div>
                         </div>
-
                     </div>
 
                     <div class="cliente">
-
                         <div class="imgCliente">
                             <img src="img/cliente01.png" alt="" srcset="">
                         </div>
@@ -513,9 +510,7 @@
                                 <img src="img/icon-star.png" alt="" srcset="">
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </section>

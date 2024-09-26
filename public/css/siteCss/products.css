@@ -13,8 +13,8 @@
     background-color: #fff;
 
     padding: 1.3em;
-    height: 18%;
-    /* height: 65vh; */
+    height: 52vh;
+    width: 33%;
 
     transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
 }

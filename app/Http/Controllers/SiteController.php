@@ -12,7 +12,9 @@ class SiteController extends Controller
     public function index()
     {   
         $categorias = CategoriaProduto::all();
-        return view('index', compact('categorias'));
+        // váriavel com os produtos de cada categoria
+        $categoriasProdutos = CategoriaProduto::with('produtos')->get();
+        return view('index', compact('categorias', 'categoriasProdutos'));
     }
 
     public function cardapio()

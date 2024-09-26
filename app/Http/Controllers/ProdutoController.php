@@ -41,7 +41,7 @@ class ProdutoController extends Controller
             'preco' => 'required|numeric|min:0',
             'descricao' => 'required|string',
             'info_nutricional' => 'required|string',
-            'categoria_produto_id' => 'required|exists:categoria_produto,id', // Validar categoria, exists:categoria_produto,id: Verifica se o valor fornecido para categoria_produto_id existe na coluna id da tabela categoria_produto
+            'categoria_produto_id' => 'nullable|exists:categoria_produto,id', // Validar categoria, exists:categoria_produto,id: Verifica se o valor fornecido para categoria_produto_id existe na coluna id da tabela categoria_produto
             'sub_categoria_produto_id' => 'nullable|exists:sub_categoria,id', // Validar subcategoria (opcional)
         ]);
 

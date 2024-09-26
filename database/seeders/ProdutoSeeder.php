@@ -42,8 +42,8 @@ class ProdutoSeeder extends Seeder
                     'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum ullamcorper vel eget libero.',
                     // 'descricao' => 'Descrição padrão do Produto ' . $i,
                     'info_nutricional' => 'Informações nutricionais do Produto ' . $i,
-                    'categoria_produto_id' => $categoria->id, // Associando à categoria existente
-                    'sub_categoria_produto_id' => $subCategoria->id, // Subcategoria é opcional, então deixamos como null
+                    'categoria_produto_id' => null, // Associando à nenhuma categoria
+                    'sub_categoria_produto_id' => $subCategoria->id, // associando somente a subCategoria
                 ]);
             }
         }

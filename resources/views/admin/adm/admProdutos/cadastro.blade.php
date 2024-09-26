@@ -64,7 +64,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="" class="form-label">Categoria do produto</label>
+            <label for="" class="form-label">Sub-categoria do produto</label>
             {{-- for each com as categorias --}}
             @foreach ($subCategorias as $subCategoria)
                 <div class="form-check mb-1">
