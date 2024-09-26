@@ -14,7 +14,8 @@ class SiteController extends Controller
         $categorias = CategoriaProduto::all();
         // váriavel com os produtos de cada categoria
         $categoriasProdutos = CategoriaProduto::with('produtos')->get();
-        return view('index', compact('categorias', 'categoriasProdutos'));
+        $subCategorias = SubCategoria::with('produtos')->get();
+        return view('index', compact('categorias', 'subCategorias'));
     }
 
     public function cardapio()

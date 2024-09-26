@@ -78,241 +78,65 @@
 
     <main class="container">
 
-        <section class="maisPedidos mb-4">
+        <style>
+            .x {
+                position: relative;
+                top: 1.5em
+            }
+        </style>
 
-            <div class="titulos">
+        <div class="titulos">
+            <span class="subtitulo x" style="display: block">Cardápio</span>
+        </div>
 
-                <span class="subtitulo" style="display: block">Cardápio</span>
+        {{-- Dividindo as categorias em 2 partes --}}
+        @php
+            // Pegando as primeiras 2 subCategorias (pré banner)
+            $primeirasCategorias = $subCategorias->slice(0, 2);
+            // Pegando as últimas 2 subCategorias (pós banner)
+            $ultimasCategorias = $categorias->slice(2);
+        @endphp
 
-                <span class="fs-5 fw-semibold" style="display: block">Lanches mais pedidos</span>
-                <span class="descCategoria" style="display: block">Aproveite o melhor dos nossos lanches.</span>
-
-            </div>
-
-            <div class="listaProdutos">
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
+        @foreach ($primeirasCategorias as $subCategoria)
+            <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
+            @if ($subCategoria->produtos->isNotEmpty())
+                <div class="titulos">
+                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoria->titulo_sub_categoria }}</span>
+                    <span class="descCategoria" style="display: block">{{ $subCategoria->descricao }} </span>
                 </div>
 
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
+                <div class="listaProdutos">
+                    @foreach ($subCategoria->produtos as $produto)
+                        <div class="produto">
+                            <a href="{{ route('site.produto') }}">
+                                <div class="imgProduto">
+                                    <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                                </div>
+                            </a>
+
+                            <div class="nomeValorProduto">
+                                <h2 class="nomeProduto">{{ $produto->nome }}</h2>
+                                <p class="precoProduto">${{ $produto->preco }}</p>
+                            </div>
+
+                            <div class="descricaoProduto">
+                                <p>{{ $produto->descricao }}</p>
+                            </div>
+
+                            <div class="agrupaIconeProduto">
+                                <div class="iconeProduto imgCesta">
+                                    <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                                </div>
+
+                                <div class="iconeProduto imgFavoritar">
+                                    <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                                </div>
+                            </div>
                         </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="listaOfertasSemana mb-4">
-
-            <div class="titulos">
-
-                {{-- <p class="subtitulo">Cardápio</p> --}}
-                <span class="fs-5 fw-semibold">Ofertas Da Semana</span>
-
-                <span class="descCategoria" style="display: block">Aproveite o melhor dos nossos lanches.</span>
-
-            </div>
-
-            <div class="listaProdutos">
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+            @endif
+        @endforeach
 
         <div class="banner owl-carousel owl-theme mb-4">
 
@@ -330,190 +154,46 @@
 
         </div>
 
-        <section class="listaLancamentos mb-4">
-
-            <div class="titulos">
-
-                {{-- <p class="subtitulo">Cardápio</p> --}}
-                <span class="fs-5 py-0 fw-semibold" style="display: block">Lançamentos</span>
-                <span class="descCategoria" style="display: block">Aproveite o melhor dos nossos lanches.</span>
-
-            </div>
-
-            <div class="listaProdutos">
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
+        @foreach ($ultimasCategorias as $subCategoriaDois)
+            <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
+            @if ($subCategoriaDois->produtos->isNotEmpty())
+                <div class="titulos">
+                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoriaDois->titulo_sub_categoria }}</span>
+                    <span class="descCategoria" style="display: block">{{ $subCategoriaDois->descricao }} </span>
                 </div>
 
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
+                <div class="listaProdutos">
+                    @foreach ($subCategoriaDois->produtos as $produto)
+                        <div class="produto">
+                            <a href="{{ route('site.produto') }}">
+                                <div class="imgProduto">
+                                    <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                                </div>
+                            </a>
 
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
+                            <div class="nomeValorProduto">
+                                <h2 class="nomeProduto">{{ $produto->nome }}</h2>
+                                <p class="precoProduto">${{ $produto->preco }}</p>
+                            </div>
 
-                        <p class="precoProduto">$15.90</p>
-                    </div>
+                            <div class="descricaoProduto">
+                                <p>{{ $produto->descricao }}</p>
+                            </div>
 
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
+                            <div class="agrupaIconeProduto">
+                                <div class="iconeProduto imgCesta">
+                                    <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                                </div>
 
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section id="listaClientes">
-            <div class="titulos">
-
-                <span class="subtitulo">Clientes</span>
-                <p class="fs-5 py-0 fw-semibold">Feedbacks</p>
-
-            </div>
-
-            <div class="avaliacoesClientes">
-                <div class="d-flex container">
-
-                    <div class="cliente">
-                        <div class="imgCliente">
-                            <img src="img/cliente01.png" alt="" srcset="" style="">
-                        </div>
-
-                        <div class="infoCliente">
-                            <h2 class="nomeCliente">Marilin Lunch</h2>
-
-                            <p class="comentarioCliente">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Explicabo non voluptatem fuga quae repellat ducimus ut nihil iusto eaque nulla
-                                exercitationem nobis molestias quibusdam labore, placeat incidunt, nesciunt, magni
-                                error!</p>
-
-                            <div class="notaCliente">
-                                <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
-
-                                <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
-
-                                <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
-
-                                <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
-
-                                <img src="{{ asset('img/icon-star.png') }}" alt="" srcset="">
+                                <div class="iconeProduto imgFavoritar">
+                                    <img src="{{ asset('img/favoritar3.png') }}" alt="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="cliente">
-                        <div class="imgCliente">
-                            <img src="img/cliente01.png" alt="" srcset="">
-                        </div>
-
-                        <div class="infoCliente">
-                            <h2 class="nomeCliente">Marilin Lunch</h2>
-
-                            <p class="comentarioCliente">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Explicabo non voluptatem fuga quae repellat ducimus ut nihil iusto eaque nulla
-                                exercitationem nobis molestias quibusdam labore, placeat incidunt, nesciunt, magni
-                                error!</p>
-
-                            <div class="notaCliente">
-                                <img src="img/icon-star.png" alt="" srcset="">
-
-                                <img src="img/icon-star.png" alt="" srcset="">
-
-                                <img src="img/icon-star.png" alt="" srcset="">
-
-                                <img src="img/icon-star.png" alt="" srcset="">
-
-                                <img src="img/icon-star.png" alt="" srcset="">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-            </div>
-        </section>
+            @endif
+        @endforeach
 
         <style>
             .banner img {
