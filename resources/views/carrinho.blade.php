@@ -357,7 +357,8 @@
 
                 </div>
 
-                <a href="#" id="botaoAlterar" class="fw-bold text-decoration-none">Alterar</a>
+                <a href="#" id="botaoAlterar" class="fw-bold text-decoration-none" data-bs-toggle="modal"
+                data-bs-target="#modalPagamento">Alterar</a>
             </div>
 
             <div class="cupom pagamento d-flex align-items-center justify-content-between mb-2">
@@ -397,14 +398,65 @@
 
     <style>
         .modal-custom {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vh;
-            /* Garante que o modal fique centralizado verticalmente */
+            position: fixed;
+            left: 0;
+            right: 0;
+        }
+
+        /* alterando o corpo, sem ser a div que somente agrupa ele */
+        .modal-content {
+            width: 100vw
         }
     </style>
-    <!-- Modal -->
+    <!-- Modal pagamento -->
+    <div class="modal fade" id="modalPagamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-custom modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <!-- Adiciona 'modal-dialog-centered' -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cupons</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cuponsDisponiveis">
+                        <div class="agrupaCupom">
+                            <div class="infoCupom">
+                                <div>
+                                    <img src="{{ asset('img/cupom-carrinho.png') }}">
+                                </div>
+
+                                <div class="desc-cupom">
+                                    <h2>15R$ para lanches que possuem Bacon</h2>
+                                    <p>Disponivel para a compra atual</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="lanchesDisponiveis">ADICIONAR CUPOM</p>
+                    </div>
+
+                    <div class="cuponsDisponiveis">
+                        <div class="agrupaCupom">
+                            <div class="infoCupom">
+                                <div>
+                                    <img src="{{ asset('img/cupom-carrinho.png') }}">
+                                </div>
+                                <div class="desc-cupom">
+                                    <h2>15R$ para lanches que possuem Bacon</h2>
+                                    <p>OBS: Valido para pedidos acima de 25R$</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="lanchesDisponiveis">ADICIONAR CUPOM</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal cupom -->
     <div class="modal fade" id="modalCupom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-custom modal-dialog-centered modal-dialog-scrollable modal-lg">
             <!-- Adiciona 'modal-dialog-centered' -->
