@@ -2,6 +2,8 @@
 
 @section('conteudo')
     <link rel="stylesheet" href="{{ asset('css/usuariosCss/adicionarPagamento.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tituloEditUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/posicionaBotaoSubmit.css') }}">
 
     {{-- jQuerry --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -9,6 +11,10 @@
     <style>
         body {
             background-color: #fff;
+        }
+
+        .posicionaBotaoSubmit {
+            justify-content: center;
         }
     </style>
 
@@ -59,9 +65,9 @@
 
                 </div>
 
-                <div class="agrupaCampoCartao" style="margin-top: 40px">
+                <div class="agrupaCampoCartao" style="margin-top: 2rem">
 
-                    <div class="campo" style="margin-bottom: 15px">
+                    <div class="campo" style="margin-bottom: 1rem">
 
                         <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
                             <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular') }}">
@@ -84,12 +90,10 @@
                     <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
                         id="botaoCancelar">Voltar</a>
 
-                    <button type="submit" class="botaoAdicionar" style="margin-left: 15px">Salvar</button>
-
+                    <button type="submit" class="botaoAdicionar">Salvar</button>
                 </div>
             </form>
         </div>
-
     </div>
 
     <script>

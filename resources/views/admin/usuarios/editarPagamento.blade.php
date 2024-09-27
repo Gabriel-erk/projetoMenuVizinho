@@ -2,6 +2,8 @@
 
 @section('conteudo')
     <link rel="stylesheet" href="{{ asset('css/usuariosCss/editarPagamento.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tituloEditUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/posicionaBotaoSubmit.css') }}">
 
     {{-- jQuerry --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -10,6 +12,12 @@
         body {
             background-color: #fff;
         }
+
+        .tituloEditUser {
+            display: flex;
+            justify-content: space-between
+        }
+
     </style>
 
     <div class="tituloEditUser">
@@ -72,7 +80,6 @@
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="agrupaCampoCartao" style="margin-top: 40px">
@@ -95,20 +102,16 @@
                         </div>
 
                     </div>
-
                 </div>
+
 
                 <div class="posicionaBotaoSubmit">
+                    <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
+                        id="botaoCancelar">Voltar</a>
 
-                    {{-- <button type="submit" class="botaoAdicionar" id="botaoCancelar">Excluir forma de pagamento</button> --}}
-
-                    <div class="agrupaVoltarSalvar">
-                        <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}"
-                            class="botaoAdicionar">Voltar</a>
-                        <button type="submit" class="botaoAdicionar" style="margin-left: 0.1em">Salvar</button>
-                    </div>
-
+                    <button type="submit" class="botaoAdicionar">Salvar</button>
                 </div>
+
             </form>
         </div>
 

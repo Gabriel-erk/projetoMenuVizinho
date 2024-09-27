@@ -1,14 +1,11 @@
 @extends('layouts.site')
-<link rel="stylesheet" href="{{ asset('css/parceirosCss/cadastroRestaurante.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/parceirosCss/cadastroRestaurante.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('css/opcoesCadastro.css') }}">
 
 @section('conteudo')
     <style>
         body {
             background-color: #ffffff
-        }
-
-        .conteudo {
-            padding-bottom: 220px;
         }
 
         /* classe de botão cancelar trazida da view minhasinformações */
@@ -17,8 +14,8 @@
             font-weight: 500;
             font-size: 1.1rem;
 
-            padding: 6px 40px;
-            margin-top: 50px;
+            padding: 0.5rem 2.2rem;
+            margin-top: 3.5rem;
             border: none;
             border-radius: 5px;
             transition: all 0.3s ease;
@@ -26,7 +23,7 @@
             background-color: #fff;
             color: #8C6342;
             border: 1px solid #8C6342;
-            margin-left: 44px 
+            margin-left: 3rem
         }
 
         #botaoCancelar:hover {
@@ -36,7 +33,7 @@
         }
     </style>
 
-    <main class="contrabando">
+    <main>
 
         @if (session('sucesso'))
             <script>
@@ -47,26 +44,29 @@
             </script>
         @endif
 
-        <div class="conteudo">
+        <div class="conteudo" style="padding-bottom: 3rem">
 
             <div id="titulo">
                 <h2>Área do usuário</h2>
             </div>
 
             <div class="opcoesCadastro">
-                <a href="{{ route('usuario.minhasInformacoes', ['id' => Auth::user()->id]) }}">
-                    <h3>Minhas Informações</h3>
-                </a>
-                <p class="descricaoOpcao">Visualize ou altere suas informações de cadastro</p>
-
+                <div class="divisor">
+                    <a href="{{ route('usuario.minhasInformacoes', ['id' => Auth::user()->id]) }}"
+                        class="text-decoration-none">
+                        <h4>Minhas Informações</h4>
+                    </a>
+                    <span class="descricaoOpcao">Visualize ou altere suas informações de cadastro</span>
+                </div>
             </div>
 
             <div class="opcoesCadastro">
-                <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}">
-                    <h3>Formas de pagamento</h3>
-                </a>
-                <p class="descricaoOpcao">Visualize ou altere suas formas de pagamento</p>
-
+                <div class="divisor">
+                    <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}"  class="text-decoration-none">
+                        <h4>Formas de pagamento</h4>
+                    </a>
+                    <span class="descricaoOpcao">Visualize ou altere suas formas de pagamento</span>
+                </div>
             </div>
 
             <form action="{{ route('usuarioAdm.destroy', ['id' => Auth::user()->id]) }}" method="post">
@@ -82,10 +82,10 @@
     </main>
 
     <script>
-        function confirmDelete(){
+        function confirmDelete() {
 
             return confirm('Tem certeza que deseja deletar a sua conta? Esta ação não pode ser desfeita.');
-        
+
         }
     </script>
 @endsection

@@ -1,0 +1,32 @@
+#titulo {
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.opcoesCadastro {
+    margin-top: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1.5rem;
+
+    transition: all 0.3s ease;
+}
+
+.divisor,
+#titulo h2 {
+    margin-left: 3rem;
+    font-weight: 500;
+}
+
+.opcoesCadastro h4 {
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.opcoesCadastro h4:hover {
+    color: #424242
+}
+
+.opcoesCadastro span {
+    color: #716B6B;
+}

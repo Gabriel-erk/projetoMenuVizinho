@@ -2,18 +2,6 @@ body {
     background-color: #fff;
 }
 
-.tituloEditUser {
-
-    padding: 30px;
-    border-bottom: 1px solid #CCCCCC;
-    font-family: 'Poppins', sans-serif;
-
-}
-
-.tituloEditUser h2 {
-    font-weight: 500;
-}
-
 .blocoNovoCartao {
     padding-left: 30px;
     padding-right: 80px;
@@ -67,47 +55,4 @@ body {
 
 .limitaLabel {
     position: relative;
-}
-
-/* formatando botão submit */
-
-.posicionaBotaoSubmit {
-    display: flex;
-    justify-content: center;
-}
-
-.botaoAdicionar {
-
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 1.1rem;
-
-    padding: 6px 40px;
-    margin-top: 50px;
-
-    background-color: #8C6342;
-    color: #fff;
-
-    border: none;
-    border-radius: 5px;
-
-    transition: all 0.3s ease;
-
-}
-
-.botaoAdicionar:hover {
-    background-color: #755439;
-    cursor: pointer;
-}
-
-#botaoCancelar {
-    background-color: #fff;
-    color: #8C6342;
-    border: 1px solid #8C6342
-}
-
-#botaoCancelar:hover {
-    background-color: #755439;
-    color: #fff;
-    cursor: pointer;
 }
