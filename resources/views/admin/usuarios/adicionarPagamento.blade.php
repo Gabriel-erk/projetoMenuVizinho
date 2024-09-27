@@ -24,76 +24,73 @@
 
     <div class="blocoNovoCartao">
 
-        <div class="bloco1InfoCartao">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    @foreach ($errors->all() as $erro)
+                        <li>{{ $erro }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                        @foreach ($errors->all() as $erro)
-                            <li>{{ $erro }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        <form action="{{ route('pagamentos.store') }}" method="POST">
+            @csrf
+            <div class="agrupaCampoCartao" style="margin-top: 30px">
 
-            <form action="{{ route('pagamentos.store') }}" method="POST">
-                @csrf
-                <div class="agrupaCampoCartao" style="margin-top: 30px">
+                <div class="campo campoDuplo" style="margin-bottom: 15px">
 
-                    <div class="campo campoDuplo" style="margin-bottom: 15px">
-
-                        <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
-                                cartão</label>
-                            <input type="text" name="numeroCartao" id="numeroCartao" value="{{ old('numeroCartao') }}">
-                        </div>
-
-                        <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
-                            <input type="text" name="cvv" id="cvv" value="{{ old('cvv') }}">
-                        </div>
-
+                    <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
+                            cartão</label>
+                        <input type="text" name="numeroCartao" id="numeroCartao" value="{{ old('numeroCartao') }}">
                     </div>
 
-                    <div class="campo">
-
-                        <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
-                                vencimento</label>
-                            <input type="date" name="dataVencimento" id="dataVencimento"
-                                value="{{ old('dataVencimento') }}">
-                        </div>
-
+                    <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
+                        <input type="text" name="cvv" id="cvv" value="{{ old('cvv') }}">
                     </div>
 
                 </div>
 
-                <div class="agrupaCampoCartao" style="margin-top: 2rem">
+                <div class="campo">
 
-                    <div class="campo" style="margin-bottom: 1rem">
-
-                        <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
-                            <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular') }}">
-                        </div>
-
-                    </div>
-
-                    <div class="campo">
-
-                        <div class="limitaLabel"> <label for="cpf">CPF</label>
-                            {{-- limitando tamanho em 14 caracteres --}}
-                            <input type="text" name="cpf" id="cpf" maxlength="14" value="{{ old('cpf') }}">
-                        </div>
-
+                    <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
+                            vencimento</label>
+                        <input type="date" name="dataVencimento" id="dataVencimento" value="{{ old('dataVencimento') }}">
                     </div>
 
                 </div>
 
-                <div class="posicionaBotaoSubmit">
-                    <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
-                        id="botaoCancelar">Voltar</a>
+            </div>
 
-                    <button type="submit" class="botaoAdicionar">Salvar</button>
+            <div class="agrupaCampoCartao" style="margin-top: 2rem">
+
+                <div class="campo" style="margin-bottom: 1rem">
+
+                    <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
+                        <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular') }}">
+                    </div>
+
                 </div>
-            </form>
-        </div>
+
+                <div class="campo">
+
+                    <div class="limitaLabel"> <label for="cpf">CPF</label>
+                        {{-- limitando tamanho em 14 caracteres --}}
+                        <input type="text" name="cpf" id="cpf" maxlength="14" value="{{ old('cpf') }}">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="posicionaBotaoSubmit">
+                <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
+                    id="botaoCancelar">Voltar</a>
+
+                <button type="submit" class="botaoAdicionar">Salvar</button>
+            </div>
+        </form>
+
     </div>
 
     <script>

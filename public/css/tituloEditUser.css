@@ -8,7 +8,8 @@
     font-weight: 500;
 }
 
-.tituloEditUser p {
+.tituloEditUser p,
+.tituloEditUser span {
     padding-top: 5px;
     font-size: 0.9rem;
     color: #716B6B;

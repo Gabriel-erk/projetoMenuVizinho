@@ -2,16 +2,23 @@
 
 @section('conteudo')
     <link rel="stylesheet" href="{{ asset('css/usuariosCss/minhasInformacoes.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tituloEditUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/posicionaBotaoSubmit.css') }}">
     <style>
         body {
             background-color: #fff; 
+        }
+
+        .posicionaBotaoSubmit {
+            /* justify-content: flex-start; */
+            /* margin-left: 1.2rem;  */
         }
 
     </style>
 
     <div class="tituloEditUser">
         <h2>Configurações da conta</h2>
-        <p>Gerencie as detalhes de sua conta.</p>
+        <span>Gerencie as detalhes de sua conta.</span>
     </div>
 
     <div class="conteudo">
@@ -28,7 +35,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="post">
+            <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="post" style="padding-left: 2rem">
                 @csrf
                 @method('PUT')
 
@@ -93,13 +100,13 @@
                     </div>
                 </div>
 
-                <div style="padding-left:30px; padding-right:30px;margin-top:7px">
-                    <label for="foto">Foto</label>
-                    <div class="custom-file-container">
-                        <input type="file" id="foto" name="foto" value="{{ old('foto', $usuario->foto) }}">
-                        <label for="foto"></label>
+                <div class="mb-3" >
+                    <label for="foto" class="form-label">Foto</label>
+                    <div class="custom-file">
+                        <input class="form-control" type="file" id="foto" name="foto" value="{{ old('foto', $usuario->foto) }}">
                     </div>
                 </div>
+                
 
                 <div class="changePassword" style="margin-top: 25px ">
                     <h3 style="font-weight: 500;">Alteração de senha</h3>
@@ -173,11 +180,6 @@
                                 value="{{ old('complemento', $usuario->complemento) }}">
                         </div>
 
-                        {{-- <div class="limitaLabel"> <label for="cep">CEP</label>
-                            <input type="text" name="cep" id="cep" maxlength="15"
-                                value="{{ old('cep', $usuario->cep) }}">
-                        </div> --}}
-
                     </div>
 
                     <div class="agrupaSecaoEndereco">
@@ -191,14 +193,11 @@
 
                 </div>
 
-                <div class="agrupaBotaoSubmit">
-
-                    <div class="agrupaVoltarSalvar">
-                        <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar" id="botaoVoltar">Voltar</a>
-
-                        <button type="submit" class="botaoAdicionar">Salvar</button>
-                    </div>
-
+                <div class="posicionaBotaoSubmit">
+                    <a href="{{ route('usuario.minhaConta') }}" class="botaoAdicionar"
+                        id="botaoCancelar">Voltar</a>
+    
+                    <button type="submit" class="botaoAdicionar">Salvar</button>
                 </div>
             </form>
 
