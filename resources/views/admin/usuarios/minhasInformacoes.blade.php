@@ -15,6 +15,11 @@
                 <span style="color: #716b6b">Gerencie os detalhes de sua conta.</span>
             </div>
         </div>
+    </div>
+   
+    <div class="mb-4" style="border-bottom: 1px solid #c9c9c9"></div>
+
+    <div class="container">
 
         @if ($errors->any())
             <div class="alert alert-danger">
