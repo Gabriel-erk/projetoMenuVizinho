@@ -101,7 +101,8 @@
             <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
             @if ($subCategoriaUm->produtos->isNotEmpty())
                 <div class="titulos">
-                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoriaUm->titulo_sub_categoria }}</span>
+                    <span class="fs-5 fw-semibold"
+                        style="display: block">{{ $subCategoriaUm->titulo_sub_categoria }}</span>
                     <span class="descCategoria" style="display: block">{{ $subCategoriaUm->descricao }} </span>
                 </div>
 
@@ -158,7 +159,8 @@
             <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
             @if ($subCategoriaDois->produtos->isNotEmpty())
                 <div class="titulos">
-                    <span class="fs-5 fw-semibold" style="display: block">{{ $subCategoriaDois->titulo_sub_categoria }}</span>
+                    <span class="fs-5 fw-semibold"
+                        style="display: block">{{ $subCategoriaDois->titulo_sub_categoria }}</span>
                     <span class="descCategoria" style="display: block">{{ $subCategoriaDois->descricao }} </span>
                 </div>
 
@@ -194,6 +196,168 @@
                 </div>
             @endif
         @endforeach
+
+        <div class="titulos">
+            <span class="subtitulo" style="display: block">Clientes</span>
+            <span class="fs-5 fw-semibold" style="display: block">O que os clientes dizem?</span>
+            {{-- <span class="descCategoria" style="display: block">{{ $subCategoriaUm->descricao }} </span> --}}
+        </div>
+
+        <div class="avaliacoes">
+            <div class="d-flex owl-carousel">
+                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                    <div>
+                        <div class="imgNomeData d-flex">
+                            <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
+                                style="width: 4vw">
+
+                            {{-- por conta da div pai ser flex, não consigo deixa-los block sem ter outra div agrupando-os --}}
+                            <div class="ms-2">
+                                <span class="d-block" style="font-weight: 600">Enzo Gamer W7m</span>
+                                <span class="d-block" style="color:#716b6b; font-size: 0.8em">28-09-2024</span>
+                            </div>
+                        </div>
+
+                        <div class="estrelas mb-1 mt-2">
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+
+                            {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
+                        </div>
+
+                        <div id="comentario">
+                            <span class="d-block" style="font-size: 0.8em">Atendimento espetacular, vim de outro
+                                “profissional” que não deu a atenção
+                                necessária, fui
+                                atendido pelo Alessandro que além de corrigir meu corte de cabelo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                    <div>
+                        <div class="imgNomeData d-flex">
+                            <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
+                                style="width: 4vw">
+
+                            {{-- por conta da div pai ser flex, não consigo deixa-los block sem ter outra div agrupando-os --}}
+                            <div class="ms-2">
+                                <span class="d-block" style="font-weight: 600">Enzo Gamer W7m</span>
+                                <span class="d-block" style="color:#716b6b; font-size: 0.8em">28-09-2024</span>
+                            </div>
+                        </div>
+
+                        <div class="estrelas mb-1 mt-2">
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+
+                            {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
+                        </div>
+
+                        <div id="comentario">
+                            <span class="d-block" style="font-size: 0.8em">Atendimento espetacular, vim de outro
+                                “profissional” que não deu a atenção
+                                necessária, fui
+                                atendido pelo Alessandro que além de corrigir meu corte de cabelo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                    <div>
+                        <div class="imgNomeData d-flex">
+                            <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
+                                style="width: 4vw">
+
+                            {{-- por conta da div pai ser flex, não consigo deixa-los block sem ter outra div agrupando-os --}}
+                            <div class="ms-2">
+                                <span class="d-block" style="font-weight: 600">Enzo Gamer W7m</span>
+                                <span class="d-block" style="color:#716b6b; font-size: 0.8em">28-09-2024</span>
+                            </div>
+                        </div>
+
+                        <div class="estrelas mb-1 mt-2">
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+
+                            {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
+                        </div>
+
+                        <div id="comentario">
+                            <span class="d-block" style="font-size: 0.8em">Atendimento espetacular, vim de outro
+                                “profissional” que não deu a atenção
+                                necessária, fui
+                                atendido pelo Alessandro que além de corrigir meu corte de cabelo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                    <div>
+                        <div class="imgNomeData d-flex">
+                            <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
+                                style="width: 4vw">
+
+                            {{-- por conta da div pai ser flex, não consigo deixa-los block sem ter outra div agrupando-os --}}
+                            <div class="ms-2">
+                                <span class="d-block" style="font-weight: 600">Enzo Gamer W7m</span>
+                                <span class="d-block" style="color:#716b6b; font-size: 0.8em">28-09-2024</span>
+                            </div>
+                        </div>
+
+                        <div class="estrelas mb-1 mt-2">
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                            <i class="fa-solid fa-star "
+                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+
+                            {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
+                        </div>
+
+                        <div id="comentario">
+                            <span class="d-block" style="font-size: 0.8em">Atendimento espetacular, vim de outro
+                                “profissional” que não deu a atenção
+                                necessária, fui
+                                atendido pelo Alessandro que além de corrigir meu corte de cabelo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <style>
             .banner img {
@@ -242,37 +406,6 @@
                 padding: 10px 0;
                 background-color: #E7E7E7;
                 color: #000;
-            }
-
-            /* formatando seção de avaliação de clientes */
-
-            .cliente {
-                width: 30vw;
-                margin-right: 6rem;
-            }
-
-            .imgCliente img {
-                background-color: #848384;
-                width: 8vw;
-                border-radius: 50%;
-                padding-top: 0.5rem;
-            }
-
-            .infoCliente {
-                font-family: 'Poppins', sans-serif;
-                font-weight: 600;
-            }
-
-            .comentarioCliente {
-                word-wrap: break-word;
-                color: #ADACAC;
-            }
-
-            .notaCliente img {
-                width: 2.2vw;
-
-                margin-top: 0.7em;
-                margin-right: 0.9em;
             }
         </style>
     </main>
