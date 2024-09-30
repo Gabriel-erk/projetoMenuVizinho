@@ -9,16 +9,14 @@
         }
     </style>
 
-    <div id="centraliza">
+    <div class="container mt-5 d-flex justify-content-center">
 
-        <div class="teste">
-
-            <div id="conteudo">
+        <div class="card shadow-sm rounded-4" style="width: 450px;">
+            <div class="card-body">
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
-                            {{-- percorre tudo do array errors, (com all()), joga na váriavel erro, e imprime em um elemento "li" com o erro --}}
                             @foreach ($errors->all() as $erro)
                                 <li>{{ $erro }}</li>
                             @endforeach
@@ -26,36 +24,26 @@
                     </div>
                 @endif
 
-                <div class="login">
+                <div class="text-center mb-4">
                     <h2>Login</h2>
                 </div>
 
                 <form action="{{ route('login') }}" method="post">
                     @csrf
-                    <div class="campoInfo">
-                        <div class="campos">
-                            <label for="email">E-mail</label>
-                            <input type="email" name="email" id="email" placeholder="seuemail@hotmail.com">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="seuemail@hotmail.com">
+                    </div>
 
-                            <!-- <a href="#">Esqueceu seu e-mail?</a> -->
-                        </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Senha">
+                    </div>
 
-                        <div class="campos">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" name="password" id="password" placeholder="Senha">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ route('site.index') }}" class="btn btn-link">Voltar</a>
 
-                            <!-- <a href="#">Esqueceu sua senha?</a> -->
-                        </div>
-
-                        <div id="botoes">
-
-                            <a href="{{ route('site.index') }}">Voltar</a>
-
-                            <div>
-                                <button type="submit">Entrar</button>
-                            </div>
-
-                        </div>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                 </form>
 

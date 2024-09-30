@@ -61,7 +61,7 @@
                         <!-- Exibir dinamicamente as categorias cadastradas -->
                         @foreach ($categorias as $categoria)
                             <div class="itemCardapio">
-                                <div class="infoCardapio">
+                                <div class="infoCardapio rounded-3">
                                     <a href="cardapio.html#lista{{ $categoria->titulo_categoria }}"
                                         class="text-decoration-none">
                                         <img src="{{ asset($categoria->imagem) }}" alt="{{ $categoria->titulo_categoria }}">
@@ -204,9 +204,10 @@
         </div>
 
         <div class="avaliacoes">
-            <div class="d-flex owl-carousel">
-                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
-                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+            <div class="d-flex owl-carousel mb-2">
+                {{-- border: 1px solid #d8d8d8 --}}
+                <div class="opiniaoUsuario bg-white p-3 rounded-2 item shadow-sm"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; height: 40vh">
                     <div>
                         <div class="imgNomeData d-flex">
                             <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
@@ -221,15 +222,16 @@
 
                         <div class="estrelas mb-1 mt-2">
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
+
 
                             {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
                         </div>
@@ -243,8 +245,8 @@
                     </div>
                 </div>
 
-                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
-                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                <div class="opiniaoUsuario bg-white p-3 rounded-2 item shadow-sm"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; height: 40vh">
                     <div>
                         <div class="imgNomeData d-flex">
                             <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
@@ -259,15 +261,16 @@
 
                         <div class="estrelas mb-1 mt-2">
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
+
 
                             {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
                         </div>
@@ -281,8 +284,8 @@
                     </div>
                 </div>
 
-                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
-                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                <div class="opiniaoUsuario bg-white p-3 rounded-2 item shadow-sm"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; height: 40vh">
                     <div>
                         <div class="imgNomeData d-flex">
                             <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
@@ -297,15 +300,16 @@
 
                         <div class="estrelas mb-1 mt-2">
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
+
 
                             {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
                         </div>
@@ -319,8 +323,8 @@
                     </div>
                 </div>
 
-                <div class="opiniaoUsuario bg-white p-3 rounded-4 item"
-                    style="font-family: 'Poppins',sans-serif; width:26.5vw; border: 1px solid #d8d8d8">
+                <div class="opiniaoUsuario bg-white p-3 rounded-2 item shadow-sm"
+                    style="font-family: 'Poppins',sans-serif; width:26.5vw; height: 40vh">
                     <div>
                         <div class="imgNomeData d-flex">
                             <img src="{{ asset('img/xj6.png') }}" alt="" srcset="" class="rounded-circle"
@@ -335,15 +339,16 @@
 
                         <div class="estrelas mb-1 mt-2">
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
                             <i class="fa-solid fa-star "
-                                style="color: #FFD43B; font-size: 1.3em; margin-right: 0.1rem"></i>
+                                style="color: #FFD43B; font-size: 1.1em; margin-right: 0.1rem"></i>
+
 
                             {{-- <i class="fa-solid fa-star me-1" style="color: #FFD43B; font-size: 1.3em"></i> --}}
                         </div>
@@ -356,6 +361,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -385,7 +391,6 @@
 
             .infoCardapio {
                 background-color: #7A5232;
-                border-radius: 10px;
                 transition: transform 0.5s ease;
                 box-shadow: 0 1px 6px #bebcbc;
                 margin-left: 1em
