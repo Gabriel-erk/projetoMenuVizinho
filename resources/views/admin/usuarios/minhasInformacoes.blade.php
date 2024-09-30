@@ -98,9 +98,9 @@
                             maxlength="45">
                     </div>
                 </div>
-                <ul>
-                    <li>Deixe o campo em branco caso não queria alterar</li>
-                    <li>Use 7 caracteres ou mais</li>
+                <ul class="alert alert-info" style="width: 49%">
+                    <li class="ms-2">Deixe o campo em branco caso não queria alterar</li>
+                    <li class="ms-2">Use 7 caracteres ou mais</li>
                 </ul>
             </div>
 
