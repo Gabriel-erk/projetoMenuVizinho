@@ -25,10 +25,10 @@ class SiteController extends Controller
         return view('cardapio', compact('categorias', 'subCategorias'));
     }
 
-    public function produto()
+    public function produto(string $id)
     {   
-        // $produto = Produto::findOrFail($id);
-        return view('produto');
+        $produto = Produto::findOrFail($id);
+        return view('produto', compact('produto'));
     }
 
     public function ofertas()

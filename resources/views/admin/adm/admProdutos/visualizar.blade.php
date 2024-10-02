@@ -29,6 +29,14 @@
             <th>Info Nutricional</th>
             <td>{{ $produto->info_nutricional }}</td>
         </tr>
+        <tr>
+            <th>ID da categoria</th>
+            <td>{{ $produto->categoria_produto_id }}</td>
+        </tr>
+        <tr>
+            <th>ID da sub-categoria</th>
+            <td>{{ $produto->sub_categoria_produto_id }}</td>
+        </tr>
         
     </table>
     <a href="{{ route('produtos.edit', ['id' => $produto->id]) }}" class="btn btn-primary">Editar</a>

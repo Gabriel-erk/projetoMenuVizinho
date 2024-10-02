@@ -24,7 +24,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
     Route::get('/cardapio', 'cardapio')->name('site.cardapio');
     // /produto/{id}
-    Route::get('/produto', 'produto')->name('site.produto');
+    Route::get('/produto/{id}', 'produto')->name('site.produto');
     Route::get('/ofertas', 'ofertas')->name('site.ofertas');
     Route::get('/carrinho', 'carrinho')->name('site.carrinho');
     Route::get('/cupons', 'cupons')->name('site.cupons');
