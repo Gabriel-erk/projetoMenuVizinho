@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CategoriaProduto;
 use App\Models\SubCategoria;
-
+use App\Models\Produto;
 
 class SiteController extends Controller
 {
@@ -26,7 +26,8 @@ class SiteController extends Controller
     }
 
     public function produto()
-    {
+    {   
+        // $produto = Produto::findOrFail($id);
         return view('produto');
     }
 
