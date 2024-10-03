@@ -40,19 +40,19 @@
                         <div id="produto" class=" rounded-3 h-100"
                             style="font-family: 'Poppins', sans-serif; border-left: 2.5px solid #fce8c4; border-right: 2.5px solid #fce8c4; border-bottom: 2.5px solid #fce8c4;">
                             <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                                <div id="img-produto" class="text-center py-4 rounded-top"
+                                <div id="img-produto" class="text-center py-5 rounded-top"
                                     style="background-color:#fce8c4;">
-                                    <img style="height: 31vh" src="{{ asset($produto->imagem) }}" alt=""
+                                    <img style="height: 30vh" src="{{ asset($produto->imagem) }}" alt=""
                                         srcset="">
                                 </div>
                             </a>
 
                             <div id="nome-valor"
-                                class="bg-white d-flex justify-content-between align-items-center px-2 rounded-bottom"
+                                class="bg-white d-flex justify-content-between align-items-center px-4 rounded-bottom"
                                 style="height: 12vh">
                                 <span class="fw-bold text-center"
                                     style="color: #8c6342; font-size: 1.44rem">{{ $produto->nome }}</span>
-                                <span style="font-size: 0.9em; color: #A0A0A0;">
+                                <span style="font-size: 1.1em; color: #A0A0A0;">
                                     R${{ $produto->preco }}</span>
                             </div>
                         </div>

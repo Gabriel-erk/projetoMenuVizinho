@@ -6,6 +6,10 @@ use App\Models\CategoriaProduto;
 use App\Models\SubCategoria;
 use App\Models\Produto;
 
+use App\Models\MetodoPagamento;
+use Illuminate\Support\Facades\Auth;
+
+
 class SiteController extends Controller
 {
     // paginas principais
@@ -41,7 +45,9 @@ class SiteController extends Controller
         // buscando 5 produtos aleatórios
         // inRandomOrder vai buscar produtos aleatoriamente no banco de dados (5 registros), take(5) limita o número de produtos retornados a 5
         $produtos = Produto::inRandomOrder()->take(7)->get();
-        return view('carrinho', compact('produtos'));
+        // trazendo os metodos de pagamento associados ao usuário logado
+        $metodosPagamentos = MetodoPagamento::where('user_id', Auth::user()->id)->get();
+        return view('carrinho', compact('produtos', 'metodosPagamentos'));
     }
 
     public function cupons()

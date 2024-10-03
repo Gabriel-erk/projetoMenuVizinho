@@ -26,12 +26,13 @@ Route::controller(SiteController::class)->group(function () {
     // /produto/{id}
     Route::get('/produto/{id}', 'produto')->name('site.produto');
     Route::get('/ofertas', 'ofertas')->name('site.ofertas');
-    Route::get('/carrinho', 'carrinho')->name('site.carrinho');
     Route::get('/cupons', 'cupons')->name('site.cupons');
     Route::get('/sobre', 'sobre')->name('site.sobre');
     Route::get('/politica', 'politica')->name('site.politica');
     Route::get('/login', 'login')->name('site.login');
     Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
+    // colocando um middleware para permitir que o usuário acesse está rota somente se estiver logado
+    Route::get('/carrinho', 'carrinho')->name('site.carrinho')->middleware('auth');
 });
 
 // UsuarioController

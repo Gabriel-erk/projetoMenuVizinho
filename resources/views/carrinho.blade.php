@@ -141,8 +141,7 @@
                         <div class="imgProdutoAproveiteTambem position-relative">
 
                             <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                                <img src="{{ asset($produto->imagem) }}" class="p-3"
-                                    style="height: 58%">
+                                <img src="{{ asset($produto->imagem) }}" class="p-3" style="height: 58%">
                             </a>
 
                             <div class="position-absolute rounded-circle"
@@ -167,8 +166,7 @@
             </div>
         </div>
 
-        <div class="pagamento-e-cupom py-4 px-4"
-            style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
+        <div class="pagamento-e-cupom py-4 px-4" style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
             <h3 class="mb-4">Pagamento pelo site</h3>
             <div class="pagamento d-flex align-items-center justify-content-between mb-2">
 
@@ -328,30 +326,27 @@
                     <div id="pagamentoSalvo" class="fw-semibold">
                         <h3 class="ms-2 mt-3" style="color: #5c5b5b">Cartões Salvos</h3>
 
-                        <div class="opcaoSalvaPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
-                            style="background-color: #f4f4f4; border: 1px solid #ccc">
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle" style="background-color: #202020; padding: 1rem 0.5rem">
-                                    <img src="{{ asset('img/bandeiraCartao.png') }}" style="width: 3vw">
+                        {{-- se tiver vazio mostra isso --}}
+                        @if ($metodosPagamentos->isEmpty())
+                            <p class="ms-2">Nenhum método de pagamento salvo.</p>
+                        @else
+                            @foreach ($metodosPagamentos as $metodo)
+                                <div class="opcaoSalvaPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
+                                    style="background-color: #f4f4f4; border: 1px solid #ccc">
+                                    <div class="d-flex align-items-center">
+                                        <div class="rounded-circle"
+                                            style="background-color: #202020; padding: 1rem 0.5rem">
+                                            <img src="{{ asset('img/bandeiraCartao.png') }}" style="width: 3vw">
+                                        </div>
+                                        {{-- pega os ultimos 4 digitos do cartão --}}
+                                        <span id="nomeCartao"
+                                            class="fs-6 ms-1">••{{ substr($metodo->numero_cartao, -4) }}</span>
+                                        <span id="dataCartao" class="fs-6 ms-1"
+                                            style="color: #716b6b">{{ $metodo->data_expiracao }}</span>
+                                    </div>
                                 </div>
-
-                                <span id="nomeCartao" class="fs-6 ms-1">••5123</span>
-                                <span id="dataCartao" class="fs-6 ms-1" style="color: #716b6b">09/32</span>
-                            </div>
-                        </div>
-                        <div class="opcaoSalvaPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
-                            style="background-color: #f4f4f4; border: 1px solid #ccc">
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle" style="background-color: #202020; padding: 1rem 0.5rem">
-                                    <img src="{{ asset('img/bandeiraCartao.png') }}" style="width: 3vw">
-                                </div>
-
-                                <span id="nomeCartao" class="fs-6 ms-1">••5123</span>
-                                <span id="dataCartao" class="fs-6 ms-1" style="color: #716b6b">09/32</span>
-                            </div>
-                        </div>
-
-
+                            @endforeach
+                        @endif
                     </div>
 
                 </div>
