@@ -1,18 +1,19 @@
 .tituloEditUser {
     font-family: 'Poppins', sans-serif;
-    padding: 2rem;
+    padding: 1.5rem 2rem; /* Reduzi um pouco o padding */
     border-bottom: 1px solid #CCCCCC;
 }
 
 .tituloEditUser h2 {
-    font-weight: 500;
+    font-weight: 600; /* Deixei o título mais destacado */
+    font-size: 1.8rem; /* Aumentei o tamanho do título */
+    color: #333; /* Cor mais escura para maior contraste */
 }
 
 .tituloEditUser p,
 .tituloEditUser span {
-    padding-top: 5px;
-    font-size: 0.9rem;
-    color: #716B6B;
-
-    width: 35%
+    padding-top: 8px; /* Um espaçamento mais suave */
+    font-size: 1rem; /* Aumentei um pouco para melhor leitura */
+    color: #555; /* Cor um pouco mais forte */
+    width: auto; /* Removi o limite de 35% para se ajustar melhor */
 }
