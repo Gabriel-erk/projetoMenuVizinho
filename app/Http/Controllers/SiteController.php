@@ -37,8 +37,11 @@ class SiteController extends Controller
     }
 
     public function carrinho()
-    {
-        return view('carrinho');
+    {   
+        // buscando 5 produtos aleatórios
+        // inRandomOrder vai buscar produtos aleatoriamente no banco de dados (5 registros), take(5) limita o número de produtos retornados a 5
+        $produtos = Produto::inRandomOrder()->take(7)->get();
+        return view('carrinho', compact('produtos'));
     }
 
     public function cupons()

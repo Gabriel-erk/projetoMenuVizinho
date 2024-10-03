@@ -136,201 +136,33 @@
             <h2 class="fw-medium ps-3 pt-3" style="font-family: 'Poppins', sans-serif;">Aproveite Também</h2>
             <div class="d-flex owl-carousel">
 
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
+                @foreach ($produtos as $produto)
+                    <div class="produtoListaAproveiteTambem item">
+                        <div class="imgProdutoAproveiteTambem position-relative">
 
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
+                            <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
+                                <img src="{{ asset($produto->imagem) }}" class="p-3"
+                                    style="height: 58%">
+                            </a>
 
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                            <div class="position-absolute rounded-circle"
+                                style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
+                                <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                            </div>
+                        </div>
+
+                        <div class="informacoesProdutoAproveiteTambem">
+                            <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
+                                <h3 class="fs-5">{{ $produto->nome }}</h3>
+                                <span class="fs-6">${{ $produto->preco }}</span>
+                            </div>
+
+                            <div>
+                                <span class="mt-2 text-break" style="width: 70%">{{ $produto->descricao }}</span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produtoListaAproveiteTambem item">
-                    <div class="imgProdutoAproveiteTambem position-relative">
-
-                        <a href="{{ route('site.produto') }}">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" class="p-3"
-                                style="height: 58%">
-                        </a>
-
-                        <div class="position-absolute rounded-circle"
-                            style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </div>
-                    </div>
-
-                    <div class="informacoesProdutoAproveiteTambem">
-                        <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                            <h3 class="fs-5">Combo Mrs.Duplo Cheddar</h3>
-                            <span class="fs-6">$15.90</span>
-                        </div>
-
-                        <div>
-                            <span class="mt-2 text-break" style="width: 70%">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Sed nec velit eu ligula
-                                vestibulum ullamcorper vel eget libero.</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>

@@ -25,17 +25,17 @@
 
     <main>
         <div class="text-center" style="background-color: #fbe7ca;">
-            <img src="{{ asset('img/duplo-cheddar.png') }}" style="width: 50vw; height: 70vh">
+            <img src="{{ asset($produto->imagem) }}" style="width: 40vw; height: 60vh">
         </div>
 
         <div class="px-3">
             <div class="d-flex justify-content-between w-100 my-2">
-                <h1 style="font-family: 'Titan One', sans-serif; color:#8C6342" class="fw-normal">Mrs. King Chedar Extra</h1>
-                <h2 style="font-family: 'Poppins', sans-serif; font-weight:600">$38.99</h2>
+                <h1 style="font-family: 'Titan One', sans-serif; color:#8C6342" class="fw-normal">{{ $produto->nome }}</h1>
+                <h2 style="font-family: 'Poppins', sans-serif; font-weight:600">${{ $produto->preco }}</h2>
             </div>
 
             <div style="font-family: 'Cabin', sans-serif; font-weight: 500; color: #979797">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis aperiam debitis dolores porro magnam quos quidem, commodi blanditiis eveniet vero aspernatur nobis atque molestias ratione est voluptates officiis libero eligendi.</p>
+                <p>{{ $produto->descricao }}</p>
             </div>
         </div>
 
