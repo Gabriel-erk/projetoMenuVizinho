@@ -25,7 +25,7 @@
             <div class="listaProdutos">
                 @foreach ($categoria->produtos as $produto)
                     <div class="produto">
-                        <a href="{{ route('site.produto') }}">
+                        <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
                             <div class="imgProduto">
                                 <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
                             </div>
@@ -70,7 +70,7 @@
                 <div class="listaProdutos">
                     @foreach ($subCategoria->produtos as $produto)
                         <div class="produto">
-                            <a href="{{ route('site.produto') }}">
+                            <a href="{{ route('site.produto' , ['id' => $produto->id]) }}">
                                 <div class="imgProduto">
                                     <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
                                 </div>

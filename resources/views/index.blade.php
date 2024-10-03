@@ -108,7 +108,6 @@
 
                 <div class="listaProdutos">
                     @foreach ($subCategoriaUm->produtos as $produto)
-                        {{-- @dd($produto->id) --}}
                         <div class="produto">
 
                             <a href="{{ route('site.produto', ['id' => $produto->id]) }}">

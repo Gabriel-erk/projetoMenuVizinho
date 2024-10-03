@@ -24,7 +24,7 @@
     </style>
 
     <main>
-        <div class="text-center" style="background-color: #fbe7ca;">
+        <div class="text-center py-5" style="background-color: #fbe7ca;">
             <img src="{{ asset($produto->imagem) }}" style="width: 40vw; height: 60vh">
         </div>
 

@@ -95,11 +95,21 @@
 
             </div>
 
-            <div class="d-flex justify-content-end mt-4" style="font-family: 'Poppins', sans-serif;">
-                <button class="bg-primary rounded-2 p-2" style="border:none;"><a
-                        href="{{ route('usuario.novaFormaPagamento') }}" class="text-white text-decoration-none">Adicionar método de
-                        pagamento</a></button>
+
+            <div class="d-flex justify-content-start mt-5">
+                <div class="me-1" style="font-family: 'Poppins', sans-serif;">
+                    <button class="bg-primary rounded-2 p-2" style="border:none;"><a
+                            href="{{ route('usuario.minhaConta') }}"
+                            class="text-white text-decoration-none">Voltar</a></button>
+                </div>
+                <div style="font-family: 'Poppins', sans-serif;">
+                    <button class="bg-primary rounded-2 p-2" style="border:none;"><a
+                            href="{{ route('usuario.novaFormaPagamento') }}"
+                            class="text-white text-decoration-none">Adicionar método de
+                            pagamento</a></button>
+                </div>
             </div>
+
         </div>
     </div>
 @endsection
