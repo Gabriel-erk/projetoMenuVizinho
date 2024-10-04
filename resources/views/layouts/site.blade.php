@@ -87,14 +87,10 @@
         #rodape {
             font-family: 'Poppins', sans-serif;
             color: #848384;
-            /* padding-bottom: 70px; */
-            /* margin-top: 90px; */
         }
 
         .agrupaRodape {
-            height: 80%;
-            padding-bottom: 8rem;
-            /* padding-bottom: 140px; */
+            height: 55%;
             border-bottom: 2px solid #333232;
         }
 
@@ -122,11 +118,6 @@
 
         /* múltiplas caixas icone, então pode deixar aqui, sem bootstrap */
         .icone {
-            /* display: flex;
-            align-items: center; */
-            /* background-color: #FFFFFF; */
-            border-radius: 50%;
-            /* Aproximadamente 10px */
             margin-right: 0.625rem;
             /* Aproximadamente 15px */
             margin-top: 0.9375rem;
@@ -134,23 +125,9 @@
             height: 3.3vh;
         }
 
-        /* permitindo que o a tenha todo o espaço e eu posicione o que está dentro dele no centro */
-        .icone a {
-            width: 100%;
-            height: 100%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center
-        }
-
         /* múltiplos elementos i, então pode deixar aqui, sem bootstrap */
         .icone i {
             width: 1.4rem;
-            /* Aproximadamente 17px */
-            /* width: 1.0625rem; */
-            /* text-align: center; */
         }
     </style>
 
@@ -298,16 +275,16 @@
                     </p>
 
                     <div class="d-flex">
-                        <div class="icone bg-light"><a href="https://facebook.com"><i class="fa-brands fa-facebook-f"
+                        <div class="icone bg-light rounded-circle"><a href="https://facebook.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-facebook-f"
                                     style="color: #000000;"></i></a></div>
 
-                        <div class="icone bg-light">
-                            <a href="https://instagram.com"><i class="fa-brands fa-instagram"
+                        <div class="icone bg-light rounded-circle">
+                            <a href="https://instagram.com"class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-instagram"
                                     style="color: #000000;"></i></a>
                         </div>
 
-                        <div class="icone bg-light">
-                            <a href="https://twitter.com"><i class="fa-brands fa-x-twitter"
+                        <div class="icone bg-light rounded-circle">
+                            <a href="https://twitter.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-x-twitter"
                                     style="color: #000000;"></i></a>
                         </div>
                     </div>
