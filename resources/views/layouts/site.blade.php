@@ -30,7 +30,6 @@
 </head>
 
 <body>
-
     <style>
         * {
             margin: 0;
@@ -45,19 +44,10 @@
 
         /* formatando cabecalho */
 
-        #cabecalho {
-            /* normal */
-            background-color: #8C6342;
-        }
-
         #barra-topo {
             font-family: 'Cabin', sans-serif;
             padding-top: 0.9375rem;
             padding-bottom: 0.9375rem;
-        }
-
-        .logotipo img {
-            width: 10.85vw;
         }
 
         #menu a {
@@ -84,16 +74,6 @@
 
         /* rodapé */
 
-        #rodape {
-            font-family: 'Poppins', sans-serif;
-            color: #848384;
-        }
-
-        .agrupaRodape {
-            height: 55%;
-            border-bottom: 2px solid #333232;
-        }
-
         .infoRestaurante p {
             word-wrap: break-word;
             color: #848384;
@@ -112,17 +92,13 @@
             color: #ADACAC;
         }
 
-        .rodape-logo img {
-            width: 150px;
-        }
-
         /* múltiplas caixas icone, então pode deixar aqui, sem bootstrap */
         .icone {
             margin-right: 0.625rem;
             /* Aproximadamente 15px */
             margin-top: 0.9375rem;
-            width: 1.8vw;
-            height: 3.3vh;
+            width: 2rem; 
+            height: 1.8rem
         }
 
         /* múltiplos elementos i, então pode deixar aqui, sem bootstrap */
@@ -131,15 +107,14 @@
         }
     </style>
 
-    <header id="cabecalho">
+    <header id="cabecalho" style="background-color: #8C6342">
 
         <div id="barra-topo" class="container d-flex justify-content-between align-items-center fw-bold">
 
-            <div class="logotipo">
+            <div>
                 <a href="{{ route('site.index') }}">
-                    <img src="{{ asset('img/bua3.png') }}" class="" alt="" srcset="">
+                    <img src="{{ asset('img/bua3.png') }}" style="width: 10.85vw" alt="" srcset="">
                 </a>
-
             </div>
 
             <nav id="menu">
@@ -257,27 +232,26 @@
 
     @yield('conteudo')
 
-    <footer id="rodape" class="bg-dark mt-5 pb-5">
-        <div class="container agrupaRodape">
+    <footer id="rodape" class="bg-dark mt-5 pb-5" style="font-family: 'Poppins', sans-serif; color:#848384">
+        <div class="container pb-5" style="border-bottom: 2px solid #333232">
 
-            <div class="d-flex justify-content-between" style="padding-top: 50px">
+            <div class="d-flex justify-content-between pt-5">
 
                 <div class="infoRestaurante linhaRodape" style="width: 20%">
 
-                    <div class="rodape-logo">
-
+                    <div id="rodape-logo">
                         <a href="{{ route('site.index') }}"><img src="{{ asset('img/bua3.png') }}"
                                 style="width: 14vw"></a>
-
                     </div>
 
                     <p>Necessary, making this the first true generator on the Internet. It uses a dictionary of over
                     </p>
 
                     <div class="d-flex">
-                        <div class="icone bg-light rounded-circle"><a href="https://facebook.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-facebook-f"
-                                    style="color: #000000;"></i></a></div>
-
+                        <div class="icone bg-light rounded-circle" style=""><a href="https://facebook.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-facebook-f"
+                                    style="color: #000000;"></i></a>
+                        </div>
+                            
                         <div class="icone bg-light rounded-circle">
                             <a href="https://instagram.com"class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-instagram"
                                     style="color: #000000;"></i></a>
