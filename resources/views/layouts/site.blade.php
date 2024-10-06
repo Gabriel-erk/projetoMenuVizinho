@@ -38,8 +38,10 @@
             text-decoration: none;
         }
 
-        body {
-            background-color: #F9EED9;
+        /* declarando aqui para todos os arquivos poderem ter acesso a essas váriaveis */
+        :root {
+            --cor-primaria: #8C6342;
+            --cor-secundaria: #F9EED9;
         }
 
         /* formatando cabecalho */
@@ -51,7 +53,7 @@
         }
 
         #menu a {
-            color: #F9EED9;
+            color: var(--cor-secundaria);
         }
 
         #menu a:hover {
@@ -97,7 +99,7 @@
             margin-right: 0.625rem;
             /* Aproximadamente 15px */
             margin-top: 0.9375rem;
-            width: 2rem; 
+            width: 2rem;
             height: 1.8rem
         }
 
@@ -105,9 +107,13 @@
         .icone i {
             width: 1.4rem;
         }
+
+        #rodape {
+            margin-top: 3rem;
+        }
     </style>
 
-    <header id="cabecalho" style="background-color: #8C6342">
+    <header id="cabecalho" style="background-color: var(--cor-primaria)">
 
         <div id="barra-topo" class="container d-flex justify-content-between align-items-center fw-bold">
 
@@ -131,17 +137,43 @@
             <nav class="navbar navbar-dark">
 
                 <a href="{{ route('site.carrinho') }}">
-                    <button type="button" class="me-3 btn btn-primary position-relative"
-                        style="width: 3em; height: 2.5em"><i class="fa-solid fa-bag-shopping"
-                            style="color: #ffffff;"></i> <span
+                    <button type="button" class="me-3 btn position-relative"
+                        style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)"><i
+                            class="fa-solid fa-bag-shopping" style="color: #342F2E;"></i> <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
                             <span class="visually-hidden">unread messages</span></span>
                     </button>
                 </a>
 
-                <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <span class="navbar-toggler-icon"></span>
+
+                <style>
+                    .navbar-toggler-icon {
+                        /* Remove o ícone padrão */
+                        background-image: none;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        align-items: center;
+                    }
+
+                    .navbar-toggler-icon span {
+                        display: block;
+                        width: 25px;
+                        height: 2px;
+                        /* Cor das barrinhas */
+                        background-color: #342F2E;
+                        /* Remove margens adicionais */
+                        margin: 0;
+                    }
+                </style>
+
+                <button class="navbar-toggler" style="background-color: var(--cor-secundaria)" type="button"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <span class="navbar-toggler-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
                 </button>
 
             </nav>
@@ -169,7 +201,8 @@
                                         @if (auth()->user()->tipo == 1)
                                             <li class="list-group-item">
                                                 <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
-                                                <a href="{{ route('usuario.meusPedidos') }}" class="text-decoration-none text-dark ps-2">Meus
+                                                <a href="{{ route('usuario.meusPedidos') }}"
+                                                    class="text-decoration-none text-dark ps-2">Meus
                                                     Pedidos</a>
                                             </li>
 
@@ -232,7 +265,7 @@
 
     @yield('conteudo')
 
-    <footer id="rodape" class="bg-dark mt-5 pb-5" style="font-family: 'Poppins', sans-serif; color:#848384">
+    <footer id="rodape" class="bg-dark pb-5" style="font-family: 'Poppins', sans-serif; color:#848384">
         <div class="container pb-5" style="border-bottom: 2px solid #333232">
 
             <div class="d-flex justify-content-between pt-5">
@@ -248,18 +281,21 @@
                     </p>
 
                     <div class="d-flex">
-                        <div class="icone bg-light rounded-circle" style=""><a href="https://facebook.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-facebook-f"
-                                    style="color: #000000;"></i></a>
-                        </div>
-                            
-                        <div class="icone bg-light rounded-circle">
-                            <a href="https://instagram.com"class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-instagram"
-                                    style="color: #000000;"></i></a>
+                        <div class="icone bg-light rounded-circle" style=""><a href="https://facebook.com"
+                                class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i
+                                    class="fa-brands fa-facebook-f" style="color: #000000;"></i></a>
                         </div>
 
                         <div class="icone bg-light rounded-circle">
-                            <a href="https://twitter.com" class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i class="fa-brands fa-x-twitter"
-                                    style="color: #000000;"></i></a>
+                            <a
+                                href="https://instagram.com"class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i
+                                    class="fa-brands fa-instagram" style="color: #000000;"></i></a>
+                        </div>
+
+                        <div class="icone bg-light rounded-circle">
+                            <a href="https://twitter.com"
+                                class="w-100 h-100 d-flex justify-content-center align-items-center text-center"><i
+                                    class="fa-brands fa-x-twitter" style="color: #000000;"></i></a>
                         </div>
                     </div>
                 </div>
