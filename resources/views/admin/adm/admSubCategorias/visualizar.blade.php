@@ -17,8 +17,14 @@
             <th>Descrição</th>
             <td>{{ $subCategoria->descricao }}</td>
         </tr>
-        
+        <tr>
+            <th>Qntd. Produtos associados</th>
+            <td>{{ $quantidadeProdutos }}</td>
+        </tr>
+
     </table>
+    <a href="{{ route('subCategorias.produtos', ['id' => $subCategoria->id]) }}" class="btn btn-info">Ver produtos
+        associados</a>
     <a href="{{ route('subCategorias.edit', ['id' => $subCategoria->id]) }}" class="btn btn-primary">Editar</a>
     <a href="{{ route('subCategorias.index') }}" class="btn btn-secondary">Cancelar</a>
 @endsection

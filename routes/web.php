@@ -82,6 +82,8 @@ Route::controller(CategoriasProdutoController::class)->group(function () {
 
     Route::post('/admin/adm/admCategorias/salvarCategoria', 'store')->name('categorias.store');
 
+    Route::get('/admin/adm/admCategorias/produtos/{id}', 'produtos')->name('categorias.produtos');
+
     Route::get('/admin/adm/admCategorias/editar/{id}', 'edit')->name('categorias.edit');
     Route::put('/admin/adm/admCategorias/atualizar/{id}', 'update')->name('categorias.update');
     Route::delete('/admin/adm/admCategorias/deletar/{id}', 'destroy')->name('categorias.destroy');
@@ -93,6 +95,8 @@ Route::controller(SubCategoriasController::class)->group(function () {
     Route::get('/admin/adm/admSubCategorias/cadastro', 'create')->name('subCategorias.create');
 
     Route::post('/admin/adm/admSubCategorias/salvarCategoria', 'store')->name('subCategorias.store');
+    Route::get('/admin/adm/admSubCategorias/produtos/{id}', 'produtos')->name('subCategorias.produtos');
+
 
     Route::get('/admin/adm/admSubCategorias/editar/{id}', 'edit')->name('subCategorias.edit');
     Route::put('/admin/adm/admSubCategorias/atualizar/{id}', 'update')->name('subCategorias.update');

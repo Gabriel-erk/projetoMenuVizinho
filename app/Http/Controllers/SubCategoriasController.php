@@ -58,7 +58,17 @@ class SubCategoriasController extends Controller
     public function show(string $id)
     {
         $subCategoria = SubCategoria::findOrFail($id);
-        return view('admin.adm.admSubCategorias.visualizar', compact('subCategoria'));
+        $produtosAssociados = SubCategoria::with('produtos')->find($id);
+        $quantidadeProdutos = $produtosAssociados->produtos->count();
+
+        return view('admin.adm.admSubCategorias.visualizar', compact('subCategoria', 'quantidadeProdutos'));
+    }
+
+    public function produtos(string $id){
+        $subCategoria = SubCategoria::with('produtos')->findOrFail($id);
+        $produtos = $subCategoria->produtos;
+
+        return view('admin.adm.admSubCategorias.produtos', compact('subCategoria', 'produtos'));
     }
 
     /**

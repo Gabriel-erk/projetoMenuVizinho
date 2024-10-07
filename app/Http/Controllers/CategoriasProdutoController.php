@@ -69,8 +69,21 @@ class CategoriasProdutoController extends Controller
     public function show(string $id)
     {
         $categoriaProduto = CategoriaProduto::findOrFail($id);
-        return view('admin.adm.admCategorias.visualizar', compact('categoriaProduto'));
+        // pega todos os produtos associados a uma categoria
+        $produtosAssociados = CategoriaProduto::with('produtos')->find($id);
+        // é atribuido a quantidade de produtos da categoria encontrada
+        $quantidadeProdutos = $produtosAssociados->produtos->count();
+        return view('admin.adm.admCategorias.visualizar', compact('categoriaProduto', 'quantidadeProdutos'));
     }
+
+    public function produtos($id)
+    {
+        $categoria = CategoriaProduto::with('produtos')->findOrFail($id);
+        $produtos = $categoria->produtos;
+
+        return view('admin.adm.admCategorias.produtos', compact('categoria', 'produtos'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

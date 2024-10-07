@@ -37,8 +37,8 @@
             <th>ID da sub-categoria</th>
             <td>{{ $produto->sub_categoria_produto_id }}</td>
         </tr>
-        
+
     </table>
     <a href="{{ route('produtos.edit', ['id' => $produto->id]) }}" class="btn btn-primary">Editar</a>
-    <a href="{{ route('produtos.index') }}" class="btn btn-secondary">Cancelar</a>
+    <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
 @endsection

@@ -84,6 +84,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="{{ route('produtos.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
+        {{-- url()->previous retorna para a última view em que estava, independente de qual seja, já que posso tanto retornara para a categorias.index, quando a seção de visualização do produto dentro de "ver produtos associados" --}}
+        <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
+            </form>
 @endsection
