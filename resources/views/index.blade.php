@@ -25,11 +25,6 @@
             font-family: 'Poppins', sans-serif
         }
 
-        :root {
-            --cor-terciaria: #654730;
-            --cor-quartenaria: #342F2E;
-        }
-
         #rodape {
             margin-top: 0
         }

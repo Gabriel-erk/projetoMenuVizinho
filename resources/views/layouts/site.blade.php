@@ -42,6 +42,8 @@
         :root {
             --cor-primaria: #8C6342;
             --cor-secundaria: #F9EED9;
+            --cor-terciaria: #654730;
+            --cor-quartenaria: #342F2E;
         }
 
         /* formatando cabecalho */
@@ -72,6 +74,15 @@
 
         .list-group-item:hover {
             background-color: rgb(59, 57, 57, 0.164) !important;
+        }
+
+        .botaoLoginCadastro button {
+            background-color: var(--cor-primaria);
+            color: var(--cor-secundaria);
+        }
+
+        .botaoLoginCadastro button:hover {
+            background-color: var(--cor-terciaria);
         }
 
         /* rodapé */
@@ -111,6 +122,8 @@
         #rodape {
             margin-top: 3rem;
         }
+
+
     </style>
 
     <header id="cabecalho" style="background-color: var(--cor-primaria)">
@@ -139,7 +152,7 @@
                 <a href="{{ route('site.carrinho') }}">
                     <button type="button" class="me-3 btn position-relative"
                         style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)"><i
-                            class="fa-solid fa-bag-shopping" style="color: #342F2E;"></i> <span
+                            class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i> <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
                             <span class="visually-hidden">unread messages</span></span>
                     </button>
@@ -161,7 +174,7 @@
                         width: 25px;
                         height: 2px;
                         /* Cor das barrinhas */
-                        background-color: #342F2E;
+                        background-color: var(--cor-quartenaria);
                         /* Remove margens adicionais */
                         margin: 0;
                     }
@@ -243,9 +256,9 @@
                             @guest
                                 <div class="botaoLoginCadastro d-grid gap-2 d-md-block text-center mt-4">
 
-                                    <button class="btn btn-primary"><a href="{{ route('login.form') }}"
+                                    <button class="btn"><a href="{{ route('login.form') }}"
                                             class="text-decoration-none text-light">Login</a></button>
-                                    <button class="btn btn-primary"><a href="{{ route('usuario.cadastro') }}"
+                                    <button class="btn"><a href="{{ route('usuario.cadastro') }}"
                                             class="text-decoration-none text-light">Cadastrar</a></button>
                                 </div>
                             @endguest

@@ -65,8 +65,8 @@
     @endsection
 
     {{-- font-family: 'Cabin', sans-serif --}}
-    <div class="d-flex" style="font-family: 'Cabin', sans-serif">
-        <h1 class="mt-3 fw-bolder" style="color:#8c6342;">TODOS OS PRODUTOS</h1>
+    <div class="d-flex" style="font-family: 'Poppins', sans-serif">
+        <h1 class="mt-3 fw-bold" style="color:#8c6342;">TODOS OS PRODUTOS</h1>
         {{-- total de produtos --}}
         {{-- <span class="position-relative ms-2" style="top: 2.7rem; font-size: 0.8em">[68]</span> --}}
     </div>
