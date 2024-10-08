@@ -309,18 +309,6 @@
                                     style="color: #8C6342">Adicionar</a></span>
                         </div>
 
-                        <div class="opcaoPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
-                            style="background-color: #f4f4f4; border: 1px solid #ccc">
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('img/credit-card.png') }}" style="width: 4vw">
-                                <span class="ms-2">Cartão de débito</span>
-                            </div>
-
-                            <span><a href="{{ route('usuario.novaFormaPagamento') }}" class="text-decoration-none"
-                                    style="color: #8C6342">Adicionar</a></span>
-                        </div>
-
                     </div>
 
                     <div id="pagamentoSalvo" class="fw-semibold">

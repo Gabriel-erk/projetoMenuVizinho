@@ -16,7 +16,8 @@ class Produto extends Model
         'descricao',
         'info_nutricional',
         'categoria_produto_id',
-        'sub_categoria_produto_id'
+        'sub_categoria_produto_id',
+        'itens_carrinho_id'
     ];
     use HasFactory;
 
@@ -30,6 +31,10 @@ class Produto extends Model
     {
         // Define que um produto pertence a uma sub-categoria - Informa que o produto pertence a uma sub-categoria, utilizando a chave estrangeira
         return $this->belongsTo(SubCategoria::class, 'sub_categoria_produto_id');
+    }
+
+    public function itens_carrinho(){
+        return $this->belongsTo(ItensCarrinho::class, 'itens_carrinho_id');
     }
 
     public static function boot()
