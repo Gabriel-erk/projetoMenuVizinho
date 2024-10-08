@@ -1,4 +1,8 @@
 @extends('layouts.site')
+<?php
+    // vai me permitir limitar os caracteres da minha descrição
+   use Illuminate\Support\Str;
+?>
 
 <!-- adicionando fonte 4 (Titan One) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,47 +93,32 @@
             <button id="limpaCarrinho" class="rounded position-absolute"
                 style="font-family: 'Cabin', sans-serif; background-color:#8C6342; color:#ffffff; border:none; padding: 0.5em 1.9em; right:2em">Limpar</button>
 
-            <div class="d-flex align-items-center pb-3">
-                <img src="./img/cheeseburguer.png" style="height: 23vh; width: 15vw">
+            @if (count($itensCarrinho) > 0)
+                @foreach ($itensCarrinho as $item)
+                    <div class="d-flex align-items-center pb-3 px-4">
+                        <img src="{{ asset($item->imagem) }}" style="height: 23vh; width: 15vw">
+                        <div class="ps-2">
+                            <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
+                                {{ $item->produto->nome }}</h2>
+                            <p class="fw-normal" style="color: #979797; font-family:'Signika Negative', sans-serif;">
+                                {{ Str::limit($item->produto->descricao, 50, '...') }}</p>
+                            <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">R$
+                                {{ $item->produto->preco }}</p>
+                        </div>
 
-                <div class="ps-2">
-                    <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">Mrs. King
-                        Cheddar Extra</h2>
-                    <p class="fw-normal" style="color: #979797; font-family:'Signika Negative', sans-serif;">Um hambúrguer
-                        com duas carnes bovinas grelhad...</p>
-                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">R$ 39,99</p>
-                </div>
-
-                <div style="width: 30%; font-family:'Poppins',sans-serif">
-                    <div class="d-flex justify-content-between align-items-center py-1 px-2"
-                        style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                        <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
-                        <strong>0</strong>
-                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                        <div style="width: 30%; font-family:'Poppins',sans-serif">
+                            <div class="d-flex justify-content-between align-items-center py-1 px-2"
+                                style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
+                                <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
+                                <strong>{{ $item->quantidade }}</strong>
+                                <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="d-flex align-items-center pb-3">
-                <img src="./img/cheeseburguer.png" style="height: 23vh; width: 15vw">
-
-                <div class="ps-2">
-                    <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">Mrs. King
-                        Cheddar Extra</h2>
-                    <p class="fw-normal" style="color: #979797; font-family:'Signika Negative', sans-serif;">Um hambúrguer
-                        com duas carnes bovinas grelhad...</p>
-                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">R$ 39,99</p>
-                </div>
-
-                <div style="width: 30%; font-family:'Poppins',sans-serif">
-                    <div class="d-flex justify-content-between align-items-center py-1 px-2"
-                        style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                        <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
-                        <strong>0</strong>
-                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @else
+                <p>Seu carrinho está vazio.</p>
+            @endif
         </div>
 
         <div class="aproveiteTambem" style="border-top: 2px solid #ccc; border-bottom: 2px solid #ccc">

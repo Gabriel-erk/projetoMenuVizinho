@@ -32,9 +32,6 @@ return new class extends Migration
                 ->references('id')
                 ->on('sub_categoria')
                 ->onDelete('set null'); // Se a sub-categoria for deletada, o campo é definido como NULL e não deleta todos os registros associados a ele
-            $table->unsignedBigInteger('itens_carrinho_id')->nullable();
-            $table->foreign('itens_carrinho_id')->references('id')->on('itens_carrinho')->onDelete('set null');
-            
         });
     }
 

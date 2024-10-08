@@ -85,7 +85,11 @@
 
         <div class="posicionaBotaoSubmit mt-4">
             <a href="{{ route('site.index') }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
-            <button type="submit" class="botaoAdicionar">Adicionar ao carrinho</button>
+            
+            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                @csrf
+                <button type="submit" class="botaoAdicionar">Adicionar ao carrinho</button>
+            </form>
         </div>
     </main>
 @endsection

@@ -40,16 +40,6 @@ class SiteController extends Controller
         return view('ofertas');
     }
 
-    public function carrinho()
-    {   
-        // buscando 5 produtos aleatórios
-        // inRandomOrder vai buscar produtos aleatoriamente no banco de dados (5 registros), take(5) limita o número de produtos retornados a 5
-        $produtos = Produto::inRandomOrder()->take(7)->get();
-        // trazendo os metodos de pagamento associados ao usuário logado
-        $metodosPagamentos = MetodoPagamento::where('user_id', Auth::user()->id)->get();
-        return view('carrinho', compact('produtos', 'metodosPagamentos'));
-    }
-
     public function cupons()
     {
         return view('cupons');

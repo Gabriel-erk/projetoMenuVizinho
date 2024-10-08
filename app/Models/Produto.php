@@ -33,8 +33,9 @@ class Produto extends Model
         return $this->belongsTo(SubCategoria::class, 'sub_categoria_produto_id');
     }
 
+    // Um produto pode estar em vários carrinhos, portanto, o relacionamento com itens_carrinho será de "um produto pode ter muitos registros de itens carrinho".
     public function itens_carrinho(){
-        return $this->belongsTo(ItensCarrinho::class, 'itens_carrinho_id');
+        return $this->hasMany(ItensCarrinho::class, 'produto_id');
     }
 
     public static function boot()

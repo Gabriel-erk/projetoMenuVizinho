@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\ListaCarrinho;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +35,12 @@ class User extends Authenticatable
         'telefone',
         'foto'
     ];
+
+    // _u para dizer que é do user
+    public function lista_carrinho_u(){
+        // hasOne pois cada usuário em apenas uma lista carrinho
+        return $this->hasOne(ListaCarrinho::class, 'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

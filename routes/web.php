@@ -4,6 +4,8 @@ use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
+use App\Http\Controllers\ListaCarrinhoController;
+use App\Http\Controllers\ItensCarrinhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\ParceirosController;
@@ -23,7 +25,6 @@ Route::get('/site2', function () {
 Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
     Route::get('/cardapio', 'cardapio')->name('site.cardapio');
-    // /produto/{id}
     Route::get('/produto/{id}', 'produto')->name('site.produto');
     Route::get('/ofertas', 'ofertas')->name('site.ofertas');
     Route::get('/cupons', 'cupons')->name('site.cupons');
@@ -32,10 +33,9 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/login', 'login')->name('site.login');
     Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
     // colocando um middleware para permitir que o usuário acesse está rota somente se estiver logado
-    Route::get('/carrinho', 'carrinho')->name('site.carrinho')->middleware('auth');
 });
 
-// UsuarioController
+// UsuarioController - métodoPagamentoController e listaCarrinhoController (já que todos dentro deste bloco, somente logados tem acesso a essas rotas)
 /*
 * travando as rotas
 * fazendo com que, se o usuário não estiver logado, ele não tem acesso a essas rotas 
@@ -53,10 +53,14 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/admin/usuarios/novaFormaPagamento', 'create')->name('usuario.novaFormaPagamento');
         Route::get('/admin/usuarios/editarPagamentos/{id}', 'edit')->name('usuario.editarPagamentos');
 
-
         Route::post('/admin/usuarios/salvarPagamento', 'store')->name('pagamentos.store');
         Route::put('/admin/usuarios/atualizarPagamento/{id}', 'update')->name('pagamentos.atualizarPagamento');
         Route::delete('/admin/usuarios/deletarPagamento/{id}', 'destroy')->name('pagamentos.deletarPagamento');
+    });
+    // só pode adicionar ao carrinho se estiver logado - o que já evita de jogar um erro na cara do usuário pq o usuário n ta logado e ele tá tentando salvar, mas como n está logado, n consegue pegar o id dele, q é essencial
+    Route::controller(ListaCarrinhoController::class)->group(function () {
+        Route::post('/produto/adicionarAoCarrinho/{produtoId}', 'addToCart')->name('lista.addToCart');
+        Route::get('/carrinho', 'index')->name('lista.carrinho');
     });
 });
 
@@ -69,7 +73,7 @@ Route::delete('/admin/adm/admUsuarios/deletar/{id}', [UsuarioController::class, 
 
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-// se ficar no bloco acima, só podem ser feitas se o usuário estiver logado, e quero poder cadastrar/salvar informações apenas como vistante
+// se ficar no bloco acima, só podem ser feitas se o usuário estiver logado, e quero poder cadastrar informações apenas como vistante
 Route::get('/admin/usuarios/cadastro', [UsuarioController::class, 'create'])->name('usuario.cadastro')->middleware('guest');
 Route::post('/admin/usuarios/salvar', [UsuarioController::class, 'store'])->name('usuario.store');
 
@@ -89,6 +93,7 @@ Route::controller(CategoriasProdutoController::class)->group(function () {
     Route::delete('/admin/adm/admCategorias/deletar/{id}', 'destroy')->name('categorias.destroy');
 });
 
+/* pasta de subcategorias */
 Route::controller(SubCategoriasController::class)->group(function () {
     Route::get('/admin/adm/admSubCategorias/index', 'index')->name('subCategorias.index');
     Route::get('/admin/adm/admSubCategorias/visualizar/{id}', 'show')->name('subCategorias.show');
@@ -97,12 +102,12 @@ Route::controller(SubCategoriasController::class)->group(function () {
     Route::post('/admin/adm/admSubCategorias/salvarCategoria', 'store')->name('subCategorias.store');
     Route::get('/admin/adm/admSubCategorias/produtos/{id}', 'produtos')->name('subCategorias.produtos');
 
-
     Route::get('/admin/adm/admSubCategorias/editar/{id}', 'edit')->name('subCategorias.edit');
     Route::put('/admin/adm/admSubCategorias/atualizar/{id}', 'update')->name('subCategorias.update');
     Route::delete('/admin/adm/admSubCategorias/deletar/{id}', 'destroy')->name('subCategorias.destroy');
 });
 
+/* pasta de produtos */
 Route::controller(ProdutoController::class)->group(function () {
     Route::get('/admin/adm/admProdutos/index', 'index')->name('produtos.index');
     Route::get('/admin/adm/admProdutos/visualizar/{id}', 'show')->name('produtos.show');
@@ -115,21 +120,7 @@ Route::controller(ProdutoController::class)->group(function () {
     Route::delete('/admin/adm/admProdutos/deletar/{id}', 'destroy')->name('produtos.destroy');
 });
 
-/* pasta cadastroParceiros */
-
-Route::controller(ParceirosController::class)->group(function () {
-    Route::get('/sejaParceiro', 'create')->name('parceiros.sejaParceiro')->middleware('guest');
-    Route::get('/cadastroRestaurante', 'createRestaurante')->name('parceiros.cadastroRestaurante');
-    Route::get('/cadastroInformacoes', 'cadastroInformacoes')->name('parceiros.minhasInformacoes');
-    Route::get('/cadastroCategorias', 'cadastroCategorias')->name('parceiros.categorias');
-    Route::get('/selecaoCardapio', 'selecaoCardapio')->name('parceiros.selecaoCardapio');
-    Route::get('/cadastroCardapio', 'cadastroCardapio')->name('parceiros.cadastroCardapio');
-    Route::get('/cadastroBanner', 'cadastroBanner')->name('parceiros.banner');
-    Route::get('/cadastroCupons', 'cadastroCupons')->name('parceiros.cupons');
-    // pasta parceiros
-    Route::get('/meuRestaurante', 'meuRestaurante')->name('parceiros.meuRestaurante');
-});
-
+/* processo de autenticação, login, logout */
 route::get("/login", [AutenticacaoController::class, "formLogin"])->name("login.form")->middleware("guest");
 route::post("/login", [AutenticacaoController::class, "login"])->name("login")->middleware('guest');
 route::get("/logout", [AutenticacaoController::class, "logout"])->name("logout");

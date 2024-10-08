@@ -149,7 +149,7 @@
 
             <nav class="navbar navbar-dark">
 
-                <a href="{{ route('site.carrinho') }}">
+                <a href="{{ route('lista.carrinho') }}">
                     <button type="button" class="me-3 btn position-relative"
                         style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)"><i
                             class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i> <span
@@ -224,15 +224,6 @@
                                                 <a href="#" class="text-decoration-none text-dark ps-2">Favoritos</a>
                                             </li>
                                         @endif
-                                        {{-- se for diferente de 1, é pq é 2, ent, é restaurante --}}
-                                        @if (auth()->user()->tipo != 1)
-                                            {{-- aparecerá apenas para restaurantes registrados --}}
-                                            <li class="list-group-item"><i class="fa-solid fa-utensils"
-                                                    style="color: #000000;"></i>
-                                                <a href="{{ route('parceiros.meuRestaurante') }} class="text-decoration-none
-                                                    text-dark ps-2"">Meu Restautante</a>
-                                            </li>
-                                        @endif
 
                                         <li class="list-group-item">
                                             <i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i>
@@ -245,7 +236,7 @@
                                     @guest
                                         <li class="list-group-item">
                                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                                            <a href="{{ route('parceiros.sejaParceiro') }}"
+                                            <a href="#"
                                                 class="text-decoration-none text-dark ps-2">Seja um dos nossos
                                                 parceiros</a>
                                         </li>

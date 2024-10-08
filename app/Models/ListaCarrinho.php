@@ -12,12 +12,13 @@ class ListaCarrinho extends Model
     protected $table = "lista_carrinho";
 
     protected $fillable = [
-        'user_id',
-        'cartao_cliente_id',
-        'itens_carrinho_id'
+        'user_id', // Assumindo que você tem um campo user_id
+        'cartao_cliente_id' // Caso você tenha um cartão cliente
     ];
 
-    public function itens_carrinho(){
-        return $this->belongsTo(ItensCarrinho::class, 'itens_carrinho_id');
+    // Define o relacionamento com ItensCarrinho
+    public function itens()
+    {
+        return $this->hasMany(ItensCarrinho::class, 'lista_carrinho_id');
     }
 }
