@@ -1,7 +1,7 @@
 @extends('layouts.site')
 <?php
-    // vai me permitir limitar os caracteres da minha descrição
-   use Illuminate\Support\Str;
+// vai me permitir limitar os caracteres da minha descrição
+use Illuminate\Support\Str;
 ?>
 
 <!-- adicionando fonte 4 (Titan One) -->
@@ -90,10 +90,22 @@
         {{-- antes: .listaCarrinho --}}
         <div style="background-color: #f9eed9" class="pt-3">
 
-            <button id="limpaCarrinho" class="rounded position-absolute"
-                style="font-family: 'Cabin', sans-serif; background-color:#8C6342; color:#ffffff; border:none; padding: 0.5em 1.9em; right:2em">Limpar</button>
+            <script>
+                function confirmLimpaCarrinho() {
+                    return confirm('Deseja limpar o carrinho?')
+                }
+            </script>
 
             @if (count($itensCarrinho) > 0)
+            {{-- passando o id da lista do carrinho, pois quero limpar seus itens --}}
+                <form action="{{ route('lista.limpar', $listaCarrinho->id) }}" method="POST"
+                    onsubmit="return confirmLimpaCarrinho()">
+                    @csrf
+                    <button id="limpaCarrinho" type="submit" class="rounded position-absolute"
+                        style="font-family: 'Cabin', sans-serif; background-color:#8C6342; color:#ffffff; border:none; padding: 0.5em 1.9em; right:2em">
+                        Limpar
+                    </button>
+                </form>
                 @foreach ($itensCarrinho as $item)
                     <div class="d-flex align-items-center pb-3 px-4">
                         <img src="{{ asset($item->imagem) }}" style="height: 23vh; width: 15vw">
@@ -109,15 +121,23 @@
                         <div style="width: 30%; font-family:'Poppins',sans-serif">
                             <div class="d-flex justify-content-between align-items-center py-1 px-2"
                                 style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                                <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
+                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" style="border: none; background-color: #d9d9d9;"><i
+                                            class="fa-solid fa-minus" style="color: #8C6342;"></i></button>
+                                </form>
                                 <strong>{{ $item->quantidade }}</strong>
-                                <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                <form action="{{ route('lista.addToCart', $item->produto->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" style="border: none; background-color: #d9d9d9;"><i
+                                            class="fa-solid fa-plus" style="color: #8C6342;"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 @endforeach
             @else
-                <p>Seu carrinho está vazio.</p>
+                <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">Seu carrinho está vazio.</p>
             @endif
         </div>
 
@@ -133,10 +153,14 @@
                                 <img src="{{ asset($produto->imagem) }}" class="p-3" style="height: 58%">
                             </a>
 
-                            <div class="position-absolute rounded-circle"
-                                style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: #8c6342">
-                                <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                            </div>
+                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                                @csrf
+                                <div class="position-absolute rounded-circle"
+                                    style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: var(--cor-primaria)">
+                                    <button type="submit" style="border: none; background-color: var(--cor-primaria);"><i
+                                            class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="informacoesProdutoAproveiteTambem">

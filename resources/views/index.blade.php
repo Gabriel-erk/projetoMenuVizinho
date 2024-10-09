@@ -139,21 +139,23 @@
         </div>
 
         {{-- Seção o que nossos clientes dizem --}}
-        <div class="avaliacoes py-5 px-5" style="background-color: var(--cor-primaria);">
+        <div class="avaliacoes pt-5 px-5" style="background-color: var(--cor-primaria);">
             <span class="d-block fs-2 fw-bold" style="width:30%; color: var(--cor-secundaria);">O que nossos clientes
                 dizem?</span>
 
             {{-- owl-carousel --}}
-            <div class="d-flex justify-content-around" style="margin-top: 5rem">
+            <div class="d-flex justify-content-around h-100" style="margin-top: 5rem">
                 {{-- deixando a posição da div pai relativa, para poder manipular a imagem dentro dela com posição absoluta (terá sua posição absoluta em relação a div pai) --}}
-                <div class="text-center px-3 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 25vw; height: 50vh; border: 6px solid var(--cor-secundaria)">
+                <div class="text-center px-4 py-2 bg-white rounded-4 item"
+                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
 
-                    {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
-                    <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
-                        style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 8vw;">
+                    <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
+                        {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
+                        <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
+                            style="width: 8vw;">
+                    </div>
 
-                    <span class="d-block mb-3 mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                         Perferendis
                         quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
@@ -164,14 +166,16 @@
                     </div>
                 </div>
 
-                <div class="text-center px-3 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 25vw; height: 50vh; border: 6px solid var(--cor-secundaria)">
+                <div class="text-center px-4 py-2 bg-white rounded-4 item"
+                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
 
-                    {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
-                    <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
-                        style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 8vw;">
+                    <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
+                        {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
+                        <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
+                            style="width: 8vw;">
+                    </div>
 
-                    <span class="d-block mb-3 mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                         Perferendis
                         quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
@@ -182,14 +186,17 @@
                     </div>
                 </div>
 
-                <div class="text-center px-3 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 25vw; height: 50vh; border: 6px solid var(--cor-secundaria)">
+                <div class="text-center px-4 py-2 bg-white rounded-4 item"
+                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
 
-                    {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
-                    <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
-                        style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 8vw;">
+                    <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
+                        {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
+                        <img src="{{ asset('img/kendrickCLiente.jpg') }}" alt="" class="rounded-circle"
+                            style="width: 8vw;">
+                    </div>
 
-                    <span class="d-block mb-3 mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        Perferendis
                         quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
 
@@ -198,7 +205,7 @@
                         <span class="d-block" style="color:#909090">5/5</span>
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
     </main>
 @endsection

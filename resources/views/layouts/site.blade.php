@@ -122,8 +122,6 @@
         #rodape {
             margin-top: 3rem;
         }
-
-
     </style>
 
     <header id="cabecalho" style="background-color: var(--cor-primaria)">
@@ -152,12 +150,15 @@
                 <a href="{{ route('lista.carrinho') }}">
                     <button type="button" class="me-3 btn position-relative"
                         style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)"><i
-                            class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i> <span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
-                            <span class="visually-hidden">unread messages</span></span>
+                            class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i>
+                        {{-- só mostra isso se estiver logado, pois um usuário não pode ter itens no carrinho se não estiver logado,então assim fica mais coerente --}}
+                        @auth
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
+                                <span class="visually-hidden">lista carrinho</span></span>
+                        @endauth
                     </button>
                 </a>
-
 
                 <style>
                     .navbar-toggler-icon {
@@ -183,6 +184,7 @@
                 <button class="navbar-toggler" style="background-color: var(--cor-secundaria)" type="button"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span class="navbar-toggler-icon">
+                        {{-- fazendo as 3 barrinhas, de um jeito bem arcaico --}}
                         <span></span>
                         <span></span>
                         <span></span>
@@ -236,8 +238,8 @@
                                     @guest
                                         <li class="list-group-item">
                                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
-                                            <a href="#"
-                                                class="text-decoration-none text-dark ps-2">Seja um dos nossos
+                                            <a href="#" class="text-decoration-none text-dark ps-2">Seja um dos
+                                                nossos
                                                 parceiros</a>
                                         </li>
                                     @endguest

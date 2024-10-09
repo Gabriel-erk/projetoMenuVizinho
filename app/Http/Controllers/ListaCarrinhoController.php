@@ -66,6 +66,41 @@ class ListaCarrinhoController extends Controller
         // Métodos de pagamento do usuário logado
         $metodosPagamentos = MetodoPagamento::where('user_id', $userId)->get();
 
-        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho'));
+        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho','listaCarrinho'));
+    }
+
+    public function removeItem($itemId)
+    {
+        // Encontre o item no carrinho
+        $itemCarrinho = ItensCarrinho::find($itemId);
+
+        if ($itemCarrinho) {
+            // Se a quantidade for maior que 1, diminua a quantidade
+            if ($itemCarrinho->quantidade > 1) {
+                $itemCarrinho->quantidade -= 1;
+                $itemCarrinho->save();
+            } else {
+                // Se a quantidade for 1, remova o item
+                $itemCarrinho->delete();
+            }
+        }
+
+        return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
+    }
+    
+    // remove todos os itens da lista_carrinho do usuário
+    public function clearCart()
+    {
+        $userId = auth()->id(); // Pega o ID do usuário autenticado
+
+        // Busca a lista de carrinho do usuário
+        $listaCarrinho = ListaCarrinho::where('user_id', $userId)->first();
+
+        if ($listaCarrinho) {
+            // Remove todos os itens do carrinho
+            ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->delete();
+        }
+
+        return redirect()->route('lista.carrinho')->with('success', 'Carrinho limpo com sucesso!'); // Mensagem de sucesso
     }
 }

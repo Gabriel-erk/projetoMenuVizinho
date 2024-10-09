@@ -61,6 +61,8 @@ Route::middleware(["auth"])->group(function () {
     Route::controller(ListaCarrinhoController::class)->group(function () {
         Route::post('/produto/adicionarAoCarrinho/{produtoId}', 'addToCart')->name('lista.addToCart');
         Route::get('/carrinho', 'index')->name('lista.carrinho');
+        Route::post('/carrinho/removerItem/{itemId}', 'removeItem')->name('lista.remover');
+        Route::post('/carrinho/limpar/{itemId}', 'clearCart')->name('lista.limpar');
     });
 });
 
