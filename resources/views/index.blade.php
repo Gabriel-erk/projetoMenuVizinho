@@ -144,10 +144,10 @@
                 dizem?</span>
 
             {{-- owl-carousel --}}
-            <div class="d-flex justify-content-around h-100" style="margin-top: 5rem">
+            <div class="d-flex justify-content-around h-50" style="margin-top: 5rem">
                 {{-- deixando a posição da div pai relativa, para poder manipular a imagem dentro dela com posição absoluta (terá sua posição absoluta em relação a div pai) --}}
                 <div class="text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; width: 23vw; height: 80%; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
@@ -155,9 +155,9 @@
                             style="width: 8vw;">
                     </div>
 
-                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Perferendis
-                        quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        
+                        quo expedita tempore.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
 
                     <div class="d-flex justify-content-center align-items-center">
@@ -165,9 +165,8 @@
                         <span class="d-block" style="color:#909090">5/5</span>
                     </div>
                 </div>
-
                 <div class="text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; width: 23vw;  height: 80%; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
@@ -175,9 +174,9 @@
                             style="width: 8vw;">
                     </div>
 
-                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Perferendis
-                        quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        
+                        quo expedita tempore.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
 
                     <div class="d-flex justify-content-center align-items-center">
@@ -185,9 +184,8 @@
                         <span class="d-block" style="color:#909090">5/5</span>
                     </div>
                 </div>
-
                 <div class="text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; height: 36%; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; width: 23vw;  height: 80%; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
@@ -195,9 +193,9 @@
                             style="width: 8vw;">
                     </div>
 
-                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1.1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Perferendis
-                        quo expedita tempore. Explicabo quod, possimus, velit praesentium.</span>
+                    <span class="d-block mb-3" style="margin-top: 8.5vh; font-size: 1em">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        
+                        quo expedita tempore.</span>
                     <span class="d-block mb-1">-Eric tchola dms</span>
 
                     <div class="d-flex justify-content-center align-items-center">
@@ -205,6 +203,7 @@
                         <span class="d-block" style="color:#909090">5/5</span>
                     </div>
                 </div>
+
             </div>  
         </div>
     </main>

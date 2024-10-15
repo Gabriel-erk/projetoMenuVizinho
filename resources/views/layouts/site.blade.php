@@ -149,16 +149,16 @@
 
                 <a href="{{ route('lista.carrinho') }}">
                     <button type="button" class="me-3 btn position-relative"
-                        style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)"><i
-                            class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i>
-                        {{-- só mostra isso se estiver logado, pois um usuário não pode ter itens no carrinho se não estiver logado,então assim fica mais coerente --}}
+                        style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)">
+                        <i class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i>
                         @auth
-                            <span
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0
-                                <span class="visually-hidden">lista carrinho</span></span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                {{ $totalItensCarrinho > 0 ? $totalItensCarrinho : 0 }}
+                                <span class="visually-hidden">lista carrinho</span>
+                            </span>
                         @endauth
                     </button>
-                </a>
+                </a>                
 
                 <style>
                     .navbar-toggler-icon {
