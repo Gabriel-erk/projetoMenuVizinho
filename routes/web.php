@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
 use App\Http\Controllers\ListaCarrinhoController;
+use App\Http\Controllers\ItensCarrinhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\SiteController;
@@ -62,6 +63,14 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/carrinho', 'index')->name('lista.carrinho');
         Route::post('/carrinho/removerItem/{itemId}', 'removeItem')->name('lista.remover');
         Route::post('/carrinho/limpar/{itemId}', 'clearCart')->name('lista.limpar');
+        // area administrativa
+        Route::get('/admin/adm/admListaC/index', 'admIndex')->name('lista.index');
+        Route::get('/admin/adm/admListaC/show/{id}', 'show')->name('lista.show');
+    });
+
+    Route::controller(ItensCarrinhoController::class)->group(function () {
+        // area administrativa
+        Route::get('/admin/adm/admListaC/admItensCarrinho/index/{id}', 'index')->name('itens.index');
     });
 });
 

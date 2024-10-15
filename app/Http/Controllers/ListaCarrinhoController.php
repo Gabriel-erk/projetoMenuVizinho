@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Auth;
 class ListaCarrinhoController extends Controller
 {
 
+    public function admIndex(){
+        $listas = ListaCarrinho::all();
+        return view('admin.adm.admListaC.index', compact('listas'));
+    }
+
+    public function show(string $id){
+        $lista = ListaCarrinho::findOrFail($id);
+        return view('admin.adm.admListaC.visualizar', compact('lista'));
+    }
+
     public function addToCart($produtoId)
     {
         $userId = auth()->id();  // Pega o ID do usuário autenticado
