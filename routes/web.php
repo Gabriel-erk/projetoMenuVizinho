@@ -5,12 +5,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
 use App\Http\Controllers\ListaCarrinhoController;
-use App\Http\Controllers\ItensCarrinhoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SubCategoriasController;
-use App\Http\Controllers\ParceirosController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/site', function () {

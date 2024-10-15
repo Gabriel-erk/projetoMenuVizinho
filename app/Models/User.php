@@ -28,8 +28,6 @@ class User extends Authenticatable
         'numero',
         'bairro',
         'complemento',
-        'cidade',
-        'estado',
         'cep',
         'celular',
         'telefone',

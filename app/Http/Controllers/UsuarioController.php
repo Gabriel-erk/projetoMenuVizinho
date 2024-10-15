@@ -41,8 +41,6 @@ class UsuarioController extends Controller
             'bairro' => 'required|string',
             'numero' => 'required|string',
             'complemento' => 'nullable|string',
-            'cidade' => 'required|string',
-            'estado' => 'nullable|string',
             'cep' => 'nullable|string',
             'telefone' => 'nullable|string',
             'celular' => 'required|string',
@@ -60,8 +58,6 @@ class UsuarioController extends Controller
             'bairro' => $request->bairro,
             'complemento' => $request->complemento,
             'numero' => $request->numero,
-            'cidade' => $request->cidade,
-            // 'estado' => $request->estado,
             'cep' => $request->cep,
             'telefone' => $request->telefone,
             'celular' => $request->celular,
@@ -95,8 +91,6 @@ class UsuarioController extends Controller
             'numero' => 'required',
             'complemento' => 'nullable|string',
             'bairro' => 'required|string',
-            'cidade' => 'required|string',
-            'estado' => 'nullable|string',
             'cep' => 'nullable|string',
             'celular' => 'required',
             'telefone' => 'nullable',
@@ -112,8 +106,6 @@ class UsuarioController extends Controller
             'numero' => $request->numero,
             'bairro' => $request->bairro,
             'complemento' => $request->complemento,
-            'cidade' => $request->cidade,
-            'estado' => $request->estado,
             'cep' => $request->cep,
             'celular' => $request->celular,
             'telefone' => $request->telefone,
@@ -151,8 +143,8 @@ class UsuarioController extends Controller
     }
 
     /*
-* meus pedidos 
-*/
+    * meus pedidos 
+    */
 
     // vou pedir id do usuário dps - mostrar apenas os pedidos referentes a aquele usuário
     public function meusPedidos()
