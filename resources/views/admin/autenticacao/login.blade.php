@@ -1,7 +1,6 @@
 @extends('layouts.site')
 
 @section('conteudo')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <style>
         body {
@@ -9,9 +8,9 @@
         }
     </style>
 
-    <div class="container mt-5 d-flex justify-content-center">
+    <div class="container py-5 d-flex justify-content-center align-items-center">
 
-        <div class="card shadow-sm rounded-4" style="width: 450px;">
+        <div class="card shadow-sm rounded-4 " style="width: 25vw; height: 35vh">
             <div class="card-body">
 
                 @if ($errors->any())
