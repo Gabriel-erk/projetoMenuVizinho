@@ -139,21 +139,30 @@
         </div>
 
         <style>
-            @media (min-width: 768px) and (max-width: 1199px) {
+            @media (min-width: 768px) and (max-width: 1366px) {
                 .clientes {
                     height: 50%;
                 }
 
                 .cliente {
                     height: 80%;
+                    width: 23vw;
                 }
 
-                .cliente-desc {
-                    font-size: 1em
+                .cliente-desc, .nome-cliente{
+                    font-size: 1.1em
+                }
+
+                .icone-estrela {
+                    font-size: 1.3rem;
+                }
+
+                .nota-cliente {
+                    font-size: 1.1rem
                 }
             }
 
-            @media (min-width: 1200px) {
+            @media (min-width: 1367px) {
                 .clientes {
                     height: 40%;
                 }
@@ -185,7 +194,7 @@
             <div class="clientes d-flex justify-content-around" style="margin-top: 5rem">
                 {{-- deixando a posição da div pai relativa, para poder manipular a imagem dentro dela com posição absoluta (terá sua posição absoluta em relação a div pai) --}}
                 <div class="cliente text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
@@ -206,7 +215,7 @@
                 </div>
 
                 <div class="cliente text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}
@@ -227,7 +236,7 @@
                 </div>
 
                 <div class="cliente text-center px-4 py-2 bg-white rounded-4 item"
-                    style="position: relative; width: 23vw; border: 6px solid var(--cor-secundaria)">
+                    style="position: relative; border: 6px solid var(--cor-secundaria)">
 
                     <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%);">
                         {{-- left e transform centralizam a imagem horizontalmente em relação a div pai --}}

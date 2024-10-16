@@ -6,11 +6,25 @@
         body {
             background-color: #fff;
         }
+
+        @media (min-width: 768px) and (max-width: 1366px) {
+            .login {
+                width: 30vw;
+                height: 49vh;
+            }
+        }
+
+        @media (min-width: 1367px) {
+            .login {
+                width: 25vw;
+                height: 35vh;
+            }
+        }
     </style>
 
     <div class="container py-5 d-flex justify-content-center align-items-center">
 
-        <div class="card shadow-sm rounded-4 " style="width: 25vw; height: 35vh">
+        <div class="login card shadow-sm rounded-4">
             <div class="card-body">
 
                 @if ($errors->any())
@@ -31,7 +45,8 @@
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="seuemail@hotmail.com">
+                        <input type="email" name="email" id="email" class="form-control"
+                            placeholder="seuemail@hotmail.com">
                     </div>
 
                     <div class="mb-3">

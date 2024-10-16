@@ -1,8 +1,6 @@
 @extends('layouts.site')
 
 @section('conteudo')
-    {{-- <link rel="stylesheet" href="{{ asset('css/tituloEditUser.css') }}"> --}}
-
     <style>
         body {
             background-color: #fff;
@@ -19,7 +17,7 @@
         #botaoAlterarSalvar a:first-child:hover {
             /* Aplica um outro estilo no segundo link "Adicionar método de pagamento" */
             background-color: var(--cor-primaria);
-            color: var(--cor-secundaria);
+            color: #fff;
             outline: none;
         }
 
@@ -78,9 +76,10 @@
     <div class="container">
 
         <div class="w-100">
-            <div class="d-flex align-items-center justify-content-between">
+            {{-- justify-content-between --}}
+            <div class="d-flex align-items-center">
                 <span class="py-3 fs-3" style="font-weight: 500">Meus cartões</span>
-                <img src="{{ asset('img/lock.png') }}" alt="" style="width: 2.5vw; height: 5vh">
+                {{-- <img src="{{ asset('img/lock.png') }}" alt="" style="width: 2.5vw; height: 5vh"> --}}
             </div>
 
             <div>
@@ -105,7 +104,7 @@
                 @endforeach
             </div>
 
-            <div id="botaoAlterarSalvar" class="d-flex justify-content-start mt-5">
+            <div id="botaoAlterarSalvar" class="d-flex justify-content-between mt-5">
 
                 <a href="{{ route('usuario.minhaConta') }}" class="me-1 text-decoration-none p-2 rounded-3">
                     Voltar
