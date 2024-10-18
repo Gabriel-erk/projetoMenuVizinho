@@ -66,7 +66,8 @@
             /* populares */
 
             .sec-populares{
-                /* definir py */
+                padding-top: 2rem;
+                padding-bottom: 3.5rem;
             }
             .img-populares {
                 width: 20vw
@@ -81,8 +82,13 @@
             }
 
             /* comida para todos */
+            .titulo-para-todos {
+                font-size: 1.9rem
+            }
+
             .desc-para-todos {
-                font-weight: 500
+                font-size: 1.1rem;
+                font-weight: 500;
             }
 
             .botao-para-todos {
@@ -272,28 +278,31 @@
             </div>
         </div>
 
-        {{-- Seção Comida Para Todos --}}
-        <div class="d-flex py-5"
-            style="background-color: var(--cor-secundaria); padding-left: 4.5rem; padding-right: 4.5rem">
-            <div class="me-2">
-                <img src="{{ asset('img/whopper2.webp') }}" alt=""
-                    style="width: 45vw;
-                height: 55vh">
+        {{-- Seção Comida Para Todos py-5--}}
+        <div class="d-flex"
+            style="background-color: var(--cor-secundaria);">
+            {{-- me-2 --}}
+            <div class="">
+                <img src="{{ asset('img/meal.jpg') }}" alt=""
+                    style="width: 50vw;
+                height: 80vh">
                 {{-- <img src="{{ asset('img/anotherLuch.png') }}" alt="" style="width: 45vw; height: 55vh"> --}}
             </div>
 
-            <div>
-                <span class="d-block fw-bold titulo-para-todos" style="color: var(--cor-terciaria)">Comida saudável e
-                    fresca para
-                    você</span>
-                <span class="d-block mb-5 desc-para-todos" style="color: var(cor-quartenaria);">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Recusandae corrupti quos quidem ipsam quisquam facere officiis deserunt
-                    dolorem, exercitationem ipsum obcaecati perspiciatis, eos molestiae corporis, doloribus laborum eaque
-                    sint id.</span>
-
-                <a href="{{ route('site.cardapio') }}" class="botao-para-todos fw-bold text-decoration-none rounded-3"
-                    style="color: var(--cor-secundaria); background-color: var(--cor-primaria);">Ver
-                    Tudo</a>
+            <div class="ms-4 d-flex align-items-center">
+                <div style="width: 80%">
+                    <span class="d-block fw-bold titulo-para-todos" style="color: var(--cor-primaria)">Comida saudável e
+                        fresca para
+                        você</span>
+                    <span class="d-block mb-5 desc-para-todos" style="color: var(cor-quartenaria);">Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Recusandae corrupti quos quidem ipsam quisquam facere officiis deserunt
+                        dolorem, exercitationem ipsum obcaecati perspiciatis, eos molestiae corporis, doloribus laborum eaque
+                        sint id.</span>
+    
+                    <a href="{{ route('site.cardapio') }}" class="botao-para-todos fw-bold text-decoration-none rounded-3"
+                        style="color: var(--cor-secundaria); background-color: var(--cor-primaria);">Ver
+                        Tudo</a>
+                </div>
             </div>
         </div>
 
