@@ -82,6 +82,10 @@
             }
 
             /* comida para todos */
+            .texto-para-todos {
+                width: 80%
+            }
+
             .titulo-para-todos {
                 font-size: 1.9rem
             }
@@ -136,7 +140,6 @@
             }
 
             .titulo-sobre-nos,
-            .titulo-para-todos,
             .titulo-populares {
                 font-size: 2.3rem
             }
@@ -167,7 +170,7 @@
             }
 
             .titulo-prod-populares {
-                font-size: 1.3rem
+                font-size: 1.5rem
             }
 
             .desc-prod-populares {
@@ -176,8 +179,16 @@
             }
 
             /* comida para todos */
+            .texto-para-todos {
+                width: 95%
+            }
+
+            .titulo-para-todos {
+                font-size: 2.5rem
+            }
+
             .desc-para-todos {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
                 width: 80%
             }
 
@@ -278,7 +289,7 @@
             </div>
         </div>
 
-        {{-- Seção Comida Para Todos py-5--}}
+        {{-- Seção Comida Para Todos--}}
         <div class="d-flex"
             style="background-color: var(--cor-secundaria);">
             {{-- me-2 --}}
@@ -290,7 +301,7 @@
             </div>
 
             <div class="ms-4 d-flex align-items-center">
-                <div style="width: 80%">
+                <div class="texto-para-todos">
                     <span class="d-block fw-bold titulo-para-todos" style="color: var(--cor-primaria)">Comida saudável e
                         fresca para
                         você</span>
