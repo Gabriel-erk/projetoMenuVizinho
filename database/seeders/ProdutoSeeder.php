@@ -29,6 +29,7 @@ class ProdutoSeeder extends Seeder
                     'info_nutricional' => 'Informações nutricionais do Produto ' . $i,
                     'categoria_produto_id' => $categoria->id, // Associando à categoria existente
                     'sub_categoria_produto_id' => null, // Subcategoria é opcional, então deixamos como null
+                    'loja_id' => 1
                 ]);
             }
         }
@@ -44,6 +45,7 @@ class ProdutoSeeder extends Seeder
                     'info_nutricional' => 'Informações nutricionais do Produto ' . $i,
                     'categoria_produto_id' => null, // Associando à nenhuma categoria
                     'sub_categoria_produto_id' => $subCategoria->id, // associando somente a subCategoria
+                    'loja_id' => 1
                 ]);
             }
         }

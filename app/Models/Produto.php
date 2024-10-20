@@ -21,6 +21,11 @@ class Produto extends Model
     ];
     use HasFactory;
 
+    public function loja()
+    {    
+        return $this->belongsTo(Loja::class);
+    }
+
     public function categoria()
     {
         // Define que um produto pertence a uma categoria - Informa que o produto pertence a uma categoria, utilizando a chave estrangeira

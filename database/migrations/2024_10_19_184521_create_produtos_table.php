@@ -32,6 +32,9 @@ return new class extends Migration
                 ->references('id')
                 ->on('sub_categoria')
                 ->onDelete('set null'); // Se a sub-categoria for deletada, o campo é definido como NULL e não deleta todos os registros associados a ele
+            //chave estrangeira da loja, que diz que cada produto pertence a uma loja - ele obrigatoriamente esta associado a uma loja (como é uma loja só no meu sistema, posso sempre definir um valor fixo)
+            $table->unsignedBigInteger('loja_id'); // não é nullable pois não quero produtos sem loja
+            $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
         });
     }
 
@@ -40,6 +43,15 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('produtos', function (Blueprint $table) {
+            // processo necessário para manter integridade no banco de dados
+            // Remove a definição da chave estrangeira que liga 'loja_id' a tabela 'lojas'
+            $table->dropForeign(['loja_id']);
+
+            // Remove a coluna 'loja_id' da tabela 'produtos'
+            $table->dropColumn('loja_id');
+        });
+
         Schema::dropIfExists('produtos');
     }
 };

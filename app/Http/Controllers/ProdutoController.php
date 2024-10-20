@@ -47,6 +47,7 @@ class ProdutoController extends Controller
 
         // Verifica se uma imagem foi carregada
         if ($request->hasFile('imagem')) {
+            $lojaId = 1;
             // Armazena a imagem na pasta 'public/images'
             $imagemPath = $request->file('imagem')->store('images', 'public');
 
@@ -59,6 +60,7 @@ class ProdutoController extends Controller
                 'info_nutricional' => $request->info_nutricional,
                 'categoria_produto_id' => $request->categoria_produto_id, // Categoria obrigatória
                 'sub_categoria_produto_id' => $request->sub_categoria_produto_id, // Subcategoria opcional
+                'loja_id' => $lojaId
             ]);
 
             return redirect()->route('produtos.index')->with('sucesso', 'Produto cadastrado com sucesso!');
