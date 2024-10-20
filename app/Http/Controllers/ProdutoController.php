@@ -49,7 +49,7 @@ class ProdutoController extends Controller
         if ($request->hasFile('imagem')) {
             $lojaId = 1;
             // Armazena a imagem na pasta 'public/images'
-            $imagemPath = $request->file('imagem')->store('images', 'public');
+            $imagemPath = $request->file('imagem')->store('imgProduto', 'public');
 
             // Cria o registro com o caminho da imagem e categorias
             Produto::create([
@@ -97,7 +97,7 @@ class ProdutoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // ao atualizar posso querer manter a mesma img, caso não envie, fica a mesma
             'nome' => 'required|string|max:25',
             'preco' => 'required|numeric|min:0',
             'descricao' => 'required|string',
@@ -109,7 +109,7 @@ class ProdutoController extends Controller
         $produto = Produto::findOrFail($id);
 
         $produto->update([
-            'imagem' => $request -> imagem,
+            'imagem' => $request ->hasFile('imagem') ? $request->file('imagem')->store('imgProduto', 'public') : $produto->imagem,
             'nome' => $request -> nome,
             'preco' => $request -> preco,
             'descricao' => $request -> descricao,

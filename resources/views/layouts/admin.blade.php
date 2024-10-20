@@ -41,6 +41,7 @@
                 <nav>
                     <ul class="list-group mt-3">
                         <li class="list-group-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                        <li class="list-group-item"><a href="{{ route('loja.index') }}">Loja</a></li>
                         <li class="list-group-item"><a href="{{ route('usuarioAdm.index') }}">Usuários</a></li>
                         <li class="list-group-item"><a href="{{ route('categorias.index') }}">Categorias</a></li>
                         <li class="list-group-item"><a href="{{ route('subCategorias.index') }}">Sub categorias</a></li>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LojaController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
 use App\Http\Controllers\ListaCarrinhoController;
@@ -71,6 +72,17 @@ Route::middleware(["auth"])->group(function () {
     Route::controller(ItensCarrinhoController::class)->group(function () {
         // area administrativa
         Route::get('/admin/adm/admListaC/admItensCarrinho/index/{id}', 'index')->name('itens.index');
+    });
+
+    Route::controller(LojaController::class)->group(function () {
+        // area administrativa
+        Route::get('/admin/adm/admLoja/index', 'index')->name('loja.index');
+        Route::get('/admin/adm/admLoja/visualizar', 'show')->name('loja.show');
+        Route::get('/admin/adm/admLoja/create', 'create')->name('loja.create');
+        Route::post('/admin/adm/admLoja/salvar', 'store')->name('loja.store');
+        Route::get('/admin/adm/admLoja/editar', 'edit')->name('loja.edit');
+        Route::put('/admin/adm/admLoja/atualizar', 'update')->name('loja.update');
+        Route::get('/admin/adm/admLoja/deletar', 'destroy')->name('loja.destroy');
     });
 });
 
