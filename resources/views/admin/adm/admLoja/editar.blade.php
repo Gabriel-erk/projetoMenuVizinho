@@ -32,6 +32,10 @@
             <textarea name="texto_sobre_restaurante" class="form-control" id="texto_sobre_restaurante" placeholder="Digite a descrição da sub-categoria"
             rows="4">{{ old('texto_sobre_restaurante', $loja->texto_sobre_restaurante) }}</textarea>
         </div>
+        {{-- style="width: 50%" --}}
+        <ul class="alert alert-info">
+            <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
+        </ul>
 
         <div class="mb-3">
             <label for="imagem_sobre_restaurante" class="form-label">Imagem sobre nós</label>
@@ -43,6 +47,9 @@
             <textarea name="texto_politica_privacidade" class="form-control" id="texto_politica_privacidade" placeholder="Digite a descrição da sub-categoria"
             rows="4">{{ old('texto_politica_privacidade', $loja->texto_politica_privacidade) }}</textarea>
         </div>
+        <ul class="alert alert-info">
+            <span>Por favor, deixe os títulos sem um espaçamento em branco do seu conteúdo.</span>
+        </ul>
 
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="{{ route('loja.index') }}" class="btn btn-secondary">Cancelar</a>

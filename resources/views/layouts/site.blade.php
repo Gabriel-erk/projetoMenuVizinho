@@ -130,7 +130,7 @@
 
             <div>
                 <a href="{{ route('site.index') }}">
-                    <img src="{{ asset('img/bua3.png') }}" style="width: 10.85vw" alt="" srcset="">
+                    <img src="{{ asset($infoLoja->logotipo) }}" style="width: 10.85vw" alt="logotipo">
                 </a>
             </div>
 
@@ -311,7 +311,7 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ route('site.index') }}">Home</a></li>
                         <li><a href="{{ route('site.cardapio') }}">Menu</a></li>
-                        <li><a href="{{ route('usuario.minhaConta') }}">Àrea do usuário</a></li>
+                        <li><a href="{{ route('usuario.minhaConta') }}">Área do usuário</a></li>
                     </ul>
                 </div>
 
@@ -319,7 +319,7 @@
                     <h2>Sobre Nós</h2>
                     <ul class="list-unstyled">
                         <li><a href="#">Localização</a></li>
-                        <li><a href="{{ route('site.politica') }}">Políticas</a></li>
+                        <li><a href="{{ route('loja.politica') }}">Políticas</a></li>
                         <li><a href="{{ route('site.sobre') }}">Sobre Nós</a></li>
                     </ul>
                 </div>

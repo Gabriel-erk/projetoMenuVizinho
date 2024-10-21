@@ -30,10 +30,8 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/ofertas', 'ofertas')->name('site.ofertas');
     Route::get('/cupons', 'cupons')->name('site.cupons');
     Route::get('/sobre', 'sobre')->name('site.sobre');
-    Route::get('/politica', 'politica')->name('site.politica');
     Route::get('/login', 'login')->name('site.login');
     Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
-    // colocando um middleware para permitir que o usuário acesse está rota somente se estiver logado
 });
 
 // UsuarioController - métodoPagamentoController e listaCarrinhoController (já que todos dentro deste bloco, somente logados tem acesso a essas rotas)
@@ -83,6 +81,8 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/admin/adm/admLoja/editar', 'edit')->name('loja.edit');
         Route::put('/admin/adm/admLoja/atualizar', 'update')->name('loja.update');
         Route::get('/admin/adm/admLoja/deletar', 'destroy')->name('loja.destroy');
+        // view normal
+        Route::get('/politicaPrivacidade', 'politica')->name('loja.politica');
     });
 });
 

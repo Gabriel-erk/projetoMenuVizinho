@@ -45,11 +45,6 @@ class SiteController extends Controller
         return view('cupons');
     }
 
-    public function politica()
-    {
-        return view('politica');
-    }
-
     public function sobre()
     {
         return view('sobre');
