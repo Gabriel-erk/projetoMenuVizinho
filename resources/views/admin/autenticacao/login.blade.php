@@ -7,25 +7,62 @@
             background-color: #fff;
         }
 
-        @media (min-width: 768px) and (max-width: 1366px) {
-            .login {
-                width: 30vw;
-                height: 49vh;
+        /* Para telas menores */
+        @media (max-width: 767px) {
+            #login {
+                width: 90vw;
+                height: auto;
             }
         }
 
-        @media (min-width: 1367px) {
-            .login {
-                width: 25vw;
-                height: 35vh;
+        /* Para telas entre 768px e 1366px */
+        @media (min-width: 768px) and (max-width: 1366px) {
+            #login {
+                width: 50vw;
+                height: auto;
             }
+        }
+
+        /* Para telas maiores que 1367px */
+        @media (min-width: 1367px) {
+            #login {
+                width: 30vw;
+                /* max-width: 400px; */
+                height: auto;
+            }
+        }
+
+        /* Centralizando o conteúdo */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Estilo do formulário */
+        #login h2 {
+            font-size: 1.75rem;
+        }
+
+        .form-label {
+            font-size: 1rem;
+        }
+
+        .form-control {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
         }
     </style>
 
-    <div class="container py-5 d-flex justify-content-center align-items-center">
+    <div class="login-container">
 
-        <div class="login card shadow-sm rounded-4">
-            <div class="card-body">
+        <div class="shadow rounded-4 d-flex justify-content-center align-items-center">
+            <div id="login" class="px-4 py-5"> <!-- Adicionei padding vertical para espaçamento interno -->
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -46,12 +83,12 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
                         <input type="email" name="email" id="email" class="form-control"
-                            placeholder="seuemail@hotmail.com">
+                            placeholder="seuemail@hotmail.com" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Senha</label>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Senha">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">

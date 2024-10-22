@@ -29,7 +29,7 @@
             margin-top: 0
         }
 
-        @media (min-width: 768px) and (max-width: 1366px) {
+        @media (min-width: 1024px) and (max-width: 1366px) {
 
             /* principal */
             .texto-sec-principal {
@@ -126,8 +126,13 @@
             }
 
             .img-principal {
-                width: 35vw;
-                height: 39vh;
+                /* img principal */
+                /* width: 35vw;
+                height: 39vh; */
+                
+                /* img 2 */
+                width: 40vw;
+                height: 40vh;
             }
 
             /* sobre nós */
@@ -215,7 +220,8 @@
             </div>
 
             <div class="mb-3">
-                <img src="{{ asset('img/img-index.png') }}" class="img-principal" alt="" srcset="">
+                {{-- <img src="{{ asset('img/img-index.png') }}" class="img-principal" alt="" srcset=""> --}}
+                <img src="{{ asset('img/bannerIndex.webp') }}" class="img-principal" alt="" srcset="">
             </div>
         </div>
 
@@ -318,7 +324,7 @@
         </div>
 
         <style>
-            @media (min-width: 768px) and (max-width: 1366px) {
+            @media (min-width: 1024px) and (max-width: 1366px) {
                 .clientes {
                     height: 50%;
                 }
