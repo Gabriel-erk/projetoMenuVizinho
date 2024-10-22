@@ -35,7 +35,7 @@
                     <td>{{ $item->produto_id }}</td>
                     <td>{{ $item->quantidade }}</td>
                     <td>
-                        <a href="{{ route('usuarioAdm.index', ['id' => $item->id]) }}" class="btn btn-primary">Visualizar</a>
+                        <a href="{{ route('produtos.show', ['id' => $item->produto_id]) }}" class="btn btn-primary">Visualizar</a>
                     </td>
                 </tr>
             @endforeach
