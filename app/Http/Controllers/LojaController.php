@@ -36,6 +36,7 @@ class LojaController extends Controller
             'texto_sobre_restaurante' => 'required|string',
             'imagem_sobre_restaurante' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'texto_politica_privacidade' => 'required|string',
+            'regras_cupons' => 'required|string',
         ]);
 
         // Verifica se os arquivos de imagem foram enviados e armazena as imagens
@@ -54,6 +55,7 @@ class LojaController extends Controller
             'texto_sobre_restaurante' => $request->texto_sobre_restaurante,
             'imagem_sobre_restaurante' => $imgSobrePath ?? null, // Verifica se o arquivo foi armazenado
             'texto_politica_privacidade' => $request->texto_politica_privacidade,
+            'regras_cupons' => $request->regras_cupons,
         ]);
 
         return redirect()->route('loja.index')->with('sucesso', 'Loja cadastrada com sucesso!');
@@ -89,6 +91,7 @@ class LojaController extends Controller
             'texto_sobre_restaurante' => 'required|string',
             'imagem_sobre_restaurante' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // 'nullable' para imagem opcional, pois o dono pode querer simplesmente manter a mesma img
             'texto_politica_privacidade' => 'required|string',
+            'regras_cupons' => 'required|string',
         ]);
 
         // Encontrar a loja pelo ID
@@ -105,6 +108,7 @@ class LojaController extends Controller
                 ? $request->file('imagem_sobre_restaurante')->store('img', 'public') // Salvar nova imagem se enviada
                 : $loja->imagem_sobre_restaurante, // Caso contrário, manter a imagem existente
             'texto_politica_privacidade' => $request->texto_politica_privacidade,
+            'regras_cupons' => $request->regras_cupons,
         ]);
 
         return redirect()->route('loja.index', $id)->with('sucesso', 'Loja atualizada com sucesso.');
@@ -150,5 +154,31 @@ class LojaController extends Controller
         }
 
         return view('politica', compact('textoFormatado'));
+    }
+
+    public function showRegras()
+    {
+       // encontrando o campo do texto de politica de privacidade
+       $texto = Loja::findOrFail(1)->texto_politica_privacidade;
+
+       // Separar o texto em blocos usando quebra de linha
+       $blocos = preg_split('/\n\s*\n/', trim($texto)); // Usa quebras duplas de linha como separador
+
+       $textoFormatado = [];
+
+       foreach ($blocos as $bloco) {
+           // Separar o título do parágrafo
+           $linhas = preg_split('/\n/', trim($bloco), 2);
+           $titulo = $linhas[0];
+           $conteudo = isset($linhas[1]) ? $linhas[1] : '';
+
+           // Adiciona o título e conteúdo ao array formatado
+           $textoFormatado[] = [
+               'titulo' => $titulo,
+               'conteudo' => $conteudo
+           ];
+       }
+
+       return view('regras', compact('textoFormatado'));
     }
 }

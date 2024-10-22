@@ -52,6 +52,26 @@ Nosso site pode conter links para sites de terceiros. Não nos responsabilizamos
 Alterações na Política de Privacidade
 Reservamo-nos o direito de atualizar ou modificar esta Política de Privacidade a qualquer momento. As alterações serão publicadas nesta página e a data de revisão será atualizada para refletir as mudanças feitas.
 ',
+            'regras_cupons' => 'Regras para Utilização de Cupons na Mr. Burger
+Prezado cliente, Na Mr. Burger, valorizamos sua preferência e estamos felizes em oferecer cupons especiais para tornar sua experiência conosco ainda mais satisfatória. Para garantir o uso adequado dos nossos cupons promocionais, é importante observar as seguintes diretrizes:
+
+Privacidade
+Utilizamos as informações coletadas para personalizar sua experiência no site, processar pedidos, melhorar nossos produtos e serviços, enviar informações sobre promoções e atualizações relevantes, e para fins de análise e pesquisa.
+
+Apresentação do Cupom:
+Para resgatar o desconto, apresente o cupom físico ou digital no momento da compra. Se o cupom exigir um código, certifique-se de inseri-lo corretamente durante o processo de pagamento.
+
+Restrições de Uso:
+Para resgatar o desconto, apresente o cupom físico ou digital no momento da compra. Se o cupom exigir um código, certifique-se de inseri-lo corretamente durante o processo de pagamento, não vendemos, comercializamos ou transferimos suas informações pessoais para terceiros sem o seu fornecer os serviços solicitados ou exigido por lei.
+
+Uso Único:
+A maioria dos cupons é de uso único e não pode ser combinada com outras ofertas ou promoções, a menos que expressamente indicado.
+
+Cupons Não Cumulativos:
+Cupons promocionais não são cumulativos e não podem ser trocados por dinheiro ou utilizados retroativamente em compras anteriores.
+
+Direito de Alteração:
+A Mr. Burger reserva-se o direito de modificar, suspender ou encerrar a oferta de cupons promocionais a qualquer momento, sem aviso prévio e lembramos que nossos cupons são oferecidos como cortesia aos nossos clientes e visam proporcionar uma experiência mais vantajosa em nossos produtos. Estamos à disposição para esclarecer quaisquer dúvidas relacionadas aos cupons ou aos nossos produtos e serviços. Agradecemos por escolher a Mr. Burger e esperamos recebê-lo em nossas lojas em breve para desfrutar de nossas deliciosas opções gastronômicas. Atenciosamente, Equipe Mr. Burger.',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

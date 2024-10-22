@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
-        <h2>Visualizar Carrinhos</h2>
+        <h2>Visualizar Carrinho</h2>
     </div>
     <hr>
     <table class="table table-striped">
@@ -19,7 +19,7 @@
         </tr>
 
     </table>
-    <a href="{{ route('itens.index', ['id' => $lista->id]) }}" class="btn btn-info">Ver itens   
+    <a href="{{ route('itens.index', ['id' => $lista->id]) }}" class="btn btn-info">Ver itens
         associados</a> <!-- Botão para ver itens associados -->
-    <a href="{{ route('lista.index') }}" class="btn btn-secondary">Voltar</a>
+    <a href="{{ url()->previous() }}" class="btn btn-secondary">Voltar</a> <!-- Botão para voltar à última view -->
 @endsection

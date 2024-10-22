@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('site.regraCupon') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
+                    <a href="{{ route('loja.regras') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('site.regraCupon') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
+                    <a href="{{ route('loja.regras') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('site.regraCupon') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
+                    <a href="{{ route('loja.regras') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('site.regraCupon') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
+                    <a href="{{ route('loja.regras') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('site.regraCupon') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
+                    <a href="{{ route('loja.regras') }}" class="text-decoration-none" style="color:#8c6342">Regras</a>
                     <p>Acaba em 5h</p>
                 </div>
 

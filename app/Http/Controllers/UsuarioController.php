@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItensCarrinho;
+use App\Models\ListaCarrinho;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MetodoPagamento;
@@ -19,8 +21,13 @@ class UsuarioController extends Controller
 
     public function show(string $id)
     {
+        // Encontra o usuário pelo ID
         $usuario = User::findOrFail($id);
-        return view('admin.adm.admUsuarios.visualizar', compact('usuario'));
+
+        // Busca a lista de carrinho associada ao ID do usuário - claúsula where me permite comparar o campo 'user_id' diretamente com o id do usuário
+        $listaCarrinho = ListaCarrinho::where('user_id', $usuario->id)->first();
+
+        return view('admin.adm.admUsuarios.visualizar', compact('usuario', 'listaCarrinho'));
     }
 
     public function edit(string $id)

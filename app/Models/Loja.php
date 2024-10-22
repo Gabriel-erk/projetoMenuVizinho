@@ -13,11 +13,18 @@ class Loja extends Model
         'texto_sobre_restaurante',
         'imagem_sobre_restaurante',
         'texto_politica_privacidade',
+        'regras_cupons',
     ];
 
     public function produtos()
     {   
         // cada loja pode ter muitos produtos
         return $this->hasMany(Produto::class);
+    }
+
+    public function cupons()
+    {   
+        // cada loja pode ter muitos cupons
+        return $this->hasMany(Cupom::class);
     }
 }

@@ -34,18 +34,6 @@
             <td>{{ $usuario->numero }}</td>
         </tr>
         <tr>
-            <th>Cidade</th>
-            <td>{{ $usuario->cidade }}</td>
-        </tr>
-        <tr>
-            <th>Estado</th>
-            <td>{{ $usuario->estado }}</td>
-        </tr>
-        <tr>
-            <th>CEP</th>
-            <td>{{ $usuario->cep }}</td>
-        </tr>
-        <tr>
             <th>Telefone</th>
             <td>{{ $usuario->telefone }}</td>
         </tr>
@@ -57,8 +45,15 @@
             <th>Foto</th>
             <td>{{ $usuario->foto }}</td>
         </tr>
-        
+
     </table>
+    {{-- condição if pois $listaCarrinho pode ser 'null', então se não for null, mostra o botão direcionando para a lista carrinho do usuário --}}
+    @if ($listaCarrinho)
+        <a href="{{ route('lista.show', ['id' => $listaCarrinho->id]) }}" class="btn btn-info">Ver carrinho</a>
+    @else
+        <p>Este usuário não possui uma lista de carrinho.</p>
+    @endif
+
     <a href="{{ route('usuarioAdm.edit', ['id' => $usuario->id]) }}" class="btn btn-primary">Editar</a>
     <a href="{{ route('usuarioAdm.index') }}" class="btn btn-secondary">Cancelar</a>
 @endsection

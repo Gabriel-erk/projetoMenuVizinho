@@ -18,7 +18,7 @@
         /* Para telas entre 768px e 1366px */
         @media (min-width: 768px) and (max-width: 1366px) {
             #login {
-                width: 50vw;
+                width: 40vw;
                 height: auto;
             }
         }

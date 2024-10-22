@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('texto_sobre_restaurante');
             $table->string('imagem_sobre_restaurante');
             $table->text('texto_politica_privacidade');
+            $table->text('regras_cupons');
         });
     }
 

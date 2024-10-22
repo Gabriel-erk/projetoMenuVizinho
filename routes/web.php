@@ -3,11 +3,12 @@
 use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LojaController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CupomController;
 use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
 use App\Http\Controllers\ListaCarrinhoController;
 use App\Http\Controllers\ItensCarrinhoController;
-use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
@@ -31,7 +32,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/cupons', 'cupons')->name('site.cupons');
     Route::get('/sobre', 'sobre')->name('site.sobre');
     Route::get('/login', 'login')->name('site.login');
-    Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
+    // Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
 });
 
 // UsuarioController - métodoPagamentoController e listaCarrinhoController (já que todos dentro deste bloco, somente logados tem acesso a essas rotas)
@@ -83,6 +84,18 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/admin/adm/admLoja/deletar', 'destroy')->name('loja.destroy');
         // view normal
         Route::get('/politicaPrivacidade', 'politica')->name('loja.politica');
+        Route::get('/regrasCupons', 'showRegras')->name('loja.regras');
+    });
+
+    Route::controller(CupomController::class)->group(function () {
+        // area administrativa
+        Route::get('/admin/adm/admCupons/index', 'index')->name('cupom.index');
+        Route::get('/admin/adm/admCupons/visualizar', 'show')->name('cupom.show');
+        Route::get('/admin/adm/admCupons/create', 'create')->name('cupom.create');
+        Route::post('/admin/adm/admCupons/salvar', 'store')->name('cupom.store');
+        Route::get('/admin/adm/admCupons/editar/{id}', 'edit')->name('cupom.edit');
+        Route::put('/admin/adm/admCupons/atualizar/{id}', 'update')->name('cupom.update');
+        Route::delete('/admin/adm/admCupons/deletar/{id}', 'destroy')->name('cupom.destroy');
     });
 });
 
