@@ -16,6 +16,13 @@ class Loja extends Model
         'regras_cupons',
     ];
 
+
+    public function banners()
+    {   
+        // cada loja pode ter muitos banners
+        return $this->hasMany(Banner::class);
+    }
+
     public function produtos()
     {   
         // cada loja pode ter muitos produtos

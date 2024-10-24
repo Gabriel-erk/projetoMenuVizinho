@@ -3,6 +3,14 @@
     <div class="d-flex justify-content-between mt-3">
         <h2>Cadastrar Loja</h2>
     </div>
+
+    <style>
+        /* alterando espaçamento inferior da classe alert e adicionando um pequeno superior */
+        .alert {
+            margin-bottom: 0.3rem;
+            margin-top: 1.2rem
+        }
+    </style>
     <hr>
     @if ($errors->any())
         <div class="boxError alert alert-danger">
@@ -27,8 +35,16 @@
         </div>
 
         <ul class="alert alert-info">
-            <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
+            <span>Escolha no máximo 3 imagens, de tamanho 1920x1080</span>
         </ul>
+        <div class="mb-3">
+            <label for="banner" class="form-label">Banners (página cardapio)</label>
+            <input type="file" name="banner" class="form-control" id="banner">
+        </div>
+
+        <div class="alert alert-info">
+            <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
+        </div>
         <div class="mb-3">
             <label for="texto_sobre_restaurante" class="form-label">Texto sobre nós</label>
             <textarea name="texto_sobre_restaurante" class="form-control" id="texto_sobre_restaurante"
