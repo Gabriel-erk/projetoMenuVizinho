@@ -49,7 +49,7 @@ class ProdutoController extends Controller
         if ($request->hasFile('imagem')) {
             $lojaId = 1;
             // Armazena a imagem na pasta 'public/images'
-            $imagemPath = $request->file('imagem')->store('imgProduto', 'public');
+            $imagemPath = $request->file('imagem')->store('imgLoja/produtos', 'public');
 
             // Cria o registro com o caminho da imagem e categorias
             Produto::create([
@@ -109,7 +109,7 @@ class ProdutoController extends Controller
         $produto = Produto::findOrFail($id);
 
         $produto->update([
-            'imagem' => $request ->hasFile('imagem') ? $request->file('imagem')->store('imgProduto', 'public') : $produto->imagem,
+            'imagem' => $request ->hasFile('imagem') ? $request->file('imagem')->store('imgLoja/produtos', 'public') : $produto->imagem,
             'nome' => $request -> nome,
             'preco' => $request -> preco,
             'descricao' => $request -> descricao,

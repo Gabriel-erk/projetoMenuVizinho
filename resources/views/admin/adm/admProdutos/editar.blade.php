@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
-        <h2>Cadastrar Produtos</h2>
+        <h2>Editar Produtos</h2>
     </div>
     <hr>
     @if ($errors->any())
@@ -20,14 +20,16 @@
         <!-- Imagem -->
         <div class="mb-3">
             <label for="imagem" class="form-label">Imagem</label>
-            <input type="file" name="imagem" class="form-control" id="imagem"
-                value="{{ old('imagem', $produto->imagem) }}">
+            <div>
+                <img src="{{ asset($produto->imagem) }}" alt="Imagem do produto" width="100" class="mb-2">
+            </div>
+            <input type="file" name="imagem" class="form-control" id="imagem">
         </div>
 
         <!-- Nome do Produto -->
         <div class="mb-3">
             <label for="nome" class="form-label">Nome Produto</label>
-            <input type="text" name="nome" class="form-control" id="nome" placeholder="Titulo da sub-categoria"
+            <input type="text" name="nome" class="form-control" id="nome" placeholder="Título da sub-categoria"
                 value="{{ old('nome', $produto->nome) }}" maxlength="20">
         </div>
 
@@ -57,7 +59,6 @@
             <label for="" class="form-label">Categoria do produto</label>
             @foreach ($categorias as $categoria)
                 <div class="form-check mb-1">
-                    {{-- Categoria e Sub-categoria: O botão de rádio agora marca a categoria ou sub-categoria correta com o checked, usando old() - deixando marcada para caso não queira alterar o que já está --}}
                     <input class="form-check-input" type="radio" name="categoria_produto_id"
                         id="categoria_{{ $categoria->id }}" value="{{ $categoria->id }}"
                         {{ old('categoria_produto_id', $produto->categoria_produto_id) == $categoria->id ? 'checked' : '' }}> 
@@ -84,7 +85,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>
-        {{-- url()->previous retorna para a última view em que estava, independente de qual seja, já que posso tanto retornara para a categorias.index, quando a seção de visualização do produto dentro de "ver produtos associados" --}}
         <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
-            </form>
+    </form>
 @endsection

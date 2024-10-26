@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ItensCarrinho;
 use App\Models\ListaCarrinho;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\MetodoPagamento;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UsuarioController extends Controller
 {
@@ -38,7 +37,6 @@ class UsuarioController extends Controller
 
     public function update(Request $request, string $id)
     {
-
         $request->validate([
             'nome' => 'required',
             'sobrenome' => 'required',
@@ -48,13 +46,20 @@ class UsuarioController extends Controller
             'bairro' => 'required|string',
             'numero' => 'required|string',
             'complemento' => 'nullable|string',
-            'cep' => 'nullable|string',
             'telefone' => 'nullable|string',
             'celular' => 'required|string',
-            'foto' => 'nullable|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $usuario = User::findOrFail($id);
+
+        // Armazena nova foto, se enviada, e remove a foto antiga
+        if ($request->hasFile('foto')) {
+            if ($usuario->foto) {
+                Storage::disk('public')->delete($usuario->foto);
+            }
+            $usuario->foto = $request->file('foto')->store('imgUser', 'public');
+        }
 
         $usuario->update([
             'nome' => $request->nome,
@@ -65,10 +70,8 @@ class UsuarioController extends Controller
             'bairro' => $request->bairro,
             'complemento' => $request->complemento,
             'numero' => $request->numero,
-            'cep' => $request->cep,
             'telefone' => $request->telefone,
             'celular' => $request->celular,
-            'foto' => $request->foto,
         ]);
 
         return redirect()->route('usuario.minhaConta')->with('sucesso', 'Usuário atualizado com sucesso!!!');
@@ -98,11 +101,15 @@ class UsuarioController extends Controller
             'numero' => 'required',
             'complemento' => 'nullable|string',
             'bairro' => 'required|string',
-            'cep' => 'nullable|string',
             'celular' => 'required',
             'telefone' => 'nullable',
-            'foto' => 'nullable'
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $fotoPath = null;
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('imgUser', 'public');
+        }
 
         User::create([
             'nome' => $request->nome,
@@ -113,13 +120,12 @@ class UsuarioController extends Controller
             'numero' => $request->numero,
             'bairro' => $request->bairro,
             'complemento' => $request->complemento,
-            'cep' => $request->cep,
             'celular' => $request->celular,
             'telefone' => $request->telefone,
-            'foto' => $request->foto,
+            'foto' => $fotoPath,
         ]);
 
-        return redirect()->route('site.index')->with('sucesso', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário cadastrado com sucesso!');
     }
 
     public function destroy(string $id)
@@ -127,6 +133,7 @@ class UsuarioController extends Controller
         try {
             $usuario = User::findOrFail($id);
             $usuario->delete();
+            // manter na view atual, se não, para site.index - caso delete na tela da própria conta, precisa estar logado, e ao deletar ele não está mais logado, então mandar para site.index (vai cair no se não, pois não é possivel manter na view atual), e caso delete na view de adm da loja, mantenha lá, pois não precisa estar logado para usa-lá
             return redirect()->route('site.index')->with('sucesso', 'Conta deletada com sucesso!!!');
         } catch (\Exception $e) {
 

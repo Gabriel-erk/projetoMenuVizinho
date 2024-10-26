@@ -18,33 +18,33 @@
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" name="nome" class="form-control" id="nome" placeholder="Seu nome"
-                value="{{ old('nome') }}" maxlength="50">
+                value="{{ old('nome') }}" maxlength="25">
         </div>
         <div class="mb-3">
             <label for="sobrenome" class="form-label">Sobrenome</label>
             <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Seu Sobrenome"
-                value="{{ old('sobrenome') }}" maxlength="50">
+                value="{{ old('sobrenome') }}" maxlength="60">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" placeholder="Seu email"
-                value="{{ old('email') }}" maxlength="100">
+                value="{{ old('email') }}" maxlength="255">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Sua senha" maxlength="255">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Sua senha" maxlength="45">
         </div>
 
         <div class="mb-3">
             <label for="password_confirmation" class="form-label">Confirme a Senha</label>
             <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
-                placeholder="Confirme sua senha" maxlength="255">
+                placeholder="Confirme sua senha" maxlength="45">
         </div>
 
         <div class="mb-3">
             <label for="rua" class="form-label">Rua</label>
             <input type="text" name="rua" class="form-control" id="rua" placeholder="Sua rua"
-                value="{{ old('rua') }}" maxlength="100">
+                value="{{ old('rua') }}" maxlength="90">
         </div>
 
         <div class="mb-3">
@@ -56,13 +56,13 @@
         <div class="mb-3">
             <label for="bairro" class="form-label">Bairro</label>
             <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Seu bairro"
-                value="{{ old('bairro') }}" maxlength="50">
+                value="{{ old('bairro') }}"  maxlength="80">
         </div>
 
         <div class="mb-3">
             <label for="complemento" class="form-label">Complemento</label>
             <input type="text" name="complemento" class="form-control" id="complemento" placeholder="Seu complemento"
-                value="{{ old('complemento') }}" maxlength="9">
+                value="{{ old('complemento') }}" maxlength="30">
         </div>
 
         <div class="mb-3">

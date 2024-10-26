@@ -29,7 +29,6 @@ class LojaController extends Controller
      */
     public function store(Request $request)
     {
-        // Validação dos campos
         $request->validate([
             'nome_loja' => 'required|string|max:25',
             'logotipo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -37,36 +36,49 @@ class LojaController extends Controller
             'imagem_sobre_restaurante' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'texto_politica_privacidade' => 'required|string',
             'regras_cupons' => 'required|string',
+            'banner.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner_categoria.*' => 'required|in:cardapio,ofertas' // Valida categorias de banners
         ]);
-
-        // Verifica se os arquivos de imagem foram enviados e armazena as imagens
-        if ($request->hasFile('logotipo')) {
-            $logotipoPath = $request->file('logotipo')->store('images', 'public');
-        }
-
-        if ($request->hasFile('imagem_sobre_restaurante')) {
-            $imgSobrePath = $request->file('imagem_sobre_restaurante')->store('img', 'public');
-        }
-
-        // Cria o registro da loja com os dados fornecidos
-        Loja::create([
+    
+        $logotipoPath = $request->file('logotipo')->store('imgLoja/logo', 'public');
+        $imgSobrePath = $request->file('imagem_sobre_restaurante')->store('imgLoja/sobre-nos', 'public');
+    
+        $loja = Loja::create([
             'nome_loja' => $request->nome_loja,
-            'logotipo' => $logotipoPath ?? null, // Verifica se o arquivo foi armazenado
+            'logotipo' => $logotipoPath,
             'texto_sobre_restaurante' => $request->texto_sobre_restaurante,
-            'imagem_sobre_restaurante' => $imgSobrePath ?? null, // Verifica se o arquivo foi armazenado
+            'imagem_sobre_restaurante' => $imgSobrePath,
             'texto_politica_privacidade' => $request->texto_politica_privacidade,
             'regras_cupons' => $request->regras_cupons,
         ]);
-
+    
+        if ($request->hasFile('banner')) {
+            foreach ($request->file('banner') as $index => $banner) {
+                $categoria = $request->banner_categoria[$index];
+                
+                // Conta banners existentes na categoria para definir a posição correta
+                $posicaoAtual = $loja->banners()->where('categoria', $categoria)->count() + 1;
+    
+                $bannerPath = $banner->store('imgLoja/banners', 'public');
+                $loja->banners()->create([
+                    'imagem' => $bannerPath,
+                    'categoria' => $categoria,
+                    'posicao' => $posicaoAtual
+                ]);
+            }
+        }
+    
         return redirect()->route('loja.index')->with('sucesso', 'Loja cadastrada com sucesso!');
     }
+    
 
     /**
      * Display the specified resource.
      */
     public function show()
     {
-        $loja = Loja::findOrFail(1);
+        // $loja = Loja::findOrFail(1);
+        $loja = Loja::with('banners')->findOrFail(1); // Carrega a loja com os banners
         return view('admin.adm.admLoja.visualizar', compact('loja'));
     }
 
@@ -101,11 +113,11 @@ class LojaController extends Controller
         $loja->update([
             'nome_loja' => $request->nome_loja,
             'logotipo' => $request->hasFile('logotipo')
-                ? $request->file('logotipo')->store('logos', 'public') // Se tiver imagem, armazena
+                ? $request->file('logotipo')->store('imgLoja/logotipo', 'public') // Se tiver imagem, armazena
                 : $loja->logotipo, // Caso contrário, manter a imagem existente
             'texto_sobre_restaurante' => $request->texto_sobre_restaurante,
             'imagem_sobre_restaurante' => $request->hasFile('imagem_sobre_restaurante')
-                ? $request->file('imagem_sobre_restaurante')->store('img', 'public') // Salvar nova imagem se enviada
+                ? $request->file('imagem_sobre_restaurante')->store('imgLoja/sobre-nos', 'public') // Salvar nova imagem se enviada
                 : $loja->imagem_sobre_restaurante, // Caso contrário, manter a imagem existente
             'texto_politica_privacidade' => $request->texto_politica_privacidade,
             'regras_cupons' => $request->regras_cupons,

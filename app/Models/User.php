@@ -28,7 +28,6 @@ class User extends Authenticatable
         'numero',
         'bairro',
         'complemento',
-        'cep',
         'celular',
         'telefone',
         'foto'

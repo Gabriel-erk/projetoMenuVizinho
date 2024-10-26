@@ -11,6 +11,7 @@
         </tr>
         <tr>
             <th>Imagem</th>
+            {{-- <td><img src="{{ asset($produto->imagem) }}" alt="Imagem do produto" width="80" height="60"></td> --}}
             <td>{{ $produto->imagem }}</td>
         </tr>
         <tr>

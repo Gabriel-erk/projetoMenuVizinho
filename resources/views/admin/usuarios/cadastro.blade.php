@@ -61,15 +61,15 @@
                     </div>
 
                     <div class="col">
-                        <label for="bairro" class="form-label">Bairro</label>
-                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control"
-                            maxlength="80" value="{{ old('bairro') }}">
-                    </div>
-
-                    <div class="col">
                         <label for="numero" class="form-label">Número</label>
                         <input type="text" name="numero" id="numero" placeholder="225/abc" class="form-control"
                             maxlength="10" value="{{ old('numero') }}">
+                    </div>
+
+                    <div class="col">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control"
+                            maxlength="80" value="{{ old('bairro') }}">
                     </div>
                 </div>
 
@@ -77,12 +77,6 @@
                     <label for="complemento" class="form-label">Complemento</label>
                     <input type="text" name="complemento" id="complemento" placeholder="Complemento" class="form-control"
                         maxlength="30" value="{{ old('complemento') }}">
-                </div>
-
-                <div>
-                    <label for="cep" class="form-label">CEP</label>
-                    <input type="text" name="cep" id="cep" placeholder="CEP" class="form-control"
-                        maxlength="9" value="{{ old('cep') }}">
                 </div>
 
                 <div class="row">
@@ -108,7 +102,6 @@
                     <a href="{{ route('site.index') }}">Voltar</a>
                     <button type="submit">Cadastrar</button>
                 </div>
-
             </form>
         </div>
     </div>

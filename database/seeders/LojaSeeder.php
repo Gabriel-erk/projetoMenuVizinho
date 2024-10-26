@@ -75,5 +75,6 @@ A Mr. Burger reserva-se o direito de modificar, suspender ou encerrar a oferta d
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
     }
 }

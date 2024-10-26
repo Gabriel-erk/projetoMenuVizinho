@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="POST">
+    <form action="{{ route('usuarioAdm.update', ['id' => $usuario->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -64,24 +64,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" name="cidade" class="form-control" id="cidade" placeholder="Sua cidade"
-                value="{{ old('cidade', $usuario->cidade) }}" maxlength="50">
-        </div>
-
-        {{-- <div class="mb-3">
-            <label for="estado" class="form-label">Estado</label>
-            <input type="text" name="estado" class="form-control" id="estado" placeholder="Seu estado"
-                value="{{ old('estado', $usuario->estado) }}" maxlength="2">
-        </div> --}}
-
-        <div class="mb-3">
-            <label for="cep" class="form-label">CEP</label>
-            <input type="text" name="cep" class="form-control" id="cep" placeholder="Seu CEP"
-                value="{{ old('cep', $usuario->cep) }}" maxlength="9">
-        </div>
-
-        <div class="mb-3">
             <label for="telefone" class="form-label">Telefone</label>
             <input type="text" name="telefone" class="form-control" id="telefone" placeholder="Seu telefone"
                 onkeyup="phone(event)" value="{{ old('telefone', $usuario->telefone) }}" maxlength="15">
@@ -95,8 +77,12 @@
 
         <div class="mb-3">
             <label for="foto" class="form-label">Foto</label>
-            <input type="file" name="foto" class="form-control" id="foto"
-                value="{{ old('foto', $usuario->foto) }}">
+            <input type="file" name="foto" class="form-control" id="foto">
+            <!-- Exibir a foto atual, se existir -->
+            @if ($usuario->foto)
+                <img src="{{ asset('storage/' . $usuario->foto) }}" alt="Foto do Usuário" class="img-thumbnail mt-2"
+                    style="max-width: 150px;">
+            @endif
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

@@ -38,9 +38,13 @@
             <span>Escolha no máximo 3 imagens, de tamanho 1920x1080</span>
         </ul>
         <div class="mb-3">
-            <label for="banner" class="form-label">Banners (página cardapio)</label>
-            <input type="file" name="banner" class="form-control" id="banner">
+            <label for="banner_categoria" class="form-label">Categoria do Banner</label>
+            <select name="banner_categoria[]" class="form-control" multiple>
+                <option value="cardapio">Cardápio</option>
+                <option value="ofertas">Ofertas</option>
+            </select>
         </div>
+        <input type="file" name="banner[]" class="form-control" id="banner" multiple>
 
         <div class="alert alert-info">
             <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
@@ -77,5 +81,14 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="{{ route('loja.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
+
+    <script>
+        document.getElementById('banner').addEventListener('change', function() {
+            if (this.files.length > 3) {
+                alert('Você pode selecionar no máximo 3 banners.');
+                this.value = ''; // Limpa o campo se o limite for excedido
+            }
+        });
+    </script>
 
 @endsection

@@ -23,35 +23,32 @@
         <thead>
             <tr>
                 <th>ID</th>
-
                 <th>Imagem</th>
                 <th>Nome</th>
                 <th>Preço</th>
+                <th>Ações</th> <!-- Adicionado cabeçalho para ações -->
             </tr>
         </thead>
         <tbody>
-
             @foreach ($produtos as $produto)
                 <tr>
                     <td>{{ $produto->id }}</td>
-                    <td>{{ $produto->imagem }}</td>
+                    <td>
+                        <!-- Exibindo a imagem como miniatura -->
+                        <img src="{{ asset($produto->imagem) }}" alt="Imagem do produto" width="80" height="60">
+                    </td>
                     <td>{{ $produto->nome }}</td>
-                    <td>{{ $produto->preco }}</td>
+                    <td>R$ {{ number_format($produto->preco, 2, ',', '.') }}</td> <!-- Formatação de preço -->
                     <td>
                         <a href="{{ route('produtos.show', ['id' => $produto->id]) }}" class="btn btn-primary">Visualizar</a>
                         
                         <a href="{{ route('produtos.edit', ['id' => $produto->id]) }}" class="btn btn-secondary">Editar</a>
 
-                        <form action="{{ route('produtos.destroy', ['id' => $produto->id]) }}" method="post"
-                            style="display: inline-block">
-
+                        <form action="{{ route('produtos.destroy', ['id' => $produto->id]) }}" method="post" style="display: inline-block">
                             @csrf
                             @method('DELETE')
-
                             <button type="submit" class="btn btn-danger">Excluir</button>
-
                         </form>
-
                     </td>
                 </tr>
             @endforeach

@@ -14,6 +14,7 @@ class Banner extends Model
         // pode ser útil para SEO, em relação a busca do site etc
         'titulo',
         'imagem',
+        'categoria',
         // ex de banner: extra combos cheddar, link irá redirecionar para o a página com a promo em questão
         'link',
     ];
