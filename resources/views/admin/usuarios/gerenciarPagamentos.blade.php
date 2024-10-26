@@ -65,7 +65,7 @@
             <div class="col-12 my-4">
                 <h2>Gerenciar pagamentos</h2>
                 <span style="color: #716b6b">Adicione ou gerencie métodos de pagamento associados à sua Conta da xxxxxx. Veja
-                    nossa <a href="{{ route('site.politica') }}">Política
+                    nossa <a href="{{ route('loja.politica') }}">Política
                         de privacidade</a></span>
             </div>
         </div>

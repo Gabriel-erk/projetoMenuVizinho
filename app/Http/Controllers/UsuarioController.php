@@ -31,6 +31,7 @@ class UsuarioController extends Controller
 
     public function edit(string $id)
     {
+        session(['from_admin_edit_area' => true]); // definindo uma sessão para mostrar que a requisição veio da area administrativa
         $usuario = User::findOrFail($id);
         return view('admin.adm.admUsuarios.editar', compact('usuario'));
     }
@@ -61,6 +62,7 @@ class UsuarioController extends Controller
             $usuario->foto = $request->file('foto')->store('imgUser', 'public');
         }
 
+        // Atualiza o usuário com os novos dados
         $usuario->update([
             'nome' => $request->nome,
             'sobrenome' => $request->sobrenome,
@@ -74,6 +76,14 @@ class UsuarioController extends Controller
             'celular' => $request->celular,
         ]);
 
+        // Verificar a origem da requisição
+        if (session('from_admin_edit_area')) {
+            // Se veio da área administrativa, redireciona para o índice da área administrativa
+            session()->forget('from_admin_area'); // Limpa a sessão
+            return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário atualizado com sucesso!');
+        }
+
+        // Se veio de qualquer outro lugar, redireciona para a página da conta do usuário
         return redirect()->route('usuario.minhaConta')->with('sucesso', 'Usuário atualizado com sucesso!!!');
     }
 
@@ -84,6 +94,7 @@ class UsuarioController extends Controller
 
     public function createUserAdmView()
     {
+        session(['from_admin_area' => true]); // passa para a view cadastro da area administrativa esse nome de sessão para identificar que a requisição store abaixo veio de lá, se não veio, vai para index
         return view('admin.adm.admUsuarios.cadastro');
     }
 
@@ -125,7 +136,15 @@ class UsuarioController extends Controller
             'foto' => $fotoPath,
         ]);
 
-        return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário cadastrado com sucesso!');
+        // Verificar a origem da requisição
+        if (session('from_admin_area')) {
+            // Se veio da área administrativa, redireciona para o índice da área administrativa
+            session()->forget('from_admin_area'); // Limpa a sessão
+            return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário cadastrado com sucesso!');
+        }
+
+        // Se veio de qualquer outro lugar, redireciona para o site.index
+        return redirect()->route('site.index')->with('sucesso', 'Usuário cadastrado com sucesso!');
     }
 
     public function destroy(string $id)
@@ -133,10 +152,18 @@ class UsuarioController extends Controller
         try {
             $usuario = User::findOrFail($id);
             $usuario->delete();
-            // manter na view atual, se não, para site.index - caso delete na tela da própria conta, precisa estar logado, e ao deletar ele não está mais logado, então mandar para site.index (vai cair no se não, pois não é possivel manter na view atual), e caso delete na view de adm da loja, mantenha lá, pois não precisa estar logado para usa-lá
-            return redirect()->route('site.index')->with('sucesso', 'Conta deletada com sucesso!!!');
-        } catch (\Exception $e) {
 
+            // Verificar se a requisição veio da tela da conta do usuário
+            if (session('from_account_page')) {
+                // Se deletou da conta do usuário, redireciona para a página inicial
+                $successMessage = 'Conta deletada com sucesso!!!';
+                session()->forget('from_account_page'); // Limpa a sessão criada para identificar de onde veio a requisição (view minhaConta)
+                return redirect()->route('site.index')->with('sucesso', $successMessage);
+            }
+
+            // Se veio da tela de administração, mantém na mesma página
+            return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário deletado com sucesso!');
+        } catch (\Exception $e) {
             return redirect()->route('usuarioAdm.index')->with('error', 'Erro ao deletar o usuário');
         }
     }
@@ -146,10 +173,11 @@ class UsuarioController extends Controller
      */
     public function minhaConta()
     {
+        // Define que o usuário está na página da conta (usando para saber a sua view e mudar a lógica ao salvar alterar informações do usuário na view minhaConta e na área admin)
+        session(['from_account_page' => true]);
         return view('admin.usuarios.minhaConta');
     }
 
-    // quando este método for passado, ele listará as informações do usuário nos camnpos: email, telefone, nome, sobrenome (eles vao ter um placeholder mostrando as informações atuais daquele usuário, ou seja, para chamar este método, precisará passar o id do usuário atual para a view, com compact também)
     public function infoConta(string $id)
     {
         $usuario = User::findOrFail($id);
