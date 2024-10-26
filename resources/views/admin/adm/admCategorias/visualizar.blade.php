@@ -18,10 +18,6 @@
             <td>{{ $categoriaProduto->descricao }}</td>
         </tr>
         <tr>
-            <th>Imagem</th>
-            <td>{{ $categoriaProduto->imagem }}</td>
-        </tr>
-        <tr>
             <th>Qntd. Produtos associados</th>
             <td>{{ $quantidadeProdutos }}</td>
         </tr>

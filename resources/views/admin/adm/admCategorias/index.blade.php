@@ -25,8 +25,7 @@
                 <th>ID</th>
 
                 <th>Titulo</th>
-                {{-- <th>Descrição</th> --}}
-                <th>Imagem</th>
+                <th>Descrição</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +34,7 @@
                 <tr>
                     <td>{{ $categoriaProduto->id }}</td>
                     <td>{{ $categoriaProduto->titulo_categoria }}</td>
-                    {{-- <td>{{ $categoriaProduto->descricao }}</td> --}}
-                    <td>{{ $categoriaProduto->imagem }}</td>
+                    <td>{{ $categoriaProduto->descricao }}</td>
                     <td>
                         <a href="{{ route('categorias.show', ['id' => $categoriaProduto->id]) }}" class="btn btn-primary">Visualizar</a>
                         
@@ -51,7 +49,6 @@
                             <button type="submit" class="btn btn-danger">Excluir</button>
 
                         </form>
-
                     </td>
                 </tr>
             @endforeach

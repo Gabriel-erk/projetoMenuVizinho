@@ -38,30 +38,18 @@ class CategoriasProdutoController extends Controller
 
         // Validação
         $request->validate([
-            // 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' garante que o arquivo enviado seja uma imagem nos formatos permitidos, com tamanho máximo de 2 MB.
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'titulo_categoria' => 'required|string',
             'descricao' => 'required|string'
         ]);
 
-        // Verifica se uma imagem foi carregada
-        if ($request->hasFile('imagem')) {
-            // Armazena a imagem na pasta 'public/images'
-            $imagemPath = $request->file('imagem')->store('images', 'public');
+        // Cria o registro com o caminho da imagem
+        CategoriaProduto::create([
+            'titulo_categoria' => $request->titulo_categoria,
+            'descricao' => $request->descricao
+        ]);
 
-            // Cria o registro com o caminho da imagem
-            CategoriaProduto::create([
-                'imagem' => $imagemPath, // Armazena o caminho da imagem
-                'titulo_categoria' => $request->titulo_categoria,
-                'descricao' => $request->descricao
-            ]);
-
-            return redirect()->route('categorias.index')->with('sucesso', 'Categoria cadastrada com sucesso!');
-        }
-
-        return redirect()->back()->with('error', 'Erro ao carregar a imagem.');
+        return redirect()->route('categorias.index')->with('sucesso', 'Categoria cadastrada com sucesso!');
     }
-
 
     /**
      * Display the specified resource.

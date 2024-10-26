@@ -22,11 +22,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="imagem" class="form-label">Imagem</label>
-            <input type="file" name="imagem" class="form-control" id="imagem">
-        </div>
-
-        <div class="mb-3">
             <label for="descricao" class="form-label">Descrição do Produto</label>
             <textarea name="descricao" class="form-control" id="descricao" placeholder="Digite a descrição da sub-categoria"
                 rows="4">{{ old('descricao') }}</textarea>
