@@ -77,7 +77,6 @@ class LojaController extends Controller
         return redirect()->route('loja.index')->with('sucesso', 'Loja cadastrada com sucesso!');
     }
 
-
     /**
      * Display the specified resource.
      */

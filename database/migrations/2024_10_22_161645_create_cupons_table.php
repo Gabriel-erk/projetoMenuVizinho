@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nome_cupom', 50);
             $table->string('descricao_cupom', 60);
             $table->datetime('data_expiracao'); // campo de data e hora para a expiração
-            $table->unsignedBigInteger('loja_id'); // não é nullable pois não quero produtos sem loja
+            $table->int('forma_desconto'); // se for 1 é desconto por palavras chave, 2 é por categoria 
+            $table->unsignedBigInteger('loja_id'); // não é nullable pois não quero cupons sem loja
             $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
         });
     }
