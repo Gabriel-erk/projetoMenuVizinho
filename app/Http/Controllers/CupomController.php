@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cupom;
 use App\Models\Loja;
+use App\Models\Produto;
 
 class CupomController extends Controller
 {
@@ -77,9 +78,9 @@ class CupomController extends Controller
         $cupom = Cupom::findOrFail($id);
 
         $cupom->update([
-            'nome_cupom' => $request -> nome_cupom,
-            'descricao_cupom' => $request -> descricao_cupom,
-            'data_expiracao' => $request -> data_expiracao,
+            'nome_cupom' => $request->nome_cupom,
+            'descricao_cupom' => $request->descricao_cupom,
+            'data_expiracao' => $request->data_expiracao,
         ]);
         return redirect()->route('cupom.index')->with('sucesso', 'cupom atualizado com sucesso!!!');
     }
@@ -99,4 +100,38 @@ class CupomController extends Controller
         }
     }
 
+    public function aplicarDesconto(Produto $produto, Cupom $cupom)
+    {
+        $descontoAplicado = 0;
+
+        if ($cupom->forma_desconto == 1) {
+            // Desconto por palavra-chave
+            $palavras = $cupom->palavras()->pluck('palavra')->toArray();
+            foreach ($palavras as $palavra) {
+                if (strpos($produto->descricao, $palavra) !== false) {
+                    $descontoAplicado = $this->calcularDesconto($produto->preco, $cupom);
+                    break;
+                }
+            }
+        } elseif ($cupom->forma_desconto == 2) {
+            // Desconto por categoria
+            $categoriasCupom = $cupom->categorias()->pluck('categoria_id')->toArray();
+            if (in_array($produto->categoria_id, $categoriasCupom)) {
+                $descontoAplicado = $this->calcularDesconto($produto->preco, $cupom);
+            }
+        }
+
+        return $descontoAplicado;
+    }
+
+    private function calcularDesconto($preco, $cupom)
+    {   
+        if ($cupom->tipo_desconto) {
+            // Percentual
+            return $preco * ($cupom->valor_desconto / 100);
+        } else {
+            // Valor fixo
+            return $cupom->valor_desconto;
+        }
+    }
 }

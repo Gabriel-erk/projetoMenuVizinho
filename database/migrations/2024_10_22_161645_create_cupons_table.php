@@ -16,9 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nome_cupom', 50);
             $table->string('descricao_cupom', 60);
-            $table->datetime('data_expiracao'); // campo de data e hora para a expiração
-            $table->int('forma_desconto'); // se for 1 é desconto por palavras chave, 2 é por categoria 
-            $table->unsignedBigInteger('loja_id'); // não é nullable pois não quero cupons sem loja
+            $table->datetime('data_expiracao');
+            $table->unsignedTinyInteger('forma_desconto'); // 1 para palavras-chave, 2 para categorias
+            $table->decimal('valor_desconto', 8, 2); // valor do desconto
+            $table->boolean('tipo_desconto')->default(0); // 0 para valor fixo, 1 para percentual
+            $table->unsignedBigInteger('loja_id');
             $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
         });
     }
