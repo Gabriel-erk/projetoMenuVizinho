@@ -49,17 +49,11 @@
     @section('banner')
         <div class="banner owl-carousel owl-theme">
 
-            <div class="img-banner">
-                <img src="{{ asset('img/banner-certo.png') }}" alt="">
-            </div>
-
-            <div class="img-banner">
-                <img src="{{ asset('img/peca-o-seu3.png') }}" alt="">
-            </div>
-
-            <div class="img-banner">
-                <img src="{{ asset('img/banner 3.png') }}" alt="">
-            </div>
+            @foreach ($infoLoja->banners as $banner)
+                <div class="img-banner">
+                    <img src="{{ asset($banner->imagem) }}" alt="">
+                </div>
+            @endforeach
 
         </div>
     @endsection
@@ -67,8 +61,6 @@
     {{-- font-family: 'Cabin', sans-serif --}}
     <div class="d-flex" style="font-family: 'Poppins', sans-serif">
         <h1 class="mt-3 fw-bold" style="color:#8c6342;">TODOS OS PRODUTOS</h1>
-        {{-- total de produtos --}}
-        {{-- <span class="position-relative ms-2" style="top: 2.7rem; font-size: 0.8em">[68]</span> --}}
     </div>
 
     {{-- listando categorias p clicar e direcionar p categoria no documento --}}
@@ -85,7 +77,7 @@
             {{-- id do link --}}
             <a id="toggle-filtros-text" class="bg-white text-decoration-none text-dark me-1"
                 style="font-size:0.9em; font-weight:600;">MAIS FILTROS</a>
-                {{-- id do icone --}}
+            {{-- id do icone --}}
             <i id="toggle-filtros-icon" class="fa-sharp fa-solid fa-plus" style="font-size: 0.8em"></i>
         </div>
     </div>
@@ -160,7 +152,8 @@
     @foreach ($subCategorias as $subCategoria)
         <!-- Verifica se há produtos relacionados - se houver, lista a categoria e seus produtos - isso evita que imprima subCategorias vazias -->
         @if ($subCategoria->produtos->isNotEmpty())
-            <div id="{{ Str::slug($subCategoria->titulo_sub_categoria, '-') }}" class="mt-4 mb-2" style="font-family: 'Poppins', sans-serif">
+            <div id="{{ Str::slug($subCategoria->titulo_sub_categoria, '-') }}" class="mt-4 mb-2"
+                style="font-family: 'Poppins', sans-serif">
                 <span class="fs-3 fw-bold"
                     style="display: block; color:#8c6342">{{ $subCategoria->titulo_sub_categoria }}</span>
                 {{-- <span class="fs-6" style="display: block; color: #848384;">{{ $subCategoria->descricao }} </span> --}}

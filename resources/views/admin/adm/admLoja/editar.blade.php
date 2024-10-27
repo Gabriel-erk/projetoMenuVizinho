@@ -16,18 +16,19 @@
     <form action="{{ route('loja.update', $loja->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        
+
         <div class="mb-3">
             <label for="nome_loja" class="form-label">Nome da loja</label>
-            <input type="text" name="nome_loja" class="form-control" id="nome_loja"
-                placeholder="Nome da loja" value="{{ old('nome_loja', $loja->nome_loja) }}" maxlength="20">
+            <input type="text" name="nome_loja" class="form-control" id="nome_loja" placeholder="Nome da loja"
+                value="{{ old('nome_loja', $loja->nome_loja) }}" maxlength="20">
         </div>
 
         <div class="mb-3">
             <label for="logotipo" class="form-label">Logotipo</label>
             <input type="file" name="logotipo" class="form-control" id="logotipo">
-            @if($loja->logotipo)
-                <img src="{{ asset('storage/' . $loja->logotipo) }}" alt="Logotipo Atual" class="mt-2" style="width: 150px;">
+            @if ($loja->logotipo)
+                <img src="{{ asset($loja->logotipo) }}" alt="Logotipo Atual" class="mt-2 img-thumbnail bg-secondary"
+                    style="width: 150px;">
             @endif
         </div>
 
@@ -37,18 +38,21 @@
         <div class="mb-3">
             <label for="banner_categoria" class="form-label">Categoria do Banner</label>
             <select name="banner_categoria[]" class="form-control" multiple>
-                <option value="cardapio" {{ in_array('cardapio', $loja->banner_categoria ?? []) ? 'selected' : '' }}>Cardápio</option>
-                <option value="ofertas" {{ in_array('ofertas', $loja->banner_categoria ?? []) ? 'selected' : '' }}>Ofertas</option>
+                <option value="cardapio" {{ in_array('cardapio', $loja->banner_categoria ?? []) ? 'selected' : '' }}>
+                    Cardápio</option>
+                <option value="ofertas" {{ in_array('ofertas', $loja->banner_categoria ?? []) ? 'selected' : '' }}>Ofertas
+                </option>
             </select>
         </div>
-        
+
         <div class="mb-3">
             <label for="banner" class="form-label">Banners</label>
             <input type="file" name="banner[]" class="form-control" id="banner" multiple>
-            @if($loja->banners && count($loja->banners) > 0)
+            @if ($loja->banners && count($loja->banners) > 0)
                 <div class="mt-2">
                     @foreach ($loja->banners as $banner)
-                        <img src="{{ asset('storage/' . $banner) }}" alt="Banner Atual" style="width: 150px; margin-right: 5px;">
+                        <img src="{{ asset($banner->imagem) }}" alt="Banner Atual" style="width: 150px; margin-right: 5px;"
+                            class="img-thumbnail bg-secondary">
                     @endforeach
                 </div>
             @endif
@@ -59,15 +63,16 @@
         </ul>
         <div class="mb-3">
             <label for="texto_sobre_restaurante" class="form-label">Texto sobre nós</label>
-            <textarea name="texto_sobre_restaurante" class="form-control" id="texto_sobre_restaurante" 
-                placeholder="Texto sobre nós" rows="4">{{ old('texto_sobre_restaurante', $loja->texto_sobre_restaurante) }}</textarea>
+            <textarea name="texto_sobre_restaurante" class="form-control" id="texto_sobre_restaurante" placeholder="Texto sobre nós"
+                rows="4">{{ old('texto_sobre_restaurante', $loja->texto_sobre_restaurante) }}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="imagem_sobre_restaurante" class="form-label">Imagem sobre nós</label>
             <input type="file" name="imagem_sobre_restaurante" class="form-control" id="imagem_sobre_restaurante">
-            @if($loja->imagem_sobre_restaurante)
-                <img src="{{ asset('storage/' . $loja->imagem_sobre_restaurante) }}" alt="Imagem Atual" class="mt-2" style="width: 150px;">
+            @if ($loja->imagem_sobre_restaurante)
+                <img src="{{ asset($loja->imagem_sobre_restaurante) }}" alt="Imagem Atual" class="mt-2 img-thumbnail bg-secondary"
+                    style="width: 150px;">
             @endif
         </div>
 
@@ -76,7 +81,7 @@
         </ul>
         <div class="mb-3">
             <label for="texto_politica_privacidade" class="form-label">Política de privacidade</label>
-            <textarea name="texto_politica_privacidade" class="form-control" id="texto_politica_privacidade" 
+            <textarea name="texto_politica_privacidade" class="form-control" id="texto_politica_privacidade"
                 placeholder="Política de privacidade" rows="4">{{ old('texto_politica_privacidade', $loja->texto_politica_privacidade) }}</textarea>
         </div>
 
@@ -85,8 +90,7 @@
         </ul>
         <div class="mb-3">
             <label for="regras_cupons" class="form-label">Regras dos cupons</label>
-            <textarea name="regras_cupons" class="form-control" id="regras_cupons" 
-                placeholder="Regras dos cupons" rows="4">{{ old('regras_cupons', $loja->regras_cupons) }}</textarea>
+            <textarea name="regras_cupons" class="form-control" id="regras_cupons" placeholder="Regras dos cupons" rows="4">{{ old('regras_cupons', $loja->regras_cupons) }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

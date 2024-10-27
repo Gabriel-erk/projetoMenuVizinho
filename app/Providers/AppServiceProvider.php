@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('totalItensCarrinho', $totalItensCarrinho);
             }
 
-            $infoLoja = Loja::findOrFail(1);
+            $infoLoja = Loja::with('banners')->findOrFail(1); // Carrega a loja com os banners
             $view->with('infoLoja', $infoLoja);
         });
     }

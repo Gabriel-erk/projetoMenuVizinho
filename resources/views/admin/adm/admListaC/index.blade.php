@@ -24,7 +24,6 @@
                 <th>ID</th>
 
                 <th>User_id</th>
-                <th>Cartao_cliente_id</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -34,7 +33,6 @@
                 <tr>
                     <td>{{ $lista->id }}</td>
                     <td>{{ $lista->user_id }}</td>
-                    <td>{{ $lista->cartao_cliente_id }}</td>
                     <td>
                         <a href="{{ route('lista.show', ['id' => $lista->id]) }}" class="btn btn-primary">Visualizar</a>
                     </td>

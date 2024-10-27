@@ -12,8 +12,7 @@ class ListaCarrinho extends Model
     protected $table = "lista_carrinho";
 
     protected $fillable = [
-        'user_id', // Assumindo que você tem um campo user_id
-        'cartao_cliente_id' // Caso você tenha um cartão cliente
+        'user_id', 
     ];
 
     // Define o relacionamento com ItensCarrinho

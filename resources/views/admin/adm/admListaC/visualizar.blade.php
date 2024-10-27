@@ -13,10 +13,6 @@
             <th>User_id</th>
             <td>{{ $lista->user_id }}</td>
         </tr>
-        <tr>
-            <th>Cartao_cliente_id</th>
-            <td>{{ $lista->Cartao_cliente_id }}</td>
-        </tr>
 
     </table>
     <a href="{{ route('itens.index', ['id' => $lista->id]) }}" class="btn btn-info">Ver itens

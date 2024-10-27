@@ -3,7 +3,9 @@
 @section('conteudo')
     <div class="d-flex justify-content-between mt-3">
         <h2>Sua Loja</h2>
-        <a href="{{ route('loja.create') }}" class="btn btn-primary">Cadastrar</a>
+        {{-- @if ($quantidadeLojas < 1) --}}
+            <a href="{{ route('loja.create') }}" class="btn btn-primary">Cadastrar</a>
+        {{-- @endif --}}
     </div>
     <hr>
 
@@ -34,23 +36,21 @@
                 <td>{{ $loja->id }}</td>
                 <td>{{ $loja->nome_loja }}</td>
                 <td>{{ $loja->logotipo }}</td>
-                {{-- <td>{{ $loja->preco }}</td> --}}
-                {{-- <td>{{ $loja->descricao }}</td> --}}
-                {{-- <td>{{ $loja->info_nutricional }}</td> --}}
+
                 <td>
                     <a href="{{ route('loja.show') }}" class="btn btn-primary">Visualizar</a>
 
                     <a href="{{ route('loja.edit', ['id' => $loja->id]) }}" class="btn btn-secondary">Editar</a>
 
                     <form action="{{ route('loja.destroy', ['id' => $loja->id]) }}" method="post"
-                            style="display: inline-block">
+                        style="display: inline-block">
 
-                            @csrf
-                            @method('DELETE')
+                        @csrf
+                        @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        <button type="submit" class="btn btn-danger">Excluir</button>
 
-                        </form>
+                    </form>
                 </td>
             </tr>
 
