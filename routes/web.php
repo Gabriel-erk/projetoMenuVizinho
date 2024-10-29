@@ -90,7 +90,7 @@ Route::middleware(["auth"])->group(function () {
     Route::controller(CupomController::class)->group(function () {
         // area administrativa
         Route::get('/admin/adm/admCupons/index', 'index')->name('cupom.index');
-        Route::get('/admin/adm/admCupons/visualizar', 'show')->name('cupom.show');
+        Route::get('/admin/adm/admCupons/visualizar/{id}', 'show')->name('cupom.show');
         Route::get('/admin/adm/admCupons/create', 'create')->name('cupom.create');
         Route::post('/admin/adm/admCupons/salvar', 'store')->name('cupom.store');
         Route::get('/admin/adm/admCupons/editar/{id}', 'edit')->name('cupom.edit');

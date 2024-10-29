@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaProduto;
 use Illuminate\Http\Request;
 use App\Models\Cupom;
 use App\Models\Loja;
 use App\Models\Produto;
+use App\Models\SubCategoria;
 
 class CupomController extends Controller
 {
@@ -23,29 +25,121 @@ class CupomController extends Controller
      */
     public function create()
     {
-        return view('admin.adm.admCupons.cadastro');
+        $categorias = CategoriaProduto::all();
+        $subCategorias = SubCategoria::all();
+        return view('admin.adm.admCupons.cadastro', compact('categorias', 'subCategorias'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'nome_cupom' => 'required|string',
+    //         'descricao_cupom' => 'required|string',
+    //         'data_expiracao' => 'required|date',
+    //         'forma_desconto' => 'required|integer|in:1,2', // 1 para palavras-chave, 2 para categorias
+    //         'valor_desconto' => 'required|numeric|min:0',
+    //         'tipo_desconto' => 'required|integer|in:1,2', // 1 para percentual, 2 para valor fixo
+    //         'palavras_chave' => 'nullable|array', // Array de palavras-chave se forma_desconto for 1
+    //         'palavras_chave.*' => 'string', // Cada palavra-chave deve ser uma string
+    //         'categorias' => 'nullable|array', // Array de IDs de categorias se forma_desconto for 2
+    //         'categoria_produto.*' => 'integer|exists:categorias,id', // Cada ID de categoria deve existir na tabela categorias
+    //     ]);
+
+    //     // Cria o cupom com os dados básicos
+    //     $cupom = Cupom::create([
+    //         'nome_cupom' => $request->nome_cupom,
+    //         'descricao_cupom' => $request->descricao_cupom,
+    //         'data_expiracao' => $request->data_expiracao,
+    //         'forma_desconto' => $request->forma_desconto,
+    //         'valor_desconto' => $request->valor_desconto,
+    //         'tipo_desconto' => $request->tipo_desconto,
+    //         'loja_id' => 1 // Considerando que a loja_id é fixa como 1 neste caso
+    //     ]);
+
+    //     // Associa as palavras-chave atráves do método 'palavras' no model cupom, se forma_desconto for 1
+    //     if ($request->forma_desconto == 1 && !empty($request->palavras_chave)) {
+    //         foreach ($request->palavras_chave as $palavra) {
+    //             $cupom->palavras()->create(['palavra_chave' => $palavra]);
+    //         }
+    //     }
+
+    //     // Associa as categorias se forma_desconto for 2
+    //     if ($request->forma_desconto == 2 && !empty($request->categorias)) {
+    //         // acessa o método categorias no model Cupom que tem a relação many-to-many (muitos para muitos) entre cupom e categoriaProduto
+    //         // método attach insere os ids das muitas categorias (que podem estar relacionadas com o cupom) na tabela intermediária cupom_categorias (que está no método categorias dentro de cupom) - utilizando este método retira-se a necessidade de criar um loop para a inserção de muitos registros
+    //         $cupom->categorias()->attach($request->categorias);
+    //     }
+
+    //     return redirect()->route('cupom.index')->with('sucesso', 'Cupom cadastrado com sucesso!');
+    // }
+
     public function store(Request $request)
     {
         $request->validate([
-            'nome_cupom' => 'required|string',
-            'descricao_cupom' => 'required|string',
+            'nome_cupom' => 'required|string|max:50',
+            'descricao_cupom' => 'required|string|max:60',
             'data_expiracao' => 'required|date',
+            'valor_desconto' => 'required|numeric',
+            'tipo_desconto' => 'required|integer',
+            'forma_desconto' => 'required|integer',
+            'palavras' => 'required_if:forma_desconto,1|array',
+            // Validação condicional para categorias e subcategorias
+            'categorias' => 'array',
+            'sub_categorias' => 'array',
         ]);
 
-        Cupom::create([
+        /*
+        * Esse bloco de código verifica se a forma_desconto é igual a 2. Se for, ele verifica se não há nenhuma categoria ou subcategoria selecionada. Se nenhuma delas estiver selecionada, o usuário é redirecionado de volta ao formulário com mensagens de erro indicando que pelo menos uma categoria ou subcategoria deve ser escolhida.
+         */
+        if ($request->forma_desconto == 2 && !$request->hasAny(['categorias', 'sub_categorias'])) {
+            return redirect()->back()->withErrors([
+                'categorias' => 'É necessário escolher pelo menos uma categoria ou subcategoria.',
+                'sub_categorias' => 'É necessário escolher pelo menos uma categoria ou subcategoria.',
+            ])->withInput();
+        }
+
+        // Cria o cupom
+        $cupom = Cupom::create([
             'nome_cupom' => $request->nome_cupom,
             'descricao_cupom' => $request->descricao_cupom,
             'data_expiracao' => $request->data_expiracao,
-            'loja_id' => 1
+            'loja_id' => 1,
+            'valor_desconto' => $request->valor_desconto,
+            'tipo_desconto' => $request->tipo_desconto,
+            'forma_desconto' => $request->forma_desconto,
         ]);
+
+        // comandos abaixo associa palavras-chave, categorias e subcategorias (caso selecionadas)
+
+        /*
+        * Esse trecho verifica se a forma_desconto é igual a 1 e se o campo palavras foi enviado na requisição. Se ambas as condições forem verdadeiras, ele itera sobre cada palavra-chave recebida e cria uma nova associação no banco de dados, utilizando o método create() para adicionar a palavra-chave correspondente ao cupom. 
+        */
+        if ($request->forma_desconto == 1 && $request->has('palavras')) {
+            foreach ($request->palavras as $palavra) {
+                $cupom->palavras()->create(['palavra_chave' => $palavra]);
+            }
+        }
+
+        /*
+        * Esse bloco verifica novamente se a forma_desconto é igual a 2. Se for, ele verifica se há categorias e subcategorias fornecidas. Se existirem, utiliza o método attach() para associar as categorias e subcategorias selecionadas ao cupom.
+        * O attach() adiciona as relações na tabela pivô correspondente (neste caso, entre cupons e categorias ou subcategorias), permitindo que um cupom possa estar associado a múltiplas categorias e subcategorias - adiciona os possíveis múltiplos ids de categorias e subcategorias a suas respectivas tabelas (cupon_categoria ou cupon_sub_categoria). 
+        */
+        if ($request->forma_desconto == 2) {
+            if ($request->has('categorias')) {
+                $cupom->categorias()->attach($request->categorias);
+            }
+
+            if ($request->has('sub_categorias')) {
+                $cupom->subCategorias()->attach($request->sub_categorias);
+            }
+        }
 
         return redirect()->route('cupom.index')->with('sucesso', 'Cupom cadastrado com sucesso!');
     }
+
     /**
      * Display the specified resource.
      */
@@ -61,7 +155,9 @@ class CupomController extends Controller
     public function edit(string $id)
     {
         $cupom = Cupom::findOrFail($id);
-        return view('admin.adm.admCupons.editar', compact('cupom'));
+        $categorias = CategoriaProduto::all();
+        $subCategorias = SubCategoria::all();
+        return view('admin.adm.admCupons.editar', compact('cupom', 'categorias', 'subCategorias'));
     }
 
     /**
@@ -70,19 +166,83 @@ class CupomController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nome_cupom' => 'required|string',
-            'descricao_cupom' => 'required|string',
+            'nome_cupom' => 'required|string|max:50',
+            'descricao_cupom' => 'required|string|max:60',
             'data_expiracao' => 'required|date',
+            'valor_desconto' => 'required|numeric',
+            'tipo_desconto' => 'required|integer',
+            'forma_desconto' => 'required|integer',
+            'palavras' => 'nullable|array',
+            // Validação condicional personalizada
+            'categorias' => 'nullable|array', // pode ser nullo, e deve ser array quando não for
+            'sub_categorias' => 'nullable|array', // pode ser nullo, e deve ser array quando não for
         ]);
+
+        // Verifica se a forma de desconto exige categorias ou subcategorias
+        if ($request->forma_desconto == 2 && !$request->hasAny(['categorias', 'sub_categorias'])) {
+            // retorna esta mensagem caso tente submeter sem uma categoria ou sub_categoria
+            return redirect()->back()->withErrors([
+                'categorias' => 'É necessário escolher pelo menos uma categoria ou subcategoria.',
+                'sub_categorias' => 'É necessário escolher pelo menos uma categoria ou subcategoria.',
+            ])->withInput();
+        }
 
         $cupom = Cupom::findOrFail($id);
 
+        // Atualiza os campos do cupom
         $cupom->update([
             'nome_cupom' => $request->nome_cupom,
             'descricao_cupom' => $request->descricao_cupom,
             'data_expiracao' => $request->data_expiracao,
+            'valor_desconto' => $request->valor_desconto,
+            'tipo_desconto' => $request->tipo_desconto,
+            'forma_desconto' => $request->forma_desconto,
         ]);
-        return redirect()->route('cupom.index')->with('sucesso', 'cupom atualizado com sucesso!!!');
+
+        // Associa palavras-chave, categorias e subcategorias (caso selecionadas)
+        if ($request->forma_desconto == 1) {
+            // Remove palavras antigas
+            $cupom->palavras()->delete();
+
+            // Adiciona novas palavras-chave e verifica se há pelo menos uma
+            // se no request existir o campo palavras e for maior que zero o número de palavras, entra no if
+            if ($request->has('palavras') && count($request->palavras) > 0) {
+                // percorre as palavras enviadas através do request->palavras
+                foreach ($request->palavras as $palavra) {
+                    if (!empty($palavra)) { // Verifica se a palavra não está vazia
+                        $cupom->palavras()->create(['palavra_chave' => $palavra]);
+                    }
+                }
+            }
+
+            // Verifica se nenhuma palavra-chave foi adicionada
+            if ($cupom->palavras()->count() === 0) {
+                // retorna essa mensagem caso não tenha nenhuma palavra chave adicionada quando a forma de desconto é 1
+                return redirect()->back()->withErrors([
+                    'palavras' => 'É necessário escolher pelo menos uma palavra-chave.',
+                ])->withInput();
+            }
+        } else {
+            // Remove palavras-chave se não for por palavras
+            $cupom->palavras()->delete();
+        }
+
+        // Atualiza categorias
+        if ($request->forma_desconto == 2) {
+            if ($request->has('categorias')) {
+                $cupom->categorias()->sync($request->categorias); // Atualiza as categorias
+            } else {
+                $cupom->categorias()->detach(); // Remove categorias se nenhuma for enviada
+            }
+
+            if ($request->has('sub_categorias')) {
+                $cupom->subCategorias()->sync($request->sub_categorias); // Atualiza as subcategorias
+            } else {
+                $cupom->subCategorias()->detach(); // Remove subcategorias se nenhuma for enviada
+            }
+        }
+
+        return redirect()->route('cupom.index')->with('sucesso', 'Cupom atualizado com sucesso!!!');
     }
 
     /**
@@ -93,7 +253,7 @@ class CupomController extends Controller
         try {
             $cupom = Cupom::findOrFail($id);
             $cupom->delete();
-            return redirect()->route('cupom.index')->with('sucesso', 'cupom deletado com sucesso!!!');
+            return redirect()->route('cupom.index')->with('sucesso', 'Cupom deletado com sucesso!!!');
         } catch (\Exception $e) {
 
             return redirect()->route("cupom.index")->with('error', 'Erro ao deletar o cupom');
@@ -124,8 +284,9 @@ class CupomController extends Controller
         return $descontoAplicado;
     }
 
+    // calcula o desonto do cupom recebendo o atributo preço e o cupom  (com seu tipo de desconto (bruto ou porcentual))
     private function calcularDesconto($preco, $cupom)
-    {   
+    {
         if ($cupom->tipo_desconto) {
             // Percentual
             return $preco * ($cupom->valor_desconto / 100);

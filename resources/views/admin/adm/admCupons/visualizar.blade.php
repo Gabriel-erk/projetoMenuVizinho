@@ -7,28 +7,38 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <td>{{ $categoriaProduto->id }}</td>
+            <td>{{ $cupom->id }}</td>
         </tr>
         <tr>
-            <th>Titulo Categoria</th>
-            <td>{{ $categoriaProduto->titulo_categoria }}</td>
+            <th>Nome do cupom</th>
+            <td>{{ $cupom->nome_cupom }}</td>
         </tr>
         <tr>
             <th>Descrição</th>
-            <td>{{ $categoriaProduto->descricao }}</td>
+            <td>{{ $cupom->descricao_cupom }}</td>
         </tr>
         <tr>
-            <th>Imagem</th>
-            <td>{{ $categoriaProduto->imagem }}</td>
+            <th>Data de expiração</th>
+            <td>{{ $cupom->data_expiracao }}</td>
         </tr>
         <tr>
-            <th>Qntd. Produtos associados</th>
-            <td>{{ $quantidadeProdutos }}</td>
+            <th>Forma de desconto</th>
+            <td>{{ $cupom->forma_desconto }}</td>
+        </tr>
+        <tr>
+            <th>Valor de desconto</th>
+            <td>{{ $cupom->valor_desconto }}</td>
+        </tr>
+        <tr>
+            <th>Tipo de desconto</th>
+            <td>{{ $cupom->tipo_desconto }}</td>
+        </tr>
+        <tr>
+            <th>ID da loja</th>
+            <td>{{ $cupom->loja_id }}</td>
         </tr>
 
     </table>
-    <a href="{{ route('categorias.produtos', ['id' => $categoriaProduto->id]) }}" class="btn btn-info">Ver produtos
-        associados</a> <!-- Botão para ver produtos associados -->
-    <a href="{{ route('categorias.edit', ['id' => $categoriaProduto->id]) }}" class="btn btn-primary">Editar</a>
-    <a href="{{ route('categorias.index') }}" class="btn btn-secondary">Cancelar</a>
+    <a href="{{ route('cupom.edit', ['id' => $cupom->id]) }}" class="btn btn-primary">Editar</a>
+    <a href="{{ route('cupom.index') }}" class="btn btn-secondary">Cancelar</a>
 @endsection

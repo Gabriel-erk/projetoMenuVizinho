@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cupom_id');
             $table->unsignedBigInteger('categoria_id'); // ID da categoria ou subcategoria
             $table->foreign('cupom_id')->references('id')->on('cupons')->onDelete('cascade'); // deletou cupom, laravel irá deletar todos os registros da tabela cupom_categorias com o id da tabela cupom
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade'); // deletou categoria, laravel irá deletar os registros da tabela cupom_categorias com o id daquela categoria
+            $table->foreign('categoria_id')->references('id')->on('categoria_produto')->onDelete('cascade'); // deletou categoria, laravel irá deletar os registros da tabela cupom_categorias com o id daquela categoria
         });
     }
 

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('cupom_palavras', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cupom_id');
-            $table->string('palavra'); // para as múltiplas palavaras-chave que podem ser associadas (um cupom pode ter várias palavras-chave associadas a ele)
+            $table->string('palavra_chave'); // para as múltiplas palavaras-chave que podem ser associadas (um cupom pode ter várias palavras-chave associadas a ele)
             $table->foreign('cupom_id')->references('id')->on('cupons')->onDelete('cascade'); //se deletar o cupom, apaga essa tabela
+            $table->timestamps(); // Adiciona created_at e updated_at
         });
     }
     /**

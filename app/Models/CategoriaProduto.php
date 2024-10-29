@@ -12,7 +12,6 @@ class CategoriaProduto extends Model
     protected $table = "categoria_produto";
 
     protected $fillable = [
-        // 'imagem',
         'titulo_categoria',
         'descricao'
     ];
