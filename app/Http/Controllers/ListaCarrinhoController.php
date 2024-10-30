@@ -83,10 +83,22 @@ class ListaCarrinhoController extends Controller
                     // pega o produto associado ao item
                     $produto = $item->produto;
 
-                    // Verifica cupons pelas palavras-chave usando LIKE com % para localizar no meio da descrição - não está contabilizando cupons por palavra-chave
-                    $query->orWhereHas('palavras', function ($q) use ($produto) {
-                        $q->where('cupom_palavras.palavra_chave', 'LIKE', '%' . $produto->descricao . '%');
-                    });
+                    // Obtém as palavras-chave associadas aos cupons
+                    // Carrega todos os cupons junto com suas palavras-chave associadas - cham o metodo palavras no model Cupom
+                    $cuponsComPalavras = Cupom::with('palavras')->get();
+
+                    // percorre o array e lança cada um em uma váriavel cupom
+                    foreach ($cuponsComPalavras as $cupom) {
+                        // percorre o as palavras do cupom e joga na váriavel palavra (ou seja, encontra todas as palavras chave dos cupons, 1 por 1)
+                        foreach ($cupom->palavras as $palavra) {
+                            // Verifica se a palavra-chave está presente na descrição do produto, independente de letras minúsculas e maiúsculas
+                            if (stripos($produto->descricao, $palavra->palavra_chave) !== false) {
+                                // Se a palavra-chave for encontrada na descrição, o cupom correspondente é adicionado à consulta.
+                                $query->orWhere('cupons.id', $cupom->id);
+                                break; // Encerra o loop ao encontrar uma correspondência
+                            }
+                        }
+                    } // O resultado final é uma coleção de cupons que se aplicam aos produtos no carrinho, considerando as palavras-chave na descrição, além das verificações de categorias e subcategorias.
 
                     // Verifica cupons pelas categorias
                     // Adiciona uma condição à consulta que verifica se o cupom está associado à mesma categoria que o produto. Isso permite que os cupons que são válidos para produtos em uma categoria específica sejam retornados.
