@@ -221,7 +221,12 @@ use Illuminate\Support\Str;
 
                     <div class="ms-2">
                         <h4>Cupom</h4>
-                        <p style="color:#9b9999" class="fw-semibold">3 cupons disponiveis para compra</p>
+                        @if ($cupons->isNotEmpty())
+                            <p style="color:#9b9999" class="fw-semibold">{{ $cupons->count() }} cupom(ns) disponível(is)
+                                para esta compra.</p>
+                        @else
+                            <p style="color:#9b9999" class="fw-semibold">Nenhum cupom disponível para esta compra.</p>
+                        @endif
                     </div>
                 </div>
 
@@ -377,44 +382,29 @@ use Illuminate\Support\Str;
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3 py-2 px-4 w-100" style="border: 1px solid #d9d9d9; background-color:#f5f5f5">
-                        <div class="d-flex align-items-center justify-content-between"
-                            style="font-family: 'Poppins', sans-serif;">
-                            <div class="d-flex">
-                                <div>
-                                    <img src="{{ asset('img/cupom-carrinho.png') }}" style="width: 3.6vw">
-                                </div>
 
-                                <div class="ms-2">
-                                    <span class="fw-semibold d-block fs-5">15R$ para lanches que possuem Bacon</span>
-                                    <span style="color: #929090">Disponivel para a compra atual</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="addCupom fw-semibold rounded-5 mt-4 text-center"
-                            style="font-family: 'Baloo Bhai 2', sans-serif; border: 1px solid #8c6342;">
-                            ADICIONAR CUPOM</p>
-                    </div>
+                    @foreach ($cupons as $cupom)
+                        <div class="mb-3 py-2 px-4 w-100" style="border: 1px solid #d9d9d9; background-color:#f5f5f5">
+                            <div class="d-flex align-items-center justify-content-between"
+                                style="font-family: 'Poppins', sans-serif;">
+                                <div class="d-flex">
+                                    <div>
+                                        {{-- imagem fixa mesmo, normal --}}
+                                        <img src="{{ asset('img/cupom-carrinho.png') }}" style="width: 3.6vw">
+                                    </div>
 
-                    <div class="mb-3 py-2 px-4 w-100" style="border: 1px solid #d9d9d9; background-color:#f5f5f5">
-                        <div class="d-flex align-items-center justify-content-between"
-                            style="font-family: 'Poppins', sans-serif;">
-                            <div class="d-flex">
-                                <div>
-                                    <img src="{{ asset('img/cupom-carrinho.png') }}" style="width: 3.6vw">
-                                </div>
-
-                                <div class="ms-2">
-                                    <span class="fw-semibold d-block fs-5">15R$ para lanches que possuem Bacon</span>
-                                    <span style="color: #929090">Disponivel para a compra atual</span>
+                                    <div class="ms-2">
+                                        <span class="fw-semibold d-block fs-5">{{ $cupom->nome_cupom }}</span>
+                                        <span style="color: #929090">{{ $cupom->descricao_cupom }}</span>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="addCupom fw-semibold rounded-5 mt-4 text-center"
+                                style="font-family: 'Baloo Bhai 2', sans-serif; border: 1px solid #8c6342;">
+                                ADICIONAR CUPOM</p>
                         </div>
+                    @endforeach
 
-                        <p class="addCupom fw-semibold rounded-5 mt-4 text-center"
-                            style="font-family: 'Baloo Bhai 2', sans-serif; border: 1px solid #8c6342;">
-                            ADICIONAR CUPOM</p>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

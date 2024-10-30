@@ -30,52 +30,6 @@ class CupomController extends Controller
         return view('admin.adm.admCupons.cadastro', compact('categorias', 'subCategorias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'nome_cupom' => 'required|string',
-    //         'descricao_cupom' => 'required|string',
-    //         'data_expiracao' => 'required|date',
-    //         'forma_desconto' => 'required|integer|in:1,2', // 1 para palavras-chave, 2 para categorias
-    //         'valor_desconto' => 'required|numeric|min:0',
-    //         'tipo_desconto' => 'required|integer|in:1,2', // 1 para percentual, 2 para valor fixo
-    //         'palavras_chave' => 'nullable|array', // Array de palavras-chave se forma_desconto for 1
-    //         'palavras_chave.*' => 'string', // Cada palavra-chave deve ser uma string
-    //         'categorias' => 'nullable|array', // Array de IDs de categorias se forma_desconto for 2
-    //         'categoria_produto.*' => 'integer|exists:categorias,id', // Cada ID de categoria deve existir na tabela categorias
-    //     ]);
-
-    //     // Cria o cupom com os dados básicos
-    //     $cupom = Cupom::create([
-    //         'nome_cupom' => $request->nome_cupom,
-    //         'descricao_cupom' => $request->descricao_cupom,
-    //         'data_expiracao' => $request->data_expiracao,
-    //         'forma_desconto' => $request->forma_desconto,
-    //         'valor_desconto' => $request->valor_desconto,
-    //         'tipo_desconto' => $request->tipo_desconto,
-    //         'loja_id' => 1 // Considerando que a loja_id é fixa como 1 neste caso
-    //     ]);
-
-    //     // Associa as palavras-chave atráves do método 'palavras' no model cupom, se forma_desconto for 1
-    //     if ($request->forma_desconto == 1 && !empty($request->palavras_chave)) {
-    //         foreach ($request->palavras_chave as $palavra) {
-    //             $cupom->palavras()->create(['palavra_chave' => $palavra]);
-    //         }
-    //     }
-
-    //     // Associa as categorias se forma_desconto for 2
-    //     if ($request->forma_desconto == 2 && !empty($request->categorias)) {
-    //         // acessa o método categorias no model Cupom que tem a relação many-to-many (muitos para muitos) entre cupom e categoriaProduto
-    //         // método attach insere os ids das muitas categorias (que podem estar relacionadas com o cupom) na tabela intermediária cupom_categorias (que está no método categorias dentro de cupom) - utilizando este método retira-se a necessidade de criar um loop para a inserção de muitos registros
-    //         $cupom->categorias()->attach($request->categorias);
-    //     }
-
-    //     return redirect()->route('cupom.index')->with('sucesso', 'Cupom cadastrado com sucesso!');
-    // }
-
     public function store(Request $request)
     {
         $request->validate([

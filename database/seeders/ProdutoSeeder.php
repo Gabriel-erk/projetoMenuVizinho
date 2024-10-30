@@ -24,7 +24,7 @@ class ProdutoSeeder extends Seeder
                     'imagem' => 'img/img-corrigida/duplo-cheddar.png', // Imagem padrão
                     'nome' => 'Produto ' . $i, // Nome do produto
                     'preco' => 19.99, // Preço padrão
-                    'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum ullamcorper vel eget libero.',
+                    'descricao' => 'carne Lorem ipsum dolor sit, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum ullamcorper vel eget libero.',
                     // 'descricao' => 'Descrição padrão do Produto ' . $i,
                     'info_nutricional' => 'Informações nutricionais do Produto ' . $i,
                     'categoria_produto_id' => $categoria->id, // Associando à categoria existente
@@ -40,8 +40,7 @@ class ProdutoSeeder extends Seeder
                     'imagem' => 'img/img-corrigida/duplo-cheddar.png', // Imagem padrão
                     'nome' => 'Produto ' . $i, // Nome do produto
                     'preco' => 19.99, // Preço padrão
-                    'descricao' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum ullamcorper vel eget libero.',
-                    // 'descricao' => 'Descrição padrão do Produto ' . $i,
+                    'descricao' => 'frango Lorem ipsum dolor sit, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum ullamcorper vel eget libero.',
                     'info_nutricional' => 'Informações nutricionais do Produto ' . $i,
                     'categoria_produto_id' => null, // Associando à nenhuma categoria
                     'sub_categoria_produto_id' => $subCategoria->id, // associando somente a subCategoria

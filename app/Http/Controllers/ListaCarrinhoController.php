@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cupom;
 use App\Models\ItensCarrinho;
 use App\Models\ListaCarrinho;
 
 use App\Models\Produto;
 use App\Models\MetodoPagamento;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class ListaCarrinhoController extends Controller
 {
 
-    public function admIndex(){
+    public function admIndex()
+    {
         $listas = ListaCarrinho::all();
         return view('admin.adm.admListaC.index', compact('listas'));
     }
 
-    public function show(string $id){
+    public function show(string $id)
+    {
         $lista = ListaCarrinho::findOrFail($id);
         return view('admin.adm.admListaC.visualizar', compact('lista'));
     }
@@ -61,22 +61,51 @@ class ListaCarrinhoController extends Controller
         // Busca a lista de carrinho do usuário
         $listaCarrinho = ListaCarrinho::where('user_id', $userId)->first();
 
-        if ($listaCarrinho) {
-            // Busca os itens do carrinho junto com os produtos
-            $itensCarrinho = ItensCarrinho::with('produto')
-                ->where('lista_carrinho_id', $listaCarrinho->id)
-                ->get();
-        } else {
-            $itensCarrinho = collect(); // Retorna uma coleção vazia se não houver lista de carrinho
-        }
+        // Itens do carrinho e produtos associados
+        $itensCarrinho = $listaCarrinho
+            ? ItensCarrinho::with('produto')->where('lista_carrinho_id', $listaCarrinho->id)->get()
+            : collect();
 
-        // Produtos aleatórios
+        // Produtos aleatórios para recomendação ou destaque
         $produtos = Produto::inRandomOrder()->take(7)->get();
 
         // Métodos de pagamento do usuário logado
         $metodosPagamentos = MetodoPagamento::where('user_id', $userId)->get();
 
-        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho','listaCarrinho'));
+        // Consulta cupons aplicáveis aos produtos no carrinho
+        $cupons = collect(); // Definimos como vazio inicialmente para evitar erros, criando uma coleção vazia chamada cupons, oq evita erros ao tentar operar uma coleção vazia depois
+        if ($itensCarrinho->isNotEmpty()) { // a váriavel itensCarrinho tem que estar preenchida para encontrar (ou seja, tem q ter algum produto no carrinho para chamar o que está dentro do if, pois não faz sentido tentar verificar se tem cupom sem ter  um produto no carrinho)
+            // inicia uma consulta na tabela Cupom (modelo cupom), com u,a função anônima closure, para adicionar condições a consulta (no caso, use ($itensCarrinho)), onde a váriavel $query representa a consulta que será construida
+            // use ($itensCarrinho) permite a váriavel $itensCarrinho estar acessivel dentro da func anônima
+            $cupons = Cupom::where(function ($query) use ($itensCarrinho) {
+                // acessa cada item no carrinho 
+                foreach ($itensCarrinho as $item) {
+                    // pega o produto associado ao item
+                    $produto = $item->produto;
+
+                    // Verifica cupons pelas palavras-chave usando LIKE com % para localizar no meio da descrição - não está contabilizando cupons por palavra-chave
+                    $query->orWhereHas('palavras', function ($q) use ($produto) {
+                        $q->where('cupom_palavras.palavra_chave', 'LIKE', '%' . $produto->descricao . '%');
+                    });
+
+                    // Verifica cupons pelas categorias
+                    // Adiciona uma condição à consulta que verifica se o cupom está associado à mesma categoria que o produto. Isso permite que os cupons que são válidos para produtos em uma categoria específica sejam retornados.
+                    // $produto->categoria_produto_id: Utiliza o ID da categoria do produto para fazer a comparação.
+                    $query->orWhereHas('categorias', function ($q) use ($produto) {
+                        $q->where('categoria_produto.id', $produto->categoria_produto_id);
+                    });
+
+                    // Verifica cupons pelas subcategorias
+                    // Similar à verificação de categorias, esta linha adiciona uma condição que verifica se o cupom está associado à subcategoria do produto. Isso garante que cupons que são válidos para produtos em uma subcategoria específica também sejam incluídos.
+                    // $produto->sub_categoria_produto_id: Utiliza o ID da subcategoria do produto para a comparação.
+                    $query->orWhereHas('subCategorias', function ($q) use ($produto) {
+                        $q->where('sub_categoria.id', $produto->sub_categoria_produto_id);
+                    });
+                }
+            })->get(); // Finaliza a consulta e executa o get() para obter os cupons que atendem às condições definidas na função anônima. O resultado é armazenado na variável $cupons. - pega o retorno da consulta feito pela função anônima em: Cupom::where(function ($query) use ($itensCarrinho) {
+        }
+
+        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho', 'listaCarrinho', 'cupons'));
     }
 
     public function removeItem($itemId)
@@ -97,7 +126,7 @@ class ListaCarrinhoController extends Controller
 
         return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
     }
-    
+
     // remove todos os itens da lista_carrinho do usuário
     public function clearCart()
     {

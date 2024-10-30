@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('descricao_cupom', 60);
             $table->datetime('data_expiracao');
             $table->unsignedTinyInteger('forma_desconto'); // 1 para palavras-chave, 2 para categorias
-            $table->decimal('valor_desconto', 8, 2); // valor do desconto
             $table->boolean('tipo_desconto')->default(0); // 0 para valor fixo, 1 para percentual
+            $table->decimal('valor_desconto', 8, 2); // valor do desconto
             $table->unsignedBigInteger('loja_id');
             $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
         });
