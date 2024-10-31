@@ -107,13 +107,23 @@ use Illuminate\Support\Str;
                     </button>
                 </form> --}}
 
+                @php
+                    // Calcula o valor total do carrinho
+                    $totalCarrinho = 0;
+                    // percorrendo itens carrinho para somar o valor total de cada item
+                    foreach ($itensCarrinho as $item) {
+                        // totalCarrinho recebe a multiplicação do preço do produto pela quantidade dele
+                        $totalCarrinho += $item->produto->preco * $item->quantidade;
+                    }
+                    $taxaEntrega = 5.0; // Taxa fixa de entrega
+                    // e o total recebe o valor do carrinho + a taxa fixa de entrega
+                    $totalComTaxa = $totalCarrinho + $taxaEntrega;
+                @endphp
+
                 @foreach ($itensCarrinho as $item)
                     <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
-                        {{-- vai permitir q eu deixe lado a lado a imagem e os textos - e dps espaçar o contador da quantidade deles --}}
                         <div class="d-flex align-items-center">
-
                             <img src="{{ asset($item->produto->imagem) }}" style="height: 23vh; width: 15vw">
-
                             <div class="ps-2">
                                 <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
                                     {{ $item->produto->nome }}</h2>
@@ -122,22 +132,22 @@ use Illuminate\Support\Str;
                                 <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">R$
                                     {{ $item->produto->preco }}</p>
                             </div>
-
                         </div>
-
                         <div style="width: 30%; font-family:'Poppins',sans-serif">
                             <div class="d-flex justify-content-between align-items-center py-1 px-2"
                                 style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
                                 <form action="{{ route('lista.remover', $item->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" style="border: none; background-color: #d9d9d9;"><i
-                                            class="fa-solid fa-minus" style="color: #8C6342;"></i></button>
+                                    <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                        <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
+                                    </button>
                                 </form>
                                 <strong>{{ $item->quantidade }}</strong>
                                 <form action="{{ route('lista.addToCart', $item->produto->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" style="border: none; background-color: #d9d9d9;"><i
-                                            class="fa-solid fa-plus" style="color: #8C6342;"></i></button>
+                                    <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -237,15 +247,17 @@ use Illuminate\Support\Str;
 
         <div class="fw-normal py-4 px-4" style="font-family: 'Poppins', sans-serif;">
             <h2>Resumo dos valores</h2>
-            {{-- se der vontade, esse comando: color:#9b9999 --}}
-            <span class="d-block pb-1">- Taxa de entrega: R$ 50,90</span>
-            <span class="d-block">- Cupom Aplicado: R$ -50,90</span>
-            <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999; ">Total: R$ 20,90</h3>
+            {{-- $taxaEntrega é o valor que sera formatado, 2 é a quantidade de casas decimais, ',' é o separador decimal e '.' o separador de milhar - adaptando o número ao formato monetário brasileiro --}}
+            <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
+            <span class="d-block">- Total dos produtos: R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
+            <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$
+                {{ number_format($totalComTaxa, 2, ',', '.') }}</h3>
 
             <div class="text-center" style="margin-top: 8%">
                 <button id="finalizarCompra" class="fw-bold d-inline-block text-white rounded-3"
-                    style="font-family: 'Poppins', sans-serif; font-size: 1.1em; background-color:#8C6342; border: none; padding: 1rem 3rem">Finalizar
-                    Compra</button>
+                    style="font-family: 'Poppins', sans-serif; font-size: 1.1em; background-color:#8C6342; border: none; padding: 1rem 3rem">
+                    Finalizar Compra
+                </button>
             </div>
         </div>
     </main>
