@@ -109,14 +109,10 @@ use Illuminate\Support\Str;
 
                 @php
                     // Calcula o valor total do carrinho
-                    $totalCarrinho = 0;
-                    // percorrendo itens carrinho para somar o valor total de cada item
-                    foreach ($itensCarrinho as $item) {
-                        // totalCarrinho recebe a multiplicação do preço do produto pela quantidade dele
-                        $totalCarrinho += $item->produto->preco * $item->quantidade;
-                    }
+                    $totalCarrinho = $itensCarrinho->sum(function ($item) {
+                        return $item->produto->preco * $item->quantidade;
+                    });
                     $taxaEntrega = 5.0; // Taxa fixa de entrega
-                    // e o total recebe o valor do carrinho + a taxa fixa de entrega
                     $totalComTaxa = $totalCarrinho + $taxaEntrega;
                 @endphp
 
@@ -247,11 +243,13 @@ use Illuminate\Support\Str;
 
         <div class="fw-normal py-4 px-4" style="font-family: 'Poppins', sans-serif;">
             <h2>Resumo dos valores</h2>
-            {{-- $taxaEntrega é o valor que sera formatado, 2 é a quantidade de casas decimais, ',' é o separador decimal e '.' o separador de milhar - adaptando o número ao formato monetário brasileiro --}}
+            <span class="d-block pb-1">- Subtotal: R$ <span
+                    id="subtotalCarrinho">{{ number_format($totalCarrinho, 2, ',', '.') }}</span></span>
             <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
-            <span class="d-block">- Total dos produtos: R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
-            <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$
-                {{ number_format($totalComTaxa, 2, ',', '.') }}</h3>
+            <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
+            <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
+            <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
+                    id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></h3>
 
             <div class="text-center" style="margin-top: 8%">
                 <button id="finalizarCompra" class="fw-bold d-inline-block text-white rounded-3"
@@ -260,6 +258,7 @@ use Illuminate\Support\Str;
                 </button>
             </div>
         </div>
+
     </main>
 
     <style>
@@ -401,19 +400,21 @@ use Illuminate\Support\Str;
                                 style="font-family: 'Poppins', sans-serif;">
                                 <div class="d-flex">
                                     <div>
-                                        {{-- imagem fixa mesmo, normal --}}
                                         <img src="{{ asset('img/cupom-carrinho.png') }}" style="width: 3.6vw">
                                     </div>
-
                                     <div class="ms-2">
                                         <span class="fw-semibold d-block fs-5">{{ $cupom->nome_cupom }}</span>
                                         <span style="color: #929090">{{ $cupom->descricao_cupom }}</span>
                                     </div>
                                 </div>
                             </div>
+                            {{-- Aqui, cada botão ADICIONAR CUPOM agora contém os dados data-nome-cupom e data-valor-desconto, que guardam, respectivamente, o nome do cupom e o valor do desconto. --}}
                             <p class="addCupom fw-semibold rounded-5 mt-4 text-center"
-                                style="font-family: 'Baloo Bhai 2', sans-serif; border: 1px solid #8c6342;">
-                                ADICIONAR CUPOM</p>
+                                style="font-family: 'Baloo Bhai 2', sans-serif; border: 1px solid #8c6342;"
+                                {{-- data-nome-cupom e data-valor-desconto são atributos personalizados que armazenam informações específicas, para serem acessados no css ou javascript (precisam do prefixo "data") --}} data-nome-cupom="{{ $cupom->nome_cupom }}"
+                                data-valor-desconto="{{ $cupom->valor_desconto }}" onclick="selecionarCupom(this)">
+                                ADICIONAR CUPOM
+                            </p>
                         </div>
                     @endforeach
 
@@ -425,4 +426,52 @@ use Illuminate\Support\Str;
             </div>
         </div>
     </div>
+
+    <script>
+        // element se referencia ao bloco p em que chamo essa função e passo ele mesmo de parâmetro (this)
+        function selecionarCupom(element) {
+            // Obtenha o nome e o valor de desconto do cupom selecionado (eles são passados para cá quando o botão "adicionar cupom" é clicado no modal cupom)
+
+            // pega o valor do atributo personalizadao data-nome-cupom no elemento  html e armazena em nomeCupom
+            const nomeCupom = element.getAttribute(
+                'data-nome-cupom'
+            );
+            // pega o valor do atributo personalizado data-valor-desconto e passa para a váriavel valorDesconto ( no caso o valor daquel cupom ) e converte para um número de ponto flutuante (float, para que seja possivel realizar calculos com aquele valor)
+            const valorDesconto = parseFloat(element.getAttribute(
+                'data-valor-desconto'
+            ));
+
+            // Atualize o nome do cupom e o valor do desconto na seção "Resumo dos valores"
+
+            // altera o conteúdo no html do campo com a id 'nomeCupomSelecionado' com o valor da váriavel nomeCupom (se selecionei no modal um cupom com o nome de "peixe defumado", é este nome que vai aparecer na minha seção de "resumo de valores" a respeito do nome do cupom)
+            document.getElementById('nomeCupomSelecionado').innerText =
+                nomeCupom;
+            /*
+                * document.getElementById('valorDescontoCupom'):
+                Esta parte do código utiliza o método getElementById do objeto document para encontrar um elemento HTML com o ID valorDescontoCupom. Esse elemento é onde o valor do desconto será exibido na página. 
+                * .innerText (este atributo serve para acessar o conteúdo de um elemento html e quando faço ".innerText =" é porque estou atribuindo um novo conteúdo para ele, ou seja, alterando o valor daquele campo, no caso, o campo com o id 'valorDescontoCupom')
+                * valorDesconto.toFixed(2) (quer dizer que estou formatando a váriavel valorDesconto para ter 2 casas decimais - útil no meu caso que quero os valores monetários apenas em 2 casas decimais)
+                * .replace('.',',') (quer dizer que após formatar o valorDesconto com toFixed irei substituir o ponto que é usado como separador decimal por uma virgula)
+            */
+            document.getElementById('valorDescontoCupom').innerText = valorDesconto.toFixed(2).replace('.', ',');
+
+            // Atualize o total, subtraindo o valor do desconto
+            // estou convertendo para Float o valor do elemento html com a id subtotalCarrinho e depois substituindo o ponto por vírgula
+            const subtotal = parseFloat(document.getElementById('subtotalCarrinho').innerText.replace('.', ','));
+            const taxaEntrega = 5.0; // Taxa fixa de entrega
+            let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
+
+            // Verifica se o total é menor que o mínimo permitido (15,00)
+            /*
+             * math.max recebe dois argumentos e retorna o maior deles, então, se em algum momento o retorno de totalComDesconto for menor que 15, irá retornar 15
+             */
+            totalComDesconto = Math.max(totalComDesconto, 15);
+
+            document.getElementById('totalCarrinho').innerText = totalComDesconto.toFixed(2).replace('.', ',');
+
+            // Fecha o modal após selecionar
+            $('#modalCupom').modal('hide');
+        }
+    </script>
+
 @endsection
