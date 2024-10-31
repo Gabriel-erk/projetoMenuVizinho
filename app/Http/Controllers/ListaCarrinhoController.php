@@ -65,6 +65,9 @@ class ListaCarrinhoController extends Controller
         $itensCarrinho = $listaCarrinho
             ? ItensCarrinho::with('produto')->where('lista_carrinho_id', $listaCarrinho->id)->get()
             : collect();
+        // Inicialize totalCarrinho com 0.00, para evitar erros para quando o carrinho estiver vazio
+        $totalCarrinho = 0.00;
+        $totalComTaxa = 0.00; // inicializar esta também para evitar erros
 
         // Produtos aleatórios para recomendação ou destaque
         $produtos = Produto::inRandomOrder()->take(7)->get();
@@ -75,6 +78,13 @@ class ListaCarrinhoController extends Controller
         // Consulta cupons aplicáveis aos produtos no carrinho
         $cupons = collect(); // Definimos como vazio inicialmente para evitar erros, criando uma coleção vazia chamada cupons, oq evita erros ao tentar operar uma coleção vazia depois
         if ($itensCarrinho->isNotEmpty()) { // a váriavel itensCarrinho tem que estar preenchida para encontrar (ou seja, tem q ter algum produto no carrinho para chamar o que está dentro do if, pois não faz sentido tentar verificar se tem cupom sem ter  um produto no carrinho)
+            // Calcula o valor total do carrinho com uma função anônima (sem desconto de cupom)
+            $totalCarrinho = $itensCarrinho->sum(function ($item) {
+                return $item->produto->preco * $item->quantidade;
+            });
+            $taxaEntrega = 5.0; // Taxa fixa de entrega
+            $totalComTaxa = $totalCarrinho + $taxaEntrega;
+            
             // inicia uma consulta na tabela Cupom (modelo cupom), com u,a função anônima closure, para adicionar condições a consulta (no caso, use ($itensCarrinho)), onde a váriavel $query representa a consulta que será construida
             // use ($itensCarrinho) permite a váriavel $itensCarrinho estar acessivel dentro da func anônima
             $cupons = Cupom::where(function ($query) use ($itensCarrinho) {
@@ -117,7 +127,7 @@ class ListaCarrinhoController extends Controller
             })->get(); // Finaliza a consulta e executa o get() para obter os cupons que atendem às condições definidas na função anônima. O resultado é armazenado na variável $cupons. - pega o retorno da consulta feito pela função anônima em: Cupom::where(function ($query) use ($itensCarrinho) {
         }
 
-        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho', 'listaCarrinho', 'cupons'));
+        return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho', 'listaCarrinho', 'cupons', 'totalCarrinho', 'totalComTaxa', 'taxaEntrega'));
     }
 
     public function removeItem($itemId)

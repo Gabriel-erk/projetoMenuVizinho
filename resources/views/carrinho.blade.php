@@ -107,15 +107,6 @@ use Illuminate\Support\Str;
                     </button>
                 </form> --}}
 
-                @php
-                    // Calcula o valor total do carrinho
-                    $totalCarrinho = $itensCarrinho->sum(function ($item) {
-                        return $item->produto->preco * $item->quantidade;
-                    });
-                    $taxaEntrega = 5.0; // Taxa fixa de entrega
-                    $totalComTaxa = $totalCarrinho + $taxaEntrega;
-                @endphp
-
                 @foreach ($itensCarrinho as $item)
                     <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
                         <div class="d-flex align-items-center">
@@ -243,13 +234,22 @@ use Illuminate\Support\Str;
 
         <div class="fw-normal py-4 px-4" style="font-family: 'Poppins', sans-serif;">
             <h2>Resumo dos valores</h2>
-            <span class="d-block pb-1">- Subtotal: R$ <span
-                    id="subtotalCarrinho">{{ number_format($totalCarrinho, 2, ',', '.') }}</span></span>
-            <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
-            <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
-            <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
-            <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
-                    id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></h3>
+            @if ($totalCarrinho > 0.00)
+                <span class="d-block pb-1">- Subtotal: R$ <span
+                        id="subtotalCarrinho">{{ number_format($totalCarrinho, 2, ',', '.') }}</span></span>
+                <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
+                <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
+                <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
+                <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
+                        id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></h3>
+            @else
+                <span class="d-block pb-1">- Subtotal: R$ <span id="subtotalCarrinho">0,00</span></span>
+                <span class="d-block pb-1">- Taxa de entrega: R$ 0,00</span>
+                <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
+                <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
+                <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
+                        id="totalCarrinho">0,00</span></h3>
+            @endif
 
             <div class="text-center" style="margin-top: 8%">
                 <button id="finalizarCompra" class="fw-bold d-inline-block text-white rounded-3"
