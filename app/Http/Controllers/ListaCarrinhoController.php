@@ -68,6 +68,7 @@ class ListaCarrinhoController extends Controller
         // Inicialize totalCarrinho com 0.00, para evitar erros para quando o carrinho estiver vazio
         $totalCarrinho = 0.00;
         $totalComTaxa = 0.00; // inicializar esta também para evitar erros
+        $taxaEntrega = 5.0; // Taxa fixa de entrega
 
         // Produtos aleatórios para recomendação ou destaque
         $produtos = Produto::inRandomOrder()->take(7)->get();
@@ -82,9 +83,8 @@ class ListaCarrinhoController extends Controller
             $totalCarrinho = $itensCarrinho->sum(function ($item) {
                 return $item->produto->preco * $item->quantidade;
             });
-            $taxaEntrega = 5.0; // Taxa fixa de entrega
             $totalComTaxa = $totalCarrinho + $taxaEntrega;
-            
+
             // inicia uma consulta na tabela Cupom (modelo cupom), com u,a função anônima closure, para adicionar condições a consulta (no caso, use ($itensCarrinho)), onde a váriavel $query representa a consulta que será construida
             // use ($itensCarrinho) permite a váriavel $itensCarrinho estar acessivel dentro da func anônima
             $cupons = Cupom::where(function ($query) use ($itensCarrinho) {
