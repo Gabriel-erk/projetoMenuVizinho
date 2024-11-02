@@ -2,6 +2,8 @@
 
 @section('conteudo')
     <main class="px-5">
+        <link rel="stylesheet" href="{{ asset('css/siteCss/produto.css') }}">
+
         <style>
             /* para dar um scroll suave */
             html {
@@ -10,20 +12,6 @@
 
             body {
                 background-color: #fff
-            }
-
-            .x {
-                position: relative;
-                top: 1.5em
-            }
-
-            #produto {
-                transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
-            }
-
-            #produto:hover {
-                background-color: #f9f9f9;
-                transform: scale(1.02);
             }
 
             .banner img {
@@ -58,7 +46,6 @@
         </div>
     @endsection
 
-    {{-- font-family: 'Cabin', sans-serif --}}
     <div class="d-flex" style="font-family: 'Poppins', sans-serif">
         <h1 class="mt-3 fw-bold" style="color:#8c6342;">TODOS OS PRODUTOS</h1>
     </div>
@@ -127,31 +114,30 @@
         <div id="listaProdutos" class="row row-cols-1 row-cols-md-3 g-3">
             @foreach ($categoria->produtos as $produto)
                 <div class="col">
-                    <div id="produto" class="rounded-3 h-100"
-                        style="font-family: 'Poppins', sans-serif; background-color:#fff; border: 1px solid #CDCDCD">
+                    <div id="produto">
                         <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                            <div id="img-produto" class="text-center py-5 rounded-top">
-                                <img style="height: 30vh" src="{{ asset($produto->imagem) }}" alt=""
-                                    srcset="">
+                            <div id="img-produto" class="text-center">
+                                <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
                             </div>
                         </a>
 
-                        <div id="nome-desc" class="bg-white px-4 rounded-bottom w-75" style="height: 12vh">
-                            <span class="fw-bold d-block"
-                                style="color: #8c6342; font-size: 1.44rem">{{ $produto->nome }}</span>
-                            <span class="fw-normal d-block"
-                                style="color: #7D7D7D; font-size: 1.1rem">{{ $produto->descricao }}</span>
+                        <div id="nome-desc" class="px-4">
+                            <span id="nome-prod" class="fw-bold d-block">{{ $produto->nome }}</span>
+                            <span id="desc" class="fw-normal d-block">{{ $produto->descricao }}</span>
                         </div>
-                        <div id="valor-addProduto" class="bg-white mt-3 px-4 rounded-bottom d-flex justify-content-between" style="height: 12vh">
-                            <span class="fw-bold d-block" style="font-size: 1.1rem">R${{ $produto->preco }}</span>
+
+                        <div id="valor-addProduto"
+                            class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
+                            style="height: 12vh">
+                            <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
                             <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
                                 @csrf
-                                <div class=" rounded-circle"
-                                {{-- bottom: 0.4rem; right: 1rem; --}}
-                                    style=" padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
+                                <div class="rounded-circle"
+                                    style="padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
                                     <button type="submit"
-                                        style="border: none; background-color: var(--cor-secundaria);"><i
-                                            class="fa-solid fa-plus" style="color: #8C6342;"></i></button>
+                                        style="border: none; background-color: var(--cor-secundaria);"
+                                        title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
+                                            style="color: #8C6342;"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -174,24 +160,32 @@
             <div id="listaProdutos" class="row row-cols-1 row-cols-md-3 g-3">
                 @foreach ($subCategoria->produtos as $produto)
                     <div class="col">
-                        {{-- shadow-sm --}}
-                        <div id="produto" class=" rounded-3 h-100"
-                            style="font-family: 'Poppins', sans-serif; border-left: 2.5px solid #fce8c4; border-right: 2.5px solid #fce8c4; border-bottom: 2.5px solid #fce8c4;">
+                        <div id="produto" class="rounded-3">
                             <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                                <div id="img-produto" class="text-center py-5 rounded-top"
-                                    style="background-color:#fce8c4;">
-                                    <img style="height: 30vh" src="{{ asset($produto->imagem) }}" alt=""
-                                        srcset="">
+                                <div id="img-produto" class="text-center">
+                                    <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
                                 </div>
                             </a>
 
-                            <div id="nome-desc"
-                                class="bg-white d-flex justify-content-between align-items-center px-4 rounded-bottom"
+                            <div id="nome-desc" class="px-4">
+                                <span id="nome-prod" class="fw-bold d-block">{{ $produto->nome }}</span>
+                                <span id="desc" class="fw-normal d-block">{{ $produto->descricao }}</span>
+                            </div>
+
+                            <div id="valor-addProduto"
+                                class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
                                 style="height: 12vh">
-                                <span class="fw-bold text-center"
-                                    style="color: #8c6342; font-size: 1.44rem">{{ $produto->nome }}</span>
-                                <span style="font-size: 1.1em; color: #A0A0A0;">
-                                    R${{ $produto->preco }}</span>
+                                <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
+                                <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                                    @csrf
+                                    <div class="rounded-circle"
+                                        style="padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
+                                        <button type="submit"
+                                            style="border: none; background-color: var(--cor-secundaria);"
+                                            title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
+                                                style="color: #8C6342;"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Models\CategoriaProduto;
 use App\Models\SubCategoria;
 use App\Models\Produto;
-
-use App\Models\MetodoPagamento;
-use Illuminate\Support\Facades\Auth;
 
 
 class SiteController extends Controller
@@ -38,11 +34,6 @@ class SiteController extends Controller
     public function ofertas()
     {
         return view('ofertas');
-    }
-
-    public function cupons()
-    {
-        return view('cupons');
     }
 
     public function sobre()

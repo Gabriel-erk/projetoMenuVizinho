@@ -1,5 +1,4 @@
 @extends('layouts.site')
-{{-- <link rel="stylesheet" href="{{ asset('css/parceirosCss/cadastroRestaurante.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('css/opcoesCadastro.css') }}">
 
 @section('conteudo')

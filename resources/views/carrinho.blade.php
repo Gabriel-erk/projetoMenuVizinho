@@ -162,8 +162,9 @@ use Illuminate\Support\Str;
                                 @csrf
                                 <div class="position-absolute rounded-circle"
                                     style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: var(--cor-primaria)">
-                                    <button type="submit" style="border: none; background-color: var(--cor-primaria);"><i
-                                            class="fa-solid fa-plus" style="color: #ffffff;"></i></button>
+                                    <button type="submit" style="border: none; background-color: var(--cor-primaria);"
+                                        title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
+                                            style="color: #ffffff;"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -234,7 +235,7 @@ use Illuminate\Support\Str;
 
         <div class="fw-normal py-4 px-4" style="font-family: 'Poppins', sans-serif;">
             <h2>Resumo dos valores</h2>
-            @if ($totalCarrinho > 0.00)
+            @if ($totalCarrinho > 0.0)
                 <span class="d-block pb-1">- Subtotal: R$ <span
                         id="subtotalCarrinho">{{ number_format($totalCarrinho, 2, ',', '.') }}</span></span>
                 <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>

@@ -29,10 +29,8 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/cardapio', 'cardapio')->name('site.cardapio');
     Route::get('/produto/{id}', 'produto')->name('site.produto');
     Route::get('/ofertas', 'ofertas')->name('site.ofertas');
-    Route::get('/cupons', 'cupons')->name('site.cupons');
     Route::get('/sobre', 'sobre')->name('site.sobre');
     Route::get('/login', 'login')->name('site.login');
-    // Route::get('/regraCupon', 'regraCupon')->name('site.regraCupon');
 });
 
 // UsuarioController - métodoPagamentoController e listaCarrinhoController (já que todos dentro deste bloco, somente logados tem acesso a essas rotas)
@@ -96,6 +94,8 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/admin/adm/admCupons/editar/{id}', 'edit')->name('cupom.edit');
         Route::put('/admin/adm/admCupons/atualizar/{id}', 'update')->name('cupom.update');
         Route::delete('/admin/adm/admCupons/deletar/{id}', 'destroy')->name('cupom.destroy');
+        // view cupom
+        Route::get('/cupons', 'indexView')->name('cupom.cupons');
     });
 });
 

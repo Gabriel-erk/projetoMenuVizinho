@@ -1,0 +1,70 @@
+#listaProdutos {
+    font-family: 'Poppins', sans-serif;
+}
+
+#produto {
+    background-color: #fff;
+    border: 1px solid #CDCDCD;
+    height: 100%;
+    border-radius: 0.6rem;
+
+    transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
+}
+
+#produto:hover {
+    background-color: #f9f9f9;
+    transform: scale(1.01);
+}
+
+#nome-desc #nome-prod {
+    color: #8c6342;
+}
+
+#nome-desc #nome-prod {
+    font-size: 1.44rem;
+}
+
+#valor-addProduto #preco {
+    font-size: 1.1rem
+}
+
+@media (min-width: 768px) and (max-width: 1366px) {
+    #img-produto {
+        padding-top: 1.8rem;
+        padding-bottom: 1.8rem;
+    }
+
+    #img-produto img {
+        height: 30vh;
+    }
+
+    #nome-desc {
+        width: 80%;
+    }
+
+    #nome-desc #desc {
+        color: #7D7D7D;
+        font-size: 1rem
+    }
+}
+
+@media (min-width: 1367px) {
+    #img-produto {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    #img-produto img {
+        height: 30vh;
+    }
+
+    #nome-desc {
+        width: 75%;
+    }
+
+    #nome-desc #desc {
+        color: #7D7D7D;
+        font-size: 1.1rem
+    }
+
+}

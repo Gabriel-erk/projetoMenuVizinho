@@ -141,7 +141,7 @@
                     </li>
                     <li class="m-4"><a href="{{ route('site.cardapio') }}" class="text-decoration-none">CARDÁPIO</a>
                     </li>
-                    <li class="m-4"><a href="{{ route('site.cupons') }}" class="text-decoration-none">CUPONS</a></li>
+                    <li class="m-4"><a href="{{ route('cupom.cupons') }}" class="text-decoration-none">CUPONS</a></li>
                 </ul>
             </nav>
 

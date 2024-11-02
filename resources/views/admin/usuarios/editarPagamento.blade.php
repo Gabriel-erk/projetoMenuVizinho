@@ -18,6 +18,10 @@
             justify-content: space-between
         }
 
+        .posicionaBotaoSubmit {
+            justify-content: center
+        }
+
     </style>
 
     <div class="tituloEditUser">

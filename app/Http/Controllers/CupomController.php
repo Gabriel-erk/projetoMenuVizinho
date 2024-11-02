@@ -11,6 +11,13 @@ use App\Models\SubCategoria;
 
 class CupomController extends Controller
 {
+
+    public function indexView()
+    {   
+        $cupons = Cupom::all();
+        return view('cupons', compact('cupons'));
+    }
+
     /**
      * Display a listing of the resource.
      */
