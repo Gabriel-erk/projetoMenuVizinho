@@ -127,21 +127,33 @@
         <div id="listaProdutos" class="row row-cols-1 row-cols-md-3 g-3">
             @foreach ($categoria->produtos as $produto)
                 <div class="col">
-                    <div id="produto" class=" rounded-3 h-100"
-                        style="font-family: 'Poppins', sans-serif; border-left: 1.5px solid #fce8c4; border-right: 1.5px solid #fce8c4; border-bottom: 1.5px solid #fce8c4;">
+                    <div id="produto" class="rounded-3 h-100"
+                        style="font-family: 'Poppins', sans-serif; background-color:#fff; border: 1px solid #CDCDCD">
                         <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                            <div id="img-produto" class="text-center py-5 rounded-top"
-                                style="background-color:#fce8c4;">
+                            <div id="img-produto" class="text-center py-5 rounded-top">
                                 <img style="height: 30vh" src="{{ asset($produto->imagem) }}" alt=""
                                     srcset="">
                             </div>
                         </a>
 
-                        <div id="nome-valor"
-                            class="bg-white d-flex justify-content-center align-items-center px-4 rounded-bottom"
-                            style="height: 12vh">
-                            <span class="fw-bold text-center"
+                        <div id="nome-desc" class="bg-white px-4 rounded-bottom w-75" style="height: 12vh">
+                            <span class="fw-bold d-block"
                                 style="color: #8c6342; font-size: 1.44rem">{{ $produto->nome }}</span>
+                            <span class="fw-normal d-block"
+                                style="color: #7D7D7D; font-size: 1.1rem">{{ $produto->descricao }}</span>
+                        </div>
+                        <div id="valor-addProduto" class="bg-white mt-3 px-4 rounded-bottom d-flex justify-content-between" style="height: 12vh">
+                            <span class="fw-bold d-block" style="font-size: 1.1rem">R${{ $produto->preco }}</span>
+                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                                @csrf
+                                <div class=" rounded-circle"
+                                {{-- bottom: 0.4rem; right: 1rem; --}}
+                                    style=" padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
+                                    <button type="submit"
+                                        style="border: none; background-color: var(--cor-secundaria);"><i
+                                            class="fa-solid fa-plus" style="color: #8C6342;"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -173,7 +185,7 @@
                                 </div>
                             </a>
 
-                            <div id="nome-valor"
+                            <div id="nome-desc"
                                 class="bg-white d-flex justify-content-between align-items-center px-4 rounded-bottom"
                                 style="height: 12vh">
                                 <span class="fw-bold text-center"
