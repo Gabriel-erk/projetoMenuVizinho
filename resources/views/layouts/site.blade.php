@@ -251,7 +251,7 @@
 
                                     <button class="btn"><a href="{{ route('login.form') }}"
                                             class="text-decoration-none text-light">Login</a></button>
-                                    <button class="btn"><a href="{{ route('usuario.cadastro') }}"
+                                    <button class="btn"><a href="{{ route('usuarioAdm.cadastro') }}"
                                             class="text-decoration-none text-light">Cadastrar</a></button>
                                 </div>
                             @endguest

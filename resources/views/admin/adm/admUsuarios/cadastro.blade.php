@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('usuarioAdm.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
