@@ -9,6 +9,7 @@ use App\Http\Controllers\MetodoPagamentoController;
 use App\Http\Controllers\CategoriasProdutoController;
 use App\Http\Controllers\ListaCarrinhoController;
 use App\Http\Controllers\ItensCarrinhoController;
+use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
@@ -28,7 +29,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
     Route::get('/cardapio', 'cardapio')->name('site.cardapio');
     Route::get('/produto/{id}', 'produto')->name('site.produto');
-    Route::get('/ofertas', 'ofertas')->name('site.ofertas');
+    // Route::get('/ofertas', 'ofertas')->name('site.ofertas');
     Route::get('/sobre', 'sobre')->name('site.sobre');
     Route::get('/login', 'login')->name('site.login');
 });
@@ -99,6 +100,21 @@ Route::middleware(["auth"])->group(function () {
     });
 });
 
+// OfertasController
+Route::controller(OfertasController::class)->group(function () {
+    Route::get('/ofertas/produto/{id}', 'produto')->name('ofertas.produto'); 
+    Route::get('/ofertas', 'viewIndex')->name('ofertas.view');
+    // area administrativa
+    Route::get('/admin/adm/admOfertas/index', 'index')->name('ofertas.index');
+    Route::get('/admin/adm/admOfertas/visualizar/{id}', 'show')->name('ofertas.show');
+    Route::get('/admin/adm/admOfertas/cadastro', 'create')->name('ofertas.create');
+    Route::post('/admin/adm/admOfertas/salvar', 'store')->name('ofertas.store');
+
+    Route::get('/admin/adm/admOfertas/editar/{id}', 'edit')->name('ofertas.edit');
+    Route::put('/admin/adm/admOfertas/atualizar/{id}', 'update')->name('ofertas.update');
+    Route::delete('/admin/adm/admOfertas/deletar/{id}', 'destroy')->name('ofertas.destroy');
+});
+
 Route::get('/admin/adm/admUsuarios/index', [UsuarioController::class, 'index'])->name('usuarioAdm.index');
 Route::get('/admin/adm/admUsuarios/visualizar/{id}', [UsuarioController::class, 'show'])->name('usuarioAdm.show');
 Route::get('/admin/adm/admUsuarios/cadastro', [UsuarioController::class, 'createUserAdmView'])->name('usuarioAdm.create');
@@ -148,7 +164,7 @@ Route::controller(ProdutoController::class)->group(function () {
     Route::get('/admin/adm/admProdutos/visualizar/{id}', 'show')->name('produtos.show');
     Route::get('/admin/adm/admProdutos/cadastro', 'create')->name('produtos.create');
 
-    Route::post('/admin/adm/admProdutos/salvarCategoria', 'store')->name('produtos.store');
+    Route::post('/admin/adm/admProdutos/salvar', 'store')->name('produtos.store');
 
     Route::get('/admin/adm/admProdutos/editar/{id}', 'edit')->name('produtos.edit');
     Route::put('/admin/adm/admProdutos/atualizar/{id}', 'update')->name('produtos.update');

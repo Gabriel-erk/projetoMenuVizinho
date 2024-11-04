@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-<link rel="stylesheet" href="{{ asset('css/siteCss/products.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/produto.css') }}">
 
 @section('banner')
     <div class="banner owl-carousel owl-theme">
@@ -15,327 +15,59 @@
 @endsection
 
 @section('conteudo')
+    <style>
+        #valor-addProduto #preco {
+            /* ideia cor para indicar promo: color:#b1703c, #d36c18 */
+            color: var(--cor-primaria);
+            font-size: 1.44rem
+        }
 
-    <main class="container">
-        <section class="mt-5">
+        #valor-addProduto #icone-mais {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
 
-            <div class="listaProdutos pb-4">
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+        }
+    </style>
+    <main class="px-5">
 
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
+        <div class="d-flex" style="font-family: 'Poppins', sans-serif">
+            <h1 class="my-3 fw-bold" style="color:#8c6342;">OFERTAS</h1>
+        </div>
 
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
+        <div id="listaProdutos" class="row row-cols-1 row-cols-md-3 g-3">
+            @foreach ($produtos as $produto)
+                <div class="col">
+                    <div id="produto" class="rounded-3">
+                        <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
+                            <div id="img-produto" class="text-center">
+                                <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                            </div>
+                        </a>
 
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
+                        <div id="nome-desc" class="px-4">
+                            <span id="nome-prod" class="fw-bold d-block">{{ $produto->nome }}</span>
+                            <span id="desc" class="fw-normal d-block">{{ $produto->descricao }}</span>
                         </div>
 
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
+                        <div id="valor-addProduto"
+                            class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
+                            style="height: 12vh">
+                            <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
+                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                                @csrf
+                                <div id="icone-mais" class="rounded-circle" style="background-color: var(--cor-secundaria)">
+                                    <button type="submit" style="border: none; background-color: var(--cor-secundaria);"
+                                        title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
+                                            style="color: #8C6342;"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            @endforeach
+        </div>
 
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="listaProdutos pb-4">
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="listaProdutos pb-4">
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="produto">
-                    <a href="{{ route('site.produto') }}">
-                        <div class="imgProduto">
-                            <img src="{{ asset('img/img-corrigida/duplo-cheddar.png') }}" alt="" srcset="">
-                        </div>
-                    </a>
-
-                    <div class="nomeValorProduto">
-                        <h2 class="nomeProduto">X-salada</h2>
-
-                        <p class="precoProduto">$15.90</p>
-                    </div>
-
-                    <div class="descricaoProduto">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec velit eu ligula vestibulum
-                            ullamcorper vel eget libero.</p>
-                    </div>
-
-                    <div class="agrupaIconeProduto">
-
-                        <div class="iconeProduto imgCesta">
-
-                            <img src="{{ asset('img/cetaShopping.png') }}" alt="" srcset="">
-                        </div>
-
-                        <div class="iconeProduto imgFavoritar">
-
-                            <img src="{{ asset('img/favoritar3.png') }}" alt="">
-                            {{-- <i class="fa-regular fa-heart"></i> --}}
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
     </main>
 @endsection

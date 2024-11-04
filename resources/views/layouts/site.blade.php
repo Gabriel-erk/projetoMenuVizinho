@@ -137,7 +137,7 @@
             <nav id="menu">
                 <ul class="list-group list-group-horizontal list-unstyled">
                     <li class="m-4"><a href="{{ route('site.index') }}" class="text-decoration-none">HOME</a></li>
-                    <li class="m-4"><a href="{{ route('site.ofertas') }}" class="text-decoration-none">OFERTAS</a>
+                    <li class="m-4"><a href="{{ route('ofertas.view') }}" class="text-decoration-none">OFERTAS</a>
                     </li>
                     <li class="m-4"><a href="{{ route('site.cardapio') }}" class="text-decoration-none">CARDÁPIO</a>
                     </li>

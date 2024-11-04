@@ -17,7 +17,6 @@ class Produto extends Model
         'info_nutricional',
         'categoria_produto_id',
         'sub_categoria_produto_id',
-        'itens_carrinho_id',
         'loja_id'
     ];
     use HasFactory;

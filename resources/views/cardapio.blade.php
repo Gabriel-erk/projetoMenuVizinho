@@ -132,8 +132,8 @@
                             <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
                             <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
                                 @csrf
-                                <div class="rounded-circle"
-                                    style="padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
+                                <div id="icone-mais" class="rounded-circle"
+                                    style="background-color: var(--cor-secundaria)">
                                     <button type="submit"
                                         style="border: none; background-color: var(--cor-secundaria);"
                                         title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
@@ -178,8 +178,8 @@
                                 <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
                                 <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
                                     @csrf
-                                    <div class="rounded-circle"
-                                        style="padding: 0.4rem 0.8rem; background-color: var(--cor-secundaria)">
+                                    <div id="icone-mais" class="rounded-circle"
+                                        style="background-color: var(--cor-secundaria)">
                                         <button type="submit"
                                             style="border: none; background-color: var(--cor-secundaria);"
                                             title="Adicionar ao carrinho"><i class="fa-solid fa-plus"

@@ -5,7 +5,6 @@ use App\Models\CategoriaProduto;
 use App\Models\SubCategoria;
 use App\Models\Produto;
 
-
 class SiteController extends Controller
 {
     // paginas principais
