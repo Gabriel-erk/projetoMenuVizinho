@@ -1,0 +1,17 @@
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8C6342;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#backToTop:hover {
+    background-color: #6e4d33; /* Um tom um pouco mais escuro para o efeito hover */
+}

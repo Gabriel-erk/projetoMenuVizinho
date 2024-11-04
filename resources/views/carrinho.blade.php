@@ -4,6 +4,8 @@
 use Illuminate\Support\Str;
 ?>
 
+<link rel="stylesheet" href="{{ asset('css/siteCss/carrinho.css') }}">
+
 <!-- adicionando fonte 4 (Titan One) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

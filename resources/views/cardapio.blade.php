@@ -3,6 +3,7 @@
 @section('conteudo')
     <main class="px-5">
         <link rel="stylesheet" href="{{ asset('css/siteCss/produto.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/siteCss/scrollToTopButton.css') }}">
 
         <style>
             /* para dar um scroll suave */
@@ -193,6 +194,7 @@
             </div>
         @endif
     @endforeach
-
+    <button id="backToTop" onclick="scrollToTop()" style="display: none;">⬆ Voltar ao Topo</button>
 </main>
+<script src="{{ asset('js/scrollToTopButton.js') }}"></script>
 @endsection
