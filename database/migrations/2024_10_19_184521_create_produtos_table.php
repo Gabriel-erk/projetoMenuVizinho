@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('preco', 8, 2);
             $table->text('descricao');
             $table->text('info_nutricional');
-            $table->string('tipoItem')->default('produto');
 
             // Definir a chave estrangeira para a tabela categoria_produto
             $table->unsignedBigInteger('categoria_produto_id')->nullable(); // Campo da chave estrangeira
