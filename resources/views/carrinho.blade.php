@@ -94,20 +94,20 @@ use Illuminate\Support\Str;
 
             <script>
                 function confirmLimpaCarrinho() {
-                    return confirm('Deseja limpar o carrinho?')
+                    return confirm('Deseja limpar o carrinho?');
                 }
             </script>
 
             @if (count($itensCarrinho) > 0)
-                {{-- passando o id da lista do carrinho, pois quero limpar seus itens --}}
-                {{-- <form action="{{ route('lista.limpar', $listaCarrinho->id) }}" method="POST"
+                <!-- Botão para limpar o carrinho -->
+                <form action="{{ route('lista.limpar', $listaCarrinho->id) }}" method="POST"
                     onsubmit="return confirmLimpaCarrinho()">
                     @csrf
                     <button id="limpaCarrinho" type="submit" class="rounded position-absolute"
                         style="font-family: 'Cabin', sans-serif; background-color:#8C6342; color:#ffffff; border:none; padding: 0.5em 1.9em; right:2em">
                         Limpar
                     </button>
-                </form> --}}
+                </form>
 
                 @foreach ($itensCarrinho as $item)
                     <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
@@ -115,36 +115,49 @@ use Illuminate\Support\Str;
                             <img src="{{ asset($item->produto->imagem) }}" style="height: 23vh; width: 15vw">
                             <div class="ps-2">
                                 <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
-                                    {{ $item->produto->nome }}</h2>
+                                    {{ $item->produto->nome }}
+                                </h2>
                                 <p class="fw-normal" style="color: #979797; font-family:'Signika Negative', sans-serif;">
-                                    {{ Str::limit($item->produto->descricao, 50, '...') }}</p>
-                                <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">R$
-                                    {{ $item->produto->preco }}</p>
+                                    {{ Str::limit($item->produto->descricao, 50, '...') }}
+                                </p>
+                                <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
+                                    R$ {{ $item->produto->preco }}
+                                    @if ($item->produto->isOferta)
+                                        <!-- Exibe o preço da oferta em vez do preço regular -->
+                                        <span style="text-decoration: line-through; color: #b0b0b0; margin-left: 10px;">
+                                            R$ {{ $item->produto->precoRegular }}
+                                        </span>
+                                    @endif
+                                </p>
                             </div>
                         </div>
-                        <div style="width: 30%; font-family:'Poppins',sans-serif">
-                            <div class="d-flex justify-content-between align-items-center py-1 px-2"
-                                style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                    @csrf
-                                    <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                        <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
-                                    </button>
-                                </form>
-                                <strong>{{ $item->quantidade }}</strong>
-                                <form action="{{ route('lista.addToCart', $item->produto->id) }}" method="post">
-                                    @csrf
-                                    <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                                    </button>
-                                </form>
+                        <!-- Controles de quantidade -->
+                        @if (!$item->produto->isOferta)
+                            <div style="width: 30%; font-family:'Poppins',sans-serif">
+                                <div class="d-flex justify-content-between align-items-center py-1 px-2"
+                                    style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
+                                    <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                            <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
+                                    <strong>{{ $item->quantidade }}</strong>
+                                    <form action="{{ route('lista.addToCart', $item->produto->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 @endforeach
             @else
-                <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">Seu carrinho está
-                    vazio.</p>
+                <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">
+                    Seu carrinho está vazio.
+                </p>
             @endif
         </div>
 

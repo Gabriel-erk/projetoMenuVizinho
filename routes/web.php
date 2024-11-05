@@ -69,7 +69,7 @@ Route::middleware(["auth"])->group(function () {
     });
     // só pode adicionar ao carrinho se estiver logado - o que já evita de jogar um erro na cara do usuário pq o usuário n ta logado e ele tá tentando salvar, mas como n está logado, n consegue pegar o id dele, q é essencial
     Route::controller(ListaCarrinhoController::class)->group(function () {
-        Route::post('/produto/adicionarAoCarrinho/{produtoId}', 'addToCart')->name('lista.addToCart');
+        Route::post('/produto/adicionarAoCarrinho/{itemId}/{tipoItem}', 'addToCart')->name('lista.addToCart');
         Route::get('/carrinho', 'index')->name('lista.carrinho');
         Route::post('/carrinho/removerItem/{itemId}', 'removeItem')->name('lista.remover');
         Route::post('/carrinho/limpar/{itemId}', 'clearCart')->name('lista.limpar');

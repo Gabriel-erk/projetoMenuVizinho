@@ -131,7 +131,15 @@
                             class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
                             style="height: 12vh">
                             <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
-                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                            {{-- {{ dd($produto->tipo_item) }} --}}
+                            <form action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => 'produto']) }}" method="post">
+                                @csrf
+                                <div id="icone-mais" class="rounded-circle" style="background-color: var(--cor-secundaria)">
+                                    <button type="submit" style="border: none; background-color: var(--cor-secundaria);" title="Adicionar ao carrinho">
+                                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                    </button>
+                                </div>
+                            </form>
                                 @csrf
                                 <div id="icone-mais" class="rounded-circle"
                                     style="background-color: var(--cor-secundaria)">

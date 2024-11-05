@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('lista_carrinho_id'); // ID da lista de carrinho (chave estrangeira)
-            $table->unsignedBigInteger('produto_id'); // ID do produto (chave estrangeira)
-            $table->integer('quantidade')->default(1); // Campo para armazenar a quantidade do produto
+            $table->unsignedBigInteger('item_id'); // ID do item (pode ser produto ou oferta)
+            $table->string('tipo_item'); // Define o tipo do item (produto ou oferta)
+            $table->integer('quantidade')->default(1); // Quantidade do item
 
-            // caso um produto seja deletado, ele será apagado na tabela de itens_carrinho também
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            // Chaves estrangeiras e restrições
             $table->foreign('lista_carrinho_id')->references('id')->on('lista_carrinho')->onDelete('cascade');
+
+            // Índices para otimizar as consultas
+            $table->index(['item_id', 'tipo_item']);
         });
     }
 

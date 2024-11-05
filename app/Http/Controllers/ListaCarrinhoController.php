@@ -24,7 +24,9 @@ class ListaCarrinhoController extends Controller
         return view('admin.adm.admListaC.visualizar', compact('lista'));
     }
 
-    public function addToCart($produtoId)
+    // tipoItem identifica se é produto ou oferta
+    // itemId é o id do produto ou oferta
+    public function addToCart($itemId, $tipoItem)
     {
         $userId = auth()->id();  // Pega o ID do usuário autenticado
 
@@ -33,9 +35,10 @@ class ListaCarrinhoController extends Controller
             ['user_id' => $userId]
         );
 
-        // Verifica se o produto já está na tabela itens_carrinho para esse carrinho
+        // Verifica se o item (produto ou oferta) já está na tabela itens_carrinho para esse carrinho
         $itemCarrinho = ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)
-            ->where('produto_id', $produtoId)
+            ->where('item_id', $itemId)
+            ->where('tipo_item', $tipoItem)
             ->first();
 
         if ($itemCarrinho) {
@@ -43,10 +46,11 @@ class ListaCarrinhoController extends Controller
             $itemCarrinho->quantidade += 1;
             $itemCarrinho->save();
         } else {
-            // Se não existir, cria um novo item com quantidade 1
+            // Se não existir, cria um novo item com quantidade 1 e define o tipo do item
             ItensCarrinho::create([
                 'lista_carrinho_id' => $listaCarrinho->id,
-                'produto_id' => $produtoId,
+                'item_id' => $itemId,
+                'tipo_item' => $tipoItem,  // Define se é um produto ou uma oferta
                 'quantidade' => 1
             ]);
         }
@@ -61,13 +65,14 @@ class ListaCarrinhoController extends Controller
         // Busca a lista de carrinho do usuário
         $listaCarrinho = ListaCarrinho::where('user_id', $userId)->first();
 
-        // Itens do carrinho e produtos associados
+        // Itens do carrinho e produtos ou ofertas associados
         $itensCarrinho = $listaCarrinho
-            ? ItensCarrinho::with('produto')->where('lista_carrinho_id', $listaCarrinho->id)->get()
+            ? ItensCarrinho::with(['produto', 'oferta'])->where('lista_carrinho_id', $listaCarrinho->id)->get()
             : collect();
-        // Inicialize totalCarrinho com 0.00, para evitar erros para quando o carrinho estiver vazio
+
+        // Inicialização dos totais
         $totalCarrinho = 0.00;
-        $totalComTaxa = 0.00; // inicializar esta também para evitar erros
+        $totalComTaxa = 0.00;
         $taxaEntrega = 5.0; // Taxa fixa de entrega
 
         // Produtos aleatórios para recomendação ou destaque
@@ -76,55 +81,49 @@ class ListaCarrinhoController extends Controller
         // Métodos de pagamento do usuário logado
         $metodosPagamentos = MetodoPagamento::where('user_id', $userId)->get();
 
-        // Consulta cupons aplicáveis aos produtos no carrinho
-        $cupons = collect(); // Definimos como vazio inicialmente para evitar erros, criando uma coleção vazia chamada cupons, oq evita erros ao tentar operar uma coleção vazia depois
-        if ($itensCarrinho->isNotEmpty()) { // a váriavel itensCarrinho tem que estar preenchida para encontrar (ou seja, tem q ter algum produto no carrinho para chamar o que está dentro do if, pois não faz sentido tentar verificar se tem cupom sem ter  um produto no carrinho)
-            // Calcula o valor total do carrinho com uma função anônima (sem desconto de cupom)
+        // Inicializamos a coleção vazia de cupons para evitar erros caso o carrinho esteja vazio ou não haja produtos
+        $cupons = collect();
+
+        if ($itensCarrinho->isNotEmpty()) {
+            // Calcula o total do carrinho, considerando apenas produtos
             $totalCarrinho = $itensCarrinho->sum(function ($item) {
-                return $item->produto->preco * $item->quantidade;
+                return ($item->tipo_item == 'produto' ? $item->produto->preco : $item->oferta->preco) * $item->quantidade;
             });
             $totalComTaxa = $totalCarrinho + $taxaEntrega;
 
-            // inicia uma consulta na tabela Cupom (modelo cupom), com u,a função anônima closure, para adicionar condições a consulta (no caso, use ($itensCarrinho)), onde a váriavel $query representa a consulta que será construida
-            // use ($itensCarrinho) permite a váriavel $itensCarrinho estar acessivel dentro da func anônima
-            $cupons = Cupom::where(function ($query) use ($itensCarrinho) {
-                // acessa cada item no carrinho 
-                foreach ($itensCarrinho as $item) {
-                    // pega o produto associado ao item
-                    $produto = $item->produto;
+            // Filtramos apenas os itens do tipo produto para aplicar os cupons
+            $produtosCarrinho = $itensCarrinho->filter(function ($item) {
+                return $item->tipo_item === 'produto';
+            });
 
-                    // Obtém as palavras-chave associadas aos cupons
-                    // Carrega todos os cupons junto com suas palavras-chave associadas - cham o metodo palavras no model Cupom
-                    $cuponsComPalavras = Cupom::with('palavras')->get();
+            if ($produtosCarrinho->isNotEmpty()) {
+                $cupons = Cupom::where(function ($query) use ($produtosCarrinho) {
+                    foreach ($produtosCarrinho as $item) {
+                        $produto = $item->produto;
 
-                    // percorre o array e lança cada um em uma váriavel cupom
-                    foreach ($cuponsComPalavras as $cupom) {
-                        // percorre o as palavras do cupom e joga na váriavel palavra (ou seja, encontra todas as palavras chave dos cupons, 1 por 1)
-                        foreach ($cupom->palavras as $palavra) {
-                            // Verifica se a palavra-chave está presente na descrição do produto, independente de letras minúsculas e maiúsculas
-                            if (stripos($produto->descricao, $palavra->palavra_chave) !== false) {
-                                // Se a palavra-chave for encontrada na descrição, o cupom correspondente é adicionado à consulta.
-                                $query->orWhere('cupons.id', $cupom->id);
-                                break; // Encerra o loop ao encontrar uma correspondência
+                        // Obtemos os cupons com palavras-chave associadas e verificamos a descrição do produto
+                        $cuponsComPalavras = Cupom::with('palavras')->get();
+                        foreach ($cuponsComPalavras as $cupom) {
+                            foreach ($cupom->palavras as $palavra) {
+                                if (stripos($produto->descricao, $palavra->palavra_chave) !== false) {
+                                    $query->orWhere('cupons.id', $cupom->id);
+                                    break;
+                                }
                             }
                         }
-                    } // O resultado final é uma coleção de cupons que se aplicam aos produtos no carrinho, considerando as palavras-chave na descrição, além das verificações de categorias e subcategorias.
 
-                    // Verifica cupons pelas categorias
-                    // Adiciona uma condição à consulta que verifica se o cupom está associado à mesma categoria que o produto. Isso permite que os cupons que são válidos para produtos em uma categoria específica sejam retornados.
-                    // $produto->categoria_produto_id: Utiliza o ID da categoria do produto para fazer a comparação.
-                    $query->orWhereHas('categorias', function ($q) use ($produto) {
-                        $q->where('categoria_produto.id', $produto->categoria_produto_id);
-                    });
+                        // Verificação de cupons pelas categorias
+                        $query->orWhereHas('categorias', function ($q) use ($produto) {
+                            $q->where('categoria_produto.id', $produto->categoria_produto_id);
+                        });
 
-                    // Verifica cupons pelas subcategorias
-                    // Similar à verificação de categorias, esta linha adiciona uma condição que verifica se o cupom está associado à subcategoria do produto. Isso garante que cupons que são válidos para produtos em uma subcategoria específica também sejam incluídos.
-                    // $produto->sub_categoria_produto_id: Utiliza o ID da subcategoria do produto para a comparação.
-                    $query->orWhereHas('subCategorias', function ($q) use ($produto) {
-                        $q->where('sub_categoria.id', $produto->sub_categoria_produto_id);
-                    });
-                }
-            })->get(); // Finaliza a consulta e executa o get() para obter os cupons que atendem às condições definidas na função anônima. O resultado é armazenado na variável $cupons. - pega o retorno da consulta feito pela função anônima em: Cupom::where(function ($query) use ($itensCarrinho) {
+                        // Verificação de cupons pelas subcategorias
+                        $query->orWhereHas('subCategorias', function ($q) use ($produto) {
+                            $q->where('sub_categoria.id', $produto->sub_categoria_produto_id);
+                        });
+                    }
+                })->get();
+            }
         }
 
         return view('carrinho', compact('produtos', 'metodosPagamentos', 'itensCarrinho', 'listaCarrinho', 'cupons', 'totalCarrinho', 'totalComTaxa', 'taxaEntrega'));

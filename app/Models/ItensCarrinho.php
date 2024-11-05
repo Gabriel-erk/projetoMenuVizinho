@@ -4,30 +4,58 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ItensCarrinho extends Model
 {
-    protected $table = "itens_carrinho";
-    protected $fillable = [
-        'lista_carrinho_id', // Chave estrangeira para a lista de carrinho
-        'produto_id', // Chave estrangeira para o produto
-        'quantidade' // Campo para armazenar a quantidade do produto
-    ];
-
     use HasFactory;
 
-    // Como tabela intermediária, ela vai se relacionar tanto com produtos quanto com lista_carrinho.
+    protected $table = "itens_carrinho";
+    
+    protected $fillable = [
+        'lista_carrinho_id', // Chave estrangeira para a lista de carrinho
+        'item_id',           // Chave estrangeira para o id do item (produto ou oferta)
+        'tipo_item',         // Define se item é uma oferta ou produto normal
+        'quantidade'         // Quantidade do item
+    ];
 
-    // _i para dizer que a relação é com a tabela itens
-    public function lista_carrinho_i(){
-        // dizendo que a tabela itensCarrinho pode ter muitos registros na tabela lista_carrinho (ou seja, uma lista_carrinho pode ter só uma tabela itens_carrinho, mas uma tabela itens_carrinho pode ter muitos registros na tabela lista_carrinho, pois múltiplos usuário vão ter uma lista_carrinho, e todos terão itens diferentes)
+    /**
+     * Relacionamento com a lista de carrinho.
+     */
+    public function lista_carrinho_i()
+    {
         return $this->belongsTo(ListaCarrinho::class, 'lista_carrinho_id');
     }
 
-    // relacionamento com produto
+    /**
+     * Relacionamento condicional com Produto.
+     */
     public function produto()
     {
-        return $this->belongsTo(Produto::class, 'produto_id');
+        // where é usado para verificar q a coluna tipo_item tem o valor produto, se tiver, retorna um produto
+        return $this->belongsTo(Produto::class, 'item_id')->where('tipo_item', 'produto');
+    }
+
+    /**
+     * Relacionamento condicional com Oferta.
+     */
+    public function oferta()
+    {
+        // where é usado para verificar q a coluna tipo_item tem o valor oferta, se tiver, retorna uma oferta
+        return $this->belongsTo(Oferta::class, 'item_id')->where('tipo_item', 'oferta');
+    }
+
+    /**
+     * Método para obter o item genérico (produto ou oferta) com base em `tipo_item`.
+     */
+    public function item()
+    {   
+        // Este método é uma maneira conveniente de acessar o item, seja ele um produto ou uma oferta, com base no valor de tipo_item. Ele verifica o tipo e retorna o relacionamento correto automaticamente.
+
+        if ($this->tipo_item === 'produto') {
+            return $this->produto;
+        } elseif ($this->tipo_item === 'oferta') {
+            return $this->oferta;
+        }
+        return null;
     }
 }
