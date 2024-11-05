@@ -102,7 +102,7 @@ class ProdutoController extends Controller
             'preco' => 'required|numeric|min:0',
             'descricao' => 'required|string',
             'info_nutricional' => 'required|string',
-            'categoria_produto_id' => 'required|exists:categoria_produto,id', 
+            'categoria_produto_id' => 'nullable|exists:categoria_produto,id', 
             'sub_categoria_produto_id' => 'nullable|exists:sub_categoria,id', 
         ]);
 

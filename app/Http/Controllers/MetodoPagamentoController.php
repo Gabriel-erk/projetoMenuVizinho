@@ -46,7 +46,7 @@ class MetodoPagamentoController extends Controller
             'cpf' => $request->cpf
         ]);
 
-        return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])->with('sucesso', 'Cartão cadastrado com sucesso!');
+        return redirect()->route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id])->with('sucesso', 'Cartão cadastrado com sucesso!');
     }
 
     /**
@@ -88,7 +88,7 @@ class MetodoPagamentoController extends Controller
             'cpf' => $request->cpf
         ]);
 
-        return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])->with('sucesso', 'Cartão atualizado com sucesso!!!');
+        return redirect()->route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id])->with('sucesso', 'Cartão atualizado com sucesso!!!');
     }
 
     /**
@@ -104,11 +104,11 @@ class MetodoPagamentoController extends Controller
             // Se pertence, deletar o cartão
             $metodoPagamento->delete();
 
-            return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])
+            return redirect()->route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id])
                 ->with('sucesso', 'Cartão deletado com sucesso!!!');
         } catch (\Exception $e) {
 
-            return redirect()->route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id])->with('error', 'Erro ao deletar cartão');
+            return redirect()->route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id])->with('error', 'Erro ao deletar cartão');
         }
     }
 }

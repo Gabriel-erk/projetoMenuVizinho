@@ -88,7 +88,6 @@ class CategoriasProdutoController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'imagem' => 'required',
             'titulo_categoria' => 'required',
             'descricao' => 'required'
         ]);
@@ -96,7 +95,6 @@ class CategoriasProdutoController extends Controller
         $categoriaProduto = CategoriaProduto::findOrFail($id);
 
         $categoriaProduto->update([
-            'imagem' => $request->imagem,
             'titulo_categoria' => $request->titulo_categoria,
             'descricao' => $request->descricao,
         ]);

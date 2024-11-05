@@ -110,7 +110,7 @@
 
 
                 <div class="posicionaBotaoSubmit">
-                    <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
+                    <a href="{{ route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"
                         id="botaoCancelar">Voltar</a>
 
                     <button type="submit" class="botaoAdicionar">Salvar</button>
