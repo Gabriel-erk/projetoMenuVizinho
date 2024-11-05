@@ -98,7 +98,7 @@
                                     style="color: #716b6b; font-weight:500;">{{ \Carbon\Carbon::parse($metodoPagamento->data_vencimento)->format('m/Y') }}</span>
                             </div>
                         </div>
-                        <a href="{{ route('usuario.editarPagamentos', ['id' => $metodoPagamento->id]) }}"
+                        <a href="{{ route('pagamentos.editarPagamentos', ['id' => $metodoPagamento->id]) }}"
                             class="pt-1 text-decoration-none" style="color: var(--cor-primaria);">Alterar</a>
                     </div>
                 @endforeach
@@ -110,7 +110,7 @@
                     Voltar
                 </a>
 
-                <a href="{{ route('usuario.novaFormaPagamento') }}" class=" text-decoration-none p-2 rounded-3">
+                <a href="{{ route('pagamentos.novaFormaPagamento') }}" class=" text-decoration-none p-2 rounded-3">
                     Adicionar método de pagamento
                 </a>
 

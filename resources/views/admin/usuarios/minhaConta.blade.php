@@ -61,7 +61,7 @@
 
             <div class="opcoesCadastro">
                 <div class="divisor">
-                    <a href="{{ route('usuario.gerenciarPagamentos', ['id' => Auth::user()->id]) }}"  class="text-decoration-none">
+                    <a href="{{ route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id]) }}"  class="text-decoration-none">
                         <h4>Formas de pagamento</h4>
                     </a>
                     <span class="descricaoOpcao">Visualize ou altere suas formas de pagamento</span>

@@ -346,7 +346,7 @@ use Illuminate\Support\Str;
                                 <span class="ms-2">Cartão de crédito</span>
                             </div>
 
-                            <span><a href="{{ route('usuario.novaFormaPagamento') }}" class="text-decoration-none"
+                            <span><a href="{{ route('pagamentos.novaFormaPagamento') }}" class="text-decoration-none"
                                     style="color: #8C6342">Adicionar</a></span>
                         </div>
 
