@@ -9,7 +9,7 @@ class Oferta extends Model
 {   
     protected $table = "ofertas";
 
-    protected $fillable = ['imagem', 'nome', 'preco',   'descricao', 'info_nutricional', 'duracao', 'loja_id'];
+    protected $fillable = ['imagem', 'nome', 'preco', 'descricao', 'info_nutricional', 'tipo_item', 'duracao', 'loja_id'];
 
     use HasFactory;
 }

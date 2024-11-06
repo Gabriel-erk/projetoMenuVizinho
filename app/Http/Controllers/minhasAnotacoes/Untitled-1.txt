@@ -1,0 +1,5 @@
+eu preciso fazer com que minhas ofertas sejam listadas no meu arquivo carrinho
+para isso preciso alterar meu listaCarrinho controller, que passa as informações para a view carrinho (e na view eu as listo depois)
+porém, antes preciso estabelecer uma relação com a tabela itens_carrinho, que a partir dela, encontro a listaCarrinho associada a ela e consigo listar os itens (produtos, e ofertas), a relação de ofertas com itens_carrinho é a mesa relação de itens_carrinho com produtos, então, posso começar por ai 
+1- estabelecer relação de tabelas entre ofertas e itens_carrinho assim como produtos (migration e Model, chave estrangeira vai apenas na tabela itens_carrinho)
+2- atualizar controler de itens_carrinho(se precisar), e atualizar controller de listaCarrinho

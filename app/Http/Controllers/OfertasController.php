@@ -9,8 +9,8 @@ class OfertasController extends Controller
 {
     public function viewIndex()
     {
-        $produtos = Oferta::all();
-        return view('ofertas', compact('produtos'));
+        $ofertas = Oferta::all();
+        return view('ofertas', compact('ofertas'));
     }
 
     public function produto(string $id)

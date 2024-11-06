@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('descricao');
             $table->text('info_nutricional');
             $table->timestamp('duracao');
+            $table->string('tipo_item')->default('oferta');
           
             $table->unsignedBigInteger('loja_id'); // não é nullable pois não quero ofertas sem loja
             $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');

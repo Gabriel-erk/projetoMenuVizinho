@@ -31,7 +31,7 @@ class ItensCarrinho extends Model
      */
     public function produto()
     {
-        // where é usado para verificar q a coluna tipo_item tem o valor produto, se tiver, retorna um produto
+        // where é usado para verificar q a coluna tipo_item tem o valor produto, se tiver, retorna um produto (no caso verifica dentro dos atributos do produto)
         return $this->belongsTo(Produto::class, 'item_id')->where('tipo_item', 'produto');
     }
 

@@ -69,9 +69,6 @@ class ListaCarrinhoController extends Controller
         $itensCarrinho = $listaCarrinho
             ? ItensCarrinho::with(['produto', 'oferta'])->where('lista_carrinho_id', $listaCarrinho->id)->get()
             : collect();
-
-            dd($itensCarrinho);
-
         // Inicialização dos totais
         $totalCarrinho = 0.00;
         $totalComTaxa = 0.00;

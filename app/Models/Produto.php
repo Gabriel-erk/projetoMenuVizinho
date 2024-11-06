@@ -15,6 +15,7 @@ class Produto extends Model
         'preco',
         'descricao',
         'info_nutricional',
+        'tipo_item',
         'categoria_produto_id',
         'sub_categoria_produto_id',
         'loja_id'

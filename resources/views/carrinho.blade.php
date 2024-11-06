@@ -110,29 +110,25 @@ use Illuminate\Support\Str;
                 </form>
 
                 @foreach ($itensCarrinho as $item)
-                    <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset($item->produto->imagem) }}" style="height: 23vh; width: 15vw">
-                            <div class="ps-2">
-                                <h2 class="fs-2" style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
-                                    {{ $item->produto->nome }}
-                                </h2>
-                                <p class="fw-normal" style="color: #979797; font-family:'Signika Negative', sans-serif;">
-                                    {{ Str::limit($item->produto->descricao, 50, '...') }}
-                                </p>
-                                <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
-                                    R$ {{ $item->produto->preco }}
-                                    @if ($item->produto->isOferta)
-                                        <!-- Exibe o preço da oferta em vez do preço regular -->
-                                        <span style="text-decoration: line-through; color: #b0b0b0; margin-left: 10px;">
-                                            R$ {{ $item->produto->precoRegular }}
-                                        </span>
-                                    @endif
-                                </p>
+                    @if ($item->tipo_item == 'produto')
+                        <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset($item->produto->imagem) }}" style="height: 23vh; width: 15vw">
+                                <div class="ps-2">
+                                    <h2 class="fs-2"
+                                        style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
+                                        {{ $item->produto->nome }}
+                                    </h2>
+                                    <p class="fw-normal"
+                                        style="color: #979797; font-family:'Signika Negative', sans-serif;">
+                                        {{ Str::limit($item->produto->descricao, 50, '...') }}
+                                    </p>
+                                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
+                                        R$ {{ $item->produto->preco }}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Controles de quantidade -->
-                        @if (!$item->produto->isOferta)
+                            <!-- Controles de quantidade -->
                             <div style="width: 30%; font-family:'Poppins',sans-serif">
                                 <div class="d-flex justify-content-between align-items-center py-1 px-2"
                                     style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
@@ -143,7 +139,9 @@ use Illuminate\Support\Str;
                                         </button>
                                     </form>
                                     <strong>{{ $item->quantidade }}</strong>
-                                    <form action="{{ route('lista.addToCart', $item->produto->id) }}" method="post">
+                                    <form
+                                        action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
+                                        method="post">
                                         @csrf
                                         <button type="submit" style="border: none; background-color: #d9d9d9;">
                                             <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
@@ -151,8 +149,48 @@ use Illuminate\Support\Str;
                                     </form>
                                 </div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @else
+                        <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset($item->oferta->imagem) }}" style="height: 23vh; width: 15vw">
+                                <div class="ps-2">
+                                    <h2 class="fs-2"
+                                        style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
+                                        {{ $item->oferta->nome }}
+                                    </h2>
+                                    <p class="fw-normal"
+                                        style="color: #979797; font-family:'Signika Negative', sans-serif;">
+                                        {{ Str::limit($item->oferta->descricao, 50, '...') }}
+                                    </p>
+                                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
+                                        R$ {{ $item->oferta->preco }}
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Controles de quantidade -->
+                            <div style="width: 30%; font-family:'Poppins',sans-serif">
+                                <div class="d-flex justify-content-between align-items-center py-1 px-2"
+                                    style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
+                                    <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                            <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
+                                    <strong>{{ $item->quantidade }}</strong>
+                                    <form
+                                        action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
+                                        method="post">
+                                        @csrf
+                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
+                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
             @else
                 <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">
@@ -173,7 +211,9 @@ use Illuminate\Support\Str;
                                 <img src="{{ asset($produto->imagem) }}" class="p-3" style="height: 58%">
                             </a>
 
-                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                            <form
+                                action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => $produto->tipo_item]) }}"
+                                method="post">
                                 @csrf
                                 <div class="position-absolute rounded-circle"
                                     style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: var(--cor-primaria)">
@@ -200,7 +240,8 @@ use Illuminate\Support\Str;
             </div>
         </div>
 
-        <div class="pagamento-e-cupom py-4 px-4" style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
+        <div class="pagamento-e-cupom py-4 px-4"
+            style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
             <h3 class="mb-4">Pagamento pelo site</h3>
             <div class="pagamento d-flex align-items-center justify-content-between mb-2">
 

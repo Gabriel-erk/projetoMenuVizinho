@@ -37,25 +37,27 @@
         </div>
 
         <div id="listaProdutos" class="row row-cols-1 row-cols-md-3 g-3">
-            @foreach ($produtos as $produto)
+            @foreach ($ofertas as $oferta)
                 <div class="col">
                     <div id="produto" class="rounded-3">
-                        <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
+                        <a href="{{ route('site.produto', ['id' => $oferta->id]) }}">
                             <div id="img-produto" class="text-center">
-                                <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                                <img src="{{ asset($oferta->imagem) }}" alt="" srcset="">
                             </div>
                         </a>
 
                         <div id="nome-desc" class="px-4">
-                            <span id="nome-prod" class="fw-bold d-block">{{ $produto->nome }}</span>
-                            <span id="desc" class="fw-normal d-block">{{ $produto->descricao }}</span>
+                            <span id="nome-prod" class="fw-bold d-block">{{ $oferta->nome }}</span>
+                            <span id="desc" class="fw-normal d-block">{{ $oferta->descricao }}</span>
                         </div>
 
                         <div id="valor-addProduto"
                             class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
                             style="height: 12vh">
-                            <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
-                            <form action="{{ route('lista.addToCart', $produto->id) }}" method="post">
+                            <span id="preco" class="fw-bold d-block">R${{ $oferta->preco }}</span>
+                            <form
+                                action="{{ route('lista.addToCart', ['itemId' => $oferta->id, 'tipoItem' => $oferta->tipo_item]) }}"
+                                method="post">
                                 @csrf
                                 <div id="icone-mais" class="rounded-circle" style="background-color: var(--cor-secundaria)">
                                     <button type="submit" style="border: none; background-color: var(--cor-secundaria);"
