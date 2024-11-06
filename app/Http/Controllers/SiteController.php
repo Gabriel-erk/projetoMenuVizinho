@@ -27,7 +27,7 @@ class SiteController extends Controller
     public function produto(string $id)
     {   
         $produto = Produto::findOrFail($id);
-        return view('produto', compact('produto'));
+        return view('showProduct.produto', compact('produto'));
     }
 
     public function ofertas()
