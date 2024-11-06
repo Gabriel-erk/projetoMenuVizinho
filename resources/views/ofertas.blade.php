@@ -40,7 +40,7 @@
             @foreach ($ofertas as $oferta)
                 <div class="col">
                     <div id="produto" class="rounded-3">
-                        <a href="{{ route('site.produto', ['id' => $oferta->id]) }}">
+                        <a href="{{ route('ofertas.produto', ['id' => $oferta->id]) }}">
                             <div id="img-produto" class="text-center">
                                 <img src="{{ asset($oferta->imagem) }}" alt="" srcset="">
                             </div>

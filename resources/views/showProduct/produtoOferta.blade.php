@@ -25,17 +25,18 @@
 
     <main>
         <div class="text-center py-5" style="background-color: #fbe7ca;">
-            <img src="{{ asset($produto->imagem) }}" style="width: 40vw; height: 60vh">
+            <img src="{{ asset($oferta->imagem) }}" style="width: 40vw; height: 60vh">
         </div>
 
         <div class="px-3">
             <div class="d-flex justify-content-between w-100 my-2">
-                <h1 style="font-family: 'Titan One', sans-serif; color:#8C6342" class="fw-normal">{{ $produto->nome }}</h1>
-                <h2 style="font-family: 'Poppins', sans-serif; font-weight:600">${{ $produto->preco }}</h2>
+                <h1 style="font-family: 'Titan One', sans-serif; color:#8C6342" class="fw-normal">{{ $oferta->nome }}</h1>
+                <h2 style="font-family: 'Poppins', sans-serif; font-weight:600">${{ $oferta->preco }}</h2>
             </div>
 
             <div style="font-family: 'Cabin', sans-serif; font-weight: 500; color: #979797">
-                <p>{{ $produto->descricao }}</p>
+                {{-- utilizando método do carbon para formatar a data para mostrar apenas d/m/y  --}}
+                <p>{{ $oferta->descricao }} - Disponível até: {{ \Carbon\Carbon::parse($oferta->duracao)->format('d/m/Y') }}</p>
             </div>
         </div>
 
@@ -52,7 +53,7 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {{ $produto->info_nutricional }}
+                        {{ $oferta->info_nutricional }}
                     </div>
                 </div>
             </div>
@@ -94,7 +95,7 @@
         <div class="posicionaBotaoSubmit mt-4">
             <a href="{{ url()->previous() }}" class="botaoAdicionar" id="botaoCancelar">Voltar</a>
 
-            <form action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => $produto->tipo_item]) }}"
+            <form action="{{ route('lista.addToCart', ['itemId' => $oferta->id, 'tipoItem' => $oferta->tipo_item]) }}"
                 method="post">
                 @csrf
                 <button type="submit" class="botaoAdicionar">Adicionar ao carrinho</button>

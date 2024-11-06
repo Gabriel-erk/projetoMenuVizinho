@@ -49,7 +49,7 @@ Route::prefix('admin/adm/admUsuarios')->name('usuarioAdm.')->controller(UsuarioC
 */
 Route::middleware(["auth"])->group(function () {
     // relacionados a views q tem q tá logado
-    
+
     // Rotas para Gerenciamento de Conta de Usuário
     Route::prefix('admin/usuarios')->name('usuario.')->controller(UsuarioController::class)->group(function () {
         Route::get('/minhaConta', 'minhaConta')->name('minhaConta');
@@ -83,54 +83,52 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/admin/adm/admListaC/admItensCarrinho/index/{id}', 'index')->name('itens.index');
     });
 
-    // Rotas administrativas para Cupons
-    Route::prefix('admin/adm/admCupons')->name('cupom.')->controller(CupomController::class)->group(function () {
+    // Rota para Cupons
+    Route::controller(CupomController::class)->group(function () {
+        // Rotas administrativas para Cupons
+        Route::prefix('admin/adm/admCupons')->name('cupom.')->group(function () {
+            Route::get('/index', 'index')->name('index');
+            Route::get('/visualizar/{id}', 'show')->name('show');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/salvar', 'store')->name('store');
+            Route::get('/editar/{id}', 'edit')->name('edit');
+            Route::put('/atualizar/{id}', 'update')->name('update');
+            Route::delete('/deletar/{id}', 'destroy')->name('destroy');
+        });
+        // Rota pública para Cupons
+        Route::get('/cupons', 'indexView')->name('cupom.cupons');
+    });
+});
+
+Route::controller(LojaController::class)->group(function () {
+    // Grupo de rotas para Loja
+    Route::prefix('admin/adm/admLoja')->name('loja.')->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/visualizar', 'show')->name('show');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/salvar', 'store')->name('store');
+        Route::get('/editar', 'edit')->name('edit');
+        Route::put('/atualizar', 'update')->name('update');
+        Route::get('/deletar', 'destroy')->name('destroy');
+    });
+    // Rotas públicas para Loja
+    Route::get('/politicaPrivacidade', 'politica')->name('loja.politica');
+    Route::get('/regrasCupons', 'showRegras')->name('loja.regras');
+});
+
+Route::controller(OfertasController::class)->group(function () {
+    // Grupo de rotas para Ofertas
+    Route::prefix('admin/adm/admOfertas')->name('ofertas.')->group(function () {
         Route::get('/index', 'index')->name('index');
         Route::get('/visualizar/{id}', 'show')->name('show');
-        Route::get('/create', 'create')->name('create');
+        Route::get('/cadastro', 'create')->name('create');
         Route::post('/salvar', 'store')->name('store');
         Route::get('/editar/{id}', 'edit')->name('edit');
         Route::put('/atualizar/{id}', 'update')->name('update');
         Route::delete('/deletar/{id}', 'destroy')->name('destroy');
     });
-
-    // Rota pública para Cupons
-    Route::controller(CupomController::class)->group(function () {
-        Route::get('/cupons', 'indexView')->name('cupom.cupons');
-    });
-});
-
-// Grupo de rotas para Loja
-Route::prefix('admin/adm/admLoja')->name('loja.')->controller(LojaController::class)->group(function () {
-    Route::get('/index', 'index')->name('index');
-    Route::get('/visualizar', 'show')->name('show');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/salvar', 'store')->name('store');
-    Route::get('/editar', 'edit')->name('edit');
-    Route::put('/atualizar', 'update')->name('update');
-    Route::get('/deletar', 'destroy')->name('destroy');
-});
-
-// Rotas públicas para Loja
-Route::controller(LojaController::class)->group(function () {
-    Route::get('/politicaPrivacidade', 'politica')->name('loja.politica');
-    Route::get('/regrasCupons', 'showRegras')->name('loja.regras');
-});
-
-// Grupo de rotas para Ofertas
-Route::prefix('admin/adm/admOfertas')->name('ofertas.')->controller(OfertasController::class)->group(function () {
-    Route::get('/index', 'index')->name('index');
-    Route::get('/visualizar/{id}', 'show')->name('show');
-    Route::get('/cadastro', 'create')->name('create');
-    Route::post('/salvar', 'store')->name('store');
-    Route::get('/editar/{id}', 'edit')->name('edit');
-    Route::put('/atualizar/{id}', 'update')->name('update');
-    Route::delete('/deletar/{id}', 'destroy')->name('destroy');
-});
-
-// Rotas públicas para Ofertas
-Route::controller(OfertasController::class)->group(function () {
-    Route::get('/ofertas/produto/{id}', 'produto')->name('ofertas.produto');
+    // Rotas públicas para Ofertas
+    Route::get('/ofertas/produto/{id}', 'produtoOferta')->name('ofertas.produto');
     Route::get('/ofertas', 'viewIndex')->name('ofertas.view');
 });
 

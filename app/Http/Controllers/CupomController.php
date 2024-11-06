@@ -5,16 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\CategoriaProduto;
 use Illuminate\Http\Request;
 use App\Models\Cupom;
-use App\Models\Loja;
 use App\Models\Produto;
 use App\Models\SubCategoria;
+// pacote do laravel para manipular datas e horas
+use Carbon\Carbon;
 
 class CupomController extends Controller
 {
 
     public function indexView()
     {   
-        $cupons = Cupom::all();
+        // retornando todos os cupons juntamente das horas restantes que vão levar para acabar dentro do atributo horas_restates que foi inserido neste momento dentro de $cupom
+        // map() é uma função de coleção que permite percorrer todos os itens de uma coleção (cupons) e aplicar uma função a cada item e retornando uma nova coleção com valores transformados (afinal, como uma função é aplicada dentro de cada item, os valores originais serão afetados, ele não afeta a coleção original, mas cria uma nova com os valores modificados)
+        // aqui o map percorre cada item em "Cupom" calcula a diferença de horas entre a hora atual e a hora de 'data_expiracao' para cada item, armazena em $cupom->horas_restantes, e então retorna cada item modificado, o resultado é uma coleção nova o atributo horas_restantes adicionado a cada cupom da coleção cupons
+        $cupons = Cupom::all()->map(function ($cupom) {
+            // Calcula o tempo restante em horas
+            // Aqui, diffInHours retorna o número de horas restantes. O segundo parâmetro false permite que o valor seja negativo se a data já tiver expirado, o que pode ser útil para saber se o tempo já passou.
+            $cupom->horas_restantes = round(Carbon::now()->floatDiffInHours($cupom->data_expiracao, false));
+            return $cupom;
+        });;
         return view('cupons', compact('cupons'));
     }
 

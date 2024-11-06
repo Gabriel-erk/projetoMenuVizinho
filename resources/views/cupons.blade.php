@@ -34,7 +34,9 @@
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('loja.regras') }}" class="text-decoration-none"
                                 style="color:#8c6342">Regras</a>
-                            <p>Acaba em 5h</p>
+                            <p>
+                                Acaba em {{ $cupom->horas_restantes }}h
+                            </p>
                         </div>
 
                     </div>

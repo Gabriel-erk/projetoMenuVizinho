@@ -13,10 +13,10 @@ class OfertasController extends Controller
         return view('ofertas', compact('ofertas'));
     }
 
-    public function produto(string $id)
+    public function produtoOferta(string $id)
     {
-        $produto = Oferta::findOrFail($id);
-        return view('produto', compact('produto'));
+        $oferta = Oferta::findOrFail($id);
+        return view('showProduct.produtoOferta', compact('oferta'));
     }
 
     // área administrativa
@@ -101,7 +101,6 @@ class OfertasController extends Controller
         ]);
         return redirect()->route('ofertas.index')->with('sucesso', 'Oferta atualizada com sucesso!!!');
     }
-
     public function destroy(string $id)
     {
         try {
