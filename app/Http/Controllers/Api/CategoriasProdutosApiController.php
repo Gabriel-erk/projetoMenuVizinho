@@ -7,7 +7,7 @@ use App\Models\CategoriaProduto;
 use Exception;
 use Illuminate\Http\Request;
 
-class CategoriaProdutoApiController extends Controller
+class CategoriasProdutosApiController extends Controller
 {
     public function index()
     {
