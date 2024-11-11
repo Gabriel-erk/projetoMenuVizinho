@@ -36,56 +36,56 @@ class UsuarioController extends Controller
         return view('admin.adm.admUsuarios.editar', compact('usuario'));
     }
 
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nome' => 'required',
-            'sobrenome' => 'required',
-            'email' => 'required|string|email|unique:usuarios,email,' . $id,
-            'password' => 'nullable|min:8|confirmed',
-            'rua' => 'required|string',
-            'bairro' => 'required|string',
-            'numero' => 'required|string',
-            'complemento' => 'nullable|string',
-            'telefone' => 'nullable|string',
-            'celular' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        public function update(Request $request, string $id)
+        {
+            $request->validate([
+                'nome' => 'required',
+                'sobrenome' => 'required',
+                'email' => 'required|string|email|unique:usuarios,email,' . $id,
+                'password' => 'nullable|min:8|confirmed',
+                'rua' => 'required|string',
+                'bairro' => 'required|string',
+                'numero' => 'required|string',
+                'complemento' => 'nullable|string',
+                'telefone' => 'nullable|string',
+                'celular' => 'required|string',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
-        $usuario = User::findOrFail($id);
+            $usuario = User::findOrFail($id);
 
-        // Armazena nova foto, se enviada, e remove a foto antiga
-        if ($request->hasFile('foto')) {
-            if ($usuario->foto) {
-                Storage::disk('public')->delete($usuario->foto);
+            // Armazena nova foto, se enviada, e remove a foto antiga
+            if ($request->hasFile('foto')) {
+                if ($usuario->foto) {
+                    Storage::disk('public')->delete($usuario->foto);
+                }
+                $usuario->foto = $request->file('foto')->store('imgUser', 'public');
             }
-            $usuario->foto = $request->file('foto')->store('imgUser', 'public');
+
+            // Atualiza o usuário com os novos dados
+            $usuario->update([
+                'nome' => $request->nome,
+                'sobrenome' => $request->sobrenome,
+                'email' => $request->email,
+                'password' => $request->password ? Hash::make($request->password) : $usuario->password,
+                'rua' => $request->rua,
+                'bairro' => $request->bairro,
+                'complemento' => $request->complemento,
+                'numero' => $request->numero,
+                'telefone' => $request->telefone,
+                'celular' => $request->celular,
+            ]);
+
+            // Verificar a origem da requisição
+            if (session('from_admin_edit_area')) {
+                // Se veio da área administrativa, redireciona para o índice da área administrativa
+                session()->forget('from_admin_area'); // Limpa a sessão
+                return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário atualizado com sucesso!');
+            }
+
+            // Se veio de qualquer outro lugar, redireciona para a página da conta do usuário
+            return redirect()->route('usuario.minhaConta')->with('sucesso', 'Usuário atualizado com sucesso!!!');
         }
-
-        // Atualiza o usuário com os novos dados
-        $usuario->update([
-            'nome' => $request->nome,
-            'sobrenome' => $request->sobrenome,
-            'email' => $request->email,
-            'password' => $request->password ? Hash::make($request->password) : $usuario->password,
-            'rua' => $request->rua,
-            'bairro' => $request->bairro,
-            'complemento' => $request->complemento,
-            'numero' => $request->numero,
-            'telefone' => $request->telefone,
-            'celular' => $request->celular,
-        ]);
-
-        // Verificar a origem da requisição
-        if (session('from_admin_edit_area')) {
-            // Se veio da área administrativa, redireciona para o índice da área administrativa
-            session()->forget('from_admin_area'); // Limpa a sessão
-            return redirect()->route('usuarioAdm.index')->with('sucesso', 'Usuário atualizado com sucesso!');
-        }
-
-        // Se veio de qualquer outro lugar, redireciona para a página da conta do usuário
-        return redirect()->route('usuario.minhaConta')->with('sucesso', 'Usuário atualizado com sucesso!!!');
-    }
 
     public function create()
     {

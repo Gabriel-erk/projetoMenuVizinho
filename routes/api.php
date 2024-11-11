@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\api\CategoriasProdutosApiController;
+use App\Http\Controllers\api\CupomApiController;
+use App\Http\Controllers\api\MetodoPagamentoApiController;
 use App\Http\Controllers\api\ProdutosApiController;
 use App\Http\Controllers\api\SubCategoriasApiController;
+use App\Http\Controllers\api\UsuariosApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +35,29 @@ Route::controller(ProdutosApiController::class)->group(function () {
     Route::post("produtos/salvar", 'store');
     Route::put("produtos/atualizar/{id}", 'update');
     Route::delete("produtos/deletar/{id}", 'destroy');
+});
+
+Route::controller(UsuariosApiController::class)->group(function () {
+    Route::get("usuarios", 'index');
+    Route::get("usuarios/visualizar/{id}", 'show');
+    Route::post("usuarios/salvar", 'store');
+    Route::put("usuarios/atualizar/{id}", 'update');
+    Route::delete("usuarios/deletar/{id}", 'destroy');
+});
+
+Route::controller(MetodoPagamentoApiController::class)->group(function () {
+    Route::get("pagamentos/{id}", 'index');
+    Route::get("pagamentos/visualizar/{id}", 'show');
+    // passando por parâmetro o id do usuário que o cartão será associado
+    Route::post("pagamentos/salvar/{userId}", 'store');
+    Route::put("pagamentos/atualizar/{id}", 'update');
+    Route::delete("pagamentos/deletar/{id}", 'destroy');
+});
+
+Route::controller(CupomApiController::class)->group(function () {
+    Route::get("cupom", 'index');
+    Route::get("cupom/visualizar/{id}", 'show');
+    Route::post("cupom/salvar", 'store');
+    Route::put("cupom/atualizar/{id}", 'update');
+    Route::delete("cupom/deletar/{id}", 'destroy');
 });
