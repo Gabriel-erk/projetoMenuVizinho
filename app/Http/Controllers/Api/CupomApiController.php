@@ -46,9 +46,6 @@ class CupomApiController extends Controller
         ]);
 
         try {
-            /*
-        * Esse bloco de código verifica se a forma_desconto é igual a 2. Se for, ele verifica se não há nenhuma categoria ou subcategoria selecionada. Se nenhuma delas estiver selecionada, o usuário é redirecionado de volta ao formulário com mensagens de erro indicando que pelo menos uma categoria ou subcategoria deve ser escolhida.
-         */
             if ($request->forma_desconto == 2 && !$request->hasAny(['categorias', 'sub_categorias'])) {
                 return redirect()->back()->withErrors([
                     'categorias' => 'É necessário escolher pelo menos uma categoria ou subcategoria.',
@@ -67,21 +64,12 @@ class CupomApiController extends Controller
                 'forma_desconto' => $request->forma_desconto,
             ]);
 
-            // comandos abaixo associa palavras-chave, categorias e subcategorias (caso selecionadas)
-
-            /*
-        * Esse trecho verifica se a forma_desconto é igual a 1 e se o campo palavras foi enviado na requisição. Se ambas as condições forem verdadeiras, ele itera sobre cada palavra-chave recebida e cria uma nova associação no banco de dados, utilizando o método create() para adicionar a palavra-chave correspondente ao cupom. 
-        */
             if ($request->forma_desconto == 1 && $request->has('palavras')) {
                 foreach ($request->palavras as $palavra) {
                     $cupom->palavras()->create(['palavra_chave' => $palavra]);
                 }
             }
 
-            /*
-        * Esse bloco verifica novamente se a forma_desconto é igual a 2. Se for, ele verifica se há categorias e subcategorias fornecidas. Se existirem, utiliza o método attach() para associar as categorias e subcategorias selecionadas ao cupom.
-        * O attach() adiciona as relações na tabela pivô correspondente (neste caso, entre cupons e categorias ou subcategorias), permitindo que um cupom possa estar associado a múltiplas categorias e subcategorias - adiciona os possíveis múltiplos ids de categorias e subcategorias a suas respectivas tabelas (cupon_categoria ou cupon_sub_categoria). 
-        */
             if ($request->forma_desconto == 2) {
                 if ($request->has('categorias')) {
                     $cupom->categorias()->attach($request->categorias);
@@ -180,8 +168,9 @@ class CupomApiController extends Controller
                 }
             }
 
-            return response()->json($cupom, 200);
+            return response()->json([$cupom], 200);
         } catch (Exception $e) {
+            // return response()->json(["Erro" => $e->getMessage()], 500);
             return response()->json(["Erro" => "Erro ao atualizar cupom"], 500);
         }
     }
