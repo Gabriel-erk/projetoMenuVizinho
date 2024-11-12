@@ -1,4 +1,4 @@
-$(".aproveiteTambem .owl-carousel").owlCarousel({
+$(".recomendacoes .owl-carousel").owlCarousel({
     loop: true,
     margin: 10,
     nav: false,

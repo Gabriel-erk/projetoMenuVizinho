@@ -4,13 +4,7 @@
 use Illuminate\Support\Str;
 ?>
 
-<link rel="stylesheet" href="{{ asset('css/siteCss/carrinho.css') }}">
-
-<!-- adicionando fonte 4 (Titan One) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&family=Titan+One&display=swap"
-    rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/siteCss/produto.css') }}">
 
 <!-- adicionando fonte 5 (baloo bhai) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,46 +13,9 @@ use Illuminate\Support\Str;
 
 @section('conteudo')
     <style>
-        #limpaCarrinho {
-            /* caso queira voltar */
-            /* right: 35px; */
-
-            transition: transform 0.5s ease;
-        }
-
-        #limpaCarrinho:hover {
-            cursor: pointer;
-            transform: scale(1.02);
-            transition: all linear 200ms;
-
-            color: #F9EED9;
-        }
-
         /* icones */
         .fa-solid:hover {
             cursor: pointer;
-        }
-
-        /* produto lista aproveite também - da p refazer com bootstrap */
-        .produtoListaAproveiteTambem {
-            background-color: #fff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
-            border-radius: 7px;
-            font-family: 'Cabin', sans-serif;
-            padding: 5%;
-            height: 80%;
-            width: 23vw;
-
-            margin-top: 2rem;
-            margin-bottom: 5rem;
-            margin-left: 2rem;
-            transition: border-color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
-        }
-
-        .produtoListaAproveiteTambem:hover {
-            border-color: #e9e2e2;
-            background-color: #f9f9f9;
-            transform: scale(1.02);
         }
 
         #botaoAlterar,
@@ -82,6 +39,22 @@ use Illuminate\Support\Str;
             cursor: pointer;
             transform: scale(1.05);
             transition: all linear 200ms;
+        }
+
+        /* campos de cupom e pagamento */
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-left: none;
+            border-radius: 0;
+        }
+
+        .form-control {
+            border-right: none;
+            color: #888;
+        }
+
+        .input-group .form-control:focus {
+            box-shadow: none;
         }
     </style>
     <main>
@@ -239,40 +212,172 @@ use Illuminate\Support\Str;
             @endif
         </div>
 
-        <div class="aproveiteTambem" style="border-top: 2px solid #ccc; border-bottom: 2px solid #ccc">
-            <h2 class="fw-medium ps-3 pt-3" style="font-family: 'Poppins', sans-serif;">Aproveite Também</h2>
-            <div class="d-flex owl-carousel">
-
-                @foreach ($produtos as $produto)
-                    <div class="produtoListaAproveiteTambem item">
-                        <div class="imgProdutoAproveiteTambem position-relative">
-
-                            <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
-                                <img src="{{ asset($produto->imagem) }}" class="p-3" style="height: 58%">
-                            </a>
-
-                            <form
-                                action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => $produto->tipo_item]) }}"
-                                method="post">
-                                @csrf
-                                <div class="position-absolute rounded-circle"
-                                    style="bottom: 0.4rem; right: 1rem; padding: 0.75rem 0.95rem; background-color: var(--cor-primaria)">
-                                    <button type="submit" style="border: none; background-color: var(--cor-primaria);"
-                                        title="Adicionar ao carrinho"><i class="fa-solid fa-plus"
-                                            style="color: #ffffff;"></i></button>
-                                </div>
-                            </form>
+        <div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
+            <div class="row">
+                <!-- Opções de Prazo, Cupom e Pagamento -->
+                <div class="col-md-7">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="prazo" class="form-label fs-5" style="font-weight: 500">Prazo de entrega</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="prazo" placeholder="0000-000"
+                                    aria-label="Prazo de entrega">
+                                <button class="btn btn-outline-secondary" type="button">Calcular</button>
+                            </div>
                         </div>
 
-                        <div class="informacoesProdutoAproveiteTambem">
-                            <div class="tituloValorAproveiteTambem d-flex justify-content-between mt-3">
-                                <h3 class="fs-5">{{ $produto->nome }}</h3>
-                                <span class="fs-6">${{ $produto->preco }}</span>
+                        <div class="col-md-6">
+                            <label for="cupom" class="form-label fs-5" style="font-weight: 500">Cupom de
+                                Desconto</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nomeCupomSelecionado"
+                                    placeholder="R$15 para nossos novos..." aria-label="Cupom de Desconto">
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalCupom">Selecionar</button>
                             </div>
+                        </div>
+                    </div>
 
-                            <div>
-                                <span class="mt-2 text-break" style="width: 70%">{{ $produto->descricao }}</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="pagamento" class="form-label fs-5" style="font-weight: 500">Método de
+                                Pagamento</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="pagamento" placeholder="*****-3214 12/24"
+                                    aria-label="Método de Pagamento">
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalPagamento">Selecionar</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo da Compra -->
+                <div class="col-md-4 ms-5 ps-3" style="border-left: 2px solid #ccc">
+                    {{-- <div class="divider mx-3"></div> --}}
+                    <h4 class="fw-bold">Resumo</h4>
+                    @if ($totalCarrinho > 0.0)
+                        <div class="d-flex justify-content-between mt-3">
+                            <span>Valor dos produtos</span>
+                            <span>R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Frete</span>
+                            <span>R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-success">
+                            <span>Descontos</span>
+                            <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total da compra</span>
+                            <span>R$ <span
+                                    id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
+                        </div>
+                        <button class="btn finalizar-btn w-100 mt-3 text-white rounded-5"
+                            style="background-color: var(--cor-primaria)">Finalizar</button>
+                    @else
+                        <div class="d-flex justify-content-between mt-3">
+                            <span>Valor dos produtos</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Frete</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-success">
+                            <span>Descontos</span>
+                            <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total da compra</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <style>
+            #produto {
+                width: 33%;
+                height: 98%;
+                margin-top: 5px;
+                margin-left: 10px;
+            }
+
+            #valor-addProduto #preco {
+                font-size: 1rem
+            }
+
+            #valor-addProduto #icone-mais {
+                padding-top: 0.4rem;
+                padding-bottom: 0.4rem;
+
+                padding-left: 0.8rem;
+                padding-right: 0.8rem;
+            }
+
+            @media (min-width: 768px) and (max-width: 1366px) {
+                #img-produto {
+                    padding-top: 1.8rem;
+                    padding-bottom: 1.8rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center
+                }
+
+                #img-produto img {
+                    height: 25vh;
+                    width: 20vw;
+                    
+                }
+
+                #nome-desc {
+                    width: 80%;
+                }
+
+                #nome-desc #desc {
+                    color: #7D7D7D;
+                    font-size: 0.8rem
+                }
+            }
+        </style>
+        <div class="recomendacoes container">
+
+            <h2 class="fw-medium ps-3 pt-3" style="font-family: 'Poppins', sans-serif;">Recomendações</h2>
+            <div class="d-flex owl-carousel">
+                @foreach ($produtos as $produto)
+                    <div id="produto" class="item">
+                        <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
+                            <div id="img-produto">
+                                <img src="{{ asset($produto->imagem) }}" alt="" srcset="">
+                            </div>
+                        </a>
+
+                        <div id="nome-desc" class="px-4">
+                            <span id="nome-prod" class="fw-bold d-block">{{ $produto->nome }}</span>
+                            <span id="desc" class="fw-normal d-block">{{ $produto->descricao }}</span>
+                        </div>
+
+                        <div id="valor-addProduto"
+                            class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
+                            style="height: 10vh">
+                            <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
+                            <form
+                                action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => 'produto']) }}"
+                                method="post">
+                                @csrf
+                                <div id="icone-mais" class="rounded-circle"
+                                    style="background-color: var(--cor-secundaria)">
+                                    <button type="submit" style="border: none; background-color: var(--cor-secundaria);"
+                                        title="Adicionar ao carrinho">
+                                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 @endforeach
@@ -282,27 +387,6 @@ use Illuminate\Support\Str;
 
         <div class="pagamento-e-cupom py-4 px-4"
             style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
-            <h3 class="mb-4">Pagamento pelo site</h3>
-            <div class="pagamento d-flex align-items-center justify-content-between mb-2">
-
-                <div class="d-flex">
-
-                    <div class="rounded-circle text-center d-flex justify-content-center align-items-center"
-                        style="background-color: #202020; height:10vh; width:5vw">
-                        <img src="{{ asset('img/bandeiraCartao.png') }}" style="height: 5vh">
-                        {{-- <img src="./img/credit-card.png" style="height: 7vh"> --}}
-                    </div>
-
-                    <div class="ms-2">
-                        <h4>Crédito</h4>
-                        <p style="color:#9b9999" class="fw-semibold">Mastercard ****5090</p>
-                    </div>
-
-                </div>
-
-                <a href="#" id="botaoAlterar" class="fw-bold text-decoration-none" data-bs-toggle="modal"
-                    data-bs-target="#modalPagamento">Alterar</a>
-            </div>
 
             <div class="cupom pagamento d-flex align-items-center justify-content-between mb-2">
 
@@ -326,33 +410,6 @@ use Illuminate\Support\Str;
 
                 <button id="botaoAdicionar" class="fw-bold" style="border: none" data-bs-toggle="modal"
                     data-bs-target="#modalCupom">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="fw-normal py-4 px-4" style="font-family: 'Poppins', sans-serif;">
-            <h2>Resumo dos valores</h2>
-            @if ($totalCarrinho > 0.0)
-                <span class="d-block pb-1">- Subtotal: R$ <span
-                        id="subtotalCarrinho">{{ number_format($totalCarrinho, 2, ',', '.') }}</span></span>
-                <span class="d-block pb-1">- Taxa de entrega: R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
-                <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
-                <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
-                <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
-                        id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></h3>
-            @else
-                <span class="d-block pb-1">- Subtotal: R$ <span id="subtotalCarrinho">0,00</span></span>
-                <span class="d-block pb-1">- Taxa de entrega: R$ 0,00</span>
-                <span class="d-block pb-1">- Cupom Aplicado: <span id="nomeCupomSelecionado">Nenhum</span></span>
-                <span class="d-block">- Desconto de cupom: R$ <span id="valorDescontoCupom">0,00</span></span>
-                <h3 class="fw-semibold" style="margin-top: 2%; color: #9B9999;">Total: R$ <span
-                        id="totalCarrinho">0,00</span></h3>
-            @endif
-
-            <div class="text-center" style="margin-top: 8%">
-                <button id="finalizarCompra" class="fw-bold d-inline-block text-white rounded-3"
-                    style="font-family: 'Poppins', sans-serif; font-size: 1.1em; background-color:#8C6342; border: none; padding: 1rem 3rem">
-                    Finalizar Compra
-                </button>
             </div>
         </div>
 
