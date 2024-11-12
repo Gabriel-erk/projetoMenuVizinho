@@ -19,10 +19,6 @@ use Illuminate\Support\Str;
 
 @section('conteudo')
     <style>
-        body {
-            background-color: #F3F3F3;
-        }
-
         #limpaCarrinho {
             /* caso queira voltar */
             /* right: 35px; */
@@ -90,103 +86,147 @@ use Illuminate\Support\Str;
     </style>
     <main>
         {{-- antes: .listaCarrinho --}}
-        <div style="background-color: #f9eed9" class="pt-3">
+        <div class="py-3 container">
 
             <script>
                 function confirmLimpaCarrinho() {
                     return confirm('Deseja limpar o carrinho?');
                 }
             </script>
-
+            <h1 class="fw-bold pb-2">Seu Carrinho</h1>
             @if (count($itensCarrinho) > 0)
-                <!-- Botão para limpar o carrinho -->
-                <form action="{{ route('lista.limpar', $listaCarrinho->id) }}" method="POST"
-                    onsubmit="return confirmLimpaCarrinho()">
-                    @csrf
-                    <button id="limpaCarrinho" type="submit" class="rounded position-absolute"
-                        style="font-family: 'Cabin', sans-serif; background-color:#8C6342; color:#ffffff; border:none; padding: 0.5em 1.9em; right:2em">
-                        Limpar
-                    </button>
-                </form>
-
                 @foreach ($itensCarrinho as $item)
                     @if ($item->tipo_item == 'produto')
-                        <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset($item->produto->imagem) }}" style="height: 23vh; width: 15vw">
-                                <div class="ps-2">
-                                    <h2 class="fs-2"
-                                        style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
-                                        {{ $item->produto->nome }}
-                                    </h2>
-                                    <p class="fw-normal"
-                                        style="color: #979797; font-family:'Signika Negative', sans-serif;">
-                                        {{ Str::limit($item->produto->descricao, 50, '...') }}
-                                    </p>
-                                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
-                                        R$ {{ $item->produto->preco }}
-                                    </p>
-                                </div>
+                        <div class="rounded position-relative mt-3"
+                            style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
+
+                            <!-- Ícone de remover no canto superior direito -->
+                            <div style="position: absolute; top: 15px; right: 12px;">
+                                <a href="#">
+                                    <img src="{{ asset('img/remove-items.webp') }}" style="width: 0.9vw;">
+                                </a>
                             </div>
-                            <!-- Controles de quantidade -->
-                            <div style="width: 30%; font-family:'Poppins',sans-serif">
-                                <div class="d-flex justify-content-between align-items-center py-1 px-2"
-                                    style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                                    <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                        @csrf
-                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                            <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
-                                        </button>
-                                    </form>
-                                    <strong>{{ $item->quantidade }}</strong>
-                                    <form
-                                        action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                                        </button>
-                                    </form>
+
+                            <!-- Conteúdo principal -->
+                            <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-3 rounded" style="background-color: #f9eed9">
+                                        <img src="{{ asset($item->produto->imagem) }}" style="height: 19vh; width: 12vw;">
+                                    </div>
+                                    <div class="ps-2">
+                                        <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
+                                        <span class="ps-1 fw-semibold d-block"
+                                            style="color:#696868; border-left: 2px solid #ccc">Bacon Extra</span>
+                                    </div>
+                                </div>
+
+                                <!-- Controles de quantidade e valor -->
+                                <div class="w-50 d-flex justify-content-around">
+                                    <div>
+                                        <h5 class="fw-semibold">Quantidade</h5>
+                                        <div class="d-flex justify-content-between align-items-center px-2"
+                                            style="width: 7.5vw; height: 4vh; border: 1px solid #d9d9d9; border-radius: 12px; gap: 5px;">
+
+                                            <!-- Botão de diminuir -->
+                                            <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </form>
+
+                                            <!-- Quantidade com bordas laterais -->
+                                            <strong
+                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 20px; text-align: center;">
+                                                {{ $item->quantidade }}
+                                            </strong>
+
+                                            <!-- Botão de aumentar -->
+                                            <form
+                                                action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="fw-semibold">Valor unitário</h5>
+                                        <p class="fw-semibold fs-5"
+                                            style="font-family: 'Poppins', sans-serif; color:#555555">
+                                            R$ {{ $item->produto->preco }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     @else
-                        <div class="d-flex align-items-center justify-content-between mt-3 pb-5 px-4">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset($item->oferta->imagem) }}" style="height: 23vh; width: 15vw">
-                                <div class="ps-2">
-                                    <h2 class="fs-2"
-                                        style="color:#8C6342; font-family: 'Titan One', sans-serif; fw-normal">
-                                        {{ $item->oferta->nome }}
-                                    </h2>
-                                    <p class="fw-normal"
-                                        style="color: #979797; font-family:'Signika Negative', sans-serif;">
-                                        {{ Str::limit($item->oferta->descricao, 50, '...') }}
-                                    </p>
-                                    <p class="fw-semibold fs-3" style="font-family: 'Poppins', sans-serif;">
-                                        R$ {{ $item->oferta->preco }}
-                                    </p>
-                                </div>
+                        <div class="rounded position-relative mt-3"
+                            style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
+
+                            <!-- Ícone de remover no canto superior direito -->
+                            <div style="position: absolute; top: 15px; right: 12px;">
+                                <a href="#">
+                                    <img src="{{ asset('img/remove-items.webp') }}" style="width: 0.9vw;">
+                                </a>
                             </div>
-                            <!-- Controles de quantidade -->
-                            <div style="width: 30%; font-family:'Poppins',sans-serif">
-                                <div class="d-flex justify-content-between align-items-center py-1 px-2"
-                                    style="margin-left: 40%; width: 9vw; background-color: #d9d9d9; border-radius: 12px">
-                                    <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                        @csrf
-                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                            <i class="fa-solid fa-minus" style="color: #8C6342;"></i>
-                                        </button>
-                                    </form>
-                                    <strong>{{ $item->quantidade }}</strong>
-                                    <form
-                                        action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button type="submit" style="border: none; background-color: #d9d9d9;">
-                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                                        </button>
-                                    </form>
+
+                            <!-- Conteúdo principal -->
+                            <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-3 rounded" style="background-color: #f9eed9">
+                                        <img src="{{ asset($item->oferta->imagem) }}" style="height: 19vh; width: 12vw;">
+                                    </div>
+                                    <div class="ps-2">
+                                        <h3 class="fw-semibold d-block">{{ $item->oferta->nome }}</h3>
+                                        <span class="ps-1 fw-semibold d-block"
+                                            style="color:#696868; border-left: 2px solid #ccc">Bacon Extra</span>
+                                    </div>
+                                </div>
+
+                                <!-- Controles de quantidade e valor -->
+                                <div class="w-50 d-flex justify-content-around">
+                                    <div>
+                                        <h5 class="fw-semibold">Quantidade</h5>
+                                        <div class="d-flex justify-content-between align-items-center px-2"
+                                            style="width: 7.5vw; height: 4vh; border: 1px solid #d9d9d9; border-radius: 12px; gap: 5px;">
+
+                                            <!-- Botão de diminuir -->
+                                            <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </form>
+
+                                            <!-- Quantidade com bordas laterais -->
+                                            <strong
+                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 20px; text-align: center;">
+                                                {{ $item->quantidade }}
+                                            </strong>
+
+                                            <!-- Botão de aumentar -->
+                                            <form
+                                                action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->produto->tipo_item]) }}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="fw-semibold">Valor unitário</h5>
+                                        <p class="fw-semibold fs-5"
+                                            style="font-family: 'Poppins', sans-serif; color:#555555">
+                                            R$ {{ $item->produto->preco }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
