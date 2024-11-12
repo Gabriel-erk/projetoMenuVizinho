@@ -308,16 +308,9 @@ use Illuminate\Support\Str;
                 margin-left: 10px;
             }
 
-            #valor-addProduto #preco {
-                font-size: 1rem
-            }
-
-            #valor-addProduto #icone-mais {
-                padding-top: 0.4rem;
-                padding-bottom: 0.4rem;
-
-                padding-left: 0.8rem;
-                padding-right: 0.8rem;
+            #img-produto {
+                display: flex;
+                justify-content: center
             }
 
             @media (min-width: 768px) and (max-width: 1366px) {
@@ -325,14 +318,12 @@ use Illuminate\Support\Str;
                     padding-top: 1.8rem;
                     padding-bottom: 1.8rem;
                     width: 100%;
-                    display: flex;
-                    justify-content: center
                 }
 
                 #img-produto img {
                     height: 25vh;
                     width: 20vw;
-                    
+
                 }
 
                 #nome-desc {
@@ -343,6 +334,52 @@ use Illuminate\Support\Str;
                     color: #7D7D7D;
                     font-size: 0.8rem
                 }
+
+                #valor-addProduto #preco {
+                    font-size: 1rem
+                }
+
+                #valor-addProduto #icone-mais {
+                    padding-top: 0.4rem;
+                    padding-bottom: 0.4rem;
+
+                    padding-left: 0.8rem;
+                    padding-right: 0.8rem;
+                }
+            }
+
+            @media (min-width: 1367px) {
+                #img-produto {
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;
+                }
+
+                #img-produto img {
+                    height: 22vh;
+                    width: 18vw;
+                }
+
+                #nome-desc {
+                    width: 75%;
+                }
+
+                #nome-desc #desc {
+                    color: #7D7D7D;
+                    font-size: 1.1rem
+                }
+
+                #valor-addProduto #preco {
+                    font-size: 1.1rem
+                }
+
+                #valor-addProduto #icone-mais {
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+
+                    padding-left: 0.9rem;
+                    padding-right: 0.9rem;
+                }
+
             }
         </style>
         <div class="recomendacoes container">
