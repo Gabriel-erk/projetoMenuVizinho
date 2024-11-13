@@ -8,7 +8,7 @@ $(".recomendacoes .owl-carousel").owlCarousel({
     autoplaySpeed: 900,
     responsive: {
         0: {
-            items: 4,
+            items: 3,
         },
     },
 });

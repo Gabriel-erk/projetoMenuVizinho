@@ -56,6 +56,31 @@ use Illuminate\Support\Str;
         .input-group .form-control:focus {
             box-shadow: none;
         }
+
+        /* ajuste de icone em monitores diferentes */
+        @media (min-width: 768px) and (max-width: 1366px) {
+            .div-quantidade {
+                padding-left: 0.5rem;
+                padding-right: 0.6rem;
+                width: 7.5vw;
+                height: 4.5vh;
+                border: 1px solid #d9d9d9;
+                border-radius: 12px;
+                gap: 5px;
+            }
+        }
+
+        @media (min-width: 1367px) {
+            .div-quantidade {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                width: 7.5vw;
+                height: 4vh;
+                border: 1px solid #d9d9d9;
+                border-radius: 12px;
+                gap: 5px;
+            }
+        }
     </style>
     <main>
         {{-- antes: .listaCarrinho --}}
@@ -97,8 +122,7 @@ use Illuminate\Support\Str;
                                 <div class="w-50 d-flex justify-content-around">
                                     <div>
                                         <h5 class="fw-semibold">Quantidade</h5>
-                                        <div class="d-flex justify-content-between align-items-center px-2"
-                                            style="width: 7.5vw; height: 4vh; border: 1px solid #d9d9d9; border-radius: 12px; gap: 5px;">
+                                        <div class="div-quantidade d-flex justify-content-between align-items-center">
 
                                             <!-- Botão de diminuir -->
                                             <form action="{{ route('lista.remover', $item->id) }}" method="post">
@@ -110,7 +134,7 @@ use Illuminate\Support\Str;
 
                                             <!-- Quantidade com bordas laterais -->
                                             <strong
-                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 20px; text-align: center;">
+                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
                                                 {{ $item->quantidade }}
                                             </strong>
 
@@ -164,8 +188,7 @@ use Illuminate\Support\Str;
                                 <div class="w-50 d-flex justify-content-around">
                                     <div>
                                         <h5 class="fw-semibold">Quantidade</h5>
-                                        <div class="d-flex justify-content-between align-items-center px-2"
-                                            style="width: 7.5vw; height: 4vh; border: 1px solid #d9d9d9; border-radius: 12px; gap: 5px;">
+                                        <div class="div-quantidade d-flex justify-content-between align-items-center">
 
                                             <!-- Botão de diminuir -->
                                             <form action="{{ route('lista.remover', $item->id) }}" method="post">
@@ -177,7 +200,7 @@ use Illuminate\Support\Str;
 
                                             <!-- Quantidade com bordas laterais -->
                                             <strong
-                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 20px; text-align: center;">
+                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
                                                 {{ $item->quantidade }}
                                             </strong>
 
@@ -302,7 +325,7 @@ use Illuminate\Support\Str;
 
         <style>
             #produto {
-                width: 33%;
+                /* width: 33%; */
                 height: 98%;
                 margin-top: 5px;
                 margin-left: 10px;
@@ -422,7 +445,7 @@ use Illuminate\Support\Str;
             </div>
         </div>
 
-        <div class="pagamento-e-cupom py-4 px-4"
+        {{-- <div class="pagamento-e-cupom py-4 px-4"
             style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
 
             <div class="cupom pagamento d-flex align-items-center justify-content-between mb-2">
@@ -448,7 +471,7 @@ use Illuminate\Support\Str;
                 <button id="botaoAdicionar" class="fw-bold" style="border: none" data-bs-toggle="modal"
                     data-bs-target="#modalCupom">Adicionar</button>
             </div>
-        </div>
+        </div> --}}
 
     </main>
 
@@ -619,50 +642,49 @@ use Illuminate\Support\Str;
     </div>
 
     <script>
-        // element se referencia ao bloco p em que chamo essa função e passo ele mesmo de parâmetro (this)
         function selecionarCupom(element) {
-            // Obtenha o nome e o valor de desconto do cupom selecionado (eles são passados para cá quando o botão "adicionar cupom" é clicado no modal cupom)
-
-            // pega o valor do atributo personalizadao data-nome-cupom no elemento  html e armazena em nomeCupom
-            const nomeCupom = element.getAttribute(
-                'data-nome-cupom'
-            );
-            // pega o valor do atributo personalizado data-valor-desconto e passa para a váriavel valorDesconto ( no caso o valor daquel cupom ) e converte para um número de ponto flutuante (float, para que seja possivel realizar calculos com aquele valor)
-            const valorDesconto = parseFloat(element.getAttribute(
-                'data-valor-desconto'
-            ));
-
-            // Atualize o nome do cupom e o valor do desconto na seção "Resumo dos valores"
-
-            // altera o conteúdo no html do campo com a id 'nomeCupomSelecionado' com o valor da váriavel nomeCupom (se selecionei no modal um cupom com o nome de "peixe defumado", é este nome que vai aparecer na minha seção de "resumo de valores" a respeito do nome do cupom)
-            document.getElementById('nomeCupomSelecionado').innerText =
-                nomeCupom;
-            /*
-                * document.getElementById('valorDescontoCupom'):
-                Esta parte do código utiliza o método getElementById do objeto document para encontrar um elemento HTML com o ID valorDescontoCupom. Esse elemento é onde o valor do desconto será exibido na página. 
-                * .innerText (este atributo serve para acessar o conteúdo de um elemento html e quando faço ".innerText =" é porque estou atribuindo um novo conteúdo para ele, ou seja, alterando o valor daquele campo, no caso, o campo com o id 'valorDescontoCupom')
-                * valorDesconto.toFixed(2) (quer dizer que estou formatando a váriavel valorDesconto para ter 2 casas decimais - útil no meu caso que quero os valores monetários apenas em 2 casas decimais)
-                * .replace('.',',') (quer dizer que após formatar o valorDesconto com toFixed irei substituir o ponto que é usado como separador decimal por uma virgula)
-            */
-            document.getElementById('valorDescontoCupom').innerText = valorDesconto.toFixed(2).replace('.', ',');
-
-            // Atualize o total, subtraindo o valor do desconto
-            // estou convertendo para Float o valor do elemento html com a id subtotalCarrinho e depois substituindo o ponto por vírgula
-            const subtotal = parseFloat(document.getElementById('subtotalCarrinho').innerText.replace('.', ','));
-            const taxaEntrega = 5.0; // Taxa fixa de entrega
-            let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
-
-            // Verifica se o total é menor que o mínimo permitido (15,00)
-            /*
-             * math.max recebe dois argumentos e retorna o maior deles, então, se em algum momento o retorno de totalComDesconto for menor que 15, irá retornar 15
-             */
-            totalComDesconto = Math.max(totalComDesconto, 15);
-
-            document.getElementById('totalCarrinho').innerText = totalComDesconto.toFixed(2).replace('.', ',');
-
-            // Fecha o modal após selecionar
-            $('#modalCupom').modal('hide');
+            const nomeCupom = element.getAttribute('data-nome-cupom');
+            const valorDesconto = parseFloat(element.getAttribute('data-valor-desconto'));
+            
+            const nomeCupomElement = document.getElementById('nomeCupomSelecionado');
+            if (nomeCupomElement) {
+                nomeCupomElement.value = nomeCupom;
+            } else {
+                console.error("Elemento com ID 'nomeCupomSelecionado' não encontrado.");
+            }
+    
+            const valorDescontoElement = document.getElementById('valorDescontoCupom');
+            if (valorDescontoElement) {
+                valorDescontoElement.innerText = valorDesconto.toFixed(2).replace('.', ',');
+            } else {
+                console.error("Elemento com ID 'valorDescontoCupom' não encontrado.");
+            }
+    
+            const subtotalElement = document.getElementById('subtotalCarrinho');
+            if (subtotalElement) {
+                const subtotal = parseFloat(subtotalElement.innerText.replace('.', ','));
+                const taxaEntrega = 5.0;
+                let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
+                totalComDesconto = Math.max(totalComDesconto, 15);
+    
+                const totalCarrinhoElement = document.getElementById('totalCarrinho');
+                if (totalCarrinhoElement) {
+                    totalCarrinhoElement.innerText = totalComDesconto.toFixed(2).replace('.', ',');
+                } else {
+                    console.error("Elemento com ID 'totalCarrinho' não encontrado.");
+                }
+            } else {
+                console.error("Elemento com ID 'subtotalCarrinho' não encontrado.");
+            }
+    
+            // Fecha o modal corretamente
+            const modalElement = document.getElementById('modalCupom');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalInstance.hide();
+            } else {
+                console.error("Modal com ID 'modalCupom' não encontrado ou não inicializado.");
+            }
         }
     </script>
-
 @endsection
