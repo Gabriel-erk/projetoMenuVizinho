@@ -206,7 +206,7 @@ use Illuminate\Support\Str;
 
                                             <!-- Botão de aumentar -->
                                             <form
-                                                action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->produto->tipo_item]) }}"
+                                                action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
                                                 method="post">
                                                 @csrf
                                                 <button type="submit" style="border: none; background: none; padding: 0;">
@@ -444,34 +444,6 @@ use Illuminate\Support\Str;
 
             </div>
         </div>
-
-        {{-- <div class="pagamento-e-cupom py-4 px-4"
-            style="font-family: 'Poppins', sans-serif; border-bottom: 2px solid #ccc">
-
-            <div class="cupom pagamento d-flex align-items-center justify-content-between mb-2">
-
-                <div class="d-flex">
-
-                    <div class="rounded-circle text-center d-flex justify-content-center align-items-center"
-                        style="background-color: #202020; height:10vh; width:5vw">
-                        <img src="./img/cupom-carrinho.png" style="height: 7vh">
-                    </div>
-
-                    <div class="ms-2">
-                        <h4>Cupom</h4>
-                        @if ($cupons->isNotEmpty())
-                            <p style="color:#9b9999" class="fw-semibold">{{ $cupons->count() }} cupom(ns) disponível(is)
-                                para esta compra.</p>
-                        @else
-                            <p style="color:#9b9999" class="fw-semibold">Nenhum cupom disponível para esta compra.</p>
-                        @endif
-                    </div>
-                </div>
-
-                <button id="botaoAdicionar" class="fw-bold" style="border: none" data-bs-toggle="modal"
-                    data-bs-target="#modalCupom">Adicionar</button>
-            </div>
-        </div> --}}
 
     </main>
 
