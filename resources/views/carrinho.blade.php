@@ -86,11 +86,6 @@ use Illuminate\Support\Str;
         {{-- antes: .listaCarrinho --}}
         <div class="py-3 container">
 
-            <script>
-                function confirmLimpaCarrinho() {
-                    return confirm('Deseja limpar o carrinho?');
-                }
-            </script>
             <h1 class="fw-bold pb-2">Seu Carrinho</h1>
             @if (count($itensCarrinho) > 0)
                 @foreach ($itensCarrinho as $item)
@@ -281,7 +276,8 @@ use Illuminate\Support\Str;
                     <h4 class="fw-bold">Resumo</h4>
                     @if ($totalCarrinho > 0.0)
                         <div class="d-flex justify-content-between mt-3">
-                            <span>Valor dos produtos</span>
+                            {{-- utilizando data-valor para armazenar o valor do totalCarrinho e fazer o javascript interagir diretamente com esse campo, ao invés do campo abaixo, que está sendo tratado com number_format, que dificultaria o processo na hora de pegar este mesmo valor no js --}}
+                            <span id="subTotalCarrinho" data-valor="{{ $totalCarrinho }}">Valor dos produtos</span>
                             <span>R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -632,9 +628,10 @@ use Illuminate\Support\Str;
                 console.error("Elemento com ID 'valorDescontoCupom' não encontrado.");
             }
     
-            const subtotalElement = document.getElementById('subtotalCarrinho');
+            const subtotalElement = document.getElementById('subTotalCarrinho');
             if (subtotalElement) {
-                const subtotal = parseFloat(subtotalElement.innerText.replace('.', ','));
+                // pegando o valor do atributo data-valor, que contém o valor do 'subtotal' e convertendo para float
+                const subtotal = parseFloat(subtotalElement.getAttribute('data-valor'));
                 const taxaEntrega = 5.0;
                 let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
                 totalComDesconto = Math.max(totalComDesconto, 15);
