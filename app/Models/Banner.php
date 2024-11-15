@@ -15,8 +15,6 @@ class Banner extends Model
         'titulo',
         'imagem',
         'categoria',
-        // ex de banner: extra combos cheddar, link irá redirecionar para o a página com a promo em questão
-        'link',
     ];
 
     // banner pertence a uma loja

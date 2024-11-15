@@ -38,6 +38,23 @@ class BannerSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            // ofertas
+            [
+                'loja_id' => 1,
+                'imagem' => 'img/banner-oferta.png', // Caminho do primeiro banner
+                'titulo' => 'Ofertas do dia',
+                'categoria' => 'ofertas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'loja_id' => 1,
+                'imagem' => 'img/banner 3.png', // Caminho do segundo banner
+                'titulo' => 'promoções do mês',
+                'categoria' => 'ofertas',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

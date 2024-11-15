@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutenticacaoController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LojaController;
 use App\Http\Controllers\ProdutoController;
@@ -109,11 +110,23 @@ Route::controller(LojaController::class)->group(function () {
         Route::post('/salvar', 'store')->name('store');
         Route::get('/editar', 'edit')->name('edit');
         Route::put('/atualizar', 'update')->name('update');
-        Route::get('/deletar', 'destroy')->name('destroy');
+        Route::delete('/deletar', 'destroy')->name('destroy');
     });
     // Rotas públicas para Loja
     Route::get('/politicaPrivacidade', 'politica')->name('loja.politica');
     Route::get('/regrasCupons', 'showRegras')->name('loja.regras');
+});
+Route::controller(BannerController::class)->group(function () {
+    // Grupo de rotas para Banners
+    Route::prefix('admin/adm/admBanners')->name('banners.')->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/visualizar/{id}', 'show')->name('show');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/salvar', 'store')->name('store');
+        Route::get('/editar/{id}', 'edit')->name('edit');
+        Route::put('/atualizar/{id}', 'update')->name('update');
+        Route::delete('/deletar/{id}', 'destroy')->name('destroy');
+    });
 });
 
 Route::controller(OfertasController::class)->group(function () {

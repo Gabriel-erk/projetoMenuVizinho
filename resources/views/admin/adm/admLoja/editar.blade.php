@@ -33,32 +33,6 @@
         </div>
 
         <ul class="alert alert-info">
-            <span>Escolha no máximo 3 imagens, de tamanho 1920x1080</span>
-        </ul>
-        <div class="mb-3">
-            <label for="banner_categoria" class="form-label">Categoria do Banner</label>
-            <select name="banner_categoria[]" class="form-control" multiple>
-                <option value="cardapio" {{ in_array('cardapio', $loja->banner_categoria ?? []) ? 'selected' : '' }}>
-                    Cardápio</option>
-                <option value="ofertas" {{ in_array('ofertas', $loja->banner_categoria ?? []) ? 'selected' : '' }}>Ofertas
-                </option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="banner" class="form-label">Banners</label>
-            <input type="file" name="banner[]" class="form-control" id="banner" multiple>
-            @if ($loja->banners && count($loja->banners) > 0)
-                <div class="mt-2">
-                    @foreach ($loja->banners as $banner)
-                        <img src="{{ asset($banner->imagem) }}" alt="Banner Atual" style="width: 150px; margin-right: 5px;"
-                            class="img-thumbnail bg-secondary">
-                    @endforeach
-                </div>
-            @endif
-        </div>
-
-        <ul class="alert alert-info">
             <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
         </ul>
         <div class="mb-3">

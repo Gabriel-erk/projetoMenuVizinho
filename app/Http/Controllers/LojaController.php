@@ -42,14 +42,12 @@ class LojaController extends Controller
             'imagem_sobre_restaurante' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'texto_politica_privacidade' => 'required|string',
             'regras_cupons' => 'required|string',
-            'banner.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'banner_categoria.*' => 'required|in:cardapio,ofertas' // Valida categorias de banners
         ]);
 
         $logotipoPath = $request->file('logotipo')->store('imgLoja/logo', 'public');
         $imgSobrePath = $request->file('imagem_sobre_restaurante')->store('imgLoja/sobre-nos', 'public');
 
-        $loja = Loja::create([
+        Loja::create([
             'nome_loja' => $request->nome_loja,
             'logotipo' => $logotipoPath,
             'texto_sobre_restaurante' => $request->texto_sobre_restaurante,
@@ -57,22 +55,6 @@ class LojaController extends Controller
             'texto_politica_privacidade' => $request->texto_politica_privacidade,
             'regras_cupons' => $request->regras_cupons,
         ]);
-
-        if ($request->hasFile('banner')) {
-            foreach ($request->file('banner') as $index => $banner) {
-                $categoria = $request->banner_categoria[$index];
-
-                // Conta banners existentes na categoria para definir a posição correta
-                $posicaoAtual = $loja->banners()->where('categoria', $categoria)->count() + 1;
-
-                $bannerPath = $banner->store('imgLoja/banners', 'public');
-                $loja->banners()->create([
-                    'imagem' => $bannerPath,
-                    'categoria' => $categoria,
-                    'posicao' => $posicaoAtual
-                ]);
-            }
-        }
 
         return redirect()->route('loja.index')->with('sucesso', 'Loja cadastrada com sucesso!');
     }

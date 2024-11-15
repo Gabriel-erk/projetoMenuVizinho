@@ -34,18 +34,6 @@
             <input type="file" name="logotipo" class="form-control" id="logotipo">
         </div>
 
-        <ul class="alert alert-info">
-            <span>Escolha no máximo 3 imagens, de tamanho 1920x1080</span>
-        </ul>
-        <div class="mb-3">
-            <label for="banner_categoria" class="form-label">Categoria do Banner</label>
-            <select name="banner_categoria[]" class="form-control" multiple>
-                <option value="cardapio">Cardápio</option>
-                <option value="ofertas">Ofertas</option>
-            </select>
-        </div>
-        <input type="file" name="banner[]" class="form-control" id="banner" multiple>
-
         <div class="alert alert-info">
             <span>Para definir um novo parágrafo, por favor deixe um espaço em branco entre eles.</span>
         </div>

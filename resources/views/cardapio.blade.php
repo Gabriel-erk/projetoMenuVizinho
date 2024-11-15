@@ -38,10 +38,13 @@
     @section('banner')
         <div class="banner owl-carousel owl-theme">
 
+            {{-- listando apenas os banners da categoria cardápio --}}
             @foreach ($infoLoja->banners as $banner)
-                <div class="img-banner">
-                    <img src="{{ asset($banner->imagem) }}" alt="">
-                </div>
+                @if ($banner->categoria == 'cardapio')
+                    <div class="img-banner">
+                        <img src="{{ asset($banner->imagem) }}" alt="">
+                    </div>
+                @endif
             @endforeach
 
         </div>
