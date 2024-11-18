@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\CategoriasProdutosApiController;
 use App\Http\Controllers\api\CupomApiController;
+use App\Http\Controllers\api\ItensCarrinhoApiController;
 use App\Http\Controllers\api\LojaApiController;
 use App\Http\Controllers\api\MetodoPagamentoApiController;
 use App\Http\Controllers\api\ProdutosApiController;
@@ -61,6 +62,10 @@ Route::controller(CupomApiController::class)->group(function () {
     Route::post("cupom/salvar", 'store');
     Route::put("cupom/atualizar/{id}", 'update');
     Route::delete("cupom/deletar/{id}", 'destroy');
+});
+
+Route::controller(ItensCarrinhoApiController::class)->group(function () {
+    Route::get("itens/{id}", 'index');
 });
 
 Route::controller(LojaApiController::class)->group(function () {
