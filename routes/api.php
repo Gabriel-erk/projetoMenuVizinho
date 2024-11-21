@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\BannerApiController;
 use App\Http\Controllers\api\CategoriasProdutosApiController;
 use App\Http\Controllers\api\CupomApiController;
 use App\Http\Controllers\api\ItensCarrinhoApiController;
@@ -81,4 +82,12 @@ Route::controller(LojaApiController::class)->group(function () {
     Route::post("loja/salvar", 'store');
     Route::put("loja/atualizar", 'update');
     Route::delete("loja/deletar", 'destroy');
+});
+
+Route::controller(BannerApiController::class)->group(function () {
+    Route::get("banner", 'index');
+    Route::get("banner/visualizar/{id}", 'show');
+    Route::post("banner/salvar", 'store');
+    Route::put("banner/atualizar/{id}", 'update');
+    Route::delete("banner/deletar/{id}", 'destroy');
 });
