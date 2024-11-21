@@ -2,8 +2,6 @@
 <link rel="stylesheet" href="{{ asset('css/posicionaBotaoSubmit.css') }}">
 
 <!-- adicionando fonte 2 (Titan One) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 
 @section('conteudo')
@@ -69,23 +67,31 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <div class="bg-white px-3 mt-4 d-flex align-items-center justify-content-between"
-                            style="height: 20vh; box-shadow: 0px 4px 8px rgba(0,0,0,0.1)">
-                            <div>
-                                <h3 style="font-weight: 600; color: #464646">Adicionar Cebola</h3>
-                                <p class="fw-semibold">+ R$ 2,00</p>
-                            </div>
-                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                        </div>
-
-                        <div class="bg-white px-3 mt-4 d-flex align-items-center justify-content-between"
-                            style="height: 20vh; box-shadow: 0px 4px 8px rgba(0,0,0,0.1)">
-                            <div>
-                                <h3 style="font-weight: 600; color: #464646">Adicionar Bacon</h3>
-                                <p class="fw-semibold">+ R$ 3,00</p>
-                            </div>
-                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                        </div>
+                        @if ($adicionaisCategorias)
+                            @foreach ($adicionaisCategorias as $adicional)
+                                <div class="bg-white px-3 mt-4 d-flex align-items-center justify-content-between"
+                                    style="height: 20vh; box-shadow: 0px 4px 8px rgba(0,0,0,0.1)">
+                                    <div>
+                                        <h3 style="font-weight: 600; color: #464646">Adicionar {{ $adicional->nome }}</h3>
+                                        <p class="fw-semibold">+ R$ {{ number_format($adicional->valor, 2, ',', '.') }}</p>
+                                    </div>
+                                    <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                </div>
+                            @endforeach
+                        @elseif ($adicionaisSubCategorias)
+                            @foreach ($adicionaisSubCategorias as $adicional)
+                                <div class="bg-white px-3 mt-4 d-flex align-items-center justify-content-between"
+                                    style="height: 20vh; box-shadow: 0px 4px 8px rgba(0,0,0,0.1)">
+                                    <div>
+                                        <h3 style="font-weight: 600; color: #464646">Adicionar {{ $adicional->nome }}</h3>
+                                        <p class="fw-semibold">+ R$ {{ number_format($adicional->valor, 2, ',', '.') }}</p>
+                                    </div>
+                                    <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>Nenhum adicional dísponivel</p>
+                        @endif
                     </div>
                 </div>
             </div>
