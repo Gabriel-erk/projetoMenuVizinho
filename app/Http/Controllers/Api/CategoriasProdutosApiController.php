@@ -11,8 +11,8 @@ class CategoriasProdutosApiController extends Controller
 {
     public function index()
     {
-        $categoriasProdutos = CategoriaProduto::all();
         try {
+            $categoriasProdutos = CategoriaProduto::all();
             return response()->json($categoriasProdutos, 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);

@@ -7,6 +7,7 @@ use App\Http\Controllers\api\ItensCarrinhoApiController;
 use App\Http\Controllers\api\ListaCarrinhoApiController;
 use App\Http\Controllers\api\LojaApiController;
 use App\Http\Controllers\api\MetodoPagamentoApiController;
+use App\Http\Controllers\api\OfertasApiController;
 use App\Http\Controllers\api\ProdutosApiController;
 use App\Http\Controllers\api\SubCategoriasApiController;
 use App\Http\Controllers\api\UsuariosApiController;
@@ -39,6 +40,14 @@ Route::controller(ProdutosApiController::class)->group(function () {
     Route::post("produtos/salvar", 'store');
     Route::put("produtos/atualizar/{id}", 'update');
     Route::delete("produtos/deletar/{id}", 'destroy');
+});
+
+Route::controller(OfertasApiController::class)->group(function () {
+    Route::get("ofertas", 'index');
+    Route::get("ofertas/visualizar/{id}", 'show');
+    Route::post("ofertas/salvar", 'store');
+    Route::put("ofertas/atualizar/{id}", 'update');
+    Route::delete("ofertas/deletar/{id}", 'destroy');
 });
 
 Route::controller(UsuariosApiController::class)->group(function () {

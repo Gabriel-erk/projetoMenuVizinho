@@ -10,11 +10,7 @@ class SiteController extends Controller
     // paginas principais
     public function index()
     {   
-        $categorias = CategoriaProduto::all();
-        // váriavel com os produtos de cada categoria
-        $categoriasProdutos = CategoriaProduto::with('produtos')->get();
-        $subCategorias = SubCategoria::with('produtos')->get();
-        return view('index', compact('categorias', 'subCategorias'));
+        return view('index');
     }
 
     public function cardapio()
@@ -28,11 +24,6 @@ class SiteController extends Controller
     {   
         $produto = Produto::findOrFail($id);
         return view('showProduct.produto', compact('produto'));
-    }
-
-    public function ofertas()
-    {
-        return view('ofertas');
     }
 
     public function sobre()
