@@ -58,8 +58,10 @@ class ProdutoController extends Controller
                 'preco' => $request->preco,
                 'descricao' => $request->descricao,
                 'info_nutricional' => $request->info_nutricional,
-                'categoria_produto_id' => $request->categoria_produto_id, // Categoria obrigatória
-                'sub_categoria_produto_id' => $request->sub_categoria_produto_id, // Subcategoria opcional
+                // um dos dois deve estar preenchido, se não retorna um erro por conta do model 
+                'categoria_produto_id' => $request->categoria_produto_id, 
+                'sub_categoria_produto_id' => $request->sub_categoria_produto_id, 
+
                 'loja_id' => $lojaId
             ]);
 

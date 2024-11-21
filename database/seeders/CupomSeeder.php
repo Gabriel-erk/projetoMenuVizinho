@@ -19,7 +19,6 @@ class CupomSeeder extends Seeder
             'descricao_cupom' => 'Desconto especial para carne',
             'data_expiracao' => '2024-12-12 23:59:59',
             'forma_desconto' => 1,
-            'tipo_desconto' => 0,
             'valor_desconto' => 50.00,
             'loja_id' => 1,
         ]);
@@ -30,7 +29,6 @@ class CupomSeeder extends Seeder
             'descricao_cupom' => 'Desconto especial para frango',
             'data_expiracao' => '2024-12-12 23:59:59',
             'forma_desconto' => 1,
-            'tipo_desconto' => 0,
             'valor_desconto' => 50.00,
             'loja_id' => 1,
         ]);
@@ -44,7 +42,6 @@ class CupomSeeder extends Seeder
                 'descricao_cupom' => 'Desconto especial para a categoria ' . $categoria->nome,
                 'data_expiracao' => '2024-12-12 23:59:59',
                 'forma_desconto' => 2,
-                'tipo_desconto' => 0,
                 'valor_desconto' => 50.00,
                 'loja_id' => 1,
             ]);
@@ -59,7 +56,6 @@ class CupomSeeder extends Seeder
                 'descricao_cupom' => 'Desconto especial para a subcategoria ' . $subCategoria->nome,
                 'data_expiracao' => '2024-12-12 23:59:59',
                 'forma_desconto' => 2,
-                'tipo_desconto' => 0,
                 'valor_desconto' => 50.00,
                 'loja_id' => 1,
             ]);

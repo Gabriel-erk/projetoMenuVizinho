@@ -48,6 +48,7 @@
                         <li class="list-group-item"><a href="{{ route('categorias.index') }}">Categorias</a></li>
                         <li class="list-group-item"><a href="{{ route('subCategorias.index') }}">Sub categorias</a></li>
                         <li class="list-group-item"><a href="{{ route('produtos.index') }}">Produtos</a></li>
+                        <li class="list-group-item"><a href="{{ route('adicional.index') }}">Adicionais</a></li>
                         <li class="list-group-item"><a href="{{ route('ofertas.index') }}">Ofertas</a></li>
                         <li class="list-group-item"><a href="{{ route('lista.index') }}">Lista carrinho</a></li>
                     </ul>

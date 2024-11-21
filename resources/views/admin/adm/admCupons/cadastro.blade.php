@@ -42,14 +42,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="tipo_desconto" class="form-label">Tipo de Desconto</label>
-            <select name="tipo_desconto" class="form-control" id="tipo_desconto">
-                <option value="1" {{ old('tipo_desconto') == 1 ? 'selected' : '' }}>Percentual (%)</option>
-                <option value="2" {{ old('tipo_desconto') == 2 ? 'selected' : '' }}>Valor Fixo</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
             <label for="valor_desconto" class="form-label">Valor do Desconto</label>
             <input type="number" step="0.01" name="valor_desconto" class="form-control" id="valor_desconto"
                 placeholder="Valor do desconto" value="{{ old('valor_desconto') }}">

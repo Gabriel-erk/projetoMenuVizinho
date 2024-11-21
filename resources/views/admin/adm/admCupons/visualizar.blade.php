@@ -30,10 +30,6 @@
             <td>{{ $cupom->valor_desconto }}</td>
         </tr>
         <tr>
-            <th>Tipo de desconto</th>
-            <td>{{ $cupom->tipo_desconto }}</td>
-        </tr>
-        <tr>
             <th>ID da loja</th>
             <td>{{ $cupom->loja_id }}</td>
         </tr>

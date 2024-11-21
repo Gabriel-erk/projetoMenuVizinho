@@ -69,7 +69,7 @@
             @endforeach
         </div>
 
-        <!-- Sub-categoria do Produto (opcional) -->
+        <!-- Sub-categoria do Produto  -->
         <div class="mb-3">
             <label for="" class="form-label">Sub-categoria do produto (opcional)</label>
             @foreach ($subCategorias as $subCategoria)

@@ -15,7 +15,6 @@ class Cupom extends Model
         'data_expiracao',
         'forma_desconto',
         'valor_desconto',
-        'tipo_desconto',
         'loja_id',
     ];
     use HasFactory;

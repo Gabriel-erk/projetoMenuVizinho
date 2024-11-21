@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cupom;
 use App\Models\Produto;
 use App\Models\SubCategoria;
+use Exception;
 // pacote do laravel para manipular datas e horas
 use Carbon\Carbon;
 
@@ -53,7 +54,6 @@ class CupomController extends Controller
             'descricao_cupom' => 'required|string|max:60',
             'data_expiracao' => 'required|date',
             'valor_desconto' => 'required|numeric',
-            'tipo_desconto' => 'required|integer',
             'forma_desconto' => 'required|integer',
             'palavras' => 'required_if:forma_desconto,1|array',
             // Validação condicional para categorias e subcategorias
@@ -78,7 +78,6 @@ class CupomController extends Controller
             'data_expiracao' => $request->data_expiracao,
             'loja_id' => 1,
             'valor_desconto' => $request->valor_desconto,
-            'tipo_desconto' => $request->tipo_desconto,
             'forma_desconto' => $request->forma_desconto,
         ]);
 
@@ -140,7 +139,7 @@ class CupomController extends Controller
             'descricao_cupom' => 'required|string|max:60',
             'data_expiracao' => 'required|date',
             'valor_desconto' => 'required|numeric',
-            'tipo_desconto' => 'required|integer',
+            // 'tipo_desconto' => 'required|integer',
             'forma_desconto' => 'required|integer',
             'palavras' => 'nullable|array',
             // Validação condicional personalizada
@@ -165,7 +164,7 @@ class CupomController extends Controller
             'descricao_cupom' => $request->descricao_cupom,
             'data_expiracao' => $request->data_expiracao,
             'valor_desconto' => $request->valor_desconto,
-            'tipo_desconto' => $request->tipo_desconto,
+            // 'tipo_desconto' => $request->tipo_desconto,
             'forma_desconto' => $request->forma_desconto,
         ]);
 
@@ -224,7 +223,7 @@ class CupomController extends Controller
             $cupom = Cupom::findOrFail($id);
             $cupom->delete();
             return redirect()->route('cupom.index')->with('sucesso', 'Cupom deletado com sucesso!!!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             return redirect()->route("cupom.index")->with('error', 'Erro ao deletar o cupom');
         }

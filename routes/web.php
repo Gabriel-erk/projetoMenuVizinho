@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdicionalController;
 use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DashboardController;
@@ -170,6 +171,20 @@ Route::prefix('admin/adm/admSubCategorias')->name('subCategorias.')->controller(
     Route::get('/editar/{id}', 'edit')->name('edit');
     Route::put('/atualizar/{id}', 'update')->name('update');
     Route::delete('/deletar/{id}', 'destroy')->name('destroy');
+});
+
+// Rota para Addicionais
+Route::controller(AdicionalController::class)->group(function () {
+    // Rotas administrativas para Adicionais
+    Route::prefix('admin/adm/admAdicionais')->name('adicional.')->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/visualizar/{id}', 'show')->name('show');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/salvar', 'store')->name('store');
+        Route::get('/editar/{id}', 'edit')->name('edit');
+        Route::put('/atualizar/{id}', 'update')->name('update');
+        Route::delete('/deletar/{id}', 'destroy')->name('destroy');
+    });
 });
 
 // Grupo de rotas para Produtos
