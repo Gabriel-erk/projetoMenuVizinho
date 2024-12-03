@@ -36,6 +36,7 @@ Route::controller(SubCategoriasApiController::class)->group(function () {
 
 Route::controller(ProdutosApiController::class)->group(function () {
     Route::get("produtos", 'index');
+    Route::get("cardapio", 'cardapio');
     Route::get("produtos/visualizar/{id}", 'show');
     Route::post("produtos/salvar", 'store');
     Route::put("produtos/atualizar/{id}", 'update');

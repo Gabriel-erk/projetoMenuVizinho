@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoriaProduto;
 use App\Models\Produto;
+use App\Models\SubCategoria;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -23,6 +25,36 @@ class ProdutosApiController extends Controller
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);
         }
+    }
+
+    public function cardapio()
+    {
+        try {
+            $categorias = CategoriaProduto::with('produtos')->get();
+            $categorias = $categorias->map(function ($categoria) {
+                // Itera sobre os produtos de cada categoria e atualiza o campo 'imagem'
+                 $categoria->produtos = $categoria->produtos->map(function ($produto) {
+                    $produto->imagem = asset($produto->imagem);
+                    return $produto;
+                });
+                return $categoria;
+            });
+        
+            $subCategorias = SubCategoria::with('produtos')->get();
+            $subCategorias = $subCategorias->map(function ($subCategoria) {
+                // Itera sobre os produtos de cada subcategoria e atualiza o campo 'imagem'
+                $subCategoria->produtos = $subCategoria->produtos->map(function ($produto) {
+                    $produto->imagem = asset($produto->imagem);
+                    return $produto;
+                });
+                return $subCategoria;
+            });
+        
+            return response()->json(['categorias' => $categorias, 'subCategorias' => $subCategorias], 200);
+        } catch (Exception $e) {
+            return response()->json(["Erro" => $e->getMessage()], 500);
+        }
+        
     }
 
     public function show(string $id)
