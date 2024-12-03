@@ -19,7 +19,7 @@ class ProdutosApiController extends Controller
                 $produto->imagem = asset($produto->imagem);
                 return $produto;
             });
-            return response()->json([$produtos], 200);
+            return response()->json($produtos, 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);
         }
