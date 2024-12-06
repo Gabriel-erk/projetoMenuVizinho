@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdicionalApiController;
 use App\Http\Controllers\api\BannerApiController;
 use App\Http\Controllers\api\CategoriasProdutosApiController;
 use App\Http\Controllers\api\CupomApiController;
@@ -41,6 +42,14 @@ Route::controller(ProdutosApiController::class)->group(function () {
     Route::post("produtos/salvar", 'store');
     Route::put("produtos/atualizar/{id}", 'update');
     Route::delete("produtos/deletar/{id}", 'destroy');
+});
+
+Route::controller(AdicionalApiController::class)->group(function () {
+    Route::get("adicionais", 'index');
+    Route::get("adicionais/visualizar/{id}", 'show');
+    Route::post("adicionais/salvar", 'store');
+    Route::put("adicionais/atualizar/{id}", 'update');
+    Route::delete("adicionais/deletar/{id}", 'destroy');
 });
 
 Route::controller(OfertasApiController::class)->group(function () {
