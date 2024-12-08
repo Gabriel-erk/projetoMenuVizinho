@@ -40,22 +40,22 @@
 
                 <div class="campo campoDuplo" style="margin-bottom: 15px">
 
-                    <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
+                    <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numero_cartao">Número do
                             cartão</label>
-                        <input type="text" name="numeroCartao" id="numeroCartao" value="{{ old('numeroCartao') }}">
+                        <input type="text" name="numero_cartao" id="numero_cartao" value="{{ old('numero_cartao') }}">
                     </div>
 
                     <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
-                        <input type="text" name="cvv" id="cvv" value="{{ old('cvv') }}">
+                        <input type="number" name="cvv" id="cvv" value="{{ old('cvv') }}" maxlength="3">
                     </div>
 
                 </div>
 
                 <div class="campo">
 
-                    <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
+                    <div class="limitaLabel" style="width: 49.2%"> <label for="data_vencimento">Data de
                             vencimento</label>
-                        <input type="date" name="dataVencimento" id="dataVencimento" value="{{ old('dataVencimento') }}">
+                        <input type="date" name="data_vencimento" id="data_vencimento" value="{{ old('data_vencimento') }}">
                     </div>
 
                 </div>
@@ -66,8 +66,8 @@
 
                 <div class="campo" style="margin-bottom: 1rem">
 
-                    <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
-                        <input type="text" name="nomeTitular" id="nomeTitular" value="{{ old('nomeTitular') }}">
+                    <div class="limitaLabel"> <label for="nome_titular">Nome do titular</label>
+                        <input type="text" name="nome_titular" id="nome_titular" value="{{ old('nome_titular') }}">
                     </div>
 
                 </div>
@@ -120,7 +120,7 @@
              * evento input ao camo numeroCartão, onde, cada vez que o usuário digitar algo, a função mcc será chamada para formatar o valor(this.value = mcc(this.value)) 
              * $('#numeroCartao') - quer dizer q jQuerry.(#numeroCartao) - estou pegando o elemento com o id 'NumeroCartao' através do jQuerry 
              */
-            $('#numeroCartao').on('input', function() {
+            $('#numero_cartao').on('input', function() {
                 this.value = mcc(this.value);
             });
 
@@ -128,7 +128,7 @@
                 this.value = cvv(this.value);
             });
 
-            $('#nomeTitular').on('input', function() {
+            $('#nome_titular').on('input', function() {
                 this.value = name(this.value);
             });
 

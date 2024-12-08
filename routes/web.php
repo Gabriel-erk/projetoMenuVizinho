@@ -59,16 +59,27 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/meusPedidos', 'meusPedidos')->name('meusPedidos');
     });
 
-    // Rotas para Gerenciamento de Métodos de Pagamento
-    Route::prefix('admin/usuarios')->name('pagamentos.')->controller(MetodoPagamentoController::class)->group(function () {
-        Route::get('/gerenciarPagamentos/{id}', 'index')->name('gerenciarPagamentos');
-        Route::get('/novaFormaPagamento', 'create')->name('novaFormaPagamento');
-        Route::get('/editarPagamentos/{id}', 'edit')->name('editarPagamentos');
+    Route::controller(MetodoPagamentoController::class)->group(function () {
+        // Rotas para Gerenciamento de Métodos de Pagamento em usuários
+        Route::prefix('admin/usuarios')->name('pagamentos.')->group(function () {
+            Route::get('/gerenciarPagamentos/{id}', 'index')->name('gerenciarPagamentos');
+            Route::get('/novaFormaPagamento', 'create')->name('novaFormaPagamento');
+            Route::get('/editarPagamentos/{id}', 'edit')->name('editarPagamentos');
 
-        Route::post('/salvarPagamento', 'store')->name('store');
-        Route::put('/atualizarPagamento/{id}', 'update')->name('atualizarPagamento');
-        Route::delete('/deletarPagamento/{id}', 'destroy')->name('deletarPagamento');
+            Route::post('/salvarPagamento', 'store')->name('store');
+            Route::put('/atualizarPagamento/{id}', 'update')->name('atualizarPagamento');
+            Route::delete('/deletarPagamento/{id}', 'destroy')->name('deletarPagamento');
+        });
+
+        // Rotas para da área administrativa para Gerenciamento de Métodos de Pagamento
+        Route::prefix('admin/usuarios/admCartões')->name('cartao.')->group(function () {
+            Route::get('/index', 'indexAdm')->name('index');
+            Route::get('/visualizar/{id}', 'show')->name('show');
+            Route::get('/create', 'createAdm')->name('create');
+            Route::get('/editar/{id}', 'editAdm')->name('edit');
+        });
     });
+
     // só pode adicionar ao carrinho se estiver logado - o que já evita de jogar um erro na cara do usuário pq o usuário n ta logado e ele tá tentando salvar, mas como n está logado, n consegue pegar o id dele, q é essencial
     Route::controller(ListaCarrinhoController::class)->group(function () {
         Route::post('/produto/adicionarAoCarrinho/{itemId}/{tipoItem}', 'addToCart')->name('lista.addToCart');

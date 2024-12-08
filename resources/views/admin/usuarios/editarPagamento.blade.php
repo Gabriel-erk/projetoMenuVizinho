@@ -62,10 +62,10 @@
 
                     <div class="campo campoDuplo" style="margin-bottom: 15px">
 
-                        <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numeroCartao">Número do
+                        <div class="limitaLabel" style="margin-right: 20px; width: 50%"> <label for="numero_cartao">Número do
                                 cartão</label>
-                            <input type="text" name="numeroCartao" id="numeroCartao"
-                                value="{{ old('numeroCartao', $metodoPagamento->numero_cartao) }}">
+                            <input type="text" name="numero_cartao" id="numero_cartao"
+                                value="{{ old('numero_cartao', $metodoPagamento->numero_cartao) }}">
                         </div>
 
                         <div class="limitaLabel" style="width: 50%"><label for="cvv">CVV</label>
@@ -77,10 +77,10 @@
 
                     <div class="campo">
 
-                        <div class="limitaLabel" style="width: 49.2%"> <label for="dataVencimento">Data de
+                        <div class="limitaLabel" style="width: 49.2%"> <label for="data_vencimento">Data de
                                 vencimento</label>
-                            <input type="date" name="dataVencimento" id="dataVencimento"
-                                value="{{ old('dataVencimento', $metodoPagamento->data_vencimento) }}">
+                            <input type="date" name="data_vencimento" id="data_vencimento"
+                                value="{{ old('data_vencimento', $metodoPagamento->data_vencimento) }}">
                         </div>
 
                     </div>
@@ -91,8 +91,8 @@
                     <div class="campo" style="margin-bottom: 15px">
 
                         <div class="limitaLabel"> <label for="nomeTitular">Nome do titular</label>
-                            <input type="text" name="nomeTitular" id="nomeTitular"
-                                value="{{ old('nomeTitular', $metodoPagamento->nome_titular) }}">
+                            <input type="text" name="nome_titular" id="nome_titular"
+                                value="{{ old('nome_titular', $metodoPagamento->nome_titular) }}">
                         </div>
 
                     </div>
@@ -107,7 +107,6 @@
 
                     </div>
                 </div>
-
 
                 <div class="posicionaBotaoSubmit">
                     <a href="{{ route('pagamentos.gerenciarPagamentos', ['id' => Auth::user()->id]) }}" class="botaoAdicionar"

@@ -45,6 +45,7 @@
                         <li class="list-group-item"><a href="{{ route('banners.index') }}">Banners</a></li>
                         <li class="list-group-item"><a href="{{ route('cupom.index') }}">Cupons</a></li>
                         <li class="list-group-item"><a href="{{ route('usuarioAdm.index') }}">Usuários</a></li>
+                        <li class="list-group-item"><a href="{{ route('cartao.index') }}">Cartões</a></li>
                         <li class="list-group-item"><a href="{{ route('categorias.index') }}">Categorias</a></li>
                         <li class="list-group-item"><a href="{{ route('subCategorias.index') }}">Sub categorias</a></li>
                         <li class="list-group-item"><a href="{{ route('produtos.index') }}">Produtos</a></li>
