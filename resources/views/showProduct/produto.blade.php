@@ -75,7 +75,14 @@
                                         <h3 style="font-weight: 600; color: #464646">Adicionar {{ $adicional->nome }}</h3>
                                         <p class="fw-semibold">+ R$ {{ number_format($adicional->valor, 2, ',', '.') }}</p>
                                     </div>
-                                    <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                    <form
+                                        action="{{ route('adicional.addToCart', ['produtoId' => $produto->id, 'tipoItem' => $produto->tipo_item ,'adicionalId' => $adicional->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit">
+                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             @endforeach
                         @elseif ($adicionaisSubCategorias)
@@ -86,7 +93,15 @@
                                         <h3 style="font-weight: 600; color: #464646">Adicionar {{ $adicional->nome }}</h3>
                                         <p class="fw-semibold">+ R$ {{ number_format($adicional->valor, 2, ',', '.') }}</p>
                                     </div>
-                                    <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                    <form
+                                        action="{{ route('adicional.addToCart', ['produtoId' => $produto->id, 'adicionalId' => $adicional->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit">
+                                            <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                        </button>
+                                    </form>
+
                                 </div>
                             @endforeach
                         @else

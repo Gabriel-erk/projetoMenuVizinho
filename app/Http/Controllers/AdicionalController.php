@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Adicional;
 use App\Models\CategoriaProduto;
+use App\Models\ItensCarrinho;
+use App\Models\ListaCarrinho;
+use App\Models\ProdutoAdicional;
 use App\Models\SubCategoria;
 use Exception;
 use Illuminate\Http\Request;
@@ -117,5 +120,37 @@ class AdicionalController extends Controller
         } catch (Exception $e) {
             return redirect()->route('adicional.index')->with('error', 'Erro ao deletar Adicional');
         }
+    }
+
+    public function addAdicional(Request $request, $produtoId, $tipoItem, $adicionalId)
+    {
+        $user = auth()->user();
+        $listaCarrinho = ListaCarrinho::where('user_id', $user->id)->first();
+
+        if (!$listaCarrinho) {
+            return response()->json(['message' => 'Carrinho não encontrado para o usuário.'], 404);
+        }
+
+        // Encontra ou cria o item no carrinho
+        $itemCarrinho = ItensCarrinho::firstOrCreate([
+            'item_id' => $produtoId,
+            'tipo_item' => $tipoItem,
+            'lista_carrinho_id' => $listaCarrinho->id,
+        ]);
+
+        // Verifica se o produto adicional existe antes de associá-lo
+        $produtoAdicional = Adicional::find($adicionalId);
+        // dd($produtoAdicional);
+
+        if (!$produtoAdicional) {
+            return response()->json(['message' => 'Adicional não encontrado.'], 404);
+        }
+
+        // Vincula o adicional ao item no carrinho
+        $itemCarrinho->produtoAdicionais()->attach($adicionalId, [
+            'quantidade' => $request->quantidade ?? 1,
+        ]);
+
+        return response()->json(['message' => 'Adicional adicionado ao carrinho com sucesso!']);
     }
 }

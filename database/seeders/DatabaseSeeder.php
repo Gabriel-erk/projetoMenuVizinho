@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CupomSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(OfertaSeeder::class);
+        $this->call(AdicionalSeeder::class);
         
     }
 }

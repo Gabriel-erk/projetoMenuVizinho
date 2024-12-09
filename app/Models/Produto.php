@@ -23,8 +23,14 @@ class Produto extends Model
     use HasFactory;
 
     public function loja()
-    {    
+    {
         return $this->belongsTo(Loja::class);
+    }
+
+    // relação de muitos para muitos com adicionais, usando tabela intermediária 'produto_adicional'
+    public function adicionais()
+    {
+        return $this->belongsToMany(Adicional::class, 'produto_adicional');
     }
 
     public function categoria()
@@ -40,7 +46,8 @@ class Produto extends Model
     }
 
     // Um produto pode estar em vários carrinhos, portanto, o relacionamento com itens_carrinho será de "um produto pode ter muitos registros de itens carrinho".
-    public function itens_carrinho(){
+    public function itens_carrinho()
+    {
         return $this->hasMany(ItensCarrinho::class, 'produto_id');
     }
 
@@ -48,7 +55,7 @@ class Produto extends Model
     {
         parent::boot();
 
-        // Antes de salvar, garantir que um dos dois campos esteja preenchido
+        // Antes de salvar, garantir que um dos dois campos esteja preenchido, para que um produto nunca seja enviado sem ter categoria/sub
         static::saving(function ($produto) {
             if (is_null($produto->categoria_produto_id) && is_null($produto->sub_categoria_produto_id)) {
                 throw new \Exception('O produto deve estar associado a uma categoria ou a uma subcategoria.');

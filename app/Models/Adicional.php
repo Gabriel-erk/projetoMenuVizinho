@@ -27,6 +27,12 @@ class Adicional extends Model
         return $this->belongsTo(SubCategoria::class, 'sub_categoria_produto_id');
     }
 
+    // relacionamento de muitos para muitos com a tabela intermediária 'produto_adicional', que vai a relacionar com os registros de produtos
+    public function produtos()
+    {
+        return $this->belongsToMany(Produto::class, 'produto_adicional');
+    }
+
     public static function boot()
     {
         parent::boot();

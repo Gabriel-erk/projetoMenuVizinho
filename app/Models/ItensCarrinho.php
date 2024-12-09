@@ -10,7 +10,7 @@ class ItensCarrinho extends Model
     use HasFactory;
 
     protected $table = "itens_carrinho";
-    
+
     protected $fillable = [
         'lista_carrinho_id', // Chave estrangeira para a lista de carrinho
         'item_id',           // Chave estrangeira para o id do item (produto ou oferta)
@@ -35,6 +35,12 @@ class ItensCarrinho extends Model
         return $this->belongsTo(Produto::class, 'item_id')->where('tipo_item', 'produto');
     }
 
+    // relacionamento muitos para muitos com a tabela intermediária entre 'produto_adicional' e 'itens_carrinho' (pois a tabela interm de produtos-adicionais é apenas para relacionar ambos, o carrinho não tem controle/visão total deles (o que é necessário) e em uma situação de realização de venda, terei uma visão mais ampla e maior facilidade de gerenciamento das informações)
+    public function produtoAdicionais()
+    {
+        return $this->belongsToMany(ProdutoAdicional::class, 'carrinho_produto_adicional')->withPivot('quantidade');
+    }
+
     /**
      * Relacionamento condicional com Oferta.
      */
@@ -48,7 +54,7 @@ class ItensCarrinho extends Model
      * Método para obter o item genérico (produto ou oferta) com base em `tipo_item`.
      */
     public function item()
-    {   
+    {
         // Este método é uma maneira conveniente de acessar o item, seja ele um produto ou uma oferta, com base no valor de tipo_item. Ele verifica o tipo e retorna o relacionamento correto automaticamente.
 
         if ($this->tipo_item === 'produto') {

@@ -196,6 +196,8 @@ Route::controller(AdicionalController::class)->group(function () {
         Route::put('/atualizar/{id}', 'update')->name('update');
         Route::delete('/deletar/{id}', 'destroy')->name('destroy');
     });
+    // rota para vincular adicional ao produto e add ao carrinho
+    Route::post('/produto/addAdicional/{produtoId}/{tipoItem}/{adicionalId}', 'addAdicional')->name('adicional.addToCart');
 });
 
 // Grupo de rotas para Produtos
