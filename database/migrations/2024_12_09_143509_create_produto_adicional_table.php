@@ -17,7 +17,10 @@ return new class extends Migration
             // o método constrained indica qual tabela deve ser referenciada para a chave estrangeira (normalmente o laravel pega o nome do foreignId e coloca-o no plural, em produto_id funciona, mas adicional mantem-se adicionals, o que não existe, apenas adicionais, então é necessário especificar a tabela em questão, fiz o mesmo em produtos apenas por aprendizado mesmo) 
             $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
             $table->foreignId('adicional_id')->constrained('adicionais')->onDelete('cascade');
+            $table->integer('quantidade');
             $table->timestamps();
+
+
         });
     }
 
