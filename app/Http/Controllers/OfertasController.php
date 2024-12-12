@@ -15,6 +15,7 @@ class OfertasController extends Controller
 
     public function produtoOferta(string $id)
     {
+        session(['from_showProduct_productOffer_area' => true]); 
         $oferta = Oferta::findOrFail($id);
         return view('showProduct.produtoOferta', compact('oferta'));
     }

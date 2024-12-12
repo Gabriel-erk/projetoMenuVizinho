@@ -23,6 +23,22 @@
         }
     </style>
 
+    @if (session('sucesso'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('sucesso') }}');
+            };
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('error') }}');
+            };
+        </script>
+    @endif
+
     <main>
         <div class="text-center py-5" style="background-color: #fbe7ca;">
             <img src="{{ asset($oferta->imagem) }}" style="width: 40vw; height: 60vh">
@@ -36,7 +52,8 @@
 
             <div style="font-family: 'Cabin', sans-serif; font-weight: 500; color: #979797">
                 {{-- utilizando método do carbon para formatar a data para mostrar apenas d/m/y  --}}
-                <p>{{ $oferta->descricao }} - Disponível até: {{ \Carbon\Carbon::parse($oferta->duracao)->format('d/m/Y') }}</p>
+                <p>{{ $oferta->descricao }} - Disponível até: {{ \Carbon\Carbon::parse($oferta->duracao)->format('d/m/Y') }}
+                </p>
             </div>
         </div>
 

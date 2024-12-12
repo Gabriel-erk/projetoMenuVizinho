@@ -24,6 +24,8 @@ class SiteController extends Controller
 
     public function produto(string $id)
     {
+        session(['from_showProduct_product_area' => true]); // vou usar para caso a requisição do método 'addToCart' venha dessa view, ao adicionar o produto no carrinho, mantenha nela, e caso venha da view carrinho, fique lá também
+
         $produto = Produto::findOrFail($id);
         $adicionais = Adicional::all();
 

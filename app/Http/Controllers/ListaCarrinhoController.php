@@ -55,6 +55,16 @@ class ListaCarrinhoController extends Controller
             ]);
         }
 
+        if (session('from_showProduct_product_area')) {
+            // Se veio da view produto, redireciona para o para a mesma view com a msg
+            session()->forget('from_showProduct_product_area'); // Limpa a sessão
+            return redirect()->back()->with('sucesso', 'Produto adicionado ao carrinho com sucesso!');
+        } else if (session('from_showProduct_productOffer_area')) {
+            // Se veio da view produtoOferta, redireciona para o para a mesma view com a msg
+            session()->forget('from_showProduct_productOffer_area'); // Limpa a sessão
+            return redirect()->back()->with('sucesso', 'Oferta adicionada ao carrinho com sucesso!');
+        }
+
         return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
     }
 
@@ -222,7 +232,6 @@ class ListaCarrinhoController extends Controller
             'taxaEntrega'
         ));
     }
-
 
     public function removeItem($itemId)
     {
