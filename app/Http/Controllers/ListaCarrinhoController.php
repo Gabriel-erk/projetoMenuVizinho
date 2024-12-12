@@ -251,4 +251,23 @@ class ListaCarrinhoController extends Controller
 
         return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
     }
+
+    public function limparCarrinho()
+    {
+        $userId = auth()->id();
+
+        // Busca a lista de carrinho do usuário
+        $listaCarrinho = ListaCarrinho::where('user_id', $userId)->first();
+
+        if ($listaCarrinho) {
+            // Apaga os itens relacionados ao carrinho
+            ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->delete();
+
+            return redirect()->back();
+            
+            // caso queira passar a mensagem
+            // return redirect()->back()->with('sucesso', 'Carrinho limpo com sucesso!');
+        }
+
+    }
 }

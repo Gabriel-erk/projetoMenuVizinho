@@ -44,12 +44,14 @@
             --cor-secundaria: #F9EED9;
             --cor-terciaria: #654730;
             --cor-quartenaria: #342F2E;
+            --fonte-primaria: 'Poppins', sans-serif;
+            --fonte-secundaria: 'Cabin', sans-serif;
         }
 
         /* formatando cabecalho */
 
         #barra-topo {
-            font-family: 'Cabin', sans-serif;
+            font-family: var(--fonte-secundaria);
             padding-top: 0.9375rem;
             padding-bottom: 0.9375rem;
         }

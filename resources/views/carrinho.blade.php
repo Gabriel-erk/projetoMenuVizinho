@@ -13,32 +13,28 @@ use Illuminate\Support\Str;
 
 @section('conteudo')
     <style>
+        #limparCarrinho {
+            background-color: var(--cor-primaria);
+            color: #fff;
+            font-family: var(--fonte-secundaria);
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            width: 9vw;
+            height: 7vh;
+            border: none;
+            border-radius: 1.3rem;
+
+            transition: background-color 0.3s ease-out, ;
+        }
+
+        #limparCarrinho:hover {
+            background-color: var(--cor-terciaria);
+            transition: ease-out 200ms;
+        }
+
         /* icones */
         .fa-solid:hover {
             cursor: pointer;
-        }
-
-        #botaoAlterar,
-        #botaoAdicionar {
-            color: #8C6342;
-            transition: transform 0.5s ease;
-        }
-
-        #botaoAlterar:hover,
-        #botaoAdicionar:hover {
-            color: #643c1c;
-            transition: all linear 200ms;
-        }
-
-        /* finalizar compra button  */
-        #finalizarCompra {
-            transition: transform 0.5s ease;
-        }
-
-        #finalizarCompra:hover {
-            cursor: pointer;
-            transform: scale(1.05);
-            transition: all linear 200ms;
         }
 
         /* campos de cupom e pagamento */
@@ -82,22 +78,26 @@ use Illuminate\Support\Str;
             }
         }
     </style>
+
     <main>
         <div class="py-3 container">
 
-            <h1 class="fw-bold pb-2">Seu Carrinho</h1>
+            <div class="d-flex justify-content-between align-items-center pb-2">
+                <h1 class="fw-bold">Seu Carrinho</h1>
+                @if (count($itensCarrinho) > 0)
+                    <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
+                        @csrf
+                        <button type="submit" id="limparCarrinho" onclick="return confirmLimpeza()">Limpar
+                            carrinho</button>
+                    </form>
+                @endif
+            </div>
+
             @if (count($itensCarrinho) > 0)
                 @foreach ($itensCarrinho as $item)
                     @if ($item->tipo_item == 'produto')
                         <div class="rounded position-relative mt-3"
                             style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
-
-                            <!-- Ícone de remover no canto superior direito -->
-                            <div style="position: absolute; top: 15px; right: 12px;">
-                                <a href="#">
-                                    <img src="{{ asset('img/remove-items.webp') }}" style="width: 0.9vw;">
-                                </a>
-                            </div>
 
                             <!-- Conteúdo principal -->
                             <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
@@ -113,7 +113,8 @@ use Illuminate\Support\Str;
                                         @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
                                             @foreach ($item->carrinhoProdutoAdicionais as $adicional)
                                                 <span class="ps-1 fw-semibold d-block"
-                                                    style="color:#696868; border-left: 2px solid #ccc">{{$adicional->quantidade}}x - {{ $adicional->adicional->nome }}</span>
+                                                    style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->quantidade }}x
+                                                    - {{ $adicional->adicional->nome }}</span>
                                             @endforeach
                                         @endif
                                     </div>
@@ -128,9 +129,17 @@ use Illuminate\Support\Str;
                                             <!-- Botão de diminuir -->
                                             <form action="{{ route('lista.remover', $item->id) }}" method="post">
                                                 @csrf
-                                                <button type="submit" style="border: none; background: none; padding: 0;">
-                                                    <i class="fa-solid fa-minus"></i>
-                                                </button>
+                                                @if ($item->quantidade == 1)
+                                                    <button type="submit" style="border: none; background: none;"
+                                                        class="ps-1 ">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="submit"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-minus fs-6"></i>
+                                                    </button>
+                                                @endif
                                             </form>
 
                                             <!-- Quantidade com bordas laterais -->
@@ -165,13 +174,6 @@ use Illuminate\Support\Str;
                         <div class="rounded position-relative mt-3"
                             style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
 
-                            <!-- Ícone de remover no canto superior direito -->
-                            <div style="position: absolute; top: 15px; right: 12px;">
-                                <a href="#">
-                                    <img src="{{ asset('img/remove-items.webp') }}" style="width: 0.9vw;">
-                                </a>
-                            </div>
-
                             <!-- Conteúdo principal -->
                             <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
                                 <div class="d-flex align-items-center">
@@ -195,9 +197,17 @@ use Illuminate\Support\Str;
                                             <!-- Botão de diminuir -->
                                             <form action="{{ route('lista.remover', $item->id) }}" method="post">
                                                 @csrf
-                                                <button type="submit" style="border: none; background: none; padding: 0;">
-                                                    <i class="fa-solid fa-minus"></i>
-                                                </button>
+                                                @if ($item->quantidade == 1)
+                                                    <button type="submit" style="border: none; background: none;"
+                                                        class="ps-1 ">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="submit"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-minus fs-6"></i>
+                                                    </button>
+                                                @endif
                                             </form>
 
                                             <!-- Quantidade com bordas laterais -->
@@ -408,6 +418,7 @@ use Illuminate\Support\Str;
 
             }
         </style>
+
         <div class="recomendacoes container">
 
             <h2 class="fw-medium ps-3 pt-3" style="font-family: 'Poppins', sans-serif;">Recomendações</h2>
@@ -617,6 +628,11 @@ use Illuminate\Support\Str;
     </div>
 
     <script>
+        // função para que retorna true ou false para a rota do form onde a estou chamando, se retornar true, vai acionar o método da rota, e vai limpar o carrinho, se não, não limpa
+        function confirmLimpeza() {
+            return confirm('Tem certeza que deseja limpar o carrinho?')
+        }
+
         function selecionarCupom(element) {
             const nomeCupom = element.getAttribute('data-nome-cupom');
             const valorDesconto = parseFloat(element.getAttribute('data-valor-desconto'));

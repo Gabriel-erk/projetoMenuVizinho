@@ -85,7 +85,7 @@ Route::middleware(["auth"])->group(function () {
         Route::post('/produto/adicionarAoCarrinho/{itemId}/{tipoItem}', 'addToCart')->name('lista.addToCart');
         Route::get('/carrinho', 'index')->name('lista.carrinho');
         Route::post('/carrinho/removerItem/{itemId}', 'removeItem')->name('lista.remover');
-        Route::post('/carrinho/limpar/{itemId}', 'clearCart')->name('lista.limpar');
+        Route::post('/carrinho/limpar', 'limparCarrinho')->name('lista.limpar');
         // area administrativa
         Route::get('/admin/adm/admListaC/index', 'admIndex')->name('lista.index');
         Route::get('/admin/adm/admListaC/show/{id}', 'show')->name('lista.show');
