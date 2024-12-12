@@ -15,8 +15,4 @@ class ProdutoAdicional extends Model
         'adicional_id'
     ];
 
-    public function itensCarrinho()
-    {
-        return $this->belongsToMany(ItensCarrinho::class, 'carrinho_produto_adicional')->withPivot('quantidade');
-    }
 }

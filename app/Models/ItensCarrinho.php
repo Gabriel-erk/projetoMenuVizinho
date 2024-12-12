@@ -26,6 +26,12 @@ class ItensCarrinho extends Model
         return $this->belongsTo(ListaCarrinho::class, 'lista_carrinho_id');
     }
 
+    public function carrinhoProdutoAdicionais()
+    {   
+        // Um item no carrinho pode ter vários adicionais (hasMany).
+        return $this->hasMany(CarrinhoProdutoAdicional::class, 'item_carrinho_id');
+    }
+
     /**
      * Relacionamento condicional com Produto.
      */
@@ -33,12 +39,6 @@ class ItensCarrinho extends Model
     {
         // where é usado para verificar q a coluna tipo_item tem o valor produto, se tiver, retorna um produto (no caso verifica dentro dos atributos do produto)
         return $this->belongsTo(Produto::class, 'item_id')->where('tipo_item', 'produto');
-    }
-
-    // relacionamento muitos para muitos com a tabela intermediária entre 'produto_adicional' e 'itens_carrinho' (pois a tabela interm de produtos-adicionais é apenas para relacionar ambos, o carrinho não tem controle/visão total deles (o que é necessário) e em uma situação de realização de venda, terei uma visão mais ampla e maior facilidade de gerenciamento das informações)
-    public function produtoAdicionais()
-    {
-        return $this->belongsToMany(ProdutoAdicional::class, 'carrinho_produto_adicional')->withPivot('quantidade');
     }
 
     /**

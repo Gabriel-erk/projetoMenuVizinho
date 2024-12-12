@@ -104,12 +104,19 @@ use Illuminate\Support\Str;
                             <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
                                 <div class="d-flex align-items-center">
                                     <div class="p-3 rounded" style="background-color: #f9eed9">
-                                        <img src="{{ asset($item->produto->imagem) }}" style="height: 19vh; width: 12vw;">
+                                        <a href="showProduct.produto">
+                                            <img src="{{ asset($item->produto->imagem) }}"
+                                                style="height: 19vh; width: 12vw;">
+                                        </a>
                                     </div>
                                     <div class="ps-2">
                                         <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
-                                        <span class="ps-1 fw-semibold d-block"
-                                            style="color:#696868; border-left: 2px solid #ccc">Bacon Extra</span>
+                                        @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
+                                            @foreach ($item->carrinhoProdutoAdicionais as $adicional)
+                                                <span class="ps-1 fw-semibold d-block"
+                                                    style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->adicional->nome }}</span>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
 
@@ -613,21 +620,21 @@ use Illuminate\Support\Str;
         function selecionarCupom(element) {
             const nomeCupom = element.getAttribute('data-nome-cupom');
             const valorDesconto = parseFloat(element.getAttribute('data-valor-desconto'));
-            
+
             const nomeCupomElement = document.getElementById('nomeCupomSelecionado');
             if (nomeCupomElement) {
                 nomeCupomElement.value = nomeCupom;
             } else {
                 console.error("Elemento com ID 'nomeCupomSelecionado' não encontrado.");
             }
-    
+
             const valorDescontoElement = document.getElementById('valorDescontoCupom');
             if (valorDescontoElement) {
                 valorDescontoElement.innerText = valorDesconto.toFixed(2).replace('.', ',');
             } else {
                 console.error("Elemento com ID 'valorDescontoCupom' não encontrado.");
             }
-    
+
             const subtotalElement = document.getElementById('subTotalCarrinho');
             if (subtotalElement) {
                 // pegando o valor do atributo data-valor, que contém o valor do 'subtotal' e convertendo para float
@@ -635,7 +642,7 @@ use Illuminate\Support\Str;
                 const taxaEntrega = 5.0;
                 let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
                 totalComDesconto = Math.max(totalComDesconto, 15);
-    
+
                 const totalCarrinhoElement = document.getElementById('totalCarrinho');
                 if (totalCarrinhoElement) {
                     totalCarrinhoElement.innerText = totalComDesconto.toFixed(2).replace('.', ',');
@@ -645,7 +652,7 @@ use Illuminate\Support\Str;
             } else {
                 console.error("Elemento com ID 'subtotalCarrinho' não encontrado.");
             }
-    
+
             // Fecha o modal corretamente
             const modalElement = document.getElementById('modalCupom');
             const modalInstance = bootstrap.Modal.getInstance(modalElement);

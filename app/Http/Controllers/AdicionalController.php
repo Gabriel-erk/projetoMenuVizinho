@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adicional;
+use App\Models\CarrinhoProdutoAdicional;
 use App\Models\CategoriaProduto;
 use App\Models\ItensCarrinho;
 use App\Models\ListaCarrinho;
+use App\Models\Produto;
 use App\Models\ProdutoAdicional;
 use App\Models\SubCategoria;
 use Exception;
@@ -122,35 +124,38 @@ class AdicionalController extends Controller
         }
     }
 
-    public function addAdicional(Request $request, $produtoId, $tipoItem, $adicionalId)
+    public function addAdicional($produtoId, $tipoItem, $adicionalId)
     {
-        $user = auth()->user();
-        $listaCarrinho = ListaCarrinho::where('user_id', $user->id)->first();
+        $userId = auth()->id();
+        // se não encontrar a lista carrinho dele joga um erro, utilizar a cláusula where permite aplicar filtros de retorno, neste caso quero o registro que tiver a coluna 'user_id' igual ao do usuário logado no momento, ou retorne uma exceção caso não encontre (caso use como antes, somente firstOrFail, ele irá me retornar somente a coluna 'user_id' e me retornar o novamente o erro 'column not found')
+        $listaCarrinho = ListaCarrinho::where('user_id', $userId)->firstOrFail();
 
-        if (!$listaCarrinho) {
-            return response()->json(['message' => 'Carrinho não encontrado para o usuário.'], 404);
+        // verifica se o produto já esta na lista
+        $itemCarrinho = ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->where('item_id', $produtoId)->where('tipo_item', $tipoItem)->first();
+
+        if (!$itemCarrinho) {
+            // caso não esteja no carrinho, lança um erro
+            // redireciona de volta para a mesma view passando a msg de erro q coloquei
+            return redirect()->back()->with('error', 'Adicione o produto ao carrinho primeiro!');
         }
 
-        // Encontra ou cria o item no carrinho
-        $itemCarrinho = ItensCarrinho::firstOrCreate([
-            'item_id' => $produtoId,
-            'tipo_item' => $tipoItem,
-            'lista_carrinho_id' => $listaCarrinho->id,
-        ]);
+        // se chegar até aqui, é pq o item está no carrinho
+        // verifica se o adicional já esta vinculado ao item no carrinho
+        $carrinhoProdutoAdicional = CarrinhoProdutoAdicional::where('item_carrinho_id', $itemCarrinho->id)->where('adicional_id', $adicionalId)->first();
 
-        // Verifica se o produto adicional existe antes de associá-lo
-        $produtoAdicional = Adicional::find($adicionalId);
-        // dd($produtoAdicional);
-
-        if (!$produtoAdicional) {
-            return response()->json(['message' => 'Adicional não encontrado.'], 404);
+        if ($carrinhoProdutoAdicional) {
+            // incrementa a quantidade se já existir (se já estiver vinculado ao item do carrinho)
+            $carrinhoProdutoAdicional->increment('quantidade', 1);
+        } else {
+            // cria o vínculo do adicional com o item do carrinho
+            CarrinhoProdutoAdicional::create([
+                'item_carrinho_id' => $itemCarrinho->id,
+                'adicional_id' => $adicionalId,
+                'quantidade' => 1
+            ]);
         }
 
-        // Vincula o adicional ao item no carrinho
-        $itemCarrinho->produtoAdicionais()->attach($adicionalId, [
-            'quantidade' => $request->quantidade ?? 1,
-        ]);
-
-        return response()->json(['message' => 'Adicional adicionado ao carrinho com sucesso!']);
+        // redireciona de volta para a mesma view passando a msg de sucesso (que vai mostrar em um alert a msg que to passando)
+        return redirect()->back()->with('sucesso', 'Adicional incluído com sucesso!');
     }
 }

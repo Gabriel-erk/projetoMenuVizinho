@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('carrinho_produto_adicional', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('itens_carrinho_id')->constrained('itens_carrinho')->onDelete('cascade');
-            $table->foreignId('produto_adicional_id')->constrained('produto_adicional')->onDelete('cascade');
+            $table->foreignId('item_carrinho_id')->constrained('itens_carrinho')->onDelete('cascade');
+            $table->foreignId('adicional_id')->constrained('adicionais')->onDelete('cascade');
             $table->integer('quantidade')->default(1); // Quantidade de adicionais escolhidos (talvez eu tire isso pq nem preciso)
             $table->timestamps();
         });

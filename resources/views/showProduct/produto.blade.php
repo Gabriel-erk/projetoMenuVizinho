@@ -21,6 +21,22 @@
         }
     </style>
 
+    @if (session('sucesso'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('sucesso') }}');
+            };
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('error') }}');
+            };
+        </script>
+    @endif
+
     <main>
         <div class="text-center py-5" style="background-color: #fbe7ca;">
             <img src="{{ asset($produto->imagem) }}" style="width: 40vw; height: 60vh">
@@ -76,10 +92,10 @@
                                         <p class="fw-semibold">+ R$ {{ number_format($adicional->valor, 2, ',', '.') }}</p>
                                     </div>
                                     <form
-                                        action="{{ route('adicional.addToCart', ['produtoId' => $produto->id, 'tipoItem' => $produto->tipo_item ,'adicionalId' => $adicional->id]) }}"
+                                        action="{{ route('adicional.addToCart', ['produtoId' => $produto->id, 'tipoItem' => $produto->tipo_item, 'adicionalId' => $adicional->id]) }}"
                                         method="POST">
                                         @csrf
-                                        <button type="submit">
+                                        <button type="submit" class="bg-white" style="border: none">
                                             <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
                                         </button>
                                     </form>
