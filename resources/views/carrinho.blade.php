@@ -83,7 +83,6 @@ use Illuminate\Support\Str;
         }
     </style>
     <main>
-        {{-- antes: .listaCarrinho --}}
         <div class="py-3 container">
 
             <h1 class="fw-bold pb-2">Seu Carrinho</h1>
@@ -104,7 +103,7 @@ use Illuminate\Support\Str;
                             <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
                                 <div class="d-flex align-items-center">
                                     <div class="p-3 rounded" style="background-color: #f9eed9">
-                                        <a href="showProduct.produto">
+                                        <a href="{{ route('site.produto', ['id' => $item->produto->id]) }}">
                                             <img src="{{ asset($item->produto->imagem) }}"
                                                 style="height: 19vh; width: 12vw;">
                                         </a>
@@ -114,7 +113,7 @@ use Illuminate\Support\Str;
                                         @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
                                             @foreach ($item->carrinhoProdutoAdicionais as $adicional)
                                                 <span class="ps-1 fw-semibold d-block"
-                                                    style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->adicional->nome }}</span>
+                                                    style="color:#696868; border-left: 2px solid #ccc">{{$adicional->quantidade}}x - {{ $adicional->adicional->nome }}</span>
                                             @endforeach
                                         @endif
                                     </div>
@@ -177,12 +176,13 @@ use Illuminate\Support\Str;
                             <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
                                 <div class="d-flex align-items-center">
                                     <div class="p-3 rounded" style="background-color: #f9eed9">
-                                        <img src="{{ asset($item->oferta->imagem) }}" style="height: 19vh; width: 12vw;">
+                                        <a href="{{ route('ofertas.produto', ['id' => $item->oferta->id]) }}">
+                                            <img src="{{ asset($item->oferta->imagem) }}"
+                                                style="height: 19vh; width: 12vw;">
+                                        </a>
                                     </div>
                                     <div class="ps-2">
                                         <h3 class="fw-semibold d-block">{{ $item->oferta->nome }}</h3>
-                                        <span class="ps-1 fw-semibold d-block"
-                                            style="color:#696868; border-left: 2px solid #ccc">Bacon Extra</span>
                                     </div>
                                 </div>
 

@@ -27,12 +27,6 @@ class Produto extends Model
         return $this->belongsTo(Loja::class);
     }
 
-    // relação de muitos para muitos com adicionais, usando tabela intermediária 'produto_adicional'
-    public function adicionais()
-    {
-        return $this->belongsToMany(Adicional::class, 'produto_adicional');
-    }
-
     public function categoria()
     {
         // Define que um produto pertence a uma categoria - Informa que o produto pertence a uma categoria, utilizando a chave estrangeira
