@@ -24,12 +24,18 @@ use Illuminate\Support\Str;
             border: none;
             border-radius: 1.3rem;
 
-            transition: background-color 0.3s ease-out, ;
+            /* Aplica a transição suave para todas as mudanças de cor */
+            transition: background-color 0.3s ease;
         }
 
-        #limparCarrinho:hover {
+        .finalizar-btn {
+            background-color: var(--cor-primaria);
+            transition: background-color 0.3s ease;
+        }
+
+        #limparCarrinho:hover,
+        .finalizar-btn:hover {
             background-color: var(--cor-terciaria);
-            transition: ease-out 200ms;
         }
 
         /* icones */
@@ -311,8 +317,7 @@ use Illuminate\Support\Str;
                             <span>R$ <span
                                     id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
                         </div>
-                        <button class="btn finalizar-btn w-100 mt-3 text-white rounded-5"
-                            style="background-color: var(--cor-primaria)">Finalizar</button>
+                        <button class="btn finalizar-btn w-100 mt-3 text-white rounded-5" onclick="return confirmFinalizar()">Finalizar</button>
                     @else
                         <div class="d-flex justify-content-between mt-3">
                             <span>Valor dos produtos</span>
@@ -419,9 +424,9 @@ use Illuminate\Support\Str;
             }
         </style>
 
-        <div class="recomendacoes container">
+        <div class="recomendacoes container" style="font-family: var(--fonte-primaria)">
 
-            <h2 class="fw-medium ps-3 pt-3" style="font-family: 'Poppins', sans-serif;">Recomendações</h2>
+            <h2 class="fw-medium ps-3 pt-3">Recomendações</h2>
             <div class="d-flex owl-carousel">
                 @foreach ($produtos as $produto)
                     <div id="produto" class="item">
@@ -631,6 +636,10 @@ use Illuminate\Support\Str;
         // função para que retorna true ou false para a rota do form onde a estou chamando, se retornar true, vai acionar o método da rota, e vai limpar o carrinho, se não, não limpa
         function confirmLimpeza() {
             return confirm('Tem certeza que deseja limpar o carrinho?')
+        }
+
+        function confirmFinalizar() {
+            return confirm('Deseja finalizar a compra?')
         }
 
         function selecionarCupom(element) {
