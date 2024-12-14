@@ -15,7 +15,7 @@ use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\SubCategoriasController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UsuarioController;
-
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/site', function () {
@@ -112,6 +112,13 @@ Route::middleware(["auth"])->group(function () {
         });
         // Rota pública para Cupons
         Route::get('/cupons', 'indexView')->name('cupom.cupons');
+    });
+
+    // Rota para vendas
+    Route::prefix('admin/adm/admVendas')->name('venda.')->controller(VendaController::class)->group(function () {
+        Route::get('/index','index')->name('index');
+        Route::get('/visualizar/{id}','show')->name('show');
+        Route::delete('/deletar/{id}','destroy')->name('destroy');
     });
 });
 

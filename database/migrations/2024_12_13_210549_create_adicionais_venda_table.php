@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_venda_id')->constrained('itens_venda')->onDelete('cascade');
             $table->foreignId('adicional_id')->constrained('adicionais');
-            $table->decimal('preco', 8, 2);
-
+            $table->decimal('valor', 8, 2);
             $table->timestamps();
         });
     }

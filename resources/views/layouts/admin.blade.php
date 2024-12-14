@@ -52,6 +52,7 @@
                         <li class="list-group-item"><a href="{{ route('adicional.index') }}">Adicionais</a></li>
                         <li class="list-group-item"><a href="{{ route('ofertas.index') }}">Ofertas</a></li>
                         <li class="list-group-item"><a href="{{ route('lista.index') }}">Lista carrinho</a></li>
+                        <li class="list-group-item"><a href="{{ route('venda.index') }}">Vendas</a></li>
                     </ul>
                 </nav>
 

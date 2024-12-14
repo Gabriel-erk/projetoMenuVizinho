@@ -34,7 +34,7 @@ class Venda extends Model
     // Relação com o cupom (opcional)
     public function cupom()
     {
-        return $this->belongsTo(Cupom::class, 'cupom_id');
+        return $this->belongsTo(Cupom::class, 'cupom_id')->nullable();
     }
 
     // Relação com o método de pagamento

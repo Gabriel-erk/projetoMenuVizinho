@@ -283,29 +283,33 @@ class ListaCarrinhoController extends Controller
         DB::beginTransaction();
 
         try {
-            // calcula o toal da compra
             $itensCarrinho = ItensCarrinho::with(['produto', 'oferta', 'carrinhoProdutoAdicionais.adicional'])->where('lista_carrinho_id', $listaCarrinho->id)->get();
-
+            
             $frete = 5.0;
             $total = 0;
+            // calcula o total da compra
             foreach ($itensCarrinho as $item) {
 
                 $precoItem = $item->tipo_item === 'produto' ? $item->produto->preco : $item->oferta->preco;
                 $total += $precoItem * $item->quantidade;
 
+                // somando o valor dos adicionais no carrinho ao total da compra (juntamente dos itens)
                 foreach ($item->carrinhoProdutoAdicionais as $adicional) {
-                    $total += $adicional->adicional->preco * $item->quantidade;
+                    $total += $adicional->adicional->valor * $item->quantidade;
                 }
             }
 
             $totalComFrete = $total + $frete;
+
+            // pegando o id do primeiro metódo de pagamenteo do usuário
+            $metodoPagamentoId = MetodoPagamento::where('user_id', $userId)->value('id');
 
             $venda = Venda::create([
                 'user_id' => $userId,
                 'total' => $totalComFrete,
                 'frete' => $frete,
                 'cupom_id' => $request->cupom_id ?? null,
-                'metodo_pagamento_id' => $request->metodo_pagamento_id
+                'metodo_pagamento_id' => $metodoPagamentoId
             ]);
 
             foreach ($itensCarrinho as $item) {
@@ -313,21 +317,21 @@ class ListaCarrinhoController extends Controller
                     'venda_id' => $venda->id,
                     'item_id' => $item->item_id,
                     'tipo_item' => $item->tipo_item,
+                    'produto_id' => $item->produto_id,
                     'quantidade' => $item->quantidade,
                     'preco' => $item->tipo_item === 'produto' ? $item->produto->preco : $item->oferta->preco,
                 ]);
-
+        
+                // 3. Transfira os adicionais relacionados
                 foreach ($item->carrinhoProdutoAdicionais as $adicional) {
                     AdicionaisVenda::create([
                         'item_venda_id' => $itemVenda->id,
-                        'adicional_id' => $adicional->adicional->id,
-                        'preco' => $adicional->adicional->preco,
+                        'adicional_id' => $adicional->id,
+                        'valor' => $adicional->adicional->valor,
                     ]);
                 }
             }
-
-            ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->delete();
-            $listaCarrinho->delete();
+            ItensCarrinho::where('lista_carrinho_id', $userId)->delete();
 
             DB::commit();
 

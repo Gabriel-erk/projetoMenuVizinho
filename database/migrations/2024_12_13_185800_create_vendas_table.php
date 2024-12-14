@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('usuarios')->onDelete('cascade');
             $table->decimal('total', 8, 2);
             $table->decimal('frete', 8, 2);
-            $table->foreignId('cupom_id')->constrained('cupons')->nullable();
+            // cria uma coluna chamada cupom_id, que pode ter valores nulos(nullable()), pois uma venda não possui necessariamente cupons para ser realizada, constrained faz referencia direta a tabela cupons, então o valor de cupom_id corresponde a um registro existente na tabela cupons, nullOnDelete quer dizer que caso o registro na tabela cupons for deletado, todos os registros que fazem referência a ele (no caso na tabela vendas) terão o valor de cupom_id alterado para null
+            $table->foreignId('cupom_id')->nullable()->constrained('cupons')->nullOnDelete();
+
             $table->foreignId('metodo_pagamento_id')->constrained('cartao_cliente');
             $table->timestamps();
         });

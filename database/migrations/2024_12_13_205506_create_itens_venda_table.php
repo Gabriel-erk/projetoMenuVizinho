@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('itens_venda', function (Blueprint $table) {
             $table->id();
             $table->foreignId('venda_id')->constrained('vendas')->onDelete('cascade');
-            $table->foreignId('item_id')->constrained('itens_carrinho');
+            // irá representar o id do produto (pois ao invés de fazer  uma referência ao item, irei copiar as informações dele para cá, pois um usuário pode ter múltiplas compras, e teria que apagar os itens frequentemente, oq deixaria este campo null e me imposibilitaria de referenciar novamente caso o usuário vá comprar novamente)
+            $table->unsignedBigInteger('item_id')->nullable();
             $table->string('tipo_item');
             $table->integer('quantidade')->default(1);
             $table->decimal('preco', 8, 2);

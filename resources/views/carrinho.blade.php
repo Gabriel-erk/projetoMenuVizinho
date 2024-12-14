@@ -85,6 +85,22 @@ use Illuminate\Support\Str;
         }
     </style>
 
+@if (session('sucesso'))
+<script>
+    window.onload = function() {
+        alert('{{ session('sucesso') }}');
+    };
+</script>
+@endif
+
+@if (session('error'))
+<script>
+    window.onload = function() {
+        alert('{{ session('error') }}');
+    };
+</script>
+@endif
+
     <main>
 
         <form action="{{ route('lista.finalizarCompra') }}" method="post">
@@ -94,11 +110,11 @@ use Illuminate\Support\Str;
                 <div class="d-flex justify-content-between align-items-center pb-2">
                     <h1 class="fw-bold">Seu Carrinho</h1>
                     @if (count($itensCarrinho) > 0)
-                        <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
+                        {{-- <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
                             @csrf
                             <button type="submit" id="limparCarrinho" onclick="return confirmLimpeza()">Limpar
                                 carrinho</button>
-                        </form>
+                        </form> --}}
                     @endif
                 </div>
 
@@ -135,7 +151,7 @@ use Illuminate\Support\Str;
                                             <h5 class="fw-semibold">Quantidade</h5>
                                             <div class="div-quantidade d-flex justify-content-between align-items-center">
 
-                                                <!-- Botão de diminuir -->
+                                                {{-- <!-- Botão de diminuir -->
                                                 <form action="{{ route('lista.remover', $item->id) }}" method="post">
                                                     @csrf
                                                     @if ($item->quantidade == 1)
@@ -149,7 +165,7 @@ use Illuminate\Support\Str;
                                                             <i class="fa-solid fa-minus fs-6"></i>
                                                         </button>
                                                     @endif
-                                                </form>
+                                                </form> --}}
 
                                                 <!-- Quantidade com bordas laterais -->
                                                 <strong
@@ -158,7 +174,7 @@ use Illuminate\Support\Str;
                                                 </strong>
 
                                                 <!-- Botão de aumentar -->
-                                                <form
+                                                {{-- <form
                                                     action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
                                                     method="post">
                                                     @csrf
@@ -166,7 +182,7 @@ use Illuminate\Support\Str;
                                                         style="border: none; background: none; padding: 0;">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                         </div>
 
@@ -205,7 +221,7 @@ use Illuminate\Support\Str;
                                             <div class="div-quantidade d-flex justify-content-between align-items-center">
 
                                                 <!-- Botão de diminuir -->
-                                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                                {{-- <form action="{{ route('lista.remover', $item->id) }}" method="post">
                                                     @csrf
                                                     @if ($item->quantidade == 1)
                                                         <button type="submit" style="border: none; background: none;"
@@ -218,7 +234,7 @@ use Illuminate\Support\Str;
                                                             <i class="fa-solid fa-minus fs-6"></i>
                                                         </button>
                                                     @endif
-                                                </form>
+                                                </form> --}}
 
                                                 <!-- Quantidade com bordas laterais -->
                                                 <strong
@@ -227,7 +243,7 @@ use Illuminate\Support\Str;
                                                 </strong>
 
                                                 <!-- Botão de aumentar -->
-                                                <form
+                                                {{-- <form
                                                     action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
                                                     method="post">
                                                     @csrf
@@ -235,7 +251,7 @@ use Illuminate\Support\Str;
                                                         style="border: none; background: none; padding: 0;">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                         </div>
 
