@@ -86,6 +86,8 @@ Route::middleware(["auth"])->group(function () {
         Route::get('/carrinho', 'index')->name('lista.carrinho');
         Route::post('/carrinho/removerItem/{itemId}', 'removeItem')->name('lista.remover');
         Route::post('/carrinho/limpar', 'limparCarrinho')->name('lista.limpar');
+        Route::post('/finalizar-compra', 'finalizarCompra')->name('lista.finalizarCompra');
+
         // area administrativa
         Route::get('/admin/adm/admListaC/index', 'admIndex')->name('lista.index');
         Route::get('/admin/adm/admListaC/show/{id}', 'show')->name('lista.show');

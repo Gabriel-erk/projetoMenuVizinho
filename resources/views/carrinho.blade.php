@@ -86,260 +86,268 @@ use Illuminate\Support\Str;
     </style>
 
     <main>
-        <div class="py-3 container">
 
-            <div class="d-flex justify-content-between align-items-center pb-2">
-                <h1 class="fw-bold">Seu Carrinho</h1>
+        <form action="{{ route('lista.finalizarCompra') }}" method="post">
+            @csrf
+            <div class="py-3 container">
+
+                <div class="d-flex justify-content-between align-items-center pb-2">
+                    <h1 class="fw-bold">Seu Carrinho</h1>
+                    @if (count($itensCarrinho) > 0)
+                        <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
+                            @csrf
+                            <button type="submit" id="limparCarrinho" onclick="return confirmLimpeza()">Limpar
+                                carrinho</button>
+                        </form>
+                    @endif
+                </div>
+
                 @if (count($itensCarrinho) > 0)
-                    <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
-                        @csrf
-                        <button type="submit" id="limparCarrinho" onclick="return confirmLimpeza()">Limpar
-                            carrinho</button>
-                    </form>
+                    @foreach ($itensCarrinho as $item)
+                        @if ($item->tipo_item == 'produto')
+                            <div class="rounded position-relative mt-3"
+                                style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
+
+                                <!-- Conteúdo principal -->
+                                <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-3 rounded" style="background-color: #f9eed9">
+                                            <a href="{{ route('site.produto', ['id' => $item->produto->id]) }}">
+                                                <img src="{{ asset($item->produto->imagem) }}"
+                                                    style="height: 19vh; width: 12vw;">
+                                            </a>
+                                        </div>
+                                        <div class="ps-2">
+                                            <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
+                                            @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
+                                                @foreach ($item->carrinhoProdutoAdicionais as $adicional)
+                                                    <span class="ps-1 fw-semibold d-block"
+                                                        style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->quantidade }}x
+                                                        - {{ $adicional->adicional->nome }}</span>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <!-- Controles de quantidade e valor -->
+                                    <div class="w-50 d-flex justify-content-around">
+                                        <div>
+                                            <h5 class="fw-semibold">Quantidade</h5>
+                                            <div class="div-quantidade d-flex justify-content-between align-items-center">
+
+                                                <!-- Botão de diminuir -->
+                                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @if ($item->quantidade == 1)
+                                                        <button type="submit" style="border: none; background: none;"
+                                                            class="ps-1 ">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit"
+                                                            style="border: none; background: none; padding: 0;">
+                                                            <i class="fa-solid fa-minus fs-6"></i>
+                                                        </button>
+                                                    @endif
+                                                </form>
+
+                                                <!-- Quantidade com bordas laterais -->
+                                                <strong
+                                                    style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
+                                                    {{ $item->quantidade }}
+                                                </strong>
+
+                                                <!-- Botão de aumentar -->
+                                                <form
+                                                    action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h5 class="fw-semibold">Valor unitário</h5>
+                                            <p class="fw-semibold fs-5"
+                                                style="font-family: 'Poppins', sans-serif; color:#555555">
+                                                R$ {{ $item->produto->preco }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="rounded position-relative mt-3"
+                                style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
+
+                                <!-- Conteúdo principal -->
+                                <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-3 rounded" style="background-color: #f9eed9">
+                                            <a href="{{ route('ofertas.produto', ['id' => $item->oferta->id]) }}">
+                                                <img src="{{ asset($item->oferta->imagem) }}"
+                                                    style="height: 19vh; width: 12vw;">
+                                            </a>
+                                        </div>
+                                        <div class="ps-2">
+                                            <h3 class="fw-semibold d-block">{{ $item->oferta->nome }}</h3>
+                                        </div>
+                                    </div>
+
+                                    <!-- Controles de quantidade e valor -->
+                                    <div class="w-50 d-flex justify-content-around">
+                                        <div>
+                                            <h5 class="fw-semibold">Quantidade</h5>
+                                            <div class="div-quantidade d-flex justify-content-between align-items-center">
+
+                                                <!-- Botão de diminuir -->
+                                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @if ($item->quantidade == 1)
+                                                        <button type="submit" style="border: none; background: none;"
+                                                            class="ps-1 ">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit"
+                                                            style="border: none; background: none; padding: 0;">
+                                                            <i class="fa-solid fa-minus fs-6"></i>
+                                                        </button>
+                                                    @endif
+                                                </form>
+
+                                                <!-- Quantidade com bordas laterais -->
+                                                <strong
+                                                    style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
+                                                    {{ $item->quantidade }}
+                                                </strong>
+
+                                                <!-- Botão de aumentar -->
+                                                <form
+                                                    action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h5 class="fw-semibold">Valor unitário</h5>
+                                            <p class="fw-semibold fs-5"
+                                                style="font-family: 'Poppins', sans-serif; color:#555555">
+                                                R$ {{ $item->produto->preco }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @else
+                    <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">
+                        Seu carrinho está vazio.
+                    </p>
                 @endif
             </div>
 
-            @if (count($itensCarrinho) > 0)
-                @foreach ($itensCarrinho as $item)
-                    @if ($item->tipo_item == 'produto')
-                        <div class="rounded position-relative mt-3"
-                            style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
-
-                            <!-- Conteúdo principal -->
-                            <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-3 rounded" style="background-color: #f9eed9">
-                                        <a href="{{ route('site.produto', ['id' => $item->produto->id]) }}">
-                                            <img src="{{ asset($item->produto->imagem) }}"
-                                                style="height: 19vh; width: 12vw;">
-                                        </a>
-                                    </div>
-                                    <div class="ps-2">
-                                        <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
-                                        @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
-                                            @foreach ($item->carrinhoProdutoAdicionais as $adicional)
-                                                <span class="ps-1 fw-semibold d-block"
-                                                    style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->quantidade }}x
-                                                    - {{ $adicional->adicional->nome }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
+            <div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
+                <div class="row">
+                    <!-- Opções de Prazo, Cupom e Pagamento -->
+                    <div class="col-md-7">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="prazo" class="form-label fs-5" style="font-weight: 500">Prazo de
+                                    entrega</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="prazo" placeholder="0000-000"
+                                        aria-label="Prazo de entrega">
+                                    <button class="btn btn-outline-secondary" type="button">Calcular</button>
                                 </div>
+                            </div>
 
-                                <!-- Controles de quantidade e valor -->
-                                <div class="w-50 d-flex justify-content-around">
-                                    <div>
-                                        <h5 class="fw-semibold">Quantidade</h5>
-                                        <div class="div-quantidade d-flex justify-content-between align-items-center">
-
-                                            <!-- Botão de diminuir -->
-                                            <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                                @csrf
-                                                @if ($item->quantidade == 1)
-                                                    <button type="submit" style="border: none; background: none;"
-                                                        class="ps-1 ">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                @else
-                                                    <button type="submit"
-                                                        style="border: none; background: none; padding: 0;">
-                                                        <i class="fa-solid fa-minus fs-6"></i>
-                                                    </button>
-                                                @endif
-                                            </form>
-
-                                            <!-- Quantidade com bordas laterais -->
-                                            <strong
-                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
-                                                {{ $item->quantidade }}
-                                            </strong>
-
-                                            <!-- Botão de aumentar -->
-                                            <form
-                                                action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
-                                                method="post">
-                                                @csrf
-                                                <button type="submit" style="border: none; background: none; padding: 0;">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h5 class="fw-semibold">Valor unitário</h5>
-                                        <p class="fw-semibold fs-5"
-                                            style="font-family: 'Poppins', sans-serif; color:#555555">
-                                            R$ {{ $item->produto->preco }}
-                                        </p>
-                                    </div>
+                            <div class="col-md-6">
+                                <label for="cupom" class="form-label fs-5" style="font-weight: 500">Cupom de
+                                    Desconto</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="nomeCupomSelecionado"
+                                        placeholder="R$15 para nossos novos..." aria-label="Cupom de Desconto">
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modalCupom">Selecionar</button>
                                 </div>
                             </div>
                         </div>
-                    @else
-                        <div class="rounded position-relative mt-3"
-                            style="border: 1px solid #ccc; font-family: 'Poppins', sans-serif; background-color: #FCFCFC;">
 
-                            <!-- Conteúdo principal -->
-                            <div class="d-flex align-items-center justify-content-between py-4 px-4 rounded-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-3 rounded" style="background-color: #f9eed9">
-                                        <a href="{{ route('ofertas.produto', ['id' => $item->oferta->id]) }}">
-                                            <img src="{{ asset($item->oferta->imagem) }}"
-                                                style="height: 19vh; width: 12vw;">
-                                        </a>
-                                    </div>
-                                    <div class="ps-2">
-                                        <h3 class="fw-semibold d-block">{{ $item->oferta->nome }}</h3>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="pagamento" class="form-label fs-5" style="font-weight: 500">Método de
+                                    Pagamento</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="pagamento"
+                                        placeholder="*****-3214 12/24" aria-label="Método de Pagamento">
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modalPagamento">Selecionar</button>
                                 </div>
-
-                                <!-- Controles de quantidade e valor -->
-                                <div class="w-50 d-flex justify-content-around">
-                                    <div>
-                                        <h5 class="fw-semibold">Quantidade</h5>
-                                        <div class="div-quantidade d-flex justify-content-between align-items-center">
-
-                                            <!-- Botão de diminuir -->
-                                            <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                                @csrf
-                                                @if ($item->quantidade == 1)
-                                                    <button type="submit" style="border: none; background: none;"
-                                                        class="ps-1 ">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                @else
-                                                    <button type="submit"
-                                                        style="border: none; background: none; padding: 0;">
-                                                        <i class="fa-solid fa-minus fs-6"></i>
-                                                    </button>
-                                                @endif
-                                            </form>
-
-                                            <!-- Quantidade com bordas laterais -->
-                                            <strong
-                                                style="border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 0 10px; text-align: center;">
-                                                {{ $item->quantidade }}
-                                            </strong>
-
-                                            <!-- Botão de aumentar -->
-                                            <form
-                                                action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
-                                                method="post">
-                                                @csrf
-                                                <button type="submit" style="border: none; background: none; padding: 0;">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h5 class="fw-semibold">Valor unitário</h5>
-                                        <p class="fw-semibold fs-5"
-                                            style="font-family: 'Poppins', sans-serif; color:#555555">
-                                            R$ {{ $item->produto->preco }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            @else
-                <p class="text-center pb-3 fs-4 fw-semibold" style="font-family: 'Poppins', sans-serif">
-                    Seu carrinho está vazio.
-                </p>
-            @endif
-        </div>
-
-        <div class="container mt-5" style="font-family: 'Poppins', sans-serif;">
-            <div class="row">
-                <!-- Opções de Prazo, Cupom e Pagamento -->
-                <div class="col-md-7">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="prazo" class="form-label fs-5" style="font-weight: 500">Prazo de entrega</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="prazo" placeholder="0000-000"
-                                    aria-label="Prazo de entrega">
-                                <button class="btn btn-outline-secondary" type="button">Calcular</button>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="cupom" class="form-label fs-5" style="font-weight: 500">Cupom de
-                                Desconto</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="nomeCupomSelecionado"
-                                    placeholder="R$15 para nossos novos..." aria-label="Cupom de Desconto">
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#modalCupom">Selecionar</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="pagamento" class="form-label fs-5" style="font-weight: 500">Método de
-                                Pagamento</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="pagamento" placeholder="*****-3214 12/24"
-                                    aria-label="Método de Pagamento">
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#modalPagamento">Selecionar</button>
+                    <!-- Resumo da Compra -->
+                    <div class="col-md-4 ms-5 ps-3" style="border-left: 2px solid #ccc">
+                        {{-- <div class="divider mx-3"></div> --}}
+                        <h4 class="fw-bold">Resumo</h4>
+                        @if ($totalCarrinho > 0.0)
+                            <div class="d-flex justify-content-between mt-3">
+                                {{-- utilizando data-valor para armazenar o valor do totalCarrinho e fazer o javascript interagir diretamente com esse campo, ao invés do campo abaixo, que está sendo tratado com number_format, que dificultaria o processo na hora de pegar este mesmo valor no js --}}
+                                <span id="subTotalCarrinho" data-valor="{{ $totalCarrinho }}">Valor dos produtos</span>
+                                <span>R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
                             </div>
-                        </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Frete</span>
+                                <span>R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-success">
+                                <span>Descontos</span>
+                                <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Total da compra</span>
+                                <span>R$ <span
+                                        id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
+                            </div>
+                            <button type="submit" class="btn finalizar-btn w-100 mt-3 text-white rounded-5"
+                                >Finalizar</button>
+                        @else
+                            <div class="d-flex justify-content-between mt-3">
+                                <span>Valor dos produtos</span>
+                                <span>R$ 0,00</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Frete</span>
+                                <span>R$ 0,00</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-success">
+                                <span>Descontos</span>
+                                <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Total da compra</span>
+                                <span>R$ 0,00</span>
+                            </div>
+                        @endif
                     </div>
-                </div>
-
-                <!-- Resumo da Compra -->
-                <div class="col-md-4 ms-5 ps-3" style="border-left: 2px solid #ccc">
-                    {{-- <div class="divider mx-3"></div> --}}
-                    <h4 class="fw-bold">Resumo</h4>
-                    @if ($totalCarrinho > 0.0)
-                        <div class="d-flex justify-content-between mt-3">
-                            {{-- utilizando data-valor para armazenar o valor do totalCarrinho e fazer o javascript interagir diretamente com esse campo, ao invés do campo abaixo, que está sendo tratado com number_format, que dificultaria o processo na hora de pegar este mesmo valor no js --}}
-                            <span id="subTotalCarrinho" data-valor="{{ $totalCarrinho }}">Valor dos produtos</span>
-                            <span>R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Frete</span>
-                            <span>R$ {{ number_format($taxaEntrega, 2, ',', '.') }}</span>
-                        </div>
-                        <div class="d-flex justify-content-between text-success">
-                            <span>Descontos</span>
-                            <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between fw-bold">
-                            <span>Total da compra</span>
-                            <span>R$ <span
-                                    id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
-                        </div>
-                        <button class="btn finalizar-btn w-100 mt-3 text-white rounded-5" onclick="return confirmFinalizar()">Finalizar</button>
-                    @else
-                        <div class="d-flex justify-content-between mt-3">
-                            <span>Valor dos produtos</span>
-                            <span>R$ 0,00</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Frete</span>
-                            <span>R$ 0,00</span>
-                        </div>
-                        <div class="d-flex justify-content-between text-success">
-                            <span>Descontos</span>
-                            <span>- R$ <span id="valorDescontoCupom">0,00</span></span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between fw-bold">
-                            <span>Total da compra</span>
-                            <span>R$ 0,00</span>
-                        </div>
-                    @endif
                 </div>
             </div>
-        </div>
+        </form>
 
         <style>
             #produto {

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdicionaisVenda;
 use App\Models\Cupom;
 use App\Models\ItensCarrinho;
+use App\Models\ItensVenda;
 use App\Models\ListaCarrinho;
 
 use App\Models\Produto;
 use App\Models\MetodoPagamento;
+use App\Models\Venda;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ListaCarrinhoController extends Controller
 {
@@ -264,10 +269,72 @@ class ListaCarrinhoController extends Controller
             ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->delete();
 
             return redirect()->back();
-            
+
             // caso queira passar a mensagem
             // return redirect()->back()->with('sucesso', 'Carrinho limpo com sucesso!');
         }
+    }
 
+    public function finalizarCompra(Request $request)
+    {
+        $userId = auth()->id();
+        $listaCarrinho = ListaCarrinho::where('user_id', $userId)->first();
+
+        DB::beginTransaction();
+
+        try {
+            // calcula o toal da compra
+            $itensCarrinho = ItensCarrinho::with(['produto', 'oferta', 'carrinhoProdutoAdicionais.adicional'])->where('lista_carrinho_id', $listaCarrinho->id)->get();
+
+            $frete = 5.0;
+            $total = 0;
+            foreach ($itensCarrinho as $item) {
+
+                $precoItem = $item->tipo_item === 'produto' ? $item->produto->preco : $item->oferta->preco;
+                $total += $precoItem * $item->quantidade;
+
+                foreach ($item->carrinhoProdutoAdicionais as $adicional) {
+                    $total += $adicional->adicional->preco * $item->quantidade;
+                }
+            }
+
+            $totalComFrete = $total + $frete;
+
+            $venda = Venda::create([
+                'user_id' => $userId,
+                'total' => $totalComFrete,
+                'frete' => $frete,
+                'cupom_id' => $request->cupom_id ?? null,
+                'metodo_pagamento_id' => $request->metodo_pagamento_id
+            ]);
+
+            foreach ($itensCarrinho as $item) {
+                $itemVenda = ItensVenda::create([
+                    'venda_id' => $venda->id,
+                    'item_id' => $item->item_id,
+                    'tipo_item' => $item->tipo_item,
+                    'quantidade' => $item->quantidade,
+                    'preco' => $item->tipo_item === 'produto' ? $item->produto->preco : $item->oferta->preco,
+                ]);
+
+                foreach ($item->carrinhoProdutoAdicionais as $adicional) {
+                    AdicionaisVenda::create([
+                        'item_venda_id' => $itemVenda->id,
+                        'adicional_id' => $adicional->adicional->id,
+                        'preco' => $adicional->adicional->preco,
+                    ]);
+                }
+            }
+
+            ItensCarrinho::where('lista_carrinho_id', $listaCarrinho->id)->delete();
+            $listaCarrinho->delete();
+
+            DB::commit();
+
+            return redirect()->back()->with('success','Compra realizada com sucesso!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

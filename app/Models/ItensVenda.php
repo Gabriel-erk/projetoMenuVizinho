@@ -16,7 +16,7 @@ class ItensVenda extends Model
         'item_id',
         'tipo_item',
         'quantidade',
-        'preco'
+        'preco',
     ];
 
     // Relação com a venda
