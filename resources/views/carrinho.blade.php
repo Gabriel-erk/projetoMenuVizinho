@@ -136,6 +136,7 @@ use Illuminate\Support\Str;
                                         <div class="ps-2">
                                             <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
                                             @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
+                                            {{-- @dd($item->carrinhoProdutoAdicionais) --}}
                                                 @foreach ($item->carrinhoProdutoAdicionais as $adicional)
                                                     <span class="ps-1 fw-semibold d-block"
                                                         style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->quantidade }}x

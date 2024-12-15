@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ListaCarrinho;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Venda;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -191,6 +192,16 @@ class UsuarioController extends Controller
     // vou pedir id do usuário dps - mostrar apenas os pedidos referentes a aquele usuário
     public function meusPedidos()
     {
-        return view('admin.usuarios.meusPedidos');
+        $userId = auth()->id();
+        // Recuperar todas as vendas do usuário logado
+        $vendas = Venda::with([
+            'itensVenda', // Itens da venda e informações dos produtos
+            'itensVenda.adicionaisVenda', // Adicionais de cada item
+            'cupom', // Informações do cupom usado
+            'metodoPagamento', // Método de pagamento usado
+        ])->where('user_id', $userId)->get();
+
+        
+        return view('admin.usuarios.meusPedidos', compact('vendas'));
     }
 }
