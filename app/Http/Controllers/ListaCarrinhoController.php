@@ -68,9 +68,16 @@ class ListaCarrinhoController extends Controller
             // Se veio da view produtoOferta, redireciona para o para a mesma view com a msg
             session()->forget('from_showProduct_productOffer_area'); // Limpa a sessão
             return redirect()->back()->with('sucesso', 'Oferta adicionada ao carrinho com sucesso!');
-        }
+        } else if (session('from_Offer_area') || session('from_Menu_area')) {
+            session()->forget('from_Offer_area');
+            session()->forget('from_Menu_area');
+            return redirect()->route('lista.carrinho');
+        } 
 
-        return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
+        return response()->json([
+            'success' => true,
+            'redirect' => route('lista.carrinho') // URL para redirecionar
+        ]);  // Redireciona para a view do carrinho
     }
 
     public function index2()
@@ -254,7 +261,10 @@ class ListaCarrinhoController extends Controller
             }
         }
 
-        return redirect()->route('lista.carrinho');  // Redireciona para a view do carrinho
+        return response()->json([
+            'success' => true,
+            'redirect' => route('lista.carrinho') // URL para redirecionar
+        ]);
     }
 
     public function limparCarrinho()
@@ -284,7 +294,7 @@ class ListaCarrinhoController extends Controller
 
         try {
             $itensCarrinho = ItensCarrinho::with(['produto', 'oferta', 'carrinhoProdutoAdicionais.adicional'])->where('lista_carrinho_id', $listaCarrinho->id)->get();
-            
+
             $frete = 5.0;
             $total = 0;
             // calcula o total da compra
@@ -321,13 +331,14 @@ class ListaCarrinhoController extends Controller
                     'quantidade' => $item->quantidade,
                     'preco' => $item->tipo_item === 'produto' ? $item->produto->preco : $item->oferta->preco,
                 ]);
-        
+
                 // 3. Transfira os adicionais relacionados
                 foreach ($item->carrinhoProdutoAdicionais as $adicional) {
                     AdicionaisVenda::create([
                         'item_venda_id' => $itemVenda->id,
                         'adicional_id' => $adicional->id,
                         'valor' => $adicional->adicional->valor,
+                        'quantidade' => $adicional->quantidade
                     ]);
                 }
             }
@@ -335,7 +346,7 @@ class ListaCarrinhoController extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('success','Compra realizada com sucesso!');
+            return redirect()->back()->with('success', 'Compra realizada com sucesso!');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());

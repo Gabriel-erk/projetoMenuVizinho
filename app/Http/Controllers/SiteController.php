@@ -17,6 +17,7 @@ class SiteController extends Controller
 
     public function cardapio()
     {
+        session(['from_Menu_area' => true]); 
         $categorias = CategoriaProduto::with('produtos')->get();
         $subCategorias = SubCategoria::with('produtos')->get();
         return view('cardapio', compact('categorias', 'subCategorias'));

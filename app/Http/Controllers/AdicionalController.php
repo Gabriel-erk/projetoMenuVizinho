@@ -7,8 +7,6 @@ use App\Models\CarrinhoProdutoAdicional;
 use App\Models\CategoriaProduto;
 use App\Models\ItensCarrinho;
 use App\Models\ListaCarrinho;
-use App\Models\Produto;
-use App\Models\ProdutoAdicional;
 use App\Models\SubCategoria;
 use Exception;
 use Illuminate\Http\Request;

@@ -14,7 +14,8 @@ class AdicionaisVenda extends Model
     protected $fillable = [
         'item_venda_id',
         'adicional_id',
-        'valor'
+        'valor',
+        'quantidade'
     ];
 
     // Relação com o item da venda

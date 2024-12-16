@@ -9,6 +9,7 @@ class OfertasController extends Controller
 {
     public function viewIndex()
     {
+        session(['from_Offer_area' => true]); 
         $ofertas = Oferta::all();
         return view('ofertas', compact('ofertas'));
     }
@@ -22,7 +23,7 @@ class OfertasController extends Controller
 
     // área administrativa
     public function index()
-    {
+    {   
         $produtos = Oferta::all();
         return view('admin.adm.admOfertas.index', compact('produtos'));
     }

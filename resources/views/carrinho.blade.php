@@ -38,6 +38,16 @@ use Illuminate\Support\Str;
             background-color: var(--cor-terciaria);
         }
 
+        .img-item {
+            transition: 0.3s ease-in-out;
+            /* Suaviza o efeito ao passar/tirar o mouse */
+        }
+
+        .img-item:hover {
+            filter: brightness(70%);
+            /* Escurece a imagem */
+        }
+
         /* icones */
         .fa-solid:hover {
             cursor: pointer;
@@ -85,21 +95,21 @@ use Illuminate\Support\Str;
         }
     </style>
 
-@if (session('sucesso'))
-<script>
-    window.onload = function() {
-        alert('{{ session('sucesso') }}');
-    };
-</script>
-@endif
+    @if (session('sucesso'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('sucesso') }}');
+            };
+        </script>
+    @endif
 
-@if (session('error'))
-<script>
-    window.onload = function() {
-        alert('{{ session('error') }}');
-    };
-</script>
-@endif
+    @if (session('error'))
+        <script>
+            window.onload = function() {
+                alert('{{ session('error') }}');
+            };
+        </script>
+    @endif
 
     <main>
 
@@ -110,11 +120,8 @@ use Illuminate\Support\Str;
                 <div class="d-flex justify-content-between align-items-center pb-2">
                     <h1 class="fw-bold">Seu Carrinho</h1>
                     @if (count($itensCarrinho) > 0)
-                        {{-- <form id="form-limpar-carrinho" action="{{ route('lista.limpar') }}" method="POST">
-                            @csrf
-                            <button type="submit" id="limparCarrinho" onclick="return confirmLimpeza()">Limpar
-                                carrinho</button>
-                        </form> --}}
+                        <button type="submit" id="limparCarrinho" onclick="limparCarrinho()">Limpar
+                            carrinho</button>
                     @endif
                 </div>
 
@@ -130,13 +137,12 @@ use Illuminate\Support\Str;
                                         <div class="p-3 rounded" style="background-color: #f9eed9">
                                             <a href="{{ route('site.produto', ['id' => $item->produto->id]) }}">
                                                 <img src="{{ asset($item->produto->imagem) }}"
-                                                    style="height: 19vh; width: 12vw;">
+                                                    class="img-item"style="height: 19vh; width: 12vw;">
                                             </a>
                                         </div>
                                         <div class="ps-2">
                                             <h3 class="fw-semibold d-block">{{ $item->produto->nome }}</h3>
                                             @if ($item->carrinhoProdutoAdicionais->isNotEmpty())
-                                            {{-- @dd($item->carrinhoProdutoAdicionais) --}}
                                                 @foreach ($item->carrinhoProdutoAdicionais as $adicional)
                                                     <span class="ps-1 fw-semibold d-block"
                                                         style="color:#696868; border-left: 2px solid #ccc">{{ $adicional->quantidade }}x
@@ -152,21 +158,19 @@ use Illuminate\Support\Str;
                                             <h5 class="fw-semibold">Quantidade</h5>
                                             <div class="div-quantidade d-flex justify-content-between align-items-center">
 
-                                                {{-- <!-- Botão de diminuir -->
-                                                <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                                    @csrf
-                                                    @if ($item->quantidade == 1)
-                                                        <button type="submit" style="border: none; background: none;"
-                                                            class="ps-1 ">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </button>
-                                                    @else
-                                                        <button type="submit"
-                                                            style="border: none; background: none; padding: 0;">
-                                                            <i class="fa-solid fa-minus fs-6"></i>
-                                                        </button>
-                                                    @endif
-                                                </form> --}}
+                                                @if ($item->quantidade == 1)
+                                                    <button type="button"
+                                                        onclick="removeItem('{{ route('lista.remover', ['itemId' => $item->id]) }}')"
+                                                        style="border: none; background: none;" class="ps-1">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button"
+                                                        onclick="removeItem('{{ route('lista.remover', ['itemId' => $item->id]) }}')"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-minus fs-6"></i>
+                                                    </button>
+                                                @endif
 
                                                 <!-- Quantidade com bordas laterais -->
                                                 <strong
@@ -174,16 +178,11 @@ use Illuminate\Support\Str;
                                                     {{ $item->quantidade }}
                                                 </strong>
 
-                                                <!-- Botão de aumentar -->
-                                                {{-- <form
-                                                    action="{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        style="border: none; background: none; padding: 0;">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </button>
-                                                </form> --}}
+                                                <button type="button"
+                                                    onclick="addToCart('{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->produto->tipo_item]) }}')"
+                                                    style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -221,21 +220,19 @@ use Illuminate\Support\Str;
                                             <h5 class="fw-semibold">Quantidade</h5>
                                             <div class="div-quantidade d-flex justify-content-between align-items-center">
 
-                                                <!-- Botão de diminuir -->
-                                                {{-- <form action="{{ route('lista.remover', $item->id) }}" method="post">
-                                                    @csrf
-                                                    @if ($item->quantidade == 1)
-                                                        <button type="submit" style="border: none; background: none;"
-                                                            class="ps-1 ">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </button>
-                                                    @else
-                                                        <button type="submit"
-                                                            style="border: none; background: none; padding: 0;">
-                                                            <i class="fa-solid fa-minus fs-6"></i>
-                                                        </button>
-                                                    @endif
-                                                </form> --}}
+                                                @if ($item->quantidade == 1)
+                                                    <button type="button"
+                                                        onclick="removeItem('{{ route('lista.remover', ['itemId' => $item->id]) }}')"
+                                                        style="border: none; background: none;" class="ps-1">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button"
+                                                        onclick="removeItem('{{ route('lista.remover', ['itemId' => $item->id]) }}')"
+                                                        style="border: none; background: none; padding: 0;">
+                                                        <i class="fa-solid fa-minus fs-6"></i>
+                                                    </button>
+                                                @endif
 
                                                 <!-- Quantidade com bordas laterais -->
                                                 <strong
@@ -243,16 +240,11 @@ use Illuminate\Support\Str;
                                                     {{ $item->quantidade }}
                                                 </strong>
 
-                                                <!-- Botão de aumentar -->
-                                                {{-- <form
-                                                    action="{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        style="border: none; background: none; padding: 0;">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </button>
-                                                </form> --}}
+                                                <button type="button"
+                                                    onclick="addToCart('{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->oferta->tipo_item]) }}')"
+                                                    style="border: none; background: none; padding: 0;">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -341,7 +333,7 @@ use Illuminate\Support\Str;
                                         id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
                             </div>
                             <button type="submit" class="btn finalizar-btn w-100 mt-3 text-white rounded-5"
-                                >Finalizar</button>
+                                onclick="return confirmFinalizar()">Finalizar</button>
                         @else
                             <div class="d-flex justify-content-between mt-3">
                                 <span>Valor dos produtos</span>
@@ -659,8 +651,58 @@ use Illuminate\Support\Str;
 
     <script>
         // função para que retorna true ou false para a rota do form onde a estou chamando, se retornar true, vai acionar o método da rota, e vai limpar o carrinho, se não, não limpa
-        function confirmLimpeza() {
-            return confirm('Tem certeza que deseja limpar o carrinho?')
+        // function confirmLimpeza() {
+        //     return confirm('Tem certeza que deseja limpar o carrinho?')
+        // }
+
+        function limparCarrinho() {
+            let confirmLimpeza = confirm('Tem certeza que deseja limpar o carrinho?');
+            if (confirmLimpeza) {
+                fetch('{{ route('lista.limpar') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+
+            }
+        }
+
+        function removeItem(url, itemId) {
+            fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect; // Redireciona para a rota
+                        }
+                    }
+                })
+        }
+
+        function addToCart(url, itemId) {
+            fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (data.redirect) {
+                            window.location.href = data.redirect; // Redireciona para a rota
+                        }
+                    }
+                })
         }
 
         function confirmFinalizar() {
