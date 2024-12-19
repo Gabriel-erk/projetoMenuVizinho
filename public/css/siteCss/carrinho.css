@@ -1,0 +1,225 @@
+/* botões limpar/finalizar */
+#limparCarrinho {
+    background-color: var(--cor-primaria);
+    color: #fff;
+    font-family: var(--fonte-secundaria);
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    width: 9vw;
+    height: 7vh;
+    border: none;
+    border-radius: 1.3rem;
+
+    /* Aplica a transição suave para todas as mudanças de cor */
+    transition: background-color 0.3s ease;
+}
+
+#finalizar-btn {
+    background-color: var(--cor-primaria);
+    transition: background-color 0.3s ease;
+}
+
+#limparCarrinho:hover,
+#finalizar-btn:hover {
+    background-color: var(--cor-terciaria);
+}
+
+/* img do produto no carrinho */
+
+.img-item {
+    transition: 0.3s ease-in-out;
+    /* Suaviza o efeito ao passar/tirar o mouse */
+}
+
+.img-item:hover {
+    filter: brightness(70%);
+    /* Escurece a imagem */
+}
+
+/* icones */
+
+.fa-solid:hover {
+    cursor: pointer;
+}
+
+/* campos de cupom e pagamento */
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-left: none;
+    border-radius: 0;
+}
+
+.form-control {
+    border-right: none;
+    color: #888;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+}
+
+/* configs geral de produto */
+
+#produto {
+    /* width: 33%; */
+    height: 98%;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#img-produto {
+    display: flex;
+    justify-content: center
+}
+
+/* ajuste de icone e produto em monitores diferentes */
+
+@media (min-width: 768px) and (max-width: 1366px) {
+
+    /* icone */
+    .div-quantidade {
+        padding-left: 0.5rem;
+        padding-right: 0.6rem;
+        width: 7.5vw;
+        height: 4.5vh;
+        border: 1px solid #d9d9d9;
+        border-radius: 12px;
+        gap: 5px;
+    }
+
+    /* produto */
+    #img-produto {
+        padding-top: 1.8rem;
+        padding-bottom: 1.8rem;
+        width: 100%;
+    }
+
+    #img-produto img {
+        height: 25vh;
+        width: 20vw;
+
+    }
+
+    #nome-desc {
+        width: 80%;
+    }
+
+    #nome-desc #desc {
+        color: #7D7D7D;
+        font-size: 0.8rem
+    }
+
+    #valor-addProduto #preco {
+        font-size: 1rem
+    }
+
+    #valor-addProduto #icone-mais {
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    }
+}
+
+@media (min-width: 1367px) {
+
+    /* icone */
+    .div-quantidade {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 7.5vw;
+        height: 4vh;
+        border: 1px solid #d9d9d9;
+        border-radius: 12px;
+        gap: 5px;
+    }
+
+    /* produto */
+    #img-produto {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    #img-produto img {
+        height: 22vh;
+        width: 18vw;
+    }
+
+    #nome-desc {
+        width: 75%;
+    }
+
+    #nome-desc #desc {
+        color: #7D7D7D;
+        font-size: 1.1rem
+    }
+
+    #valor-addProduto #preco {
+        font-size: 1.1rem
+    }
+
+    #valor-addProduto #icone-mais {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+    }
+}
+
+/* configs de modals */
+#modal-custom {
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+/* alterando o corpo, sem ser a div que somente agrupa ele */
+#conteudo-modal-pagamento,
+#conteudo-modal-cupom {
+    width: 100vw
+}
+
+.opcaoPagamento a {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.opcaoPagamento a:hover {
+    color: #643c1c;
+    text-shadow: 0 0 5px rgba(236, 48, 48, 0.1);
+}
+
+/* metodo pagamento */
+.opcaoPagamento,
+.opcaoSalvaPagamento {
+    transition: all 0.3s ease;
+}
+
+.opcaoSalvaPagamento:hover,
+.opcaoPagamento:hover {
+    background-color: #c5c4c4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.opcaoSalvaPagamento:hover,
+.formaPagamento:hover {
+    cursor: pointer;
+}
+
+/* cupons */
+
+/* colocando aqui, pois se deixar estes atributos fixos no próprio elemento, não consigo altera-los depois */
+.addCupom {
+    background-color: #fff;
+    color: #8c6342;
+}
+
+.addCupom:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #8C6342;
+    transition: all linear 200ms;
+}

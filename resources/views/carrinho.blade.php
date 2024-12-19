@@ -5,96 +5,17 @@ use Illuminate\Support\Str;
 ?>
 
 <link rel="stylesheet" href="{{ asset('css/siteCss/produto.css') }}">
+<link rel="stylesheet" href="{{ asset('css/siteCss/carrinho.css') }}">
 
 <!-- adicionando fonte 5 (baloo bhai) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap" rel="stylesheet">
 
+{{-- gerando a meta tag com o token de segurança csrf, pois ao usar meu js em outro arquivo, ele não tem acesso a essa info, e não consigo realizar submissões de "formulários" sem isso, um ex é a função addToCart, ao dispara-la, sem isso, ele não permite submeter as informações para o meu controller --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @section('conteudo')
-    <style>
-        #limparCarrinho {
-            background-color: var(--cor-primaria);
-            color: #fff;
-            font-family: var(--fonte-secundaria);
-            font-size: 0.9rem;
-            padding: 0.5rem;
-            width: 9vw;
-            height: 7vh;
-            border: none;
-            border-radius: 1.3rem;
-
-            /* Aplica a transição suave para todas as mudanças de cor */
-            transition: background-color 0.3s ease;
-        }
-
-        .finalizar-btn {
-            background-color: var(--cor-primaria);
-            transition: background-color 0.3s ease;
-        }
-
-        #limparCarrinho:hover,
-        .finalizar-btn:hover {
-            background-color: var(--cor-terciaria);
-        }
-
-        .img-item {
-            transition: 0.3s ease-in-out;
-            /* Suaviza o efeito ao passar/tirar o mouse */
-        }
-
-        .img-item:hover {
-            filter: brightness(70%);
-            /* Escurece a imagem */
-        }
-
-        /* icones */
-        .fa-solid:hover {
-            cursor: pointer;
-        }
-
-        /* campos de cupom e pagamento */
-        .input-group-text {
-            background-color: #f8f9fa;
-            border-left: none;
-            border-radius: 0;
-        }
-
-        .form-control {
-            border-right: none;
-            color: #888;
-        }
-
-        .input-group .form-control:focus {
-            box-shadow: none;
-        }
-
-        /* ajuste de icone em monitores diferentes */
-        @media (min-width: 768px) and (max-width: 1366px) {
-            .div-quantidade {
-                padding-left: 0.5rem;
-                padding-right: 0.6rem;
-                width: 7.5vw;
-                height: 4.5vh;
-                border: 1px solid #d9d9d9;
-                border-radius: 12px;
-                gap: 5px;
-            }
-        }
-
-        @media (min-width: 1367px) {
-            .div-quantidade {
-                padding-left: 1rem;
-                padding-right: 1rem;
-                width: 7.5vw;
-                height: 4vh;
-                border: 1px solid #d9d9d9;
-                border-radius: 12px;
-                gap: 5px;
-            }
-        }
-    </style>
-
     @if (session('sucesso'))
         <script>
             window.onload = function() {
@@ -120,7 +41,7 @@ use Illuminate\Support\Str;
                 <div class="d-flex justify-content-between align-items-center pb-2">
                     <h1 class="fw-bold">Seu Carrinho</h1>
                     @if (count($itensCarrinho) > 0)
-                        <button type="submit" id="limparCarrinho" onclick="limparCarrinho()">Limpar
+                        <button id="limparCarrinho" onclick="limparCarrinho()">Limpar
                             carrinho</button>
                     @endif
                 </div>
@@ -241,7 +162,7 @@ use Illuminate\Support\Str;
                                                 </strong>
 
                                                 <button type="button"
-                                                    onclick="addToCart('{{ route('lista.addToCart', ['itemId' => $item->produto->id, 'tipoItem' => $item->oferta->tipo_item]) }}')"
+                                                    onclick="addToCart('{{ route('lista.addToCart', ['itemId' => $item->oferta->id, 'tipoItem' => $item->oferta->tipo_item]) }}')"
                                                     style="border: none; background: none; padding: 0;">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
@@ -300,7 +221,7 @@ use Illuminate\Support\Str;
                                     Pagamento</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="pagamento"
-                                        placeholder="*****-3214 12/24" aria-label="Método de Pagamento">
+                                        placeholder="••••-3214" aria-label="Método de Pagamento" data-id-cartao-selecionado="">
                                     <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
                                         data-bs-target="#modalPagamento">Selecionar</button>
                                 </div>
@@ -332,7 +253,7 @@ use Illuminate\Support\Str;
                                 <span>R$ <span
                                         id="totalCarrinho">{{ number_format($totalCarrinho + $taxaEntrega, 2, ',', '.') }}</span></span>
                             </div>
-                            <button type="submit" class="btn finalizar-btn w-100 mt-3 text-white rounded-5"
+                            <button type="submit" id="finalizar-btn" class="btn w-100 mt-3 text-white rounded-5"
                                 onclick="return confirmFinalizar()">Finalizar</button>
                         @else
                             <div class="d-flex justify-content-between mt-3">
@@ -358,89 +279,6 @@ use Illuminate\Support\Str;
             </div>
         </form>
 
-        <style>
-            #produto {
-                /* width: 33%; */
-                height: 98%;
-                margin-top: 5px;
-                margin-left: 10px;
-            }
-
-            #img-produto {
-                display: flex;
-                justify-content: center
-            }
-
-            @media (min-width: 768px) and (max-width: 1366px) {
-                #img-produto {
-                    padding-top: 1.8rem;
-                    padding-bottom: 1.8rem;
-                    width: 100%;
-                }
-
-                #img-produto img {
-                    height: 25vh;
-                    width: 20vw;
-
-                }
-
-                #nome-desc {
-                    width: 80%;
-                }
-
-                #nome-desc #desc {
-                    color: #7D7D7D;
-                    font-size: 0.8rem
-                }
-
-                #valor-addProduto #preco {
-                    font-size: 1rem
-                }
-
-                #valor-addProduto #icone-mais {
-                    padding-top: 0.4rem;
-                    padding-bottom: 0.4rem;
-
-                    padding-left: 0.8rem;
-                    padding-right: 0.8rem;
-                }
-            }
-
-            @media (min-width: 1367px) {
-                #img-produto {
-                    padding-top: 2rem;
-                    padding-bottom: 2rem;
-                }
-
-                #img-produto img {
-                    height: 22vh;
-                    width: 18vw;
-                }
-
-                #nome-desc {
-                    width: 75%;
-                }
-
-                #nome-desc #desc {
-                    color: #7D7D7D;
-                    font-size: 1.1rem
-                }
-
-                #valor-addProduto #preco {
-                    font-size: 1.1rem
-                }
-
-                #valor-addProduto #icone-mais {
-                    padding-top: 0.5rem;
-                    padding-bottom: 0.5rem;
-
-                    padding-left: 0.9rem;
-                    padding-right: 0.9rem;
-                }
-
-            }
-        </style>
-
         <div class="recomendacoes container" style="font-family: var(--fonte-primaria)">
 
             <h2 class="fw-medium ps-3 pt-3">Recomendações</h2>
@@ -462,18 +300,16 @@ use Illuminate\Support\Str;
                             class="px-4 rounded-bottom d-flex justify-content-between align-items-center"
                             style="height: 10vh">
                             <span id="preco" class="fw-bold d-block">R${{ $produto->preco }}</span>
-                            <form
-                                action="{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => 'produto']) }}"
-                                method="post">
-                                @csrf
-                                <div id="icone-mais" class="rounded-circle"
-                                    style="background-color: var(--cor-secundaria)">
-                                    <button type="submit" style="border: none; background-color: var(--cor-secundaria);"
-                                        title="Adicionar ao carrinho">
-                                        <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
-                                    </button>
-                                </div>
-                            </form>
+
+                            <div id="icone-mais" class="rounded-circle" style="background-color: var(--cor-secundaria)">
+                                <button type="button"
+                                    onclick="addToCart('{{ route('lista.addToCart', ['itemId' => $produto->id, 'tipoItem' => $produto->tipo_item]) }}')"
+                                    style="border: none; background-color: var(--cor-secundaria);"
+                                    title="Adicionar ao carrinho">
+                                    <i class="fa-solid fa-plus" style="color: #8C6342;"></i>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 @endforeach
@@ -483,66 +319,11 @@ use Illuminate\Support\Str;
 
     </main>
 
-    <style>
-        .modal-custom {
-            position: fixed;
-            left: 0;
-            right: 0;
-        }
-
-        /* alterando o corpo, sem ser a div que somente agrupa ele */
-        .conteudo-modal-pagamento,
-        .conteudo-modal-cupom {
-            width: 100vw
-        }
-
-        .opcaoPagamento a {
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .opcaoPagamento a:hover {
-            color: #643c1c;
-            text-shadow: 0 0 5px rgba(236, 48, 48, 0.1);
-        }
-
-        /* metodo pagamento */
-        .opcaoPagamento,
-        .opcaoSalvaPagamento {
-            transition: all 0.3s ease;
-        }
-
-        .opcaoSalvaPagamento:hover,
-        .opcaoPagamento:hover {
-            background-color: #c5c4c4;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .opcaoSalvaPagamento:hover,
-        .formaPagamento:hover {
-            cursor: pointer;
-        }
-
-        /* cupons */
-
-        /* colocando aqui, pois se deixar estes atributos fixos no próprio elemento, não consigo altera-los depois */
-        .addCupom {
-            background-color: #fff;
-            color: #8c6342;
-        }
-
-        .addCupom:hover {
-            cursor: pointer;
-            color: #fff;
-            background-color: #8C6342;
-            transition: all linear 200ms;
-        }
-    </style>
     <!-- Modal pagamento -->
     <div class="modal fade" id="modalPagamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-custom modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div id="modal-custom" class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <!-- Adiciona 'modal-dialog-centered' -->
-            <div class="modal-content conteudo-modal-pagamento">
+            <div id="conteudo-modal-pagamento" class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Formas de pagamento</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -580,7 +361,7 @@ use Illuminate\Support\Str;
                         @else
                             @foreach ($metodosPagamentos as $metodo)
                                 <div class="opcaoSalvaPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
-                                    style="background-color: #f4f4f4; border: 1px solid #ccc">
+                                    style="background-color: #f4f4f4; border: 1px solid #ccc" data-numero-cartao="••••-{{  substr($metodo->numero_cartao, -4) }} " data-id-cartao="{{ $metodo->id }}"  onclick="selecionarCartao(this)">
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle"
                                             style="background-color: #202020; padding: 1rem 0.5rem">
@@ -607,9 +388,9 @@ use Illuminate\Support\Str;
     </div>
     <!-- Modal cupom -->
     <div class="modal fade" id="modalCupom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-custom modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div id="modal-custom" class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <!-- Adiciona 'modal-dialog-centered' -->
-            <div class="modal-content conteudo-modal-cupom">
+            <div id="conteudo-modal-cupom" class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Cupons</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -649,110 +430,5 @@ use Illuminate\Support\Str;
         </div>
     </div>
 
-    <script>
-        // função para que retorna true ou false para a rota do form onde a estou chamando, se retornar true, vai acionar o método da rota, e vai limpar o carrinho, se não, não limpa
-        // function confirmLimpeza() {
-        //     return confirm('Tem certeza que deseja limpar o carrinho?')
-        // }
-
-        function limparCarrinho() {
-            let confirmLimpeza = confirm('Tem certeza que deseja limpar o carrinho?');
-            if (confirmLimpeza) {
-                fetch('{{ route('lista.limpar') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-
-            }
-        }
-
-        function removeItem(url, itemId) {
-            fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        if (data.redirect) {
-                            window.location.href = data.redirect; // Redireciona para a rota
-                        }
-                    }
-                })
-        }
-
-        function addToCart(url, itemId) {
-            fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        if (data.redirect) {
-                            window.location.href = data.redirect; // Redireciona para a rota
-                        }
-                    }
-                })
-        }
-
-        function confirmFinalizar() {
-            return confirm('Deseja finalizar a compra?')
-        }
-
-        function selecionarCupom(element) {
-            const nomeCupom = element.getAttribute('data-nome-cupom');
-            const valorDesconto = parseFloat(element.getAttribute('data-valor-desconto'));
-
-            const nomeCupomElement = document.getElementById('nomeCupomSelecionado');
-            if (nomeCupomElement) {
-                nomeCupomElement.value = nomeCupom;
-            } else {
-                console.error("Elemento com ID 'nomeCupomSelecionado' não encontrado.");
-            }
-
-            const valorDescontoElement = document.getElementById('valorDescontoCupom');
-            if (valorDescontoElement) {
-                valorDescontoElement.innerText = valorDesconto.toFixed(2).replace('.', ',');
-            } else {
-                console.error("Elemento com ID 'valorDescontoCupom' não encontrado.");
-            }
-
-            const subtotalElement = document.getElementById('subTotalCarrinho');
-            if (subtotalElement) {
-                // pegando o valor do atributo data-valor, que contém o valor do 'subtotal' e convertendo para float
-                const subtotal = parseFloat(subtotalElement.getAttribute('data-valor'));
-                const taxaEntrega = 5.0;
-                let totalComDesconto = subtotal + taxaEntrega - valorDesconto;
-                totalComDesconto = Math.max(totalComDesconto, 15);
-
-                const totalCarrinhoElement = document.getElementById('totalCarrinho');
-                if (totalCarrinhoElement) {
-                    totalCarrinhoElement.innerText = totalComDesconto.toFixed(2).replace('.', ',');
-                } else {
-                    console.error("Elemento com ID 'totalCarrinho' não encontrado.");
-                }
-            } else {
-                console.error("Elemento com ID 'subtotalCarrinho' não encontrado.");
-            }
-
-            // Fecha o modal corretamente
-            const modalElement = document.getElementById('modalCupom');
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) {
-                modalInstance.hide();
-            } else {
-                console.error("Modal com ID 'modalCupom' não encontrado ou não inicializado.");
-            }
-        }
-    </script>
+    <script src="{{ asset('js/carrinho.js') }}"></script>
 @endsection
