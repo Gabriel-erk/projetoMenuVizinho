@@ -49,46 +49,46 @@ function addToCart(url, itemId) {
 }
 
 function confirmFinalizar() {
-    const numeroCartaoElement = document.getElementById("pagamento");
-    const idCartaoSelecionado = numeroCartaoElement.getAttribute(
-        "data-id-cartao-selecionado"
-    );
+    // const numeroCartaoElement = document.getElementById("pagamento");
+    // const idCartaoSelecionado = numeroCartaoElement.getAttribute(
+    //     "data-id-cartao-selecionado"
+    // );
 
-    if (!idCartaoSelecionado) {
-        alert("Por favor, selecione um método de pagamento.");
-        return false; //cancela o envio
-    }
+    // if (!idCartaoSelecionado) {
+    //     alert("Por favor, selecione um método de pagamento.");
+    //     return false; //cancela o envio
+    // }
 
-    const dadosCompra = {
-        id_cartao: idCartaoSelecionado,
-        // Aqui você pode adicionar outros dados, como o ID do cupom
-    };
+    // const dadosCompra = {
+    //     id_cartao: idCartaoSelecionado,
+    //     // Aqui você pode adicionar outros dados, como o ID do cupom
+    // };
 
-    fetch('{{ route("finalizar.compra") }}', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-        },
-        body: JSON.stringify(dadosCompra),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                alert("Compra finalizada com sucesso!");
-                window.location.href = '{{ route("compra.concluida") }}';
-            } else {
-                alert("Erro ao finalizar compra. Tente novamente.");
-            }
-        })
-        .catch((error) => {
-            console.error("Erro:", error);
-            alert("Ocorreu um erro ao processar sua compra.");
-        });
+    // fetch('{{ route("finalizar.compra") }}', {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "X-CSRF-TOKEN": "{{ csrf_token() }}",
+    //     },
+    //     body: JSON.stringify(dadosCompra),
+    // })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         if (data.success) {
+    //             alert("Compra finalizada com sucesso!");
+    //             window.location.href = '{{ route("compra.concluida") }}';
+    //         } else {
+    //             alert("Erro ao finalizar compra. Tente novamente.");
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.error("Erro:", error);
+    //         alert("Ocorreu um erro ao processar sua compra.");
+    //     });
 
-    return false;
+    // return false;
 
-    // return confirm("Deseja finalizar a compra?");
+    return confirm("Deseja finalizar a compra?");
 }
 
 function selecionarCupom(element) {
