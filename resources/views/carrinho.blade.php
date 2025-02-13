@@ -361,7 +361,7 @@ use Illuminate\Support\Str;
                         @else
                             @foreach ($metodosPagamentos as $metodo)
                                 <div class="opcaoSalvaPagamento d-flex justify-content-between align-items-center m-2 py-3 px-2 w-100 h-25 rounded-2 shadow-sm"
-                                    style="background-color: #f4f4f4; border: 1px solid #ccc" data-numero-cartao="••••-{{  substr($metodo->numero_cartao, -4) }} " data-id-cartao="{{ $metodo->id }}"  onclick="selecionarCartao(this)">
+                                    style="background-color: #f4f4f4; border: 1px solid #ccc" data-numero-cartao="••••-{{  substr($metodo->numero_cartao, -4) }} " data-id-cartao-selecionado=""="{{ $metodo->id }}"  onclick="selecionarCartao(this)">
                                     <div class="d-flex align-items-center">
                                         <div class="rounded-circle"
                                             style="background-color: #202020; padding: 1rem 0.5rem">
