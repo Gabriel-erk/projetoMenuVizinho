@@ -42,7 +42,8 @@ class ProdutosApiController extends Controller
         
             $subCategorias = SubCategoria::with('produtos')->get();
             $subCategorias = $subCategorias->map(function ($subCategoria) {
-                // Itera sobre os produtos de cada subcategoria e atualiza o campo 'imagem'
+                // Itera sobre os produtos de cada subcategoria e atualiza o campo 'imagem' 
+                // esta apontando um erro nesta linha, porém é apenas erro do intelissense, não da aplicação em si
                 $subCategoria->produtos = $subCategoria->produtos->map(function ($produto) {
                     $produto->imagem = asset($produto->imagem);
                     return $produto;

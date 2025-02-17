@@ -13,6 +13,10 @@ class BannerApiController extends Controller
     {
         try {
             $banners = Banner::all();
+            $banners = $banners->map(function ($banner){
+                $banner->imagem = asset($banner->imagem);
+                return $banner;
+            });
             return response()->json([$banners], 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);

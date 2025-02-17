@@ -19,7 +19,7 @@ class ProdutoSeeder extends Seeder
         // Para cada categoria, criamos três produtos associados
         foreach ($categorias as $categoria) {
             // cria 6 produtos, e passa para a próxima categoria, e refaz o processo
-            for ($i = 1; $i <= 6; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 Produto::create([
                     'imagem' => 'img/img-corrigida/duplo-cheddar.png', // Imagem padrão
                     'nome' => 'Produto ' . $i, // Nome do produto
@@ -35,7 +35,7 @@ class ProdutoSeeder extends Seeder
         }
         foreach ($subCategorias as $subCategoria) {
             // cria 3 produtos, e passa para a próxima categoria, e refaz o processo
-            for ($i = 1; $i <= 6; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 Produto::create([
                     'imagem' => 'img/img-corrigida/duplo-cheddar.png', // Imagem padrão
                     'nome' => 'Produto ' . $i, // Nome do produto
