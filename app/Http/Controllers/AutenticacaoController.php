@@ -20,10 +20,24 @@ class AutenticacaoController extends Controller
         ]);
 
         if (Auth::attempt($dadosUsuarios)) {
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Login realizado com sucesso!',
+                    'user' => Auth::user(),
+                    'token' => $request->user()->createToken('api_token')->plainTextToken
+                ], 200);
+            }
+
             $request->session()->regenerate();
             
             return redirect()->intended("/admin/usuarios/minhaConta");
         }
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Usuário ou senha inválida'], 401);
+        }
+        
         return redirect()->back()->withErrors(["email" => "Usuário ou senha inválida"]);
     }
 

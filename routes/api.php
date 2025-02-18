@@ -12,12 +12,17 @@ use App\Http\Controllers\api\OfertasApiController;
 use App\Http\Controllers\api\ProdutosApiController;
 use App\Http\Controllers\api\SubCategoriasApiController;
 use App\Http\Controllers\api\UsuariosApiController;
+use App\Http\Controllers\AutenticacaoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+// metodos de login e logout
+Route::post('/login', [AutenticacaoController::class, 'login']);
+Route::post('/logout', [AutenticacaoController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::controller(CategoriasProdutosApiController::class)->group(function () {
     Route::get("categorias", 'index');
