@@ -13,6 +13,12 @@ class OfertasApiController extends Controller
     {
         try {
             $produtos = Oferta::all();
+            $produtos = $produtos->map(function ($produto) {
+                // asset($produto->fotos[0]->imagem), encontra essa informação e joga dentro de $produto->fotos[0]->imagem =
+                // ou seja, o campo imagem, dentro de fotos na posição 0 dentro da váriavel produto que é uma instância da tabela produtos, irá receber o caminho BRUTO da imagem (ou seja, por ex: "imagem": "http://10.56.45.27/public/img/categoria-informatica.jpg",) 
+                $produto->imagem = asset($produto->imagem);
+                return $produto;
+            });
             return response()->json($produtos, 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);
