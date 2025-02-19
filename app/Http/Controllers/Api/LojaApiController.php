@@ -127,4 +127,35 @@ class LojaApiController extends Controller
             return response()->json(["Erro" => "Erro ao deletar loja"], 500);
         }
     }
+
+    // retorna a view politica, e passa o texto separado em bloco que contem titulo e paragráfo definindo cada bloco pelo espaçamento duplo (se no db tiver um espaçamento entre um texto e outro significa que é outro bloco de titulo-paragrafo)
+    public function politica()
+    {
+        try {
+            // encontrando o campo do texto de politica de privacidade
+            $texto = Loja::findOrFail(1)->texto_politica_privacidade;
+
+            // Separar o texto em blocos usando quebra de linha
+            $blocos = preg_split('/\n\s*\n/', trim($texto)); // Usa quebras duplas de linha como separador
+
+            $textoFormatado = [];
+
+            foreach ($blocos as $bloco) {
+                // Separar o título do parágrafo
+                $linhas = preg_split('/\n/', trim($bloco), 2);
+                $titulo = $linhas[0];
+                $conteudo = isset($linhas[1]) ? $linhas[1] : '';
+
+                // Adiciona o título e conteúdo ao array formatado
+                $textoFormatado[] = [
+                    'titulo' => $titulo,
+                    'conteudo' => $conteudo
+                ];
+            }
+
+            return response()->json($textoFormatado,200);
+        } catch (Exception $e){
+            return response()->json(['Erro'=> 'Erro ao listar dados'], 500);
+        }
+    }
 }
