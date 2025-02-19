@@ -6,13 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Cupom;
 use Exception;
 use Illuminate\Http\Request;
+// pacote do laravel para manipular datas e horas
+use Carbon\Carbon;
 
 class CupomApiController extends Controller
 {
     public function index()
     {
         try {
-            $cupons = Cupom::all();
+            $cupons = Cupom::all()->map(function ($cupom) {
+                // Calcula o tempo restante em horas
+                // Aqui, diffInHours retorna o número de horas restantes. O segundo parâmetro false permite que o valor seja negativo se a data já tiver expirado, o que pode ser útil para saber se o tempo já passou.
+                $cupom->horas_restantes = round(Carbon::now()->floatDiffInHours($cupom->data_expiracao, false));
+                return $cupom;
+            });;
             return response()->json([$cupons], 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao listar dados"], 500);
