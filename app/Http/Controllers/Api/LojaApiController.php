@@ -158,4 +158,13 @@ class LojaApiController extends Controller
             return response()->json(['Erro'=> 'Erro ao listar dados'], 500);
         }
     }
+
+    public function sobre(){
+        try {
+            $sobre = Loja::findOrFail(1)->texto_sobre_restaurante;
+            return response()->json($sobre,200);
+        } catch (Exception $e){
+            return response()->json(['Erro'=> 'Erro ao listar dados'], 500);        
+        }
+    }
 }

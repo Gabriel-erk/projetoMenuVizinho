@@ -107,6 +107,7 @@ Route::controller(LojaApiController::class)->group(function () {
     Route::put("loja/atualizar", 'update');
     Route::delete("loja/deletar", 'destroy');
     Route::get("loja/politica", 'politica');
+    Route::get("loja/sobre", 'sobre');
 });
 
 Route::controller(BannerApiController::class)->group(function () {
