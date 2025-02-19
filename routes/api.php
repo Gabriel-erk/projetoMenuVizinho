@@ -47,6 +47,7 @@ Route::controller(ProdutosApiController::class)->group(function () {
     Route::post("produtos/salvar", 'store');
     Route::put("produtos/atualizar/{id}", 'update');
     Route::delete("produtos/deletar/{id}", 'destroy');
+    Route::get("produtos/produto/{id}", 'produto');
 });
 
 Route::controller(AdicionalApiController::class)->group(function () {

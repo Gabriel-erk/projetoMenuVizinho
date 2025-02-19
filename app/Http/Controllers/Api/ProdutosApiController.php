@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adicional;
 use App\Models\CategoriaProduto;
 use App\Models\Produto;
 use App\Models\SubCategoria;
@@ -33,13 +34,13 @@ class ProdutosApiController extends Controller
             $categorias = CategoriaProduto::with('produtos')->get();
             $categorias = $categorias->map(function ($categoria) {
                 // Itera sobre os produtos de cada categoria e atualiza o campo 'imagem'
-                 $categoria->produtos = $categoria->produtos->map(function ($produto) {
+                $categoria->produtos = $categoria->produtos->map(function ($produto) {
                     $produto->imagem = asset($produto->imagem);
                     return $produto;
                 });
                 return $categoria;
             });
-        
+
             $subCategorias = SubCategoria::with('produtos')->get();
             $subCategorias = $subCategorias->map(function ($subCategoria) {
                 // Itera sobre os produtos de cada subcategoria e atualiza o campo 'imagem' 
@@ -50,12 +51,11 @@ class ProdutosApiController extends Controller
                 });
                 return $subCategoria;
             });
-        
+
             return response()->json(['categorias' => $categorias, 'subCategorias' => $subCategorias], 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => $e->getMessage()], 500);
         }
-        
     }
 
     public function show(string $id)
@@ -142,6 +142,33 @@ class ProdutosApiController extends Controller
             return response()->json(["message" => "Produto deletado com sucesso"], 200);
         } catch (Exception $e) {
             return response()->json(["Erro" => "Erro ao deletar produto"], 500);
+        }
+    }
+
+    public function produto(string $id)
+    {
+        try {
+            $produto = Produto::findOrFail($id);
+            $adicionais = Adicional::all();
+
+            // váriavel recebendo um array vazio
+            $adicionaisCategorias = [];
+            $adicionaisSubCategorias = [];
+
+            foreach ($adicionais as $adicional) {
+                // Verifica correspondência com a categoria
+                if ($produto->categoria_produto_id == $adicional->categoria_produto_id) {
+                    $adicionaisCategorias[] = $adicional;
+                }
+                // Verifica correspondência com a subcategoria
+                elseif ($produto->sub_categoria_produto_id == $adicional->sub_categoria_produto_id) {
+                    $adicionaisSubCategorias[] = $adicional;
+                }
+            }
+            // acredito que não preciso passar produto pois já tenho acesso a ele na page produto.dart
+            return response()->json([$produto, $adicionaisCategorias, $adicionaisSubCategorias], 200);
+        } catch (Exception $e) {
+            return response()->json(["Erro" => "Erro ao listar dados"], 500);
         }
     }
 }
