@@ -399,7 +399,7 @@
                         consectetur adipisicing elit.
 
                         quo expedita tempore.</span>
-                    <span class="d-block mb-1 nome-cliente">-Eric tchola dms</span>
+                    <span class="d-block mb-1 nome-cliente">-John Marston</span>
 
                     <div class="d-flex justify-content-center align-items-center">
                         <i class="fa-solid fa-star me-1 icone-estrela" style="color: #ffd12c;"></i>
@@ -420,7 +420,7 @@
                         consectetur adipisicing elit.
 
                         quo expedita tempore.</span>
-                    <span class="d-block mb-1 nome-cliente">-Eric tchola dms</span>
+                    <span class="d-block mb-1 nome-cliente">-Mauricio Meireles</span>
 
                     <div class="d-flex justify-content-center align-items-center">
                         <i class="fa-solid fa-star me-1 icone-estrela" style="color: #ffd12c;"></i>
@@ -441,7 +441,7 @@
                         consectetur adipisicing elit.
 
                         quo expedita tempore.</span>
-                    <span class="d-block mb-1 nome-cliente">-Eric tchola dms</span>
+                    <span class="d-block mb-1 nome-cliente">-Tony Kroos</span>
 
                     <div class="d-flex justify-content-center align-items-center">
                         <i class="fa-solid fa-star me-1 icone-estrela" style="color: #ffd12c;"></i>

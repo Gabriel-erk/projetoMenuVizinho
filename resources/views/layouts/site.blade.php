@@ -143,7 +143,8 @@
                     </li>
                     <li class="m-4"><a href="{{ route('site.cardapio') }}" class="text-decoration-none">CARDÁPIO</a>
                     </li>
-                    <li class="m-4"><a href="{{ route('cupom.cupons') }}" class="text-decoration-none">CUPONS</a></li>
+                    <li class="m-4"><a href="{{ route('cupom.cupons') }}" class="text-decoration-none">CUPONS</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -154,13 +155,14 @@
                         style="width: 3em; height: 2.5em; background-color:var(--cor-secundaria)">
                         <i class="fa-solid fa-bag-shopping" style="color: var(--cor-quartenaria);"></i>
                         @auth
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
                                 {{ $totalItensCarrinho > 0 ? $totalItensCarrinho : 0 }}
                                 <span class="visually-hidden">lista carrinho</span>
                             </span>
                         @endauth
                     </button>
-                </a>                
+                </a>
 
                 <style>
                     .navbar-toggler-icon {
@@ -208,14 +210,16 @@
                         <div class="modal-body">
                             <nav>
                                 <ul class="list-group list-group-flush list-unstyled">
-                                    <li class="list-group-item"><i class="fa-solid fa-house"
-                                            style="color: #000000;"></i>
-                                        <a href="{{ route('usuario.minhaConta') }}"
-                                            class="text-decoration-none text-dark ps-2">Minha Conta</a>
-                                    </li>
+
                                     @auth
 
                                         @if (auth()->user()->tipo == 1)
+                                            <li class="list-group-item"><i class="fa-solid fa-house"
+                                                    style="color: #000000;"></i>
+                                                <a href="{{ route('usuario.minhaConta') }}"
+                                                    class="text-decoration-none text-dark ps-2">Minha Conta</a>
+                                            </li>
+
                                             <li class="list-group-item">
                                                 <i class="fa-solid fa-basket-shopping" style="color: #000000;"></i>
                                                 <a href="{{ route('usuario.meusPedidos') }}"
@@ -237,14 +241,14 @@
 
                                     @endauth
 
-                                    @guest
+                                    {{-- @guest
                                         <li class="list-group-item">
                                             <i class="fa-solid fa-handshake" style="color: #000000;"></i>
                                             <a href="#" class="text-decoration-none text-dark ps-2">Seja um dos
                                                 nossos
                                                 parceiros</a>
                                         </li>
-                                    @endguest
+                                    @endguest --}}
                                 </ul>
                             </nav>
 

@@ -283,7 +283,7 @@ use Illuminate\Support\Str;
 
             <h2 class="fw-medium ps-3 pt-3">Recomendações</h2>
             <div class="d-flex owl-carousel">
-                @foreach ($produtos as $produto)
+                @foreach ($produtos->take(3) as $produto)
                     <div id="produto" class="item">
                         <a href="{{ route('site.produto', ['id' => $produto->id]) }}">
                             <div id="img-produto">
